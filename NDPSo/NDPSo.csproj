@@ -1,0 +1,2422 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54F84971-DDD4-46AE-AA76-C26DABAB8E1A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NDPSo</RootNamespace>
+    <AssemblyName>NDPSo</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IcologoPM.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v19.2" />
+    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v19.2" />
+    <Reference Include="DevExpress.Diagram.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Mvvm.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v19.2.Core" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Export, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.SpellChecker.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v19.2" />
+    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v19.2" />
+    <Reference Include="DevExpress.Sparkline.v19.2.Core" />
+    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDiagram.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v19.2" />
+    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraSpellChecker.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="S7.Net, Version=0.10.0.0, Culture=neutral, PublicKeyToken=d5812d469e84c693, processorArchitecture=MSIL">
+      <HintPath>..\packages\S7netplus.0.10.0\lib\net452\S7.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administration\AdministrationModel.cs" />
+    <Compile Include="Administration\AdministrationPresenter.cs" />
+    <Compile Include="Administration\ChangePasswordDataPresenter.cs" />
+    <Compile Include="Administration\ChangePasswordView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\ChangePasswordView.Designer.cs">
+      <DependentUpon>ChangePasswordView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\FunctionAssign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\FunctionAssign.Designer.cs">
+      <DependentUpon>FunctionAssign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\FunctionAssignDataPresenter.cs" />
+    <Compile Include="Administration\FunctionAssignUP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\FunctionAssignUP.Designer.cs">
+      <DependentUpon>FunctionAssignUP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\IAdministrationModel.cs" />
+    <Compile Include="Administration\IChangePasswordView.cs" />
+    <Compile Include="Administration\IFunctionAssignView.cs" />
+    <Compile Include="Administration\ILoginView.cs" />
+    <Compile Include="Administration\INewRoleView.cs" />
+    <Compile Include="Administration\INewUserView.cs" />
+    <Compile Include="Administration\IRoleAssignView.cs" />
+    <Compile Include="Administration\IRoleMngView.cs" />
+    <Compile Include="Administration\IUserMngView.cs" />
+    <Compile Include="Administration\LoginDataPresenter.cs" />
+    <Compile Include="Administration\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\NewRoleDataPresenter.cs" />
+    <Compile Include="Administration\NewRoleView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\NewRoleView.Designer.cs">
+      <DependentUpon>NewRoleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\NewUserDataPresenter.cs" />
+    <Compile Include="Administration\NewUserView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\NewUserView.Designer.cs">
+      <DependentUpon>NewUserView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\RoleAssign.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\RoleAssign.Designer.cs">
+      <DependentUpon>RoleAssign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\RoleAssignDataPresenter.cs" />
+    <Compile Include="Administration\RoleMngDataPresenter.cs" />
+    <Compile Include="Administration\RoleMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\RoleMngView.Designer.cs">
+      <DependentUpon>RoleMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\UserMngDataPresenter.cs" />
+    <Compile Include="Administration\UserMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Administration\UserMngView.Designer.cs">
+      <DependentUpon>UserMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessObject\AdministrationBO.cs" />
+    <Compile Include="DAL\EventActionCodeRepository.cs" />
+    <Compile Include="DAL\HangMucRepository.cs" />
+    <Compile Include="DAL\HopDongRepository.cs" />
+    <Compile Include="DAL\IHangMucRepository.cs" />
+    <Compile Include="DAL\IHopDongRepository.cs" />
+    <Compile Include="DAL\IMACRepository.cs" />
+    <Compile Include="DAL\IMACSiloRepository.cs" />
+    <Compile Include="DAL\IMaterialRepository.cs" />
+    <Compile Include="DAL\IMeTronChiTietRepository.cs" />
+    <Compile Include="DAL\IMeTronRepository.cs" />
+    <Compile Include="DAL\INhanVienRepository.cs" />
+    <Compile Include="DAL\INhomSiloRepository.cs" />
+    <Compile Include="DAL\IPCInputRepository.cs" />
+    <Compile Include="DAL\IPCOutputRepository.cs" />
+    <Compile Include="DAL\IPhieuTronRepository.cs" />
+    <Compile Include="DAL\ISEC_AssemblyRepository.cs" />
+    <Compile Include="DAL\ISEC_FunctionRepository.cs" />
+    <Compile Include="DAL\ISEC_RoleFunctionRepository.cs" />
+    <Compile Include="DAL\ISEC_RoleRepository.cs" />
+    <Compile Include="DAL\ISEC_TypeInfoRepository.cs" />
+    <Compile Include="DAL\ISEC_UserRepository.cs" />
+    <Compile Include="DAL\ISEC_UserRoleRepository.cs" />
+    <Compile Include="DAL\ISiloRepository.cs" />
+    <Compile Include="DAL\ITaiXeRepository.cs" />
+    <Compile Include="DAL\ITimerParaRepository.cs" />
+    <Compile Include="DAL\ITinhDoHutNuocChiTietRepository.cs" />
+    <Compile Include="DAL\ITinhDoHutNuocRepository.cs" />
+    <Compile Include="DAL\IViewDataMixRepository.cs" />
+    <Compile Include="DAL\IViewSumWeightRepository.cs" />
+    <Compile Include="DAL\Ivw_MaterialDetailDayRepository.cs" />
+    <Compile Include="DAL\Ivw_TotalDriverRepository.cs" />
+    <Compile Include="DAL\Ivw_TotalMaterialRepository.cs" />
+    <Compile Include="DAL\Ivw_TotalTranferRepository.cs" />
+    <Compile Include="DAL\Ivw_TranferDetailDayRepository.cs" />
+    <Compile Include="DAL\IWeighRepository.cs" />
+    <Compile Include="DAL\IWeiSiloSavingRepository.cs" />
+    <Compile Include="DAL\IWeiSiloVisibleRepository.cs" />
+    <Compile Include="DAL\IXeRepository.cs" />
+    <Compile Include="DAL\KhachHangRepository.cs" />
+    <Compile Include="BusinessObject\NDPSystemBO.cs" />
+    <Compile Include="BusinessObject\NDPTramTronBO.cs" />
+    <Compile Include="ClientSetting\IServices.cs" />
+    <Compile Include="ClientSetting\LocalServicesFactory.cs" />
+    <Compile Include="ClientSetting\ServiceFactories.cs" />
+    <Compile Include="ControlStyle1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlStyle1.Designer.cs">
+      <DependentUpon>ControlStyle1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlStyle2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlStyle2.Designer.cs">
+      <DependentUpon>ControlStyle2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlStyle4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlStyle4.Designer.cs">
+      <DependentUpon>ControlStyle4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlViewBase.Designer.cs">
+      <DependentUpon>ControlViewBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\EFRepository.cs" />
+    <Compile Include="Core\IDBContext.cs" />
+    <Compile Include="Core\IDbContextManager.cs" />
+    <Compile Include="Core\IEFRepository.cs" />
+    <Compile Include="Core\IoC.cs" />
+    <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Core\ISpecification.cs" />
+    <Compile Include="Core\RepositoryService.cs" />
+    <Compile Include="Core\Specification.cs" />
+    <Compile Include="DAL\CongTruongRepository.cs" />
+    <Compile Include="DAL\DuLieuTronRepository.cs" />
+    <Compile Include="DAL\ICongTruongRepository.cs" />
+    <Compile Include="DAL\IDuLieuTronRepository.cs" />
+    <Compile Include="DAL\IEventActionCodeRepository.cs" />
+    <Compile Include="DAL\IEventLogRepository.cs" />
+    <Compile Include="DAL\IKhachHangRepository.cs" />
+    <Compile Include="DAL\ISysCodeGenRepository.cs" />
+    <Compile Include="DAL\MACRepository.cs" />
+    <Compile Include="DAL\MACSiloRepository.cs" />
+    <Compile Include="DAL\MaterialRepository.cs" />
+    <Compile Include="DAL\MeTronChiTietRepository.cs" />
+    <Compile Include="DAL\MeTronRepository.cs" />
+    <Compile Include="DAL\NhanVienRepository.cs" />
+    <Compile Include="DAL\NhomSiloRepository.cs" />
+    <Compile Include="DAL\PCInputRepository.cs" />
+    <Compile Include="DAL\PCOutputRepository.cs" />
+    <Compile Include="DAL\PhieuTronRepository.cs" />
+    <Compile Include="DAL\SEC_AssemblyRepository.cs" />
+    <Compile Include="DAL\SEC_FunctionRepository.cs" />
+    <Compile Include="DAL\SEC_RoleFunctionRepository.cs" />
+    <Compile Include="DAL\SEC_RoleRepository.cs" />
+    <Compile Include="DAL\SEC_TypeInfoRepository.cs" />
+    <Compile Include="DAL\SEC_UserRepository.cs" />
+    <Compile Include="DAL\SEC_UserRoleRepository.cs" />
+    <Compile Include="DAL\SiloRepository.cs" />
+    <Compile Include="DAL\SysCodeGenRepository.cs" />
+    <Compile Include="DAL\TaiXeRepository.cs" />
+    <Compile Include="DAL\TimerParaRepository.cs" />
+    <Compile Include="DAL\TinhDoHutNuocChiTietRepository.cs" />
+    <Compile Include="DAL\TinhDoHutNuocRepository.cs" />
+    <Compile Include="DAL\ViewDataMixRepository.cs" />
+    <Compile Include="DAL\ViewSumWeightRepository.cs" />
+    <Compile Include="DAL\vw_MaterialDetailDayRepository.cs" />
+    <Compile Include="DAL\vw_TotalDriverRepository.cs" />
+    <Compile Include="DAL\vw_TotalMaterialRepository.cs" />
+    <Compile Include="DAL\vw_TotalTranferRepository.cs" />
+    <Compile Include="DAL\vw_TranferDetailDayRepository.cs" />
+    <Compile Include="DAL\WeighRepository.cs" />
+    <Compile Include="DAL\WeiSiloSavingRepository.cs" />
+    <Compile Include="DAL\WeiSiloVisibleRepository.cs" />
+    <Compile Include="DAL\XeRepository.cs" />
+    <Compile Include="Data\CongTruongHelper.cs" />
+    <Compile Include="Data\DuLieuTronHelper.cs" />
+    <Compile Include="Data\EventLogHelper.cs" />
+    <Compile Include="Data\HangMucHelper.cs" />
+    <Compile Include="Data\HopDongHelper.cs" />
+    <Compile Include="Data\KhachHangHelper.cs" />
+    <Compile Include="Data\MACHelper.cs" />
+    <Compile Include="Data\MACSiloHelper.cs" />
+    <Compile Include="Data\MaterialHelper.cs" />
+    <Compile Include="Data\MeTronChiTietHelper.cs" />
+    <Compile Include="Data\MeTronHelper.cs" />
+    <Compile Include="Data\NhanVienHelper.cs" />
+    <Compile Include="Data\NhomSiloHelper.cs" />
+    <Compile Include="Data\ObjAggregationResult.cs" />
+    <Compile Include="Data\ObjCongTruong.cs" />
+    <Compile Include="Data\Objvw_DriverDetailDay.cs" />
+    <Compile Include="Data\ObjDuLieuTron.cs" />
+    <Compile Include="Data\ObjectBase.cs" />
+    <Compile Include="Data\ObjEventActionCode.cs" />
+    <Compile Include="Data\ObjEventLog.cs" />
+    <Compile Include="Data\ObjHangMuc.cs" />
+    <Compile Include="Data\ObjHopDong.cs" />
+    <Compile Include="Data\ObjKhachHang.cs" />
+    <Compile Include="Data\ObjMAC.cs" />
+    <Compile Include="Data\ObjMACSilo.cs" />
+    <Compile Include="Data\ObjMaterial.cs" />
+    <Compile Include="Data\Objvw_MaterialDetailDay.cs" />
+    <Compile Include="Data\ObjMeTron.cs" />
+    <Compile Include="Data\ObjMeTronChiTiet.cs" />
+    <Compile Include="Data\ObjNhanVien.cs" />
+    <Compile Include="Data\ObjNhomSilo.cs" />
+    <Compile Include="Data\ObjPCInput.cs" />
+    <Compile Include="Data\ObjPCOutput.cs" />
+    <Compile Include="Data\ObjPhieuTron.cs" />
+    <Compile Include="Data\ObjPointDataPrinter.cs" />
+    <Compile Include="Data\ObjRptMAC.cs" />
+    <Compile Include="Data\ObjRptTheoPhieu.cs" />
+    <Compile Include="Data\ObjRptTongTungXe.cs" />
+    <Compile Include="Data\ObjSEC_Assembly.cs" />
+    <Compile Include="Data\ObjSEC_Function.cs" />
+    <Compile Include="Data\ObjSEC_Role.cs" />
+    <Compile Include="Data\ObjSEC_RoleFunction.cs" />
+    <Compile Include="Data\ObjSEC_TypeInfo.cs" />
+    <Compile Include="Data\ObjSEC_User.cs" />
+    <Compile Include="Data\ObjSEC_UserRole.cs" />
+    <Compile Include="Data\ObjSilo.cs" />
+    <Compile Include="Data\ObjTaiXe.cs" />
+    <Compile Include="Data\ObjTimerPara.cs" />
+    <Compile Include="Data\ObjTinhDoHutNuoc.cs" />
+    <Compile Include="Data\ObjTinhDoHutNuocChiTiet.cs" />
+    <Compile Include="Data\Objvw_TotalDriver.cs" />
+    <Compile Include="Data\Objvw_TotalMaterial.cs" />
+    <Compile Include="Data\Objvw_TotalTranfer.cs" />
+    <Compile Include="Data\Objvw_TranferDetailDay.cs" />
+    <Compile Include="Data\ObjVatTu.cs" />
+    <Compile Include="Data\Objvw_DataMix.cs" />
+    <Compile Include="Data\Objvw_SumWeight.cs" />
+    <Compile Include="Data\ObjWeigh.cs" />
+    <Compile Include="Data\ObjWeiSiloSaving.cs" />
+    <Compile Include="Data\ObjWeiSiloVisible.cs" />
+    <Compile Include="Data\ObjXe.cs" />
+    <Compile Include="Data\PCInputHelper.cs" />
+    <Compile Include="Data\PCOutputHelper.cs" />
+    <Compile Include="Data\PhieuTronHelper.cs" />
+    <Compile Include="Data\RptMACHelper.cs" />
+    <Compile Include="Data\RptTheoPhieuHelper.cs" />
+    <Compile Include="Data\SEC_AssemblyHelper.cs" />
+    <Compile Include="Data\SEC_FunctionHelper.cs" />
+    <Compile Include="Data\SEC_RoleFunctionHelper.cs" />
+    <Compile Include="Data\SEC_RoleHelper.cs" />
+    <Compile Include="Data\SEC_TypeInfoHelper.cs" />
+    <Compile Include="Data\SEC_UserHelper.cs" />
+    <Compile Include="Data\SEC_UserRoleHelper.cs" />
+    <Compile Include="Data\SiloHelper.cs" />
+    <Compile Include="Data\TaiXeHelper.cs" />
+    <Compile Include="Data\TimerParaHelper.cs" />
+    <Compile Include="Data\TinhDoHutNuocChiTietHelper.cs" />
+    <Compile Include="Data\TinhDoHutNuocHelper.cs" />
+    <Compile Include="Data\vw_DataMixHelper.cs" />
+    <Compile Include="Data\vw_MaterialDetailDayHelper.cs" />
+    <Compile Include="Data\vw_SumWeightHelper.cs" />
+    <Compile Include="Data\vw_TotalDriverHelper.cs" />
+    <Compile Include="Data\vw_TotalMaterialHelper.cs" />
+    <Compile Include="Data\vw_TotalTranferHelper.cs" />
+    <Compile Include="Data\vw_TranferDetailDayHelper.cs" />
+    <Compile Include="Data\WeighHelper.cs" />
+    <Compile Include="Data\WeiSiloSavingHelper.cs" />
+    <Compile Include="Data\WeiSiloVisibleHelper.cs" />
+    <Compile Include="Data\XeHelper.cs" />
+    <Compile Include="DialogViewBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogViewBase.Designer.cs">
+      <DependentUpon>DialogViewBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\bandwidth.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\CongTruong.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\DuLieuTron.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EventActionCode.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\EventLog.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\HangMuc.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\HopDong.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\KhachHang.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\MAC.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\MACSilo.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Material.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\MeTron.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\MeTronChiTiet.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\NhanVien.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\NhomSilo.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\PCInput.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\PCOutput.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\PhieuTron.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\RptTongTungXe.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\RptViewDataMix.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_Assembly.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_Function.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_Role.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_RoleFunction.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_TypeInfo.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_User.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SEC_UserRole.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Silo.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\SysCodeGen.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sysdiagram.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TaiXe.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Temple.cs" />
+    <Compile Include="EntityModel\TimerPara.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TinhDoHutNuoc.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TinhDoHutNuocChiTiet.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TraceRecord.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TramTromModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TramTromModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TramTromModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TramTromModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TramTromModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\VatTu.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_DataMix.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_InfoPT.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_Infos.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_Pivot_Ex.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvMaterialDetailDay.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvSUMTotal.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvtMTCT.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvTotalDriver.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvTotalMaterial.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvTotalTranfer.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvTotalWeghit.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvTranferDetailDay.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_SumWeight.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_Temp_Removing.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Weigh.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\WeiSiloSaving.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\WeiSiloVisible.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\Xe.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRemind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRemind.Designer.cs">
+      <DependentUpon>FrmRemind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KWS\LoadControlsFromExcel.cs" />
+    <Compile Include="KWS\ObjMTCTFullPrinter.cs" />
+    <Compile Include="KWS\ObjMTCTPrinter.cs" />
+    <Compile Include="KWS\ObjTotalMaterialPrinter.cs" />
+    <Compile Include="KWS\PhieuTronChiTietRP1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KWS\PhieuTronChiTietRP1.Designer.cs">
+      <DependentUpon>PhieuTronChiTietRP1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KWS\PrinterPheuTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KWS\PrinterPheuTron.Designer.cs">
+      <DependentUpon>PrinterPheuTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KWS\PrinterPheuTronChiTiet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KWS\PrinterPheuTronChiTiet.Designer.cs">
+      <DependentUpon>PrinterPheuTronChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KWS\WriteInvoice.cs" />
+    <Compile Include="MasterData\ConfigUIMngDataPresenter.cs" />
+    <Compile Include="MasterData\ConfigUIMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\ConfigUIMngView.Designer.cs">
+      <DependentUpon>ConfigUIMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Config\FrmPrintGiaoHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\Config\FrmPrintGiaoHang.Designer.cs">
+      <DependentUpon>FrmPrintGiaoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Config\ucBTC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\Config\ucBTC.Designer.cs">
+      <DependentUpon>ucBTC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Config\ucLabelDataPrint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\Config\ucLabelDataPrint.Designer.cs">
+      <DependentUpon>ucLabelDataPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Config\ucSilo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\Config\ucSilo.Designer.cs">
+      <DependentUpon>ucSilo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Config\ucTarrgetPoint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\Config\ucTarrgetPoint.Designer.cs">
+      <DependentUpon>ucTarrgetPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Config\ucWeight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\Config\ucWeight.Designer.cs">
+      <DependentUpon>ucWeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\DataMixMngDataPresenter.cs" />
+    <Compile Include="MasterData\DataMixMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\DataMixMngView.Designer.cs">
+      <DependentUpon>DataMixMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\FrmDataMix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\FrmDataMix.Designer.cs">
+      <DependentUpon>FrmDataMix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\HangMucMngDataPresenter.cs" />
+    <Compile Include="MasterData\HangMucMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\HangMucMngView.Designer.cs">
+      <DependentUpon>HangMucMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\IConfigUIMngView.cs" />
+    <Compile Include="MasterData\IDataMixMngView.cs" />
+    <Compile Include="MasterData\IHangMucMngView.cs" />
+    <Compile Include="MasterData\INewHangMucView.cs" />
+    <Compile Include="MasterData\INewNhanVienView.cs" />
+    <Compile Include="MasterData\INewWeightView.cs" />
+    <Compile Include="MasterData\INhanVienMngView.cs" />
+    <Compile Include="MasterData\NewDuLieuTronView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewDuLieuTronView.Designer.cs">
+      <DependentUpon>NewDuLieuTronView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewHangMucDataPresenter.cs" />
+    <Compile Include="MasterData\NewHangMucView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewHangMucView.Designer.cs">
+      <DependentUpon>NewHangMucView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewNhanVienDataPresenter.cs" />
+    <Compile Include="MasterData\NewNhanVienView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewNhanVienView.Designer.cs">
+      <DependentUpon>NewNhanVienView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewWeightDataPresenter.cs" />
+    <Compile Include="MasterData\NewWeightView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewWeightView.Designer.cs">
+      <DependentUpon>NewWeightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NhanVienMngDataPresenter.cs" />
+    <Compile Include="MasterData\NhanVienMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NhanVienMngView.Designer.cs">
+      <DependentUpon>NhanVienMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\ReceivingFromPLC.cs" />
+    <Compile Include="MasterData\ReportsMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\ReportsMngView.Designer.cs">
+      <DependentUpon>ReportsMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TimeGTParaMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TimeGTParaMngView.Designer.cs">
+      <DependentUpon>TimeGTParaMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TimerPCMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TimerPCMngView.Designer.cs">
+      <DependentUpon>TimerPCMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\SimParaMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\SimParaMngView.Designer.cs">
+      <DependentUpon>SimParaMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineAttributes.cs" />
+    <Compile Include="MasterData\TronOnlineDataPresenter.cs" />
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBangTaiCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBangTaiCan.Designer.cs">
+      <DependentUpon>UcBangTaiCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBaoDongThungCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBaoDongThungCan.Designer.cs">
+      <DependentUpon>UcBaoDongThungCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBTCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBTCan.Designer.cs">
+      <DependentUpon>UcBTCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnBangTai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnBangTai.Designer.cs">
+      <DependentUpon>UcBtnBangTai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnOffNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnOffNoiTron.Designer.cs">
+      <DependentUpon>UcBtnOffNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnReset.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnReset.Designer.cs">
+      <DependentUpon>UcBtnReset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBTXien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBTXien.Designer.cs">
+      <DependentUpon>UcBTXien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonGauStop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonGauStop.Designer.cs">
+      <DependentUpon>UcButtonGauStop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonGauUp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonGauUp.Designer.cs">
+      <DependentUpon>UcButtonGauUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonRungCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonRungCan.Designer.cs">
+      <DependentUpon>UcButtonRungCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonGauDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonGauDown.Designer.cs">
+      <DependentUpon>UcButtonGauDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcFanControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcFanControl.Designer.cs">
+      <DependentUpon>UcFanControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcGauTai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcGauTai.Designer.cs">
+      <DependentUpon>UcGauTai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcNhomChinhCanAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcNhomChinhCanAdd.Designer.cs">
+      <DependentUpon>UcNhomChinhCanAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOffS_NoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOffS_NoiTron.Designer.cs">
+      <DependentUpon>UcOnOffS_NoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOff_NoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOff_NoiTron.Designer.cs">
+      <DependentUpon>UcOnOff_NoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcQuat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcQuat.Designer.cs">
+      <DependentUpon>UcQuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcRungCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcRungCan.Designer.cs">
+      <DependentUpon>UcRungCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcTinHieuGauLen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcTinHieuGauLen.Designer.cs">
+      <DependentUpon>UcTinHieuGauLen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcTinHieuGauXuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcTinHieuGauXuong.Designer.cs">
+      <DependentUpon>UcTinHieuGauXuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcTinHieu_ONOFF_GauTai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcTinHieu_ONOFF_GauTai.Designer.cs">
+      <DependentUpon>UcTinHieu_ONOFF_GauTai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcXeBonTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcXeBonTron.Designer.cs">
+      <DependentUpon>UcXeBonTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBarProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBarProcess.Designer.cs">
+      <DependentUpon>UcBarProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnChinhCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnChinhCan.Designer.cs">
+      <DependentUpon>UcBtnChinhCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnHuyMe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnHuyMe.Designer.cs">
+      <DependentUpon>UcBtnHuyMe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnMoPhong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnMoPhong.Designer.cs">
+      <DependentUpon>UcBtnMoPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnNoiTron.Designer.cs">
+      <DependentUpon>UcBtnNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnPause.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnPause.Designer.cs">
+      <DependentUpon>UcBtnPause.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnRun.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnRun.Designer.cs">
+      <DependentUpon>UcBtnRun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnThem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnThem.Designer.cs">
+      <DependentUpon>UcBtnThem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnTru.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnTru.Designer.cs">
+      <DependentUpon>UcBtnTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnWaiting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcBtnWaiting.Designer.cs">
+      <DependentUpon>UcBtnWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButton2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButton2.Designer.cs">
+      <DependentUpon>UcButton2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonBangTai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonBangTai.Designer.cs">
+      <DependentUpon>UcButtonBangTai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonCan.Designer.cs">
+      <DependentUpon>UcButtonCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonF.Designer.cs">
+      <DependentUpon>UcButtonF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonNoiTron.Designer.cs">
+      <DependentUpon>UcButtonNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonPauseWeight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonPauseWeight.Designer.cs">
+      <DependentUpon>UcButtonPauseWeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonXaCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcButtonXaCan.Designer.cs">
+      <DependentUpon>UcButtonXaCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcFunnel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcFunnel.Designer.cs">
+      <DependentUpon>UcFunnel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcHeThongAuto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcHeThongAuto.Designer.cs">
+      <DependentUpon>UcHeThongAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcInputChinhCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcInputChinhCan.Designer.cs">
+      <DependentUpon>UcInputChinhCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcKhoiLuongNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcKhoiLuongNoiTron.Designer.cs">
+      <DependentUpon>UcKhoiLuongNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcMeTronNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcMeTronNoiTron.Designer.cs">
+      <DependentUpon>UcMeTronNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcNhomChinhCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcNhomChinhCan.Designer.cs">
+      <DependentUpon>UcNhomChinhCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcNoiTron.Designer.cs">
+      <DependentUpon>UcNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOff_BaoRungCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOff_BaoRungCan.Designer.cs">
+      <DependentUpon>UcOnOff_BaoRungCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcOnOff.Designer.cs">
+      <DependentUpon>UcOnOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcProcess.Designer.cs">
+      <DependentUpon>UcProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcPrpelSe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcPrpelSe.Designer.cs">
+      <DependentUpon>UcPrpelSe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcPrpel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcPrpel.Designer.cs">
+      <DependentUpon>UcPrpel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcThoiGianNoiTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcThoiGianNoiTron.Designer.cs">
+      <DependentUpon>UcThoiGianNoiTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcVitTai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcVitTai.Designer.cs">
+      <DependentUpon>UcVitTai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightAdd.Designer.cs">
+      <DependentUpon>UcWeightAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightAgg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightAgg.Designer.cs">
+      <DependentUpon>UcWeightAgg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightB.Designer.cs">
+      <DependentUpon>UcWeightB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightCe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightCe.Designer.cs">
+      <DependentUpon>UcWeightCe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightWa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcWeightWa.Designer.cs">
+      <DependentUpon>UcWeightWa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcXaCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcXaCan.Designer.cs">
+      <DependentUpon>UcXaCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcXaCanUp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TronOnlineView\UserControls\UcXaCanUp.Designer.cs">
+      <DependentUpon>UcXaCanUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcBaseWeight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcBaseWeight.Designer.cs">
+      <DependentUpon>UcBaseWeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcButton.Designer.cs">
+      <DependentUpon>UcButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcLogic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcLogic.Designer.cs">
+      <DependentUpon>UcLogic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcLogicBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcLogicBase.Designer.cs">
+      <DependentUpon>UcLogicBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcLogicSiloAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcLogicSiloAdd.Designer.cs">
+      <DependentUpon>UcLogicSiloAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcLogicSiloAgg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcLogicSiloAgg.Designer.cs">
+      <DependentUpon>UcLogicSiloAgg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcLogicSiloCe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcLogicSiloCe.Designer.cs">
+      <DependentUpon>UcLogicSiloCe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSearchHopDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSearchHopDong.Designer.cs">
+      <DependentUpon>UcSearchHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSiloAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSiloAdd.Designer.cs">
+      <DependentUpon>UcSiloAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSiloCe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSiloCe.Designer.cs">
+      <DependentUpon>UcSiloCe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSiloWa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSiloWa.Designer.cs">
+      <DependentUpon>UcSiloWa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSiloWa1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSiloWa1.Designer.cs">
+      <DependentUpon>UcSiloWa1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSoMeDaCan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSoMeDaCan.Designer.cs">
+      <DependentUpon>UcSoMeDaCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcTam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcTam.Designer.cs">
+      <DependentUpon>UcTam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcWeightAgg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcWeightAgg.Designer.cs">
+      <DependentUpon>UcWeightAgg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\ViewDataMix.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\ViewDataMix.Designer.cs">
+      <DependentUpon>ViewDataMix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NDPWaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NDPWaitForm.Designer.cs">
+      <DependentUpon>NDPWaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventLogController.cs" />
+    <Compile Include="FrmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConfig.Designer.cs">
+      <DependentUpon>FrmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPLCPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPLCPort.Designer.cs">
+      <DependentUpon>FrmPLCPort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="From.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="From.Designer.cs">
+      <DependentUpon>From.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IBase.cs" />
+    <Compile Include="IPermission.cs" />
+    <Compile Include="MasterData\CongTruongMngDataPresenter.cs" />
+    <Compile Include="MasterData\CongTruongMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\CongTruongMngView.Designer.cs">
+      <DependentUpon>CongTruongMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\FrmKiemDinhCan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\FrmKiemDinhCan.Designer.cs">
+      <DependentUpon>FrmKiemDinhCan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\HopDongMngDataPresenter.cs" />
+    <Compile Include="MasterData\HopDongMngView.cs">
+      <SubType>UserControl</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="MasterData\HopDongMngView.Designer.cs">
+      <DependentUpon>HopDongMngView.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="MasterData\ICongTruongMngView.cs" />
+    <Compile Include="MasterData\IFrmKiemDinhCan.cs" />
+    <Compile Include="MasterData\IHopDongMngView.cs" />
+    <Compile Include="MasterData\IKhachHangMngView.cs" />
+    <Compile Include="MasterData\IMACMngView.cs" />
+    <Compile Include="MasterData\IMasterDataModel.cs" />
+    <Compile Include="MasterData\IMaterialMngView.cs" />
+    <Compile Include="MasterData\INewCongTruongView.cs" />
+    <Compile Include="MasterData\INewHopDongView.cs" />
+    <Compile Include="MasterData\INewKhachHangView.cs" />
+    <Compile Include="MasterData\INewMACView.cs" />
+    <Compile Include="MasterData\INewMaterialView.cs" />
+    <Compile Include="MasterData\INewNhomSiloView.cs" />
+    <Compile Include="MasterData\INewPhieuTronView.cs" />
+    <Compile Include="MasterData\INewSiloView.cs" />
+    <Compile Include="MasterData\INewTaiXeView.cs" />
+    <Compile Include="MasterData\INewTinhDoHutNuocView.cs" />
+    <Compile Include="MasterData\INewXeView.cs" />
+    <Compile Include="MasterData\INhomSiloMngView.cs" />
+    <Compile Include="MasterData\InitOnline.cs" />
+    <Compile Include="MasterData\IPCInputMngView.cs" />
+    <Compile Include="MasterData\IPhieuTronMngView.cs" />
+    <Compile Include="MasterData\ISiloDoAmMngView.cs" />
+    <Compile Include="MasterData\ISiloMngView.cs" />
+    <Compile Include="MasterData\ITaiXeMngView.cs" />
+    <Compile Include="MasterData\ITimerParaMngView.cs" />
+    <Compile Include="MasterData\ITinhDoHutNuocMngView.cs" />
+    <Compile Include="MasterData\ITronOnlineView.cs" />
+    <Compile Include="MasterData\IWeighMngView.cs" />
+    <Compile Include="MasterData\IXeMngView.cs" />
+    <Compile Include="MasterData\KhachHangMngDataPresenter.cs" />
+    <Compile Include="MasterData\KhachHangMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\KhachHangMngView.Designer.cs">
+      <DependentUpon>KhachHangMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\MACMngDataPresenter.cs" />
+    <Compile Include="MasterData\MACMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\MACMngView.Designer.cs">
+      <DependentUpon>MACMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\MasterDataModel.cs" />
+    <Compile Include="MasterData\MasterDataPresenter.cs" />
+    <Compile Include="MasterData\MaterialMngDataPresenter.cs" />
+    <Compile Include="MasterData\MaterialMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\MaterialMngView.Designer.cs">
+      <DependentUpon>MaterialMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewCongTruongDataPresenter.cs" />
+    <Compile Include="MasterData\NewCongTruongView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewCongTruongView.Designer.cs">
+      <DependentUpon>NewCongTruongView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewHopDongDataPresenter.cs" />
+    <Compile Include="MasterData\NewHopDongView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewHopDongView.Designer.cs">
+      <DependentUpon>NewHopDongView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewKhachHangDataPresenter.cs" />
+    <Compile Include="MasterData\NewKhachHangView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewKhachHangView.Designer.cs">
+      <DependentUpon>NewKhachHangView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewMACDataPresenter.cs" />
+    <Compile Include="MasterData\NewMACView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewMACView.Designer.cs">
+      <DependentUpon>NewMACView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewMaterialDataPresenter.cs" />
+    <Compile Include="MasterData\NewMaterialView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewMaterialView.Designer.cs">
+      <DependentUpon>NewMaterialView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewNhomSiloDataPresenter.cs" />
+    <Compile Include="MasterData\NewNhomSiloView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewNhomSiloView.Designer.cs">
+      <DependentUpon>NewNhomSiloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewPhieuTronDataPresenter.cs" />
+    <Compile Include="MasterData\NewPhieuTronView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewPhieuTronView.Designer.cs">
+      <DependentUpon>NewPhieuTronView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewSiloDataPresenter.cs" />
+    <Compile Include="MasterData\NewSiloView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewSiloView.Designer.cs">
+      <DependentUpon>NewSiloView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewTaiXeDataPresenter.cs" />
+    <Compile Include="MasterData\NewTaiXeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewTaiXeView.Designer.cs">
+      <DependentUpon>NewTaiXeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewTinhDoHutNuocDataPresenter.cs" />
+    <Compile Include="MasterData\NewTinhDoHutNuocView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewTinhDoHutNuocView.Designer.cs">
+      <DependentUpon>NewTinhDoHutNuocView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NewXeDataPresenter.cs" />
+    <Compile Include="MasterData\NewXeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NewXeView.Designer.cs">
+      <DependentUpon>NewXeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\NhomSiloMngDataPresenter.cs" />
+    <Compile Include="MasterData\NhomSiloMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\NhomSiloMngView.Designer.cs">
+      <DependentUpon>NhomSiloMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\PhieuTronMngDataPresenter.cs" />
+    <Compile Include="MasterData\PhieuTronMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\PhieuTronMngView.Designer.cs">
+      <DependentUpon>PhieuTronMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\SendingCommand.cs" />
+    <Compile Include="MasterData\SendingToPLC.cs" />
+    <Compile Include="MasterData\SetPoint.cs" />
+    <Compile Include="MasterData\SiloDoAmMngDataPresenter.cs" />
+    <Compile Include="MasterData\SiloDoAmMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\SiloDoAmMngView.Designer.cs">
+      <DependentUpon>SiloDoAmMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\SiloMngDataPresenter.cs" />
+    <Compile Include="MasterData\SiloMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\SiloMngView.Designer.cs">
+      <DependentUpon>SiloMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\SiloOnline.cs" />
+    <Compile Include="MasterData\TaiXeMngDataPresenter.cs" />
+    <Compile Include="MasterData\TaiXeMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TaiXeMngView.Designer.cs">
+      <DependentUpon>TaiXeMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TimerParaMngDataPresenter.cs" />
+    <Compile Include="MasterData\TimerParaMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TimerParaMngView.Designer.cs">
+      <DependentUpon>TimerParaMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TinhDoHutNuocMngDataPresenter.cs" />
+    <Compile Include="MasterData\TinhDoHutNuocMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TinhDoHutNuocMngView.Designer.cs">
+      <DependentUpon>TinhDoHutNuocMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.Designer.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcBaseSilo2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcBaseSilo2.Designer.cs">
+      <DependentUpon>UcBaseSilo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UcSiloAgg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\UcSiloAgg.Designer.cs">
+      <DependentUpon>UcSiloAgg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\WeighMngDataPresenter.cs" />
+    <Compile Include="MasterData\WeighMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\WeighMngView.Designer.cs">
+      <DependentUpon>WeighMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\XeMngDataPresenter.cs" />
+    <Compile Include="MasterData\XeMngView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\XeMngView.Designer.cs">
+      <DependentUpon>XeMngView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PLCMapping\MappingHelper.cs" />
+    <Compile Include="PLCModule\PLCController.cs" />
+    <Compile Include="PLCModule\PLCSingleIns.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\IReportChiTietMeTron.cs" />
+    <Compile Include="Reports\ISumWeightMngView.cs" />
+    <Compile Include="Reports\ReportChiTietKhoiLuongBeTongDataPresenter.cs" />
+    <Compile Include="Reports\ReportChiTietMeTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietMeTron.Designer.cs">
+      <DependentUpon>ReportChiTietMeTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietMeTronDataPresenter.cs" />
+    <Compile Include="Reports\ReportChiTietTaiXe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietTaiXe.Designer.cs">
+      <DependentUpon>ReportChiTietTaiXe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportTongChuyenXe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportTongChuyenXe.Designer.cs">
+      <DependentUpon>ReportTongChuyenXe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportTongKhoiLuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportTongKhoiLuong.Designer.cs">
+      <DependentUpon>ReportTongKhoiLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportTongVatTu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportTongVatTu.Designer.cs">
+      <DependentUpon>ReportTongVatTu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietKhoiLuongBeTong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietKhoiLuongBeTong.Designer.cs">
+      <DependentUpon>ReportChiTietKhoiLuongBeTong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietChuyenXe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportChiTietChuyenXe.Designer.cs">
+      <DependentUpon>ReportChiTietChuyenXe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RptChiTietMeTron.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\RptChiTietMeTron.Designer.cs">
+      <DependentUpon>RptChiTietMeTron.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SampleRe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Reports\SampleRe.Designer.cs">
+      <DependentUpon>SampleRe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceLanguage\MyRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyRes.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ResourceLanguage\Res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Res.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ResourceNDP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceNDP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceLibrary\NDPTramTronServices.cs" />
+    <Compile Include="ServiceLibrary\INDPTramTronServices.cs" />
+    <Compile Include="UcSearchBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSearchBase.Designer.cs">
+      <DependentUpon>UcSearchBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\BKDatabase.cs" />
+    <Compile Include="Utils\CheckLastDate.cs" />
+    <Compile Include="Utils\ConfigBase.cs" />
+    <Compile Include="Utils\ConfigManager.cs" />
+    <Compile Include="Utils\Converter.cs" />
+    <Compile Include="Utils\DirectoryMng.cs" />
+    <Compile Include="Utils\EncryptionHelper.cs" />
+    <Compile Include="Utils\EncryptionKeyGenerator.cs" />
+    <Compile Include="Utils\FormatToString.cs" />
+    <Compile Include="Utils\Helpper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Helpper.Designer.cs">
+      <DependentUpon>Helpper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\HelpperExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\HelpperExport.Designer.cs">
+      <DependentUpon>HelpperExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\StatusConnected.cs" />
+    <Compile Include="Utils\Support.cs" />
+    <Compile Include="Utils\SupportExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\TramTromMessageBox.cs" />
+    <Compile Include="Utils\TramTronConfig.cs" />
+    <Compile Include="Utils\TramTronLogger.cs" />
+    <Compile Include="Utils\Enums.cs" />
+    <Compile Include="Utils\FieldCode.cs" />
+    <Compile Include="Utils\FrmErrorMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\FrmErrorMessage.Designer.cs">
+      <DependentUpon>FrmErrorMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\GlobalValues.cs" />
+    <Compile Include="Utils\HardDrive.cs" />
+    <Compile Include="Utils\Searching.cs" />
+    <Compile Include="Utils\ServiceConfig.cs" />
+    <Compile Include="Utils\Validation.cs" />
+    <Compile Include="Utils\WriteDataParam.cs" />
+    <Compile Include="Utils\WriteInvoice.cs" />
+    <Compile Include="ViewManager.cs" />
+    <EmbeddedResource Include="Administration\ChangePasswordView.resx">
+      <DependentUpon>ChangePasswordView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\FunctionAssign.resx">
+      <DependentUpon>FunctionAssign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\FunctionAssignUP.resx">
+      <DependentUpon>FunctionAssignUP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\NewRoleView.resx">
+      <DependentUpon>NewRoleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\NewUserView.resx">
+      <DependentUpon>NewUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\RoleAssign.resx">
+      <DependentUpon>RoleAssign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\RoleMngView.resx">
+      <DependentUpon>RoleMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administration\UserMngView.resx">
+      <DependentUpon>UserMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStyle2.resx">
+      <DependentUpon>ControlStyle2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlStyle4.resx">
+      <DependentUpon>ControlStyle4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlViewBase.resx">
+      <DependentUpon>ControlViewBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogViewBase.resx">
+      <DependentUpon>DialogViewBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRemind.resx">
+      <DependentUpon>FrmRemind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KWS\PhieuTronChiTietRP1.resx">
+      <DependentUpon>PhieuTronChiTietRP1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KWS\PrinterPheuTron.resx">
+      <DependentUpon>PrinterPheuTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KWS\PrinterPheuTronChiTiet.resx">
+      <DependentUpon>PrinterPheuTronChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\ConfigUIMngView.resx">
+      <DependentUpon>ConfigUIMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Config\FrmPrintGiaoHang.resx">
+      <DependentUpon>FrmPrintGiaoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Config\ucBTC.resx">
+      <DependentUpon>ucBTC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Config\ucLabelDataPrint.resx">
+      <DependentUpon>ucLabelDataPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Config\ucSilo.resx">
+      <DependentUpon>ucSilo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Config\ucTarrgetPoint.resx">
+      <DependentUpon>ucTarrgetPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Config\ucWeight.resx">
+      <DependentUpon>ucWeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\DataMixMngView.resx">
+      <DependentUpon>DataMixMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\FrmDataMix.resx">
+      <DependentUpon>FrmDataMix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\HangMucMngView.resx">
+      <DependentUpon>HangMucMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewDuLieuTronView.resx">
+      <DependentUpon>NewDuLieuTronView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewHangMucView.resx">
+      <DependentUpon>NewHangMucView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewNhanVienView.resx">
+      <DependentUpon>NewNhanVienView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewWeightView.resx">
+      <DependentUpon>NewWeightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NhanVienMngView.resx">
+      <DependentUpon>NhanVienMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\ReportsMngView.resx">
+      <DependentUpon>ReportsMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TimeGTParaMngView.resx">
+      <DependentUpon>TimeGTParaMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TimerPCMngView.resx">
+      <DependentUpon>TimerPCMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\SimParaMngView.resx">
+      <DependentUpon>SimParaMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBangTaiCan.resx">
+      <DependentUpon>UcBangTaiCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBaoDongThungCan.resx">
+      <DependentUpon>UcBaoDongThungCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBTCan.resx">
+      <DependentUpon>UcBTCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnBangTai.resx">
+      <DependentUpon>UcBtnBangTai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnOffNoiTron.resx">
+      <DependentUpon>UcBtnOffNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnReset.resx">
+      <DependentUpon>UcBtnReset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBTXien.resx">
+      <DependentUpon>UcBTXien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonGauStop.resx">
+      <DependentUpon>UcButtonGauStop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonGauUp.resx">
+      <DependentUpon>UcButtonGauUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonRungCan.resx">
+      <DependentUpon>UcButtonRungCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonGauDown.resx">
+      <DependentUpon>UcButtonGauDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcFanControl.resx">
+      <DependentUpon>UcFanControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcGauTai.resx">
+      <DependentUpon>UcGauTai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcNhomChinhCanAdd.resx">
+      <DependentUpon>UcNhomChinhCanAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcOnOffS_NoiTron.resx">
+      <DependentUpon>UcOnOffS_NoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcOnOff_NoiTron.resx">
+      <DependentUpon>UcOnOff_NoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcQuat.resx">
+      <DependentUpon>UcQuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcRungCan.resx">
+      <DependentUpon>UcRungCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcTinHieuGauLen.resx">
+      <DependentUpon>UcTinHieuGauLen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcTinHieuGauXuong.resx">
+      <DependentUpon>UcTinHieuGauXuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcTinHieu_ONOFF_GauTai.resx">
+      <DependentUpon>UcTinHieu_ONOFF_GauTai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcXeBonTron.resx">
+      <DependentUpon>UcXeBonTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBarProcess.resx">
+      <DependentUpon>UcBarProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnChinhCan.resx">
+      <DependentUpon>UcBtnChinhCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnHuyMe.resx">
+      <DependentUpon>UcBtnHuyMe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnMoPhong.resx">
+      <DependentUpon>UcBtnMoPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnNoiTron.resx">
+      <DependentUpon>UcBtnNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnPause.resx">
+      <DependentUpon>UcBtnPause.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnRun.resx">
+      <DependentUpon>UcBtnRun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnThem.resx">
+      <DependentUpon>UcBtnThem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnTru.resx">
+      <DependentUpon>UcBtnTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcBtnWaiting.resx">
+      <DependentUpon>UcBtnWaiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButton2.resx">
+      <DependentUpon>UcButton2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonBangTai.resx">
+      <DependentUpon>UcButtonBangTai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonCan.resx">
+      <DependentUpon>UcButtonCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonF.resx">
+      <DependentUpon>UcButtonF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonNoiTron.resx">
+      <DependentUpon>UcButtonNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonPauseWeight.resx">
+      <DependentUpon>UcButtonPauseWeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcButtonXaCan.resx">
+      <DependentUpon>UcButtonXaCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcFunnel.resx">
+      <DependentUpon>UcFunnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcHeThongAuto.resx">
+      <DependentUpon>UcHeThongAuto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcInputChinhCan.resx">
+      <DependentUpon>UcInputChinhCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcKhoiLuongNoiTron.resx">
+      <DependentUpon>UcKhoiLuongNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcMeTronNoiTron.resx">
+      <DependentUpon>UcMeTronNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcNhomChinhCan.resx">
+      <DependentUpon>UcNhomChinhCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcNoiTron.resx">
+      <DependentUpon>UcNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcOnOff_BaoRungCan.resx">
+      <DependentUpon>UcOnOff_BaoRungCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcOnOff.resx">
+      <DependentUpon>UcOnOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcProcess.resx">
+      <DependentUpon>UcProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcPrpelSe.resx">
+      <DependentUpon>UcPrpelSe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcPrpel.resx">
+      <DependentUpon>UcPrpel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcThoiGianNoiTron.resx">
+      <DependentUpon>UcThoiGianNoiTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcVitTai.resx">
+      <DependentUpon>UcVitTai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcWeightAdd.resx">
+      <DependentUpon>UcWeightAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcWeightAgg.resx">
+      <DependentUpon>UcWeightAgg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcWeightB.resx">
+      <DependentUpon>UcWeightB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcWeightCe.resx">
+      <DependentUpon>UcWeightCe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcWeightWa.resx">
+      <DependentUpon>UcWeightWa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcXaCan.resx">
+      <DependentUpon>UcXaCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TronOnlineView\UserControls\UcXaCanUp.resx">
+      <DependentUpon>UcXaCanUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcBaseWeight.resx">
+      <DependentUpon>UcBaseWeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcButton.resx">
+      <DependentUpon>UcButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcLogic.resx">
+      <DependentUpon>UcLogic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcLogicBase.resx">
+      <DependentUpon>UcLogicBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcLogicSiloAdd.resx">
+      <DependentUpon>UcLogicSiloAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcLogicSiloAgg.resx">
+      <DependentUpon>UcLogicSiloAgg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcLogicSiloCe.resx">
+      <DependentUpon>UcLogicSiloCe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSearchHopDong.resx">
+      <DependentUpon>UcSearchHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSiloAdd.resx">
+      <DependentUpon>UcSiloAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSiloCe.resx">
+      <DependentUpon>UcSiloCe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSiloWa.resx">
+      <DependentUpon>UcSiloWa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSiloWa1.resx">
+      <DependentUpon>UcSiloWa1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSoMeDaCan.resx">
+      <DependentUpon>UcSoMeDaCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcTam.resx">
+      <DependentUpon>UcTam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcWeightAgg.resx">
+      <DependentUpon>UcWeightAgg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\ViewDataMix.resx">
+      <DependentUpon>ViewDataMix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NDPWaitForm.resx">
+      <DependentUpon>NDPWaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConfig.resx">
+      <DependentUpon>FrmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPLCPort.resx">
+      <DependentUpon>FrmPLCPort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="From.resx">
+      <DependentUpon>From.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\CongTruongMngView.resx">
+      <DependentUpon>CongTruongMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\FrmKiemDinhCan.resx">
+      <DependentUpon>FrmKiemDinhCan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\HopDongMngView.resx">
+      <DependentUpon>HopDongMngView.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\KhachHangMngView.resx">
+      <DependentUpon>KhachHangMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\MACMngView.resx">
+      <DependentUpon>MACMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\MaterialMngView.resx">
+      <DependentUpon>MaterialMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewCongTruongView.resx">
+      <DependentUpon>NewCongTruongView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewHopDongView.resx">
+      <DependentUpon>NewHopDongView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewKhachHangView.resx">
+      <DependentUpon>NewKhachHangView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewMACView.resx">
+      <DependentUpon>NewMACView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewMaterialView.resx">
+      <DependentUpon>NewMaterialView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewNhomSiloView.resx">
+      <DependentUpon>NewNhomSiloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewPhieuTronView.resx">
+      <DependentUpon>NewPhieuTronView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewSiloView.resx">
+      <DependentUpon>NewSiloView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewTaiXeView.resx">
+      <DependentUpon>NewTaiXeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewTinhDoHutNuocView.resx">
+      <DependentUpon>NewTinhDoHutNuocView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NewXeView.resx">
+      <DependentUpon>NewXeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\NhomSiloMngView.resx">
+      <DependentUpon>NhomSiloMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\PhieuTronMngView.resx">
+      <DependentUpon>PhieuTronMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\SiloDoAmMngView.resx">
+      <DependentUpon>SiloDoAmMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\SiloMngView.resx">
+      <DependentUpon>SiloMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TaiXeMngView.resx">
+      <DependentUpon>TaiXeMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TimerParaMngView.resx">
+      <DependentUpon>TimerParaMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\TinhDoHutNuocMngView.resx">
+      <DependentUpon>TinhDoHutNuocMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\VanHanh.resx">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcBaseSilo2.resx">
+      <DependentUpon>UcBaseSilo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UcSiloAgg.resx">
+      <DependentUpon>UcSiloAgg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\WeighMngView.resx">
+      <DependentUpon>WeighMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\XeMngView.resx">
+      <DependentUpon>XeMngView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reports\ReportChiTietMeTron.resx">
+      <DependentUpon>ReportChiTietMeTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportChiTietTaiXe.resx">
+      <DependentUpon>ReportChiTietTaiXe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportTongChuyenXe.resx">
+      <DependentUpon>ReportTongChuyenXe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportTongKhoiLuong.resx">
+      <DependentUpon>ReportTongKhoiLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportTongVatTu.resx">
+      <DependentUpon>ReportTongVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportChiTietKhoiLuongBeTong.resx">
+      <DependentUpon>ReportChiTietKhoiLuongBeTong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportChiTietChuyenXe.resx">
+      <DependentUpon>ReportChiTietChuyenXe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RptChiTietMeTron.resx">
+      <DependentUpon>RptChiTietMeTron.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SampleRe.resx">
+      <DependentUpon>SampleRe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLanguage\MyRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MyRes.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLanguage\Res.en.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLanguage\Res.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceLanguage\Res.vi.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceNDP.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceNDP.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSearchBase.resx">
+      <DependentUpon>UcSearchBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\FrmErrorMessage.resx">
+      <DependentUpon>FrmErrorMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\Helpper.resx">
+      <DependentUpon>Helpper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\HelpperExport.resx">
+      <DependentUpon>HelpperExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <EntityDeploy Include="EntityModel\TramTromModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TramTromModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityModel\TramTromModel.edmx.diagram">
+      <DependentUpon>TramTromModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\Add1_24" />
+    <None Include="Resources\refresh_24" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\homepage-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityModel\TramTromModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TramTromModel.edmx</DependentUpon>
+      <LastGenOutput>TramTromModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityModel\TramTromModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TramTromModel.edmx</DependentUpon>
+      <LastGenOutput>TramTromModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="IcologoPM.ico" />
+    <Content Include="IcologoPM2.ico" />
+    <None Include="Resources\logo2.png" />
+    <None Include="Resources\z5232171715107_cf5ae6755dc0d30ef5e630728069d7e1.jpg" />
+    <None Include="Resources\404_cleanup.jpg" />
+    <None Include="Resources\TinHieu_OnOff_GauTai.png" />
+    <None Include="Resources\TinHieu_On_GauTai.png" />
+    <None Include="Resources\ThanhTruoc_GauTai.png" />
+    <None Include="Resources\TinHieu_GauGiua.png" />
+    <None Include="Resources\Gau_Chua.png" />
+    <None Include="Resources\Gau_Cho.png" />
+    <None Include="Resources\TinHieu_GauTren.png" />
+    <None Include="Resources\TinHieu_GauDuoi.png" />
+    <None Include="Resources\TinHieu_GauCho.png" />
+    <None Include="Resources\TinHieu_GauAnToan.png" />
+    <None Include="Resources\TinHieuGauXuong.png" />
+    <None Include="Resources\TinHieuGauLen.png" />
+    <None Include="Resources\TaiCHEE_NoClick.png" />
+    <None Include="Resources\TaiCHEE.png" />
+    <None Include="Resources\LookFile.png" />
+    <None Include="Resources\Button_GauXuong.png" />
+    <None Include="Resources\Button_GauLen.png" />
+    <None Include="Resources\Button_DungGau_Click.png" />
+    <None Include="Resources\Button_DungGau.png" />
+    <None Include="Resources\Button_GauXuong_Click.png" />
+    <None Include="Resources\Button_GauLen_Click.png" />
+    <None Include="Resources\GauTai_Duoi_Upd.png" />
+    <None Include="Resources\GauTai_Tren_Upd.png" />
+    <None Include="Resources\GauTai_Cho_Upd.png" />
+    <None Include="Resources\GauTai_AnToan_Upd.png" />
+    <None Include="Resources\RungCan_Ye.png" />
+    <None Include="Resources\RungCan.png" />
+    <None Include="Resources\RungCan_Or.png" />
+    <None Include="Resources\RungCan_Gr.png" />
+    <None Include="Resources\BaosRung_Orange.png" />
+    <None Include="Resources\BaoRung_Green.png" />
+    <None Include="Resources\Button_RungCan_Click.png" />
+    <None Include="Resources\Button_RungCan.png" />
+    <None Include="Resources\lightt.png" />
+    <None Include="Resources\light.png" />
+    <None Include="Resources\lightning.png" />
+    <None Include="Resources\cursor_02.png" />
+    <None Include="Resources\cursor_01.png" />
+    <None Include="Resources\GauChua.png" />
+    <None Include="Resources\PheuChua.png" />
+    <None Include="Resources\BangTaiGau.png" />
+    <None Include="Resources\GauTaiP.png" />
+    <None Include="Resources\MAnim_BTC.gif" />
+    <None Include="Resources\Ammin_BTC.gif" />
+    <None Include="Resources\Center_BTC.png" />
+    <None Include="Resources\Amin_BTC.gif" />
+    <None Include="Resources\Anim_BTC.gif" />
+    <None Include="Resources\Right_BTC.png" />
+    <None Include="Resources\Left_BTC.png" />
+    <None Include="Resources\Circle_Head_BTC.png" />
+    <None Include="Resources\F_Head_BTC.png" />
+    <None Include="Resources\Right_Head_BTC.png" />
+    <None Include="Resources\Pause_Weigh.png" />
+    <None Include="Resources\pdf.png" />
+    <None Include="Resources\printek.png" />
+    <None Include="Resources\printe.png" />
+    <None Include="Resources\pointer.cur" />
+    <None Include="Resources\pointer.png" />
+    <None Include="Resources\search_dll.png" />
+    <None Include="Resources\search_dlt.png" />
+    <None Include="Resources\plus_dlt.png" />
+    <None Include="Resources\giphy.gif" />
+    <None Include="Resources\logo_PNG.png" />
+    <None Include="Resources\EXC.png" />
+    <None Include="Resources\SIM_ON.png" />
+    <None Include="Resources\SIM_OFF.png" />
+    <None Include="Resources\cubenormal.png" />
+    <None Include="Resources\cube1.png" />
+    <None Include="Resources\Coi_M.png" />
+    <None Include="Resources\GauTai.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\Anim_BXT.gif" />
+    <None Include="Resources\pointtarget_print.png" />
+    <None Include="Resources\cursoredittext.png" />
+    <None Include="Resources\Button_BangTai_Click.png" />
+    <None Include="Resources\Button_BangTai.png" />
+    <None Include="Resources\edit_dlt.png" />
+    <None Include="Resources\delete_dlt.png" />
+    <None Include="Resources\BTCANN.png" />
+    <None Include="Resources\BTXien.png" />
+    <None Include="Resources\IcologoPM.png" />
+    <None Include="Resources\IcologoPM.ico" />
+    <None Include="Resources\logo.png" />
+    <None Include="Resources\CanhQ5.png" />
+    <None Include="Resources\CanhQw.png" />
+    <None Include="Resources\CanhQQQ.png" />
+    <None Include="Resources\Car2.png" />
+    <None Include="Resources\Car.png" />
+    <None Include="Resources\CN.png" />
+    <None Include="Resources\DisConnected_01.png" />
+    <None Include="Resources\Connected_01.png" />
+    <None Include="Resources\PLC.png" />
+    <None Include="Resources\CCC.png" />
+    <None Include="Resources\conns.png" />
+    <None Include="Resources\Conn.png" />
+    <None Include="Resources\DisOPLC.png" />
+    <None Include="Resources\diss.png" />
+    <None Include="Resources\Dis.png" />
+    <None Include="Resources\Disconnect.png" />
+    <None Include="Resources\circle_dark.png" />
+    <None Include="Resources\circle_red.png" />
+    <None Include="Resources\Btn_F_Click.png" />
+    <None Include="Resources\Btn_TamDungCan_Click.png" />
+    <None Include="Resources\ButtonNoiTron.png" />
+    <None Include="Resources\ButtonNoiTron_Click.png" />
+    <None Include="Resources\Printer_Click.png" />
+    <None Include="Resources\Pause_Click.png" />
+    <None Include="Resources\Run_Click.png" />
+    <None Include="Resources\MoPhong_Click.png" />
+    <None Include="Resources\HuyMe_Click.png" />
+    <None Include="Resources\Waitting_Click.png" />
+    <None Include="Resources\Them_Click.png" />
+    <None Include="Resources\Tru_Click.png" />
+    <None Include="Resources\Weight_Tim.png" />
+    <None Include="Resources\Tank_Wa.png" />
+    <None Include="Resources\Tank_Ce.png" />
+    <None Include="Resources\Tank_Agg.png" />
+    <None Include="Resources\Tank_Add.png" />
+    <None Include="Resources\VitTai.png" />
+    <None Include="Resources\Printer.png" />
+    <None Include="Resources\Tank_Tim.png" />
+    <None Include="Resources\Arrow_Red_Up.png" />
+    <None Include="Resources\Btn_TamDungCan.png" />
+    <None Include="Resources\Btn_F.png" />
+    <None Include="Resources\TamDungCan.png" />
+    <None Include="Resources\F.png" />
+    <None Include="Resources\Weight_Red.png" />
+    <None Include="Resources\Weight_Organges.png" />
+    <None Include="Resources\Weight_Green.png" />
+    <None Include="Resources\Weight_Blue.png" />
+    <None Include="Resources\Arrow_Red.png" />
+    <None Include="Resources\Led_Fu.png" />
+    <None Include="Resources\Led_F.png" />
+    <None Include="Resources\Led_Empty.png" />
+    <None Include="Resources\Weight.png" />
+    <None Include="Resources\DungBangTai.png" />
+    <None Include="Resources\ChạyBangTay.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\new.png" />
+    <None Include="Resources\SelectorSwitchRight.png" />
+    <None Include="Resources\SelectorSwitchLeft.png" />
+    <None Include="Resources\BT_Can.gif" />
+    <None Include="Resources\Waitting.png" />
+    <None Include="Resources\Tru.png" />
+    <None Include="Resources\Them.png" />
+    <None Include="Resources\Run.png" />
+    <None Include="Resources\Pause.png" />
+    <None Include="Resources\MoPhong.png" />
+    <None Include="Resources\HuyMe.png" />
+    <None Include="Resources\BG_Button.png" />
+    <None Include="Resources\tt.gif" />
+    <None Include="Resources\t.gif" />
+    <None Include="Resources\uu.gif" />
+    <None Include="Resources\U.gif" />
+    <None Include="Resources\CCC.gif" />
+    <None Include="Resources\CC.gif" />
+    <None Include="Resources\Ca.gif" />
+    <None Include="Resources\ZNeT %281%29.gif" />
+    <None Include="Resources\ZNeT.gif" />
+    <None Include="Resources\Canh.png" />
+    <None Include="Resources\CanhQua.png" />
+    <None Include="Resources\CanhQu.png" />
+    <None Include="Resources\CanhQ.png" />
+    <None Include="Resources\CanhQuat.png" />
+    <None Include="Resources\Led_Dark.png" />
+    <None Include="Resources\Led_Yellow.png" />
+    <None Include="Resources\Led_Green.png" />
+    <None Include="Resources\Led_red.png" />
+    <None Include="Resources\Arrow.png" />
+    <None Include="Resources\Coi_1.png" />
+    <None Include="Resources\Tank_Organges.png" />
+    <None Include="Resources\Tank_Red.png" />
+    <None Include="Resources\Tank_Reds.png" />
+    <None Include="Resources\Tank_Organge.png" />
+    <None Include="Resources\Tank_Green.png" />
+    <None Include="Resources\ball_yellow.png" />
+    <None Include="Resources\ball_red.png" />
+    <None Include="Resources\ball_green.png" />
+    <None Include="Resources\ball_dark.png" />
+    <None Include="Resources\Weight_.png" />
+    <None Include="Resources\FunnelYellow.png" />
+    <None Include="Resources\FunnelBlue.png" />
+    <None Include="Resources\SquareButtonOrangeOff.png" />
+    <None Include="Resources\SquareButtonGreenOff.png" />
+    <None Include="Resources\SquareButtonDarkOff.png" />
+    <None Include="Resources\SquareButtonRedOff.png" />
+    <None Include="Resources\Tank_Blue.png" />
+    <None Include="Resources\Silo_Green.png" />
+    <None Include="Resources\load_plc.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\file %282%29.png" />
+    <None Include="Resources\wath_.png" />
+    <None Include="Resources\edit-fi.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\add %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

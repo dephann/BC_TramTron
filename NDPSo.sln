@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDPSo", "NDPSo\NDPSo.csproj", "{54F84971-DDD4-46AE-AA76-C26DABAB8E1A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CMix", "CMix\CMix.vdproj", "{D8A60AB3-F60C-4831-9DF6-87DECE5EEEDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54F84971-DDD4-46AE-AA76-C26DABAB8E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F84971-DDD4-46AE-AA76-C26DABAB8E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F84971-DDD4-46AE-AA76-C26DABAB8E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F84971-DDD4-46AE-AA76-C26DABAB8E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A60AB3-F60C-4831-9DF6-87DECE5EEEDE}.Debug|Any CPU.ActiveCfg = Debug
+		{D8A60AB3-F60C-4831-9DF6-87DECE5EEEDE}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EAD171D-C4A3-4803-8043-B965D24F0D11}
+	EndGlobalSection
+EndGlobal
