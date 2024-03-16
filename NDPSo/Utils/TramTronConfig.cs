@@ -1360,6 +1360,32 @@ namespace NDPSo.Utils
             get => this[nameof(KL_SPAN_ADD2)];
             set => this[nameof(KL_SPAN_ADD2)] = value;
         }
+        // Change PRODUCT
+        public string NameProduct
+        {
+            get => this[nameof(NameProduct)];
+            set => this[nameof(NameProduct)] = value;
+        }
+
+        public string LocalProduct
+        {
+            get => this[nameof(LocalProduct)];
+            set => this[nameof(LocalProduct)] = value;
+        }
+
+        public string PhoneProduct
+        {
+            get => this[nameof(PhoneProduct)];
+            set => this[nameof(PhoneProduct)] = value;
+        }
+
+        public string LogoProduct
+        {
+            get => this[nameof(LogoProduct)];
+            set => this[nameof(LogoProduct)] = value;
+        }
+
+
         public bool GetCommandEnable(string strEntryKey) => this.Attributes["Command", "Code", strEntryKey, "Enable"] == "1";
 
         public void SetCommandEnable(string strEntryKey, bool value)

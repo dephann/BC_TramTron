@@ -1143,6 +1143,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_95E5947E45FB40648FCE1021C9EED6E8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_964B63864610CBBA3027C2F6C96192EE"
         "OwnerKey" = "8:_31978F09686A4BD5A9372374F2F6E280"
         "MsmSig" = "8:_UNDEFINED"
@@ -4816,6 +4822,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95E5947E45FB40648FCE1021C9EED6E8"
+            {
+            "SourcePath" = "8:..\\NDPSo\\logo_PNG_32.png"
+            "TargetName" = "8:logo_PNG_32.png"
+            "Tag" = "8:"
+            "Folder" = "8:_5C781825C65C45B7A3083FD749D3D12B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_964B63864610CBBA3027C2F6C96192EE"
             {
             "AssemblyRegister" = "3:1"
@@ -6579,15 +6605,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CMix"
-        "ProductCode" = "8:{D9E95BB1-CEBD-4D76-84E4-AF25E0F5ACCF}"
-        "PackageCode" = "8:{2521A344-AE21-4DAF-ADD7-174405F51546}"
+        "ProductCode" = "8:{A62940C3-6FE9-40D7-956D-315851F69A5E}"
+        "PackageCode" = "8:{AA99DE65-8ADF-419C-8CD2-705BD6CC4868}"
         "UpgradeCode" = "8:{0A2BB70B-D013-48F4-B9FB-9A38DCAB4D38}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:24.03.09"
+        "ProductVersion" = "8:24.03.15"
         "Manufacturer" = "8:PND Software Development"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -7115,7 +7141,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_31978F09686A4BD5A9372374F2F6E280"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\NDPSo\\obj\\Release\\NDPSo.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_5C781825C65C45B7A3083FD749D3D12B"

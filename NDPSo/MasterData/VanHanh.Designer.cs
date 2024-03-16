@@ -3693,6 +3693,7 @@ namespace NDPSo.MasterData
             this.textEdit2.Name = "textEdit2";
             this.textEdit2.Size = new System.Drawing.Size(122, 20);
             this.textEdit2.TabIndex = 602;
+            this.textEdit2.Visible = false;
             // 
             // textEdit1
             // 
@@ -3701,6 +3702,7 @@ namespace NDPSo.MasterData
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Size = new System.Drawing.Size(122, 20);
             this.textEdit1.TabIndex = 0;
+            this.textEdit1.Visible = false;
             // 
             // labelControl14
             // 
@@ -4120,6 +4122,7 @@ namespace NDPSo.MasterData
             this.simpleButton4.Size = new System.Drawing.Size(75, 23);
             this.simpleButton4.TabIndex = 587;
             this.simpleButton4.Text = "gaiama";
+            this.simpleButton4.Visible = false;
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // simpleButton3
@@ -4129,6 +4132,7 @@ namespace NDPSo.MasterData
             this.simpleButton3.Size = new System.Drawing.Size(75, 23);
             this.simpleButton3.TabIndex = 585;
             this.simpleButton3.Text = "mahoa";
+            this.simpleButton3.Visible = false;
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
             // checkEdit1

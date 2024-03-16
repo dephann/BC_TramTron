@@ -173,6 +173,7 @@ namespace NDPSo
 		{
 			
 			this.LoadLanguage();
+			this.Load_Producer();
 			//this.barMenu.ItemLinks.Add(this._skinMenu);
 			BarItemVisibility visibility = BarItemVisibility.Always;
 			if (ConfigManager.TramTronConfig.NonePLCVersion)
@@ -181,12 +182,29 @@ namespace NDPSo
 			}
 			this.bbiVanHanh.Visibility = visibility;
 			this.bbiKiemDinhCan.Visibility = visibility;
+			this.KeyPreview = false;
 
 			remainingTimeInSeconds = (int)ConfigManager.TramTronConfig.TimeLife;
 			if (ConfigManager.TramTronConfig.TimeLife > 0)
 			{
 				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Never;
 			}
+		}
+
+		private void Load_Producer()
+        {
+			if(ConfigManager.TramTronConfig.LogoProduct == string.Empty)
+            {
+				string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logo_PNG_32.png");
+				ConfigManager.TramTronConfig.LogoProduct = imagePath;
+				
+			}
+			Image yourImage = Image.FromFile(ConfigManager.TramTronConfig.LogoProduct);
+			this.bbiLogoProduct.ImageOptions.Image = yourImage;
+			this.bsiNameProduct.Caption = ConfigManager.TramTronConfig.NameProduct;
+			this.bsiWebProduct.Caption = ConfigManager.TramTronConfig.LocalProduct;
+			this.bsiPhoneProduct.Caption = ConfigManager.TramTronConfig.PhoneProduct;
+
 		}
 		private void FrmMain_Shown(object sender, EventArgs e)
         {
@@ -249,7 +267,14 @@ namespace NDPSo
 				//this.SetDisplayInfo();
 				this.SetBarManagerPermission(this.barMenu, true);
 				this.EnableFunctions_ByUser(this._loginUser);
-				
+				if(this._loginUser.UserName == "admin")
+                {
+					this.KeyPreview = true;
+                }
+                else
+                {
+					this.KeyPreview = false;
+				}
 				if (this.bbiVanHanh.Enabled && !ConfigManager.TramTronConfig.NonePLCVersion && ConfigManager.TramTronConfig.ShowTronOnline)
 				{
 					this.DoShowTronOnline();
@@ -794,6 +819,7 @@ namespace NDPSo
 			EventLogController.InsertEventLog(new int?(GlobalValues.UserID), GlobalValues.DisplayUser, "LOG_OUT", string.Empty, string.Empty, string.Empty);
 			this.SetBarManagerPermission(this.barMenu, false);
 			this.CloseAllTabs();
+			this.KeyPreview = false;
 		}
 
         private void bbiLogin_ItemClick(object sender, ItemClickEventArgs e)
@@ -944,7 +970,7 @@ namespace NDPSo
         {
 			ViewManager.ShowView(new HangMucMngView
 			{
-				LstFunction = this.BuildLstFunction(Convert.ToInt32(this.bbiNhanVien.Tag))
+				LstFunction = this.BuildLstFunction(Convert.ToInt32(this.bbiHangMuc.Tag))
 			}, false);
 		}
 
@@ -958,6 +984,15 @@ namespace NDPSo
         {
 			ReportChiTietTaiXe chitiettaixe = new ReportChiTietTaiXe();
 			ViewManager.ShowView(chitiettaixe);
+		}
+
+        private void FrmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+			if (e.Control && e.Shift && e.Alt && e.KeyCode == Keys.Delete)
+			{
+				SettingProduct settingProduct = new SettingProduct();
+				ViewManager.ShowViewDialog((DialogViewBase)settingProduct);
+			}
 		}
     }
 }

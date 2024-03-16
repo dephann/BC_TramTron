@@ -1591,6 +1591,12 @@
     </Compile>
     <Compile Include="ServiceLibrary\NDPTramTronServices.cs" />
     <Compile Include="ServiceLibrary\INDPTramTronServices.cs" />
+    <Compile Include="SettingProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingProduct.Designer.cs">
+      <DependentUpon>SettingProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="UcSearchBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2140,6 +2146,9 @@
       <LastGenOutput>ResourceNDP.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="SettingProduct.resx">
+      <DependentUpon>SettingProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UcSearchBase.resx">
       <DependentUpon>UcSearchBase.cs</DependentUpon>
     </EmbeddedResource>
@@ -2198,6 +2207,9 @@
     </Content>
     <Content Include="IcologoPM.ico" />
     <Content Include="IcologoPM2.ico" />
+    <Content Include="logo_PNG_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\logo2.png" />
     <None Include="Resources\z5232171715107_cf5ae6755dc0d30ef5e630728069d7e1.jpg" />
     <None Include="Resources\404_cleanup.jpg" />
