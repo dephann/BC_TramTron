@@ -41,6 +41,7 @@ namespace NDPSo
             this.lblAddress = new DevExpress.XtraEditors.LabelControl();
             this.lblCompanyName = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.lblTime = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -190,6 +191,7 @@ namespace NDPSo
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.lblTime);
             this.panelControl2.Controls.Add(this.btnCancel);
             this.panelControl2.Controls.Add(this.btnOk);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -197,6 +199,14 @@ namespace NDPSo
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(621, 45);
             this.panelControl2.TabIndex = 1;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Location = new System.Drawing.Point(5, 27);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(63, 13);
+            this.lblTime.TabIndex = 6;
+            this.lblTime.Text = "labelControl1";
             // 
             // btnCancel
             // 
@@ -232,8 +242,10 @@ namespace NDPSo
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.IconOptions.Image = global::NDPSo.ResourceNDP.IcologoPM1;
+            this.KeyPreview = true;
             this.Name = "SettingProduct";
             this.Text = "SettingProduct";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingProduct_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
@@ -244,6 +256,7 @@ namespace NDPSo
             ((System.ComponentModel.ISupportInitialize)(this.txtNameProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -264,5 +277,6 @@ namespace NDPSo
         private DevExpress.XtraEditors.LabelControl lblPhone;
         private DevExpress.XtraEditors.LabelControl lblAddress;
         private DevExpress.XtraEditors.LabelControl lblCompanyName;
+        private DevExpress.XtraEditors.LabelControl lblTime;
     }
 }

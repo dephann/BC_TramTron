@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,7 +21,6 @@ namespace NDPSo
 {
     public partial class FrmConfig : DialogViewBase
     {
-
         private const string LANG_EN = "English";
         private const string LANG_VI = "Việt Nam";
         private bool _isRestarting;
@@ -162,9 +162,19 @@ namespace NDPSo
             this.EndPreventEvent();
         }
 
-       
+        static string GetMACAddress() //Lấy địa chỉ MAC
+        {
+            string macAddress = "";
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.NetworkInterfaceType == NetworkInterfaceType.Loopback || !nic.GetIPProperties().GetIPv4Properties().IsDhcpEnabled)
+                    continue;
 
-        
+                macAddress = nic.GetPhysicalAddress().ToString();
+                break; 
+            }
+            return macAddress;
+        }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
@@ -177,19 +187,25 @@ namespace NDPSo
                 else
                 {
                     ConfigManager.TramTronConfig.RunningMode = 0;
-                    //ConfigManager.ServiceConfig.ServerName = this.txtServer.Text;
-                    
-                    if (Environment.MachineName == "LAPTOP-BDV7JS0S")
+                    string macAddress = Environment.MachineName;
+
+
+                    ConfigManager.ServiceConfig.ServerName = "ndp-server";
+
+                    switch (macAddress)
                     {
-                        ConfigManager.ServiceConfig.ServerName = "LAPTOP-BDV7JS0S\\PHAM";
-                    }
-                    else if (Environment.MachineName ==  "DESKTOP-E4UEIUC") //máy cty
-                    {
-                        ConfigManager.ServiceConfig.ServerName = "DESKTOP-E4UEIUC";
-                    }
-                    else if(Environment.MachineName == "DESKTOP-R4OQ2QU") //update trạm bình định 60
-                    {
-                        ConfigManager.ServiceConfig.ServerName = "DESKTOP-R4OQ2QU";
+                        case "LAPTOP-BDV7JS0S": //me
+                            ConfigManager.ServiceConfig.ServerName = "LAPTOP-BDV7JS0S\\PHAM";
+                            break;
+                        case "DESKTOP-SRUH8A8": //vp test
+                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-SRUH8A8\\SQLPHAM";
+                            break;
+                        case "DESKTOP-E4UEIUC": //thanhtuan-longan
+                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-E4UEIUC";
+                            break;
+                        case "B2A7B96A2868": //binh dinh
+                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-R4OQ2QU";
+                            break;
                     }
 
                     ConfigManager.ServiceConfig.DatabaseName = this.txtDatabase.Text;
@@ -218,9 +234,8 @@ namespace NDPSo
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                //TramTronLogger.WriteError(ex);
-                //TramTromMessageBox.ShowDNErrorDialog(ex);
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.Message);
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)

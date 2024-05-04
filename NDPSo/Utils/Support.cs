@@ -250,7 +250,7 @@ namespace NDPSo.Utils
             int hours = sec / 3600; 
             int minutes = (sec % 3600) / 60;
             int seconds = sec % 60;
-            string timer = "PHẦN MỀM SẼ TỰ ĐỘNG KHOÁ SAU: " + $"{hours} Giờ, {minutes} Phút, {seconds} Giây";
+            string timer = "PHẦN MỀM SẼ TỰ ĐỘNG CẬP NHẬT SAU: " + $"{hours} Giờ, {minutes} Phút, {seconds} Giây";
             return timer;
         }
     }

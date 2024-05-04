@@ -29,6 +29,7 @@ namespace NDPSo
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRemind));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -65,7 +66,7 @@ namespace NDPSo
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(823, 55);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "   PHẦN MỀM SẼ KHOÁ SAU 24H\r\n";
+            this.labelControl2.Text = "   PHẦN MỀM SẼ CẬP NHẬT SAU 24H\r\n";
             this.labelControl2.Visible = false;
             // 
             // labelControl1
@@ -84,11 +85,11 @@ namespace NDPSo
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(823, 120);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "   LIÊN HỆ KỸ THUẬT ĐỂ ĐƯỢC HỖ TRỢ\r\n   0333.742.655\r\n";
+            this.labelControl1.Text = " VUI LÒNG LIÊN HỆ ĐỘI NGŨ PHÁT TRIỂN ĐỂ ĐƯỢC \r\n CẬP NHẬT PHIÊN BẢN MỚI NHẤT";
             // 
             // pictureEdit1
             // 
-            this.pictureEdit1.BackgroundImage = global::NDPSo.ResourceNDP._404_cleanup;
+            this.pictureEdit1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureEdit1.BackgroundImage")));
             this.pictureEdit1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
@@ -109,7 +110,7 @@ namespace NDPSo
             this.ControlBox = false;
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.IconOptions.Image = global::NDPSo.ResourceNDP.IcologoPM1;
+            this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("FrmRemind.IconOptions.Image")));
             this.Name = "FrmRemind";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRemind";

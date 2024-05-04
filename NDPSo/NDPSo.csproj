@@ -629,6 +629,12 @@
     <Compile Include="FrmRemind.Designer.cs">
       <DependentUpon>FrmRemind.cs</DependentUpon>
     </Compile>
+    <Compile Include="KWS\FormPhieuIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KWS\FormPhieuIn.Designer.cs">
+      <DependentUpon>FormPhieuIn.cs</DependentUpon>
+    </Compile>
     <Compile Include="KWS\LoadControlsFromExcel.cs" />
     <Compile Include="KWS\ObjMTCTFullPrinter.cs" />
     <Compile Include="KWS\ObjMTCTPrinter.cs" />
@@ -1689,6 +1695,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRemind.resx">
       <DependentUpon>FrmRemind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KWS\FormPhieuIn.resx">
+      <DependentUpon>FormPhieuIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KWS\PhieuTronChiTietRP1.resx">
       <DependentUpon>PhieuTronChiTietRP1.cs</DependentUpon>

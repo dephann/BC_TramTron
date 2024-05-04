@@ -894,7 +894,7 @@ namespace NDPSo.MasterData
             this.gcNgayHopDong.OptionsColumn.AllowFocus = false;
             this.gcNgayHopDong.OptionsColumn.ReadOnly = true;
             this.gcNgayHopDong.Visible = true;
-            this.gcNgayHopDong.VisibleIndex = 4;
+            this.gcNgayHopDong.VisibleIndex = 5;
             this.gcNgayHopDong.Width = 158;
             // 
             // gcKhachHang
@@ -942,7 +942,7 @@ namespace NDPSo.MasterData
             this.gcDLT_KLDuTinh.OptionsColumn.AllowFocus = false;
             this.gcDLT_KLDuTinh.OptionsColumn.ReadOnly = true;
             this.gcDLT_KLDuTinh.Visible = true;
-            this.gcDLT_KLDuTinh.VisibleIndex = 5;
+            this.gcDLT_KLDuTinh.VisibleIndex = 4;
             this.gcDLT_KLDuTinh.Width = 158;
             // 
             // gcDLT_KLDuTinhCuaTungMe
@@ -2085,10 +2085,10 @@ namespace NDPSo.MasterData
             // 
             // btnXacNhanLoi
             // 
-            this.btnXacNhanLoi.BackgroundImage = global::NDPSo.ResourceNDP.TaiCHEE;
+            this.btnXacNhanLoi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnXacNhanLoi.BackgroundImage")));
             this.btnXacNhanLoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXacNhanLoi.Color_Click = global::NDPSo.ResourceNDP.TaiCHEE_NoClick;
-            this.btnXacNhanLoi.Color_NoClick = global::NDPSo.ResourceNDP.TaiCHEE;
+            this.btnXacNhanLoi.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnXacNhanLoi.Color_Click")));
+            this.btnXacNhanLoi.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnXacNhanLoi.Color_NoClick")));
             this.btnXacNhanLoi.IsOn = true;
             this.btnXacNhanLoi.IsTrangThai = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset.TrangThai.Stop;
             this.btnXacNhanLoi.Location = new System.Drawing.Point(406, 4);
@@ -2100,10 +2100,10 @@ namespace NDPSo.MasterData
             // 
             // btnHuy
             // 
-            this.btnHuy.BackgroundImage = global::NDPSo.ResourceNDP.HuyMe;
+            this.btnHuy.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHuy.BackgroundImage")));
             this.btnHuy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnHuy.Color_Click = global::NDPSo.ResourceNDP.HuyMe_Click;
-            this.btnHuy.Color_NoClick = global::NDPSo.ResourceNDP.HuyMe;
+            this.btnHuy.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnHuy.Color_Click")));
+            this.btnHuy.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnHuy.Color_NoClick")));
             this.btnHuy.IsOn = true;
             this.btnHuy.IsTrangThai = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnHuyMe.TrangThai.Stop;
             this.btnHuy.Location = new System.Drawing.Point(150, 4);
@@ -2115,10 +2115,10 @@ namespace NDPSo.MasterData
             // 
             // btnPause
             // 
-            this.btnPause.BackgroundImage = global::NDPSo.ResourceNDP.Pause;
+            this.btnPause.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPause.BackgroundImage")));
             this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPause.Color_Click = global::NDPSo.ResourceNDP.Pause_Click;
-            this.btnPause.Color_NoClick = global::NDPSo.ResourceNDP.Pause;
+            this.btnPause.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnPause.Color_Click")));
+            this.btnPause.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnPause.Color_NoClick")));
             this.btnPause.IsOn = true;
             this.btnPause.IsTrangThai = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnPause.TrangThai.Stop;
             this.btnPause.Location = new System.Drawing.Point(86, 4);
@@ -2133,8 +2133,8 @@ namespace NDPSo.MasterData
             this.btnRun.BackColor = System.Drawing.Color.Transparent;
             this.btnRun.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRun.BackgroundImage")));
             this.btnRun.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRun.Color_Click = global::NDPSo.ResourceNDP.Run;
-            this.btnRun.Color_NoClick = global::NDPSo.ResourceNDP.Run;
+            this.btnRun.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnRun.Color_Click")));
+            this.btnRun.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnRun.Color_NoClick")));
             this.btnRun.IsOn = true;
             this.btnRun.Location = new System.Drawing.Point(22, 4);
             this.btnRun.Margin = new System.Windows.Forms.Padding(2);
@@ -2163,8 +2163,8 @@ namespace NDPSo.MasterData
             // 
             this.btnGiamMe.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGiamMe.BackgroundImage")));
             this.btnGiamMe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGiamMe.Color_Click = global::NDPSo.ResourceNDP.Tru_Click;
-            this.btnGiamMe.Color_NoClick = global::NDPSo.ResourceNDP.Tru;
+            this.btnGiamMe.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnGiamMe.Color_Click")));
+            this.btnGiamMe.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnGiamMe.Color_NoClick")));
             this.btnGiamMe.IsOn = false;
             this.btnGiamMe.Location = new System.Drawing.Point(342, 4);
             this.btnGiamMe.Margin = new System.Windows.Forms.Padding(2);
@@ -2177,8 +2177,8 @@ namespace NDPSo.MasterData
             // 
             this.btnThemMe.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnThemMe.BackgroundImage")));
             this.btnThemMe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnThemMe.Color_Click = global::NDPSo.ResourceNDP.Them_Click;
-            this.btnThemMe.Color_NoClick = global::NDPSo.ResourceNDP.Them;
+            this.btnThemMe.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnThemMe.Color_Click")));
+            this.btnThemMe.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnThemMe.Color_NoClick")));
             this.btnThemMe.IsOn = false;
             this.btnThemMe.Location = new System.Drawing.Point(278, 4);
             this.btnThemMe.Margin = new System.Windows.Forms.Padding(2);
@@ -2189,10 +2189,10 @@ namespace NDPSo.MasterData
             // 
             // btnInNhanh
             // 
-            this.btnInNhanh.BackgroundImage = global::NDPSo.ResourceNDP.Printer;
+            this.btnInNhanh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnInNhanh.BackgroundImage")));
             this.btnInNhanh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnInNhanh.Color_Click = global::NDPSo.ResourceNDP.Printer_Click;
-            this.btnInNhanh.Color_NoClick = global::NDPSo.ResourceNDP.Printer;
+            this.btnInNhanh.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnInNhanh.Color_Click")));
+            this.btnInNhanh.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnInNhanh.Color_NoClick")));
             this.btnInNhanh.IsOn = false;
             this.btnInNhanh.Location = new System.Drawing.Point(430, 56);
             this.btnInNhanh.Margin = new System.Windows.Forms.Padding(2);
@@ -3763,6 +3763,7 @@ namespace NDPSo.MasterData
             this.ucAmpeCoi.Name = "ucAmpeCoi";
             this.ucAmpeCoi.Size = new System.Drawing.Size(48, 26);
             this.ucAmpeCoi.TabIndex = 367;
+            this.ucAmpeCoi.Visible = false;
             // 
             // uc_TinHieu_CuaNoi1per2
             // 
@@ -4353,7 +4354,6 @@ namespace NDPSo.MasterData
             this.labelControl6.Size = new System.Drawing.Size(18, 13);
             this.labelControl6.TabIndex = 578;
             this.labelControl6.Text = "BTX";
-            this.labelControl6.Visible = false;
             // 
             // groupBox1
             // 
@@ -4570,6 +4570,7 @@ namespace NDPSo.MasterData
             this.lblStatusPC.Size = new System.Drawing.Size(40, 25);
             this.lblStatusPC.TabIndex = 522;
             this.lblStatusPC.Text = "FU";
+            this.lblStatusPC.ToolTip = "Trạng thái phễu chờ";
             // 
             // ucTinHieu_PCM
             // 

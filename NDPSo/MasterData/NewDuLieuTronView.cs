@@ -139,6 +139,18 @@ namespace NDPSo.MasterData
                 case Enums.FormAction.New:
                     this._presenter.BuildNewHopDong();
                     break;
+                case Enums.FormAction.View:
+                    gluKhachHang.Properties.ReadOnly = true;
+                    gluCongTruong.Properties.ReadOnly = true;
+                    gluMAC.Properties.ReadOnly = true;
+                    gluHangMuc.Properties.ReadOnly = true;
+                    spnMaxKLTron.Properties.ReadOnly = true;
+                    spnKLDuTinh.Properties.ReadOnly = true;
+                    txtMoTaDLT.Properties.ReadOnly = true;
+                    spnNoPhieu.Properties.ReadOnly = true;
+                    btnSave.Enabled = false;
+                    this._presenter.GetHopDongByKey(this._hd.HopDongID);
+                    break;
                 case Enums.FormAction.Edit:
                     this._presenter.GetHopDongByKey(this._hd.HopDongID);
                     break;

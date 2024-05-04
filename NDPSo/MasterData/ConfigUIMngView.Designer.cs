@@ -569,9 +569,21 @@ namespace NDPSo.MasterData
             // 
             this.ucGauTai1.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.ucGauTai1.Appearance.Options.UseBackColor = true;
+            this.ucGauTai1.IsGauTaiStatus = NDPSo.MasterData.TronOnlineView.UserControls.UcGauTai.GauTaiStatus.Empty;
+            this.ucGauTai1.IsTrangThai = NDPSo.MasterData.TronOnlineView.UserControls.UcGauTai.TrangThai.GauDuoi;
             this.ucGauTai1.Location = new System.Drawing.Point(617, 390);
             this.ucGauTai1.Name = "ucGauTai1";
             this.ucGauTai1.Size = new System.Drawing.Size(244, 262);
+            this.ucGauTai1.SoLuongMeCanTron = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ucGauTai1.SoMeDaTron = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.ucGauTai1.TabIndex = 599;
             // 
             // ucBTXien1

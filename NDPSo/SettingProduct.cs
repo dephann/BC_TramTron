@@ -27,6 +27,8 @@ namespace NDPSo
                 this.txtLocalProduct.Text = ConfigManager.TramTronConfig.LocalProduct;
                 this.txtPhoneProduct.Text = ConfigManager.TramTronConfig.PhoneProduct;
                 this.bteIconLogoPathProducer.Text = ConfigManager.TramTronConfig.LogoProduct;
+                this.lblTime.Text = ConfigManager.TramTronConfig.TimeLife.ToString();
+                this.lblTime.Visible = false;
             }
             catch (System.Exception ex)
             {
@@ -95,6 +97,14 @@ namespace NDPSo
                 {
                     MessageBox.Show("Lỗi: " + ex.Message);
                 }
+            }
+        }
+
+        private void SettingProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.T)
+            {
+                this.lblTime.Visible = true;
             }
         }
     }

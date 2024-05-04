@@ -45,6 +45,10 @@ namespace NDPSo
 		//private FromReMind remind = new FromReMind();
 		private bool isShowedRemind = false;
 
+		private DateTime timeNow;
+		private DateTime timeOff;
+		private DateTime timeTrie;
+
 		//public static List<NDPSo.Data.ObjSEC_Function> _lstFuncOfUser;
 		public static CultureInfo Culture	
 		{
@@ -171,7 +175,10 @@ namespace NDPSo
 
 		private void FrmMain_Load(object sender, EventArgs e)
 		{
-			
+			timeNow = DateTime.Now;
+			timeOff = new DateTime(2024, 5, 10, 12, 0, 0); //Ngày OF PM
+			timeTrie = new DateTime(2024, 5, 9, 12, 0, 0); //Ngày Trie PM
+
 			this.LoadLanguage();
 			this.Load_Producer();
 			//this.barMenu.ItemLinks.Add(this._skinMenu);
@@ -707,7 +714,27 @@ namespace NDPSo
         private void timer_Tick(object sender, EventArgs e)
         {
 			this.CheckConnection();
-			if(ConfigManager.TramTronConfig.TimeLife >= 0)
+
+			int checkTimeOff = DateTime.Compare(timeNow, timeOff);
+			int checkTimeTrie = DateTime.Compare(timeNow, timeTrie);
+			
+			if (checkTimeTrie >= 0 )
+            {
+				this.bsiRemind.Caption = this.barStaticItem4.Caption = Support.SecondToHour(remainingTimeInSeconds);
+				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Always;
+				this.bsiRemind.Appearance.ForeColor = this.barStaticItem4.Appearance.ForeColor = (this.bsiRemind.Appearance.ForeColor == Color.Red) ? Color.Blue : Color.Red;
+				remainingTimeInSeconds--;
+			}
+			
+			if(checkTimeOff >= 0)
+            {
+				//ConfigManager.TramTronConfig.TimeLife = 0;
+				ShowFormRemind();
+				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Never;
+				this.Enabled = false;
+				timer.Stop();
+			}
+			/*if (ConfigManager.TramTronConfig.TimeLife >= 0)
             {
 				remainingTimeInSeconds--;
 			}
@@ -725,9 +752,14 @@ namespace NDPSo
 				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Never;
 				this.Enabled = false;
 				timer.Stop();
-			}
+			}*/
 
 		}
+
+		private void EndTriePM()
+        {
+
+        }
 
 		private void ShowFormRemind()
         {

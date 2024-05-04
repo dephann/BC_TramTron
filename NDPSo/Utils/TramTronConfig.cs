@@ -1235,6 +1235,16 @@ namespace NDPSo.Utils
             get => Decimal.Parse(this[nameof(Trial)]);
             set => this[nameof(Trial)] = value.ToString();
         }
+        public string BcMix
+        {
+            get => this[nameof(BcMix)];
+            set => this[nameof(BcMix)] = value;
+        }
+        public string TrcMix
+        {
+            get => this[nameof(TrcMix)];
+            set => this[nameof(TrcMix)] = value;
+        }
         public TramTronConfig()
           : base("TramTronConfig.xml", "/configuration/TramTron")
         {

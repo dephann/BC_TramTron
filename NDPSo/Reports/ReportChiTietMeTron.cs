@@ -395,7 +395,8 @@ namespace NDPSo.Reports
         protected override void PopulateData()
         {
             //this.LoadDataMix();
-            LoadDataMix();
+            //LoadDataMix();
+            Task.Run(() => LoadDataMix());
         }
 
 

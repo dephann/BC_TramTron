@@ -43,7 +43,8 @@ namespace NDPSo.Reports
         protected override void PopulateData()
         {
             //this.LoadDataMix();
-            LoadData();
+            //LoadData();
+            Task.Run(() => LoadData());
         }
         private void LoadSearchDefaultValues()
         {
@@ -276,7 +277,6 @@ namespace NDPSo.Reports
          }*/
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
             Task.Run(() => LoadData());
         }
 

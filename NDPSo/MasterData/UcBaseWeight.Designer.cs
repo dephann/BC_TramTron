@@ -41,6 +41,7 @@ namespace NDPSo.MasterData
             this.picBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picBackground.EditValue = "0000";
             this.picBackground.Location = new System.Drawing.Point(0, 0);
+            this.picBackground.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.picBackground.Name = "picBackground";
             this.picBackground.Properties.AllowFocused = false;
             this.picBackground.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -48,7 +49,7 @@ namespace NDPSo.MasterData
             this.picBackground.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.picBackground.Properties.NullText = " ";
             this.picBackground.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.picBackground.Size = new System.Drawing.Size(120, 87);
+            this.picBackground.Size = new System.Drawing.Size(103, 71);
             this.picBackground.TabIndex = 0;
             // 
             // lblKhoiLuongCan
@@ -67,22 +68,25 @@ namespace NDPSo.MasterData
             this.lblKhoiLuongCan.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblKhoiLuongCan.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.lblKhoiLuongCan.ImageAlignToText = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
-            this.lblKhoiLuongCan.Location = new System.Drawing.Point(3, 12);
+            this.lblKhoiLuongCan.Location = new System.Drawing.Point(3, 10);
+            this.lblKhoiLuongCan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblKhoiLuongCan.Name = "lblKhoiLuongCan";
-            this.lblKhoiLuongCan.Size = new System.Drawing.Size(100, 36);
+            this.lblKhoiLuongCan.Size = new System.Drawing.Size(86, 29);
             this.lblKhoiLuongCan.TabIndex = 1;
             this.lblKhoiLuongCan.Text = "9999";
+            this.lblKhoiLuongCan.ToolTip = "KL_Cân";
             // 
             // UcBaseWeight
             // 
             this.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.Appearance.Options.UseBackColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblKhoiLuongCan);
             this.Controls.Add(this.picBackground);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UcBaseWeight";
-            this.Size = new System.Drawing.Size(120, 87);
+            this.Size = new System.Drawing.Size(103, 71);
             ((System.ComponentModel.ISupportInitialize)(this.picBackground.Properties)).EndInit();
             this.ResumeLayout(false);
 

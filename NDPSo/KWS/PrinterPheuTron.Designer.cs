@@ -50,6 +50,8 @@ namespace NDPSo.KWS
             this.gcViewMaHopDong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.txtGioKTTron = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.txtSTTPhieuTron = new DevExpress.XtraEditors.TextEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaHopDong = new DevExpress.XtraEditors.TextEdit();
@@ -91,8 +93,6 @@ namespace NDPSo.KWS
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
-            this.txtGioKTTron = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookupEditPrinters.Properties)).BeginInit();
@@ -110,6 +110,7 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTTPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHopDong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).BeginInit();
@@ -132,7 +133,6 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl4
@@ -414,6 +414,25 @@ namespace NDPSo.KWS
             this.groupControl4.Size = new System.Drawing.Size(619, 399);
             this.groupControl4.TabIndex = 7;
             this.groupControl4.Text = "Thông tin phiếu trộn";
+            // 
+            // txtGioKTTron
+            // 
+            this.txtGioKTTron.Location = new System.Drawing.Point(536, 65);
+            this.txtGioKTTron.Name = "txtGioKTTron";
+            this.txtGioKTTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGioKTTron.Properties.Appearance.Options.UseFont = true;
+            this.txtGioKTTron.Size = new System.Drawing.Size(76, 20);
+            this.txtGioKTTron.TabIndex = 48;
+            // 
+            // labelControl21
+            // 
+            this.labelControl21.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl21.Appearance.Options.UseFont = true;
+            this.labelControl21.Location = new System.Drawing.Point(469, 68);
+            this.labelControl21.Name = "labelControl21";
+            this.labelControl21.Size = new System.Drawing.Size(63, 14);
+            this.labelControl21.TabIndex = 47;
+            this.labelControl21.Text = "Giờ KT trộn";
             // 
             // txtSTTPhieuTron
             // 
@@ -831,25 +850,6 @@ namespace NDPSo.KWS
             this.btnPrint.Text = "In Phiếu";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // txtGioKTTron
-            // 
-            this.txtGioKTTron.Location = new System.Drawing.Point(536, 65);
-            this.txtGioKTTron.Name = "txtGioKTTron";
-            this.txtGioKTTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGioKTTron.Properties.Appearance.Options.UseFont = true;
-            this.txtGioKTTron.Size = new System.Drawing.Size(76, 20);
-            this.txtGioKTTron.TabIndex = 48;
-            // 
-            // labelControl21
-            // 
-            this.labelControl21.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl21.Appearance.Options.UseFont = true;
-            this.labelControl21.Location = new System.Drawing.Point(469, 68);
-            this.labelControl21.Name = "labelControl21";
-            this.labelControl21.Size = new System.Drawing.Size(63, 14);
-            this.labelControl21.TabIndex = 47;
-            this.labelControl21.Text = "Giờ KT trộn";
-            // 
             // PrinterPheuTron
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -881,6 +881,7 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             this.groupControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTTPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHopDong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).EndInit();
@@ -903,7 +904,6 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

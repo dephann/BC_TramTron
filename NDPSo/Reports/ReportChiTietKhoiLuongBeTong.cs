@@ -212,7 +212,7 @@ namespace NDPSo.Reports
         protected override void PopulateData()
         {
             //this.LoadDataMix();
-            LoadDataMix();
+            Task.Run(() => LoadDataMix());
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

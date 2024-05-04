@@ -172,7 +172,7 @@ namespace NDPSo.Reports
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            LoadDataMix();
+            Task.Run(() => LoadDataMix());
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

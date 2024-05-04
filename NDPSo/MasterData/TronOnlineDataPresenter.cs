@@ -109,9 +109,9 @@ namespace NDPSo.MasterData
           bool isManualPLC,
           int trangThaiAutoMan,
           int phieuTronID,
-          int valueBat,
-          int valueBatAuto,
-          int valueBatMan,
+          double valueBat,
+          double valueBatAuto,
+          double valueBatMan,
           int plcSaveId)
         {
             int? nullable1 = new int?();
@@ -136,7 +136,7 @@ namespace NDPSo.MasterData
             ObjMeTronChiTiet objMTCT;
             if (objSilo != null && objSiloOnline != null)
             {
-                numTol = objSiloOnline.KLCanCan - valueBat;
+                numTol = objSiloOnline.KLCanCan - (decimal)valueBat;
                 numPerTol = numTol/ objSiloOnline.KLCanCan * 100M;
                 objMTCT = new ObjMeTronChiTiet()
                 {

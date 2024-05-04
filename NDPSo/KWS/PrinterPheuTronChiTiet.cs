@@ -1710,7 +1710,7 @@ namespace NDPSo.KWS
                     Arguments = $"\"{printerName}\""
                 };
 
-                using (Process process = new Process { StartInfo = startInfo })
+                using (Process process = new Process { StartInfo = startInfo }) // Kiem tra lai qua trinh in
                 {
                     process.Start();
                     process.WaitForExit(); // Chờ đến khi quá trình in kết thúc
