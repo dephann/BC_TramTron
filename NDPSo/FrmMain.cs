@@ -176,8 +176,8 @@ namespace NDPSo
 		private void FrmMain_Load(object sender, EventArgs e)
 		{
 			timeNow = DateTime.Now;
-			timeOff = new DateTime(2024, 5, 10, 12, 0, 0); //Ngày OF PM
-			timeTrie = new DateTime(2024, 5, 9, 12, 0, 0); //Ngày Trie PM
+			timeOff = new DateTime(2024, 6, 10, 12, 0, 0); //Ngày OF PM
+			timeTrie = new DateTime(2024, 6, 9, 12, 0, 0); //Ngày Trie PM
 
 			this.LoadLanguage();
 			this.Load_Producer();

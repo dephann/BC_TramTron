@@ -231,6 +231,7 @@
       <DependentUpon>UserMngView.cs</DependentUpon>
     </Compile>
     <Compile Include="BusinessObject\AdministrationBO.cs" />
+    <Compile Include="BusinessObject\WriteInvoice.cs" />
     <Compile Include="DAL\EventActionCodeRepository.cs" />
     <Compile Include="DAL\HangMucRepository.cs" />
     <Compile Include="DAL\HopDongRepository.cs" />
@@ -630,7 +631,7 @@
       <DependentUpon>FrmRemind.cs</DependentUpon>
     </Compile>
     <Compile Include="KWS\FormPhieuIn.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="KWS\FormPhieuIn.Designer.cs">
       <DependentUpon>FormPhieuIn.cs</DependentUpon>

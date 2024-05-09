@@ -81,11 +81,11 @@ namespace NDPSo
             this.lblPhieuTron = new DevExpress.XtraEditors.LabelControl();
             this.lblContract = new DevExpress.XtraEditors.LabelControl();
             this.tpgOthers = new DevExpress.XtraTab.XtraTabPage();
-            this.bteImportPath = new DevExpress.XtraEditors.ButtonEdit();
+            this.bteImportPath_CT = new DevExpress.XtraEditors.ButtonEdit();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.bteImportPath_GH = new DevExpress.XtraEditors.ButtonEdit();
             this.bteExportPath = new DevExpress.XtraEditors.ButtonEdit();
             this.chkDev = new DevExpress.XtraEditors.CheckEdit();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.chkTronOnline = new DevExpress.XtraEditors.CheckEdit();
             this.chkTinhBuTru = new DevExpress.XtraEditors.CheckEdit();
@@ -141,7 +141,8 @@ namespace NDPSo
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestHopDongDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestPhieuTronDays.Properties)).BeginInit();
             this.tpgOthers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bteImportPath.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_CT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_GH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteExportPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDev.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTronOnline.Properties)).BeginInit();
@@ -859,11 +860,11 @@ namespace NDPSo
             // 
             // tpgOthers
             // 
-            this.tpgOthers.Controls.Add(this.bteImportPath);
+            this.tpgOthers.Controls.Add(this.bteImportPath_CT);
+            this.tpgOthers.Controls.Add(this.labelControl9);
+            this.tpgOthers.Controls.Add(this.bteImportPath_GH);
             this.tpgOthers.Controls.Add(this.bteExportPath);
             this.tpgOthers.Controls.Add(this.chkDev);
-            this.tpgOthers.Controls.Add(this.simpleButton2);
-            this.tpgOthers.Controls.Add(this.simpleButton3);
             this.tpgOthers.Controls.Add(this.labelControl7);
             this.tpgOthers.Controls.Add(this.chkTronOnline);
             this.tpgOthers.Controls.Add(this.chkTinhBuTru);
@@ -875,16 +876,39 @@ namespace NDPSo
             this.tpgOthers.Size = new System.Drawing.Size(681, 257);
             this.tpgOthers.Text = "Khác";
             // 
-            // bteImportPath
+            // bteImportPath_CT
             // 
-            this.bteImportPath.Location = new System.Drawing.Point(135, 102);
-            this.bteImportPath.Name = "bteImportPath";
-            this.bteImportPath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.bteImportPath_CT.Location = new System.Drawing.Point(135, 100);
+            this.bteImportPath_CT.Name = "bteImportPath_CT";
+            this.bteImportPath_CT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.bteImportPath.Size = new System.Drawing.Size(460, 20);
-            this.bteImportPath.TabIndex = 14;
-            this.bteImportPath.Visible = false;
-            this.bteImportPath.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteImportPath_ButtonClick);
+            this.bteImportPath_CT.Size = new System.Drawing.Size(460, 20);
+            this.bteImportPath_CT.TabIndex = 16;
+            this.bteImportPath_CT.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteImportPath_CT_ButtonClick);
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Appearance.Options.UseTextOptions = true;
+            this.labelControl9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.labelControl9.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl9.Location = new System.Drawing.Point(7, 94);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(117, 29);
+            this.labelControl9.TabIndex = 15;
+            this.labelControl9.Text = "Nhập File In Chi Tiết";
+            // 
+            // bteImportPath_GH
+            // 
+            this.bteImportPath_GH.Location = new System.Drawing.Point(135, 65);
+            this.bteImportPath_GH.Name = "bteImportPath_GH";
+            this.bteImportPath_GH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.bteImportPath_GH.Size = new System.Drawing.Size(460, 20);
+            this.bteImportPath_GH.TabIndex = 14;
+            this.bteImportPath_GH.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteImportPath_ButtonClick);
             // 
             // bteExportPath
             // 
@@ -898,7 +922,7 @@ namespace NDPSo
             // 
             // chkDev
             // 
-            this.chkDev.Location = new System.Drawing.Point(42, 212);
+            this.chkDev.Location = new System.Drawing.Point(42, 225);
             this.chkDev.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkDev.Name = "chkDev";
             this.chkDev.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -908,30 +932,6 @@ namespace NDPSo
             this.chkDev.TabIndex = 10;
             this.chkDev.Visible = false;
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.Location = new System.Drawing.Point(135, 131);
-            this.simpleButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(130, 30);
-            this.simpleButton2.TabIndex = 9;
-            this.simpleButton2.Text = "Tìm Đường Dẫn";
-            this.simpleButton2.Visible = false;
-            // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton3.Appearance.Options.UseFont = true;
-            this.simpleButton3.Location = new System.Drawing.Point(287, 131);
-            this.simpleButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(130, 30);
-            this.simpleButton3.TabIndex = 8;
-            this.simpleButton3.Text = "Tải báo cáo mẫu";
-            this.simpleButton3.Visible = false;
-            // 
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -939,17 +939,16 @@ namespace NDPSo
             this.labelControl7.Appearance.Options.UseTextOptions = true;
             this.labelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.labelControl7.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl7.Location = new System.Drawing.Point(17, 96);
+            this.labelControl7.Location = new System.Drawing.Point(17, 59);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(107, 29);
             this.labelControl7.TabIndex = 6;
-            this.labelControl7.Text = "Nhập File BC";
-            this.labelControl7.Visible = false;
+            this.labelControl7.Text = "Nhập File In Nhanh";
             // 
             // chkTronOnline
             // 
-            this.chkTronOnline.Location = new System.Drawing.Point(42, 163);
+            this.chkTronOnline.Location = new System.Drawing.Point(42, 176);
             this.chkTronOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkTronOnline.Name = "chkTronOnline";
             this.chkTronOnline.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -960,7 +959,7 @@ namespace NDPSo
             // 
             // chkTinhBuTru
             // 
-            this.chkTinhBuTru.Location = new System.Drawing.Point(42, 188);
+            this.chkTinhBuTru.Location = new System.Drawing.Point(42, 201);
             this.chkTinhBuTru.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkTinhBuTru.Name = "chkTinhBuTru";
             this.chkTinhBuTru.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -974,7 +973,7 @@ namespace NDPSo
             // 
             this.btnReportPathBrowse.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportPathBrowse.Appearance.Options.UseFont = true;
-            this.btnReportPathBrowse.Location = new System.Drawing.Point(135, 61);
+            this.btnReportPathBrowse.Location = new System.Drawing.Point(465, 141);
             this.btnReportPathBrowse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReportPathBrowse.Name = "btnReportPathBrowse";
             this.btnReportPathBrowse.Size = new System.Drawing.Size(130, 30);
@@ -987,7 +986,7 @@ namespace NDPSo
             // 
             this.btnTestReportPath.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTestReportPath.Appearance.Options.UseFont = true;
-            this.btnTestReportPath.Location = new System.Drawing.Point(287, 61);
+            this.btnTestReportPath.Location = new System.Drawing.Point(465, 178);
             this.btnTestReportPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTestReportPath.Name = "btnTestReportPath";
             this.btnTestReportPath.Size = new System.Drawing.Size(130, 30);
@@ -1260,7 +1259,8 @@ namespace NDPSo
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestHopDongDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestPhieuTronDays.Properties)).EndInit();
             this.tpgOthers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bteImportPath.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_CT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_GH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteExportPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDev.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTronOnline.Properties)).EndInit();
@@ -1349,15 +1349,15 @@ namespace NDPSo
         private DevExpress.XtraEditors.SpinEdit spnLatestBaoCaoDays;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.CheckEdit chkDev;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.ButtonEdit beFilePathPLC;
         private DevExpress.XtraEditors.SimpleButton btnUploadToPLC;
-        private DevExpress.XtraEditors.ButtonEdit bteImportPath;
+        private DevExpress.XtraEditors.ButtonEdit bteImportPath_GH;
         private DevExpress.XtraEditors.ButtonEdit bteExportPath;
+        private DevExpress.XtraEditors.ButtonEdit bteImportPath_CT;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
     }
 }

@@ -91,6 +91,8 @@ namespace NDPSo.KWS
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.spin_numberOfCopies = new DevExpress.XtraEditors.SpinEdit();
+            this.label1 = new System.Windows.Forms.Label();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -133,6 +135,7 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl4
@@ -295,7 +298,7 @@ namespace NDPSo.KWS
             this.groupControl2.Controls.Add(this.grcPhieuTron);
             this.groupControl2.Location = new System.Drawing.Point(3, 83);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(328, 399);
+            this.groupControl2.Size = new System.Drawing.Size(328, 372);
             this.groupControl2.TabIndex = 5;
             this.groupControl2.Text = "Danh sách phiếu trộn";
             // 
@@ -305,7 +308,7 @@ namespace NDPSo.KWS
             this.grcPhieuTron.Location = new System.Drawing.Point(2, 23);
             this.grcPhieuTron.MainView = this.grvPhieuTron;
             this.grcPhieuTron.Name = "grcPhieuTron";
-            this.grcPhieuTron.Size = new System.Drawing.Size(324, 374);
+            this.grcPhieuTron.Size = new System.Drawing.Size(324, 347);
             this.grcPhieuTron.TabIndex = 0;
             this.grcPhieuTron.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPhieuTron});
@@ -321,7 +324,9 @@ namespace NDPSo.KWS
             this.gridColumn3});
             this.grvPhieuTron.GridControl = this.grcPhieuTron;
             this.grvPhieuTron.Name = "grvPhieuTron";
+            this.grvPhieuTron.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.grvPhieuTron.OptionsView.ShowFooter = true;
+            this.grvPhieuTron.OptionsView.ShowGroupPanel = false;
             this.grvPhieuTron.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grvPhieuTron_FocusedRowChanged);
             // 
             // gcMaPhieuTron
@@ -809,13 +814,57 @@ namespace NDPSo.KWS
             // 
             this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl3.AppearanceCaption.Options.UseFont = true;
+            this.groupControl3.Controls.Add(this.spin_numberOfCopies);
+            this.groupControl3.Controls.Add(this.label1);
             this.groupControl3.Controls.Add(this.simpleButton1);
             this.groupControl3.Controls.Add(this.btnPrint);
-            this.groupControl3.Location = new System.Drawing.Point(3, 488);
+            this.groupControl3.Location = new System.Drawing.Point(3, 461);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(328, 90);
+            this.groupControl3.Size = new System.Drawing.Size(328, 117);
             this.groupControl3.TabIndex = 8;
             this.groupControl3.Text = "Tác vụ";
+            // 
+            // spin_numberOfCopies
+            // 
+            this.spin_numberOfCopies.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spin_numberOfCopies.Location = new System.Drawing.Point(110, 33);
+            this.spin_numberOfCopies.Name = "spin_numberOfCopies";
+            this.spin_numberOfCopies.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spin_numberOfCopies.Properties.Appearance.Options.UseFont = true;
+            this.spin_numberOfCopies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spin_numberOfCopies.Properties.DisplayFormat.FormatString = "n0";
+            this.spin_numberOfCopies.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spin_numberOfCopies.Properties.EditFormat.FormatString = "n0";
+            this.spin_numberOfCopies.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spin_numberOfCopies.Properties.Mask.EditMask = "n0";
+            this.spin_numberOfCopies.Properties.MaxValue = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.spin_numberOfCopies.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spin_numberOfCopies.Size = new System.Drawing.Size(184, 22);
+            this.spin_numberOfCopies.TabIndex = 79;
+            this.spin_numberOfCopies.EditValueChanged += new System.EventHandler(this.spin_numberOfCopies_EditValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(27, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 16);
+            this.label1.TabIndex = 78;
+            this.label1.Text = "Số bản in:";
             // 
             // simpleButton1
             // 
@@ -827,7 +876,7 @@ namespace NDPSo.KWS
             this.simpleButton1.ImageOptions.Image = global::NDPSo.ResourceNDP.wath_;
             this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton1.Location = new System.Drawing.Point(30, 35);
+            this.simpleButton1.Location = new System.Drawing.Point(30, 66);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(131, 45);
             this.simpleButton1.TabIndex = 77;
@@ -843,7 +892,7 @@ namespace NDPSo.KWS
             this.btnPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.ImageOptions.Image")));
             this.btnPrint.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnPrint.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnPrint.Location = new System.Drawing.Point(174, 36);
+            this.btnPrint.Location = new System.Drawing.Point(174, 67);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(120, 45);
             this.btnPrint.TabIndex = 76;
@@ -904,6 +953,8 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
+            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -972,5 +1023,7 @@ namespace NDPSo.KWS
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.TextEdit txtGioKTTron;
         private DevExpress.XtraEditors.LabelControl labelControl21;
+        private DevExpress.XtraEditors.SpinEdit spin_numberOfCopies;
+        private System.Windows.Forms.Label label1;
     }
 }

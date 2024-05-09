@@ -36,6 +36,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataType = S7.Net.DataType;
+using Task = System.Threading.Tasks.Task;
 
 namespace NDPSo.MasterData
 {
@@ -97,7 +98,7 @@ namespace NDPSo.MasterData
         private bool IsRunningNoiTron = false;
 
         private decimal _LuyKe_InNhanh;
-
+        List<string> paras = new List<string>();
         //PlayOff
         private DateTime timeNow;
         private DateTime timeTrie;
@@ -863,7 +864,7 @@ namespace NDPSo.MasterData
         protected override void PopulateData()
         {
             timeNow = DateTime.Now;
-            timeTrie = new DateTime(2024, 5, 9, 12, 0, 0); //Ngày Trie PM
+            timeTrie = new DateTime(2024, 6, 9, 12, 0, 0); //Ngày Trie PM
             int checkTimeTrie = DateTime.Compare(timeNow, timeTrie);
             if (checkTimeTrie >= 0)
             {
@@ -3851,7 +3852,7 @@ namespace NDPSo.MasterData
             //this._so.DeNuocTrenCan = Convert.ToInt32(this.spnGiuNuocTrenCan.EditValue);
             _giuNuocTenCan = Convert.ToInt32(this.spnGiuNuocTrenCan.EditValue);
             this.BuildSetPoint(selectedHD, true);
-            //this.SendData_DB2_NewTread();
+            this.SendData_DB4_NewTread();
             TramTronLogger.WriteInfo(sender.ToString());
         }
 
@@ -4921,19 +4922,29 @@ namespace NDPSo.MasterData
             TramTronLogger.WriteInfo(sender.ToString());
         }
 
-
-        
-
         private void btnInNhanh_ButtonClick(object sender, EventArgs e)
         {
             LoadFormInPT();
             TramTronLogger.WriteInfo(sender.ToString());
+
         }
 
         private void LoadFormInPT()
         {
-            PrinterPheuTron printerPT = new PrinterPheuTron();
-            ViewManager.ShowViewDialog(printerPT);
+            /*if(checkAutoPrint.Checked == true)
+            {
+                PrinterPheuTron printerPT = new PrinterPheuTron();
+                ViewManager.ShowViewDialog(printerPT);
+            }
+            else
+            {
+                FormPhieuIn formPT = new FormPhieuIn();
+                ViewManager.ShowViewDialog(formPT);
+            }*/
+            
+
+            FormPhieuIn formPT = new FormPhieuIn();
+            ViewManager.ShowViewDialog(formPT);
         }
         private void CreateGroupLogicAG(int sl)
         {
@@ -5282,6 +5293,7 @@ namespace NDPSo.MasterData
                             
                             UpdateTongPhieuHopDong();
                             this.ChangeStatusSelectedDuLieuTron(4, null);
+                            
                             if (checkAutoPrint.Checked)
                             {
                                 ShowMessage("Đang in phiếu trộn", Enums.MsgType.Info);
@@ -5364,9 +5376,10 @@ namespace NDPSo.MasterData
                 if (this._selectedHD_Run != null && this._selectedHD_Run.TongPhieu != null)
                 {
                     this._selectedHD_Run.TongPhieu = this._selectedHD_Run.TongPhieu + 1;
+                    this._selectedHD_Run = this._presenter.SaveHopDong(this._selectedHD_Run);
                 }
-                this._selectedHD_Run = this._presenter.SaveHopDong(this._selectedHD_Run);
-
+               
+                this.grvHopDong.RefreshData();
             }
             catch (System.Exception ex)
             {
@@ -5761,9 +5774,9 @@ namespace NDPSo.MasterData
             this._selectedPT_Run = this._presenter.CreateAndSaveNewPhieuTron(this._selectedHD_Run, isManual);
             this.some = 1;
             this.lblMaPhieuTron.Text = this._selectedPT_Run.MaPhieuTron;
-            this.lblDriver.Text = string.Empty;
-            this.lblXe.Text = string.Empty;
-            this.lblNiemChi.Text = string.Empty;
+            //this.lblDriver.Text = string.Empty;
+            //this.lblXe.Text = string.Empty;
+            //this.lblNiemChi.Text = string.Empty;
             this.lblNguoiTron.Text = GlobalValues.DisplayUser;
             this._LuyKe_InNhanh = (decimal)this._selectedHD_Run.KLDaGiao + (decimal)this._selectedPT_Run.KLDuTinh;
             if (_selectedPT_Run == null)
@@ -6305,6 +6318,8 @@ namespace NDPSo.MasterData
             this.SaveThemBotNuoc1((int)this.spnThemBotNc.Tag, this._themBotNuoc);
 
             this.BuildSetPoint(selectedHD, true);
+            this.SendData_DB4_NewTread();
+
 
         }
         
@@ -7060,8 +7075,8 @@ namespace NDPSo.MasterData
         }
         private void LoadParam()
         {
-            FrmPrintGiaoHang frm = new FrmPrintGiaoHang();
-            List<string> paras = new List<string>();
+            //FrmPrintGiaoHang frm = new FrmPrintGiaoHang();
+            paras.Clear();
             paras.Add(ConfigManager.TramTronConfig.TenCty);
             paras.Add(this._selectedPT_Run.NgayPhieuTron.Value.ToString("dd/MM/yyyy"));
             paras.Add(lblTenCongTruong.Text);
@@ -7094,8 +7109,8 @@ namespace NDPSo.MasterData
             }
             else
             {
-                frm.FillDataPrinter(paras);
-                frm.PrintPhieuTron();
+               /* frm.FillDataPrinter(paras);
+                frm.PrintPhieuTron();*/
             }
             
 
@@ -7132,6 +7147,7 @@ namespace NDPSo.MasterData
                     try
                     {
                         File.Delete(wordFilePath);
+                        PrinterInvoke(pdfFilePath, 1);
                     }
                     catch (Exception ex)
                     {
@@ -7140,15 +7156,15 @@ namespace NDPSo.MasterData
                     }
                 }
 
-                if (File.Exists(pdfFilePath))
+                /*if (File.Exists(pdfFilePath))
                 {
                     // In file PDF vừa tạo
-                    PrintPDF(pdfFilePath);
+                   
                 }
                 else
                 {
                     TramTromMessageBox.ShowMessageDialog("Không tìm thấy file PDF để in");
-                }
+                }*/
 
                 wordApp.Quit();
             }
@@ -7157,35 +7173,56 @@ namespace NDPSo.MasterData
                 TramTromMessageBox.ShowErrorDialog(ex.ToString());
             }
         }
-
-        private void PrintPDF(string pdfFilePath)
+        public bool PrinterInvoke(string pdfFilePath, int numberOfCopies)
         {
             try
             {
-                // Hiển thị hộp thoại chọn máy in
-                string printerName = ConfigManager.TramTronConfig.MayInPI;
+                Task[] printTasks = new Task[numberOfCopies];
 
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                for (int i = 0; i < numberOfCopies; i++)
                 {
-                    Verb = "printto",
-                    FileName = pdfFilePath,
-                    UseShellExecute = true,
-                    Arguments = $"\"{printerName}\""
-                };
-
-                using (Process process = new Process { StartInfo = startInfo }) // Kiem tra lai qua trinh in
-                {
-                    process.Start();
-                    process.WaitForExit(); // Chờ đến khi quá trình in kết thúc
-                    TramTromMessageBox.ShowMessageDialog("In file hoàn tất");
+                    int copyIndex = i;
+                    printTasks[i] = System.Threading.Tasks.Task.Run(() => Support.PrintReport(pdfFilePath));
                 }
+
+                Task.WaitAll(printTasks);
+
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Lỗi khi in file PDF: {ex.Message}");
-                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
             }
+            return false;
         }
+        private void PrintPDF(string pdfFilePath)
+            {
+                try
+                {
+                    // Hiển thị hộp thoại chọn máy in
+                    string printerName = ConfigManager.TramTronConfig.MayInPI;
+
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        Verb = "printto",
+                        FileName = pdfFilePath,
+                        UseShellExecute = true,
+                        Arguments = $"\"{printerName}\""
+                    };
+
+                    using (Process process = new Process { StartInfo = startInfo }) // Kiem tra lai qua trinh in
+                    {
+                        process.Start();
+                        process.WaitForExit(); // Chờ đến khi quá trình in kết thúc
+                        //TramTromMessageBox.ShowMessageDialog("In file hoàn tất");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi khi in file PDF: {ex.Message}");
+                    TramTronLogger.WriteError(ex);
+                }
+            }
         private void WriteDetailInvoice(List<string> param)
         {
             try

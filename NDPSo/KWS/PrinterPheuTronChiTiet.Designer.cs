@@ -188,6 +188,8 @@ namespace NDPSo.KWS
             this.gridBand59 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gcPV_Add6_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.spin_numberOfCopies = new DevExpress.XtraEditors.SpinEdit();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnInPCT = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
@@ -273,6 +275,7 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcTotalMaterial)).BeginInit();
@@ -442,7 +445,9 @@ namespace NDPSo.KWS
             this.gridColumn3});
             this.grvPhieuTron.GridControl = this.grcPhieuTron;
             this.grvPhieuTron.Name = "grvPhieuTron";
+            this.grvPhieuTron.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.grvPhieuTron.OptionsView.ShowFooter = true;
+            this.grvPhieuTron.OptionsView.ShowGroupPanel = false;
             this.grvPhieuTron.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grvPhieuTron_FocusedRowChanged);
             // 
             // gcMaPhieuTron
@@ -1989,6 +1994,8 @@ namespace NDPSo.KWS
             // 
             // groupControl3
             // 
+            this.groupControl3.Controls.Add(this.spin_numberOfCopies);
+            this.groupControl3.Controls.Add(this.label1);
             this.groupControl3.Controls.Add(this.btnInPCT);
             this.groupControl3.Controls.Add(this.btnPrint);
             this.groupControl3.Location = new System.Drawing.Point(3, 590);
@@ -1996,6 +2003,48 @@ namespace NDPSo.KWS
             this.groupControl3.Size = new System.Drawing.Size(328, 125);
             this.groupControl3.TabIndex = 10;
             this.groupControl3.Text = "Tác vụ";
+            // 
+            // spin_numberOfCopies
+            // 
+            this.spin_numberOfCopies.EditValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spin_numberOfCopies.Location = new System.Drawing.Point(114, 38);
+            this.spin_numberOfCopies.Name = "spin_numberOfCopies";
+            this.spin_numberOfCopies.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spin_numberOfCopies.Properties.Appearance.Options.UseFont = true;
+            this.spin_numberOfCopies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spin_numberOfCopies.Properties.DisplayFormat.FormatString = "n0";
+            this.spin_numberOfCopies.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spin_numberOfCopies.Properties.EditFormat.FormatString = "n0";
+            this.spin_numberOfCopies.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.spin_numberOfCopies.Properties.Mask.EditMask = "n0";
+            this.spin_numberOfCopies.Properties.MaxValue = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.spin_numberOfCopies.Properties.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spin_numberOfCopies.Size = new System.Drawing.Size(184, 22);
+            this.spin_numberOfCopies.TabIndex = 81;
+            this.spin_numberOfCopies.EditValueChanged += new System.EventHandler(this.spin_numberOfCopies_EditValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(31, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 16);
+            this.label1.TabIndex = 80;
+            this.label1.Text = "Số bản in:";
             // 
             // btnInPCT
             // 
@@ -2007,7 +2056,7 @@ namespace NDPSo.KWS
             this.btnInPCT.ImageOptions.Image = global::NDPSo.ResourceNDP.printe;
             this.btnInPCT.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnInPCT.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnInPCT.Location = new System.Drawing.Point(108, 51);
+            this.btnInPCT.Location = new System.Drawing.Point(108, 69);
             this.btnInPCT.Name = "btnInPCT";
             this.btnInPCT.Size = new System.Drawing.Size(120, 45);
             this.btnInPCT.TabIndex = 75;
@@ -2024,7 +2073,7 @@ namespace NDPSo.KWS
             this.btnPrint.ImageOptions.Image = global::NDPSo.ResourceNDP.printe;
             this.btnPrint.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
             this.btnPrint.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnPrint.Location = new System.Drawing.Point(197, 51);
+            this.btnPrint.Location = new System.Drawing.Point(197, 69);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(120, 45);
             this.btnPrint.TabIndex = 74;
@@ -2642,6 +2691,8 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
+            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcTotalMaterial)).EndInit();
@@ -2855,5 +2906,7 @@ namespace NDPSo.KWS
         private DevExpress.XtraEditors.TimeSpanEdit tseFromTime;
         private DevExpress.XtraEditors.TextEdit txtGioKTTron;
         private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.SpinEdit spin_numberOfCopies;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -25,6 +25,8 @@ using Microsoft.Office.Interop.Word;
 using Document = Microsoft.Office.Interop.Word.Document;
 using DataTable = System.Data.DataTable;
 using System.Runtime.InteropServices;
+using System.Threading;
+using Task = System.Threading.Tasks.Task;
 
 namespace NDPSo.KWS
 {
@@ -44,6 +46,12 @@ namespace NDPSo.KWS
         private bool _error;
         private int userID;
         private List<string> _paramListTong = new List<string>();
+        private string printerName;
+        private int numberOfCopies;
+
+        private DataTable dataTableNameMaterial;
+        private DataTable dataTableSumMaterial;
+
         private System.Data.DataTable _tablePTCT = new System.Data.DataTable();
         private System.Data.DataTable dataTableMaterial = new System.Data.DataTable();
         private string head_Agg1;
@@ -152,7 +160,8 @@ namespace NDPSo.KWS
         protected override void PopulateStaticData()
         {
             this.LoadSearchDefaultValues();
-            
+            printerName = ConfigManager.TramTronConfig.MayInPICT;
+
             num_silo_Agg = ConfigManager.TramTronConfig.SL_Silo_AGG;
             if (num_silo_Agg == 0)
                 num_silo_Agg = 1;
@@ -1140,7 +1149,7 @@ namespace NDPSo.KWS
 
         private void GetParam()
         {
-            this._paramListTong = new List<string>();
+            this._paramListTong.Clear();
             this._paramListTong.Add(ConfigManager.TramTronConfig.TenCty);
             this._paramListTong.Add(this.datNgayTron.Text);
             this._paramListTong.Add(this.txtTenCongTruong.Text);
@@ -1459,7 +1468,6 @@ namespace NDPSo.KWS
 
         private void btnInPCT_Click(object sender, EventArgs e)
         {
-
             /*foreach (DataRow row in taable.Rows)
             {
                 foreach (DataColumn column in taable.Columns)
@@ -1468,11 +1476,7 @@ namespace NDPSo.KWS
                     TramTromMessageBox.ShowMessageDialog(column.ColumnName + ": " + row[column]);
                 }
             }*/
-            DataTable dataTableNameMaterial = CreateTableNameMaterial(this.dataTableMaterial);
-            DataTable dataTableSumMaterial = CreateTableSumMaterial(this.dataTableMaterial);
-            this.GetParam();
-            WriteDetailInvoice(this._paramListTong, this._tablePTCT, dataTableNameMaterial, dataTableSumMaterial);
-            PrintPTFromFile();
+            PrintPTFromFile_NewTread();
             
         }
         private DataTable CreateTableNameMaterial(DataTable yourSourceDataTable)
@@ -1637,14 +1641,29 @@ namespace NDPSo.KWS
             }
             return newStringNameMaterial;
         }
+
+        private void PrintPTFromFile_NewTread() //BIT
+        {
+            Thread thread = new Thread(new ThreadStart(this.PrintPTFromFile));
+            thread.Start();
+        }
         private void PrintPTFromFile()
         {
+
+            dataTableNameMaterial = CreateTableNameMaterial(this.dataTableMaterial);
+            dataTableSumMaterial = CreateTableSumMaterial(this.dataTableMaterial);
+
+            this.GetParam();
+            WriteDetailInvoice(this._paramListTong, this._tablePTCT, dataTableNameMaterial, dataTableSumMaterial);
+
             try
             {
-                string sourceFileName = ConfigManager.TramTronConfig.PICTPath;
+                this.numberOfCopies = (int)spin_numberOfCopies.Value;
 
+                string sourceFileName = ConfigManager.TramTronConfig.PICTPath;
                 string fileName = "";
                 string filePathMau = ConfigManager.TramTronConfig.PICTPath;
+
                 if (filePathMau != string.Empty)
                 {
                     fileName = Path.GetFileName(filePathMau);
@@ -1655,20 +1674,18 @@ namespace NDPSo.KWS
 
                 var wordApp = new Application();
 
-                // Export Word document as PDF
                 var wordDoc = wordApp.Documents.Add(wordFilePath);
                 wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath, WdExportFormat.wdExportFormatPDF);
 
-                // Close and release Word document
                 wordDoc.Close(false);
                 Marshal.ReleaseComObject(wordDoc);
 
-                // Delete the Word document
                 if (File.Exists(wordFilePath))
                 {
                     try
                     {
                         File.Delete(wordFilePath);
+                        PrinterInvoke(pdfFilePath, numberOfCopies);
                     }
                     catch (Exception ex)
                     {
@@ -1677,15 +1694,7 @@ namespace NDPSo.KWS
                     }
                 }
 
-                if (File.Exists(pdfFilePath))
-                {
-                    // In file PDF vừa tạo
-                    PrintPDF(pdfFilePath);
-                }
-                else
-                {
-                    TramTromMessageBox.ShowMessageDialog("Không tìm thấy file PDF để in");
-                }
+                
 
                 wordApp.Quit();
             }
@@ -1695,26 +1704,56 @@ namespace NDPSo.KWS
             }
         }
 
-        private void PrintPDF(string pdfFilePath)
+        public bool PrinterInvoke(string pdfFilePath, int numberOfCopies)
+        {
+            try
+            {
+                Task[] printTasks = new Task[numberOfCopies];
+
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    int copyIndex = i;
+                    printTasks[i] = Task.Run(() => Support.PrintReport(pdfFilePath));
+                }
+
+                Task.WaitAll(printTasks);
+                this.btnPrint.Enabled = true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+            return false;
+        }
+        private async void PrintPDF(string pdfFilePath, int numberOfCopies)
         {
             try
             {
                 // Hiển thị hộp thoại chọn máy in
-                string printerName = ConfigManager.TramTronConfig.MayInPICT;
 
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                for (int i = 0; i < numberOfCopies; i++)
                 {
-                    Verb = "printto",
-                    FileName = pdfFilePath,
-                    UseShellExecute = true,
-                    Arguments = $"\"{printerName}\""
-                };
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        Verb = "printto",
+                        FileName = pdfFilePath,
+                        UseShellExecute = true,
+                        Arguments = $"\"{printerName}\""
+                    };
 
-                using (Process process = new Process { StartInfo = startInfo }) // Kiem tra lai qua trinh in
-                {
-                    process.Start();
-                    process.WaitForExit(); // Chờ đến khi quá trình in kết thúc
-                    TramTromMessageBox.ShowMessageDialog("In file hoàn tất");
+                    using (Process process = new Process { StartInfo = startInfo }) // Kiem tra lai qua trinh in
+                    {
+                        process.Start();
+                        //await System.Threading.Tasks.Task.Delay(1000); // Đợi 1 giây, bạn có thể điều chỉnh thời gian này tùy vào tốc độ của máy và quá trình in
+
+                        // Theo dõi quá trình in
+                        while (!process.HasExited)
+                        {
+                            // Chờ 100ms trước khi kiểm tra lại
+                            await System.Threading.Tasks.Task.Delay(100);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1893,6 +1932,11 @@ namespace NDPSo.KWS
             }
 
             return 0.0f;
+        }
+
+        private void spin_numberOfCopies_EditValueChanged(object sender, EventArgs e)
+        {
+            this.numberOfCopies = (int)spin_numberOfCopies.Value;
         }
     }
 }

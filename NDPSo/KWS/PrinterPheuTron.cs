@@ -21,6 +21,8 @@ using Application = Microsoft.Office.Interop.Word.Application;
 using DevExpress.XtraEditors.Filtering.Templates;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Threading;
+using Task = System.Threading.Tasks.Task;
 
 namespace NDPSo.KWS
 {
@@ -34,6 +36,7 @@ namespace NDPSo.KWS
         private BindingList<ObjMeTronChiTiet> _blstMeTronChiTiet = new BindingList<ObjMeTronChiTiet>();
         
         private List<string> listPrinter = new List<string>();
+        List<string> lst = new List<string>();
 
         private PrintDialog printDialog;
         private PrintDocument printDocument;
@@ -42,7 +45,16 @@ namespace NDPSo.KWS
         private int objectY = 100;
 
         private bool _error;
-        FrmPrintGiaoHang form = new FrmPrintGiaoHang();
+        
+        string sourceFileName = ConfigManager.TramTronConfig.PIPath;
+        string fileName = "";
+        string filePathMau = ConfigManager.TramTronConfig.PIPath;
+        string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
+
+        private string printerName;
+        private int numberOfCopies;
+        private Thread thread;
+
         public PrinterPheuTron()
         {
             InitializeComponent();
@@ -107,6 +119,7 @@ namespace NDPSo.KWS
         {
             //this._presenter.ListHopDong();
             this.LoadSearchDefaultValues();
+            printerName = ConfigManager.TramTronConfig.MayInPI;
         }
         protected override void PopulateData() => this.LoadPhieuTron();
 
@@ -275,9 +288,9 @@ namespace NDPSo.KWS
             lst.Add(this.txtNguoiTron.Text);
             lst.Add(this.txtGioKTTron.Text);
 
-            form.FillDataPrinter(lst);
-            //form.PrintPhieuTron();
-            form.ShowDialogPintPhieuTron();
+            //form.FillDataPrinter(lst);
+            ////form.PrintPhieuTron();
+            //form.ShowDialogPintPhieuTron();
         }
 
         private void simpleButton4_Click(object sender, EventArgs e) //Xem phiếu trộn chi tiết
@@ -317,8 +330,8 @@ namespace NDPSo.KWS
             lst.Add(this.txtGioKTTron.Text);
 
             
-            form.FillDataPrinter(lst);
-            form.ShowDialogPreviewPrint();
+            //form.FillDataPrinter(lst);
+            //form.ShowDialogPreviewPrint();
         }
 
         private void grvPhieuTron_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -339,7 +352,21 @@ namespace NDPSo.KWS
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            List<string> lst = new List<string>();
+            if(this.grvPhieuTron != null && this.grvPhieuTron.SelectedRowsCount != 0 )
+            {
+                this.btnPrint.Enabled = false;
+                if (ConfigManager.TramTronConfig.InPITuMau) // In Phiếu Trộn từ mẫu có sẳn được load từ file
+                {
+                    this.PrintPTFromFile_NewTread();
+                }
+                else
+                {
+                    //form.PrintPhieuTron();
+                }
+
+
+            }
+            /*lst.Clear();
             lst.Add(ConfigManager.TramTronConfig.TenCty);
             lst.Add(this.datNgayTron.DateTime.ToString("dd-MM-yyyy"));
             lst.Add(this.txtTenCongTruong.Text);
@@ -361,70 +388,66 @@ namespace NDPSo.KWS
             lst.Add(this.txtHangMuc.Text);
             lst.Add(this.txtNiemChi.Text);
             lst.Add(this.txtNguoiTron.Text);
-            lst.Add(this.txtGioKTTron.Text);
+            lst.Add(this.txtGioKTTron.Text);*/
 
-            form.FillDataPrinter(lst);
+            //form.FillDataPrinter(lst);
             //form.ShowDialogPintPhieuTron();
-            if (ConfigManager.TramTronConfig.InPITuMau) // In Phiếu Trộn từ mẫu có sẳn được load từ file
-            {
-                GetParam();
-                PrintPTFromFile();
-            }
-            else
-            {
-                form.PrintPhieuTron();
-            }
+            
+        }
+
+        private void PrintPTFromFile_NewTread() //BIT
+        {
+            thread = new Thread(new ThreadStart(this.PrintPTFromFile));
+            thread.Start();
         }
 
         private void PrintPTFromFile()
         {
+            GetParam();
+            WriteDetailInvoice(lst);
             try
             {
-                string sourceFileName = ConfigManager.TramTronConfig.PIPath;
-
-                string fileName = "";
-                string filePathMau = ConfigManager.TramTronConfig.PIPath;
+                this.numberOfCopies = (int)spin_numberOfCopies.Value;
                 if (filePathMau != string.Empty)
                 {
                     fileName = Path.GetFileName(filePathMau);
                 }
-                string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
+                
                 string wordFilePath = Path.Combine(folderDesPhieuPath, fileName);
                 string pdfFilePath = Path.ChangeExtension(wordFilePath, ".pdf");
 
                 var wordApp = new Application();
 
-                // Export Word document as PDF
                 var wordDoc = wordApp.Documents.Add(wordFilePath);
                 wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath, WdExportFormat.wdExportFormatPDF);
 
-                // Close and release Word document
                 wordDoc.Close(false);
                 Marshal.ReleaseComObject(wordDoc);
 
-                // Delete the Word document
                 if (File.Exists(wordFilePath))
                 {
                     try
                     {
                         File.Delete(wordFilePath);
+                        //PrintPDFAsync(pdfFilePath, numberOfCopies);
+                        PrinterInvoke(pdfFilePath, numberOfCopies);
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Lỗi khi xóa tệp tin Word: {ex.Message}");
+                        //Console.WriteLine($"Lỗi khi xóa tệp tin Word: {ex.Message}");
                         TramTronLogger.WriteError(ex);
                     }
                 }
 
-                if (File.Exists(pdfFilePath))
+                /*if (File.Exists(pdfFilePath))
                 {
                     // In file PDF vừa tạo
-                    PrintPDF(pdfFilePath);
+                    
                 }
                 else
                 {
                     TramTromMessageBox.ShowMessageDialog("Không tìm thấy file PDF để in");
-                }
+                }*/
 
                 wordApp.Quit();
             }
@@ -434,33 +457,29 @@ namespace NDPSo.KWS
             }
         }
 
-        private void PrintPDF(string pdfFilePath)
+        private async void PrintPDF(string pdfFilePath, int numberOfCopies)
         {
             try
             {
-                // Hiển thị hộp thoại chọn máy in
-                string printerName = ConfigManager.TramTronConfig.MayInPI;
-
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                for (int i = 0; i < numberOfCopies; i++)
                 {
-                    Verb = "printto",
-                    FileName = pdfFilePath,
-                    UseShellExecute = true,
-                    Arguments = $"\"{printerName}\""
-                };
-
-                using (Process process = new Process { StartInfo = startInfo })
-                {
-                    process.Start();
-                    process.WaitForExit();
-
-                    if (process.ExitCode == 0) // Điều kiện có thể thay đổi tùy thuộc vào ứng dụng in của bạn
+                    ProcessStartInfo startInfo = new ProcessStartInfo
                     {
-                        TramTromMessageBox.ShowMessageDialog("In file hoàn tất");
-                    }
-                    else
+                        Verb = "printto",
+                        FileName = pdfFilePath,
+                        UseShellExecute = true,
+                        Arguments = $"\"{printerName}\""
+                    };
+
+                    using (Process process = new Process { StartInfo = startInfo })
                     {
-                        TramTromMessageBox.ShowMessageDialog("Lỗi khi in file PDF. Mã lỗi: " + process.ExitCode);
+                        process.Start();
+                        //await System.Threading.Tasks.Task.Delay(1000); // Đợi 1 giây, bạn có thể điều chỉnh thời gian này tùy vào tốc độ của máy và quá trình in
+
+                        /*while (!process.HasExited)
+                        {
+                            await System.Threading.Tasks.Task.Delay(100);
+                        }*/
                     }
                 }
             }
@@ -471,10 +490,67 @@ namespace NDPSo.KWS
                 TramTromMessageBox.ShowMessageDialog(ex.Message);
             }
         }
+        private async Task PrintPDFAsync(string pdfFilePath, int numberOfCopies)
+        {
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
+            try
+            {
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        Verb = "printto",
+                        FileName = pdfFilePath,
+                        UseShellExecute = true,
+                        Arguments = $"\"{printerName}\""
+                    };
+
+                    using (Process process = new Process { StartInfo = startInfo })
+                    {
+                        process.Start();
+                        process.WaitForExit(); // Chờ cho đến khi quá trình in hoàn tất
+                    }
+                }
+
+                tcs.SetResult(true); // Đánh dấu việc in hoàn tất thành công
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi in file PDF: {ex.Message}");
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowMessageDialog(ex.Message);
+
+                tcs.SetException(ex); // Đánh dấu việc in gặp lỗi
+            }
+
+            await tcs.Task;
+        }
+        public bool PrinterInvoke(string pdfFilePath, int numberOfCopies)
+        {
+            try
+            {
+                Task[] printTasks = new Task[numberOfCopies];
+
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    int copyIndex = i;
+                    printTasks[i] = Task.Run(() => Support.PrintReport(pdfFilePath));
+                }
+
+                Task.WaitAll(printTasks);
+                this.btnPrint.Enabled = true;
+                return true;
+            }
+            catch(Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+            return false;
+        }
         private void GetParam()
         {
-            List<string> lst = new List<string>();
+            lst.Clear();
             lst.Add(ConfigManager.TramTronConfig.TenCty);
             lst.Add(this.datNgayTron.DateTime.ToString("dd-MM-yyyy"));
             lst.Add(this.txtTenCongTruong.Text);
@@ -498,7 +574,7 @@ namespace NDPSo.KWS
             lst.Add(this.txtNguoiTron.Text);
             lst.Add(this.txtGioKTTron.Text);
 
-            WriteDetailInvoice(lst);
+            //WriteDetailInvoice(lst);
         }
 
         private void WriteDetailInvoice(List<string> param)
@@ -507,10 +583,6 @@ namespace NDPSo.KWS
             {
                 if (CopyTempFile() && !this._error)
                 {
-                    string sourceFileName = ConfigManager.TramTronConfig.PIPath;
-
-                    string fileName = "";
-                    string filePathMau = ConfigManager.TramTronConfig.PIPath;
                     if (filePathMau != string.Empty)
                     {
                         fileName = Path.GetFileName(filePathMau);
@@ -591,7 +663,7 @@ namespace NDPSo.KWS
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            List<string> lst = new List<string>();
+            lst.Clear();
             lst.Add(ConfigManager.TramTronConfig.TenCty);
             lst.Add(this.datNgayTron.DateTime.ToString("dd-MM-yyyy"));
             lst.Add(this.txtTenCongTruong.Text);
@@ -615,9 +687,13 @@ namespace NDPSo.KWS
             lst.Add(this.txtNguoiTron.Text);
             lst.Add(this.txtGioKTTron.Text);
 
+            //form.FillDataPrinter(lst);
+            //form.ShowDialogPreviewPrint();
+        }
 
-            form.FillDataPrinter(lst);
-            form.ShowDialogPreviewPrint();
+        private void spin_numberOfCopies_EditValueChanged(object sender, EventArgs e)
+        {
+            this.numberOfCopies = (int)spin_numberOfCopies.Value;
         }
     }
 }

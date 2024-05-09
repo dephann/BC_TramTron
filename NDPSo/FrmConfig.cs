@@ -59,7 +59,8 @@ namespace NDPSo
                 this.spnLatestPhieuTronDays.EditValue = (object)ConfigManager.TramTronConfig.LatestPhieuTronDays;
                 this.spnLatestBaoCaoDays.EditValue = (object)ConfigManager.TramTronConfig.LatestBaoCaoDays;
                 this.bteExportPath.Text = ConfigManager.TramTronConfig.ReportPath;
-                this.bteImportPath.Text = ConfigManager.TramTronConfig.ImportPath;
+                this.bteImportPath_GH.Text = ConfigManager.TramTronConfig.PIPath;
+                this.bteImportPath_CT.Text = ConfigManager.TramTronConfig.PICTPath;
                 this.rdgLanguageRes.SelectedIndex = ConfigManager.TramTronConfig.LanguageRes;
                 this.lueLanguages.EditValue = (object)ConfigManager.TramTronConfig.LanguageRes;
                 this.lueLanguages.Properties.DataSource = (object)Converter.EnumToListFieldCode<Enums.LanguageRes>(false);
@@ -206,6 +207,9 @@ namespace NDPSo
                         case "B2A7B96A2868": //binh dinh
                             ConfigManager.ServiceConfig.ServerName = "DESKTOP-R4OQ2QU";
                             break;
+                        case "DESKTOP-9S8AT23": //MQ
+                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-9S8AT23";
+                            break;
                     }
 
                     ConfigManager.ServiceConfig.DatabaseName = this.txtDatabase.Text;
@@ -228,7 +232,9 @@ namespace NDPSo
                     ConfigManager.TramTronConfig.LogoCty = this.bteLogoPath.Text;
                     ConfigManager.TramTronConfig.DevEnv = this.chkDev.Checked;
                     ConfigManager.TramTronConfig.ReportPath = this.bteExportPath.Text;
-                    ConfigManager.TramTronConfig.ImportPath = this.bteImportPath.Text;
+                    ConfigManager.TramTronConfig.PIPath = this.bteImportPath_GH.Text;
+                    ConfigManager.TramTronConfig.PICTPath = this.bteImportPath_CT.Text;
+
                     this.Close();
                 }
             }
@@ -470,7 +476,28 @@ namespace NDPSo
                 try
                 {
                     string filePath = openFileDialog1.FileName;
-                    bteImportPath.Text = filePath;
+                    bteImportPath_GH.Text = filePath;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
+        }
+
+        private void bteImportPath_CT_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Document File|*.docx";
+            openFileDialog1.Title = "Chọn File";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = openFileDialog1.FileName;
+                    bteImportPath_CT.Text = filePath;
                 }
                 catch (Exception ex)
                 {

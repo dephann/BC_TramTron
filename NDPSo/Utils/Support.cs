@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using NDPSo.Data;
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -252,6 +254,24 @@ namespace NDPSo.Utils
             int seconds = sec % 60;
             string timer = "PHẦN MỀM SẼ TỰ ĐỘNG CẬP NHẬT SAU: " + $"{hours} Giờ, {minutes} Phút, {seconds} Giây";
             return timer;
+        }
+
+        public static void PrintReport(string path)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    Verb = "print",
+                    FileName = path,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                });
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
         }
     }
 }

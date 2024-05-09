@@ -4122,7 +4122,7 @@ namespace NDPSo.MasterData
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(75, 23);
             this.simpleButton4.TabIndex = 587;
-            this.simpleButton4.Text = "gaiama";
+            this.simpleButton4.Text = "b";
             this.simpleButton4.Visible = false;
             this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
@@ -4132,7 +4132,7 @@ namespace NDPSo.MasterData
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(75, 23);
             this.simpleButton3.TabIndex = 585;
-            this.simpleButton3.Text = "mahoa";
+            this.simpleButton3.Text = "a";
             this.simpleButton3.Visible = false;
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
