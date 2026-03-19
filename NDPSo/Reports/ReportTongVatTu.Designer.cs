@@ -157,46 +157,6 @@ namespace NDPSo.Reports
             this.gcTenVatTu.Visible = true;
             this.gcTenVatTu.VisibleIndex = 1;
             // 
-            // gcCapPhoi
-            // 
-            this.gcCapPhoi.Caption = "Cấp phối";
-            this.gcCapPhoi.FieldName = "Sum_ValueCP";
-            this.gcCapPhoi.GroupFormat.FormatString = "n2";
-            this.gcCapPhoi.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gcCapPhoi.Name = "gcCapPhoi";
-            this.gcCapPhoi.OptionsColumn.AllowFocus = false;
-            this.gcCapPhoi.OptionsColumn.ReadOnly = true;
-            this.gcCapPhoi.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueCP", "{0:0.##}")});
-            this.gcCapPhoi.Visible = true;
-            this.gcCapPhoi.VisibleIndex = 2;
-            // 
-            // gcThucCan
-            // 
-            this.gcThucCan.Caption = "Thực cân";
-            this.gcThucCan.FieldName = "Sum_ValueBat";
-            this.gcThucCan.GroupFormat.FormatString = "n2";
-            this.gcThucCan.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gcThucCan.Name = "gcThucCan";
-            this.gcThucCan.OptionsColumn.AllowFocus = false;
-            this.gcThucCan.OptionsColumn.ReadOnly = true;
-            this.gcThucCan.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueBat", "{0:0.##}")});
-            this.gcThucCan.Visible = true;
-            this.gcThucCan.VisibleIndex = 3;
-            // 
-            // gcSaiSo
-            // 
-            this.gcSaiSo.Caption = "Sai số";
-            this.gcSaiSo.FieldName = "SaiSo";
-            this.gcSaiSo.GroupFormat.FormatString = "n2";
-            this.gcSaiSo.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gcSaiSo.Name = "gcSaiSo";
-            this.gcSaiSo.OptionsColumn.AllowFocus = false;
-            this.gcSaiSo.OptionsColumn.ReadOnly = true;
-            this.gcSaiSo.Visible = true;
-            this.gcSaiSo.VisibleIndex = 4;
-            // 
             // gcPerSaiSo
             // 
             this.gcPerSaiSo.Caption = "% Sai số";
