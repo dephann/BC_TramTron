@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NDPSo</RootNamespace>
     <AssemblyName>NDPSo</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -106,6 +106,10 @@
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -140,12 +144,14 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -154,6 +160,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +239,20 @@
     </Compile>
     <Compile Include="BusinessObject\AdministrationBO.cs" />
     <Compile Include="BusinessObject\WriteInvoice.cs" />
+    <Compile Include="Chatbot\ChatbotOrchestrator.cs" />
+    <Compile Include="Chatbot\ChatbotSidebarPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Chatbot\DatabaseSchema.cs" />
+    <Compile Include="Chatbot\DatabaseService.cs" />
+    <Compile Include="Chatbot\GroqApiService.cs" />
+    <Compile Include="Chatbot\IntentDetector.cs" />
+    <Compile Include="Chatbot\OpenAIApiService.cs" />
+    <Compile Include="Chatbot\QueryFunctions.cs" />
+    <Compile Include="Chatbot\SchemaContext.cs" />
+    <Compile Include="Chatbot\SchemaSelector.cs" />
+    <Compile Include="Chatbot\SemanticLayer.cs" />
+    <Compile Include="Chatbot\SmartRetryEngine.cs" />
     <Compile Include="DAL\EventActionCodeRepository.cs" />
     <Compile Include="DAL\HangMucRepository.cs" />
     <Compile Include="DAL\HopDongRepository.cs" />
@@ -240,12 +261,14 @@
     <Compile Include="DAL\IMACRepository.cs" />
     <Compile Include="DAL\IMACSiloRepository.cs" />
     <Compile Include="DAL\IMaterialRepository.cs" />
+    <Compile Include="DAL\IMeTronChiTietGiaoHangRepository.cs" />
     <Compile Include="DAL\IMeTronChiTietRepository.cs" />
     <Compile Include="DAL\IMeTronRepository.cs" />
     <Compile Include="DAL\INhanVienRepository.cs" />
     <Compile Include="DAL\INhomSiloRepository.cs" />
     <Compile Include="DAL\IPCInputRepository.cs" />
     <Compile Include="DAL\IPCOutputRepository.cs" />
+    <Compile Include="DAL\IPhieuGiaoHangRepository.cs" />
     <Compile Include="DAL\IPhieuTronRepository.cs" />
     <Compile Include="DAL\ISEC_AssemblyRepository.cs" />
     <Compile Include="DAL\ISEC_FunctionRepository.cs" />
@@ -261,6 +284,7 @@
     <Compile Include="DAL\ITinhDoHutNuocRepository.cs" />
     <Compile Include="DAL\IViewDataMixRepository.cs" />
     <Compile Include="DAL\IViewSumWeightRepository.cs" />
+    <Compile Include="DAL\Ivw_DriverDetailDayRepository.cs" />
     <Compile Include="DAL\Ivw_MaterialDetailDayRepository.cs" />
     <Compile Include="DAL\Ivw_TotalDriverRepository.cs" />
     <Compile Include="DAL\Ivw_TotalMaterialRepository.cs" />
@@ -320,12 +344,14 @@
     <Compile Include="DAL\MACRepository.cs" />
     <Compile Include="DAL\MACSiloRepository.cs" />
     <Compile Include="DAL\MaterialRepository.cs" />
+    <Compile Include="DAL\MeTronChiTietGiaoHangRepository.cs" />
     <Compile Include="DAL\MeTronChiTietRepository.cs" />
     <Compile Include="DAL\MeTronRepository.cs" />
     <Compile Include="DAL\NhanVienRepository.cs" />
     <Compile Include="DAL\NhomSiloRepository.cs" />
     <Compile Include="DAL\PCInputRepository.cs" />
     <Compile Include="DAL\PCOutputRepository.cs" />
+    <Compile Include="DAL\PhieuGiaoHangRepository.cs" />
     <Compile Include="DAL\PhieuTronRepository.cs" />
     <Compile Include="DAL\SEC_AssemblyRepository.cs" />
     <Compile Include="DAL\SEC_FunctionRepository.cs" />
@@ -342,6 +368,7 @@
     <Compile Include="DAL\TinhDoHutNuocRepository.cs" />
     <Compile Include="DAL\ViewDataMixRepository.cs" />
     <Compile Include="DAL\ViewSumWeightRepository.cs" />
+    <Compile Include="DAL\vw_DriverDetailDayRepository.cs" />
     <Compile Include="DAL\vw_MaterialDetailDayRepository.cs" />
     <Compile Include="DAL\vw_TotalDriverRepository.cs" />
     <Compile Include="DAL\vw_TotalMaterialRepository.cs" />
@@ -360,12 +387,15 @@
     <Compile Include="Data\MACHelper.cs" />
     <Compile Include="Data\MACSiloHelper.cs" />
     <Compile Include="Data\MaterialHelper.cs" />
+    <Compile Include="Data\MeTronChiTietGiaoHangHelper.cs" />
     <Compile Include="Data\MeTronChiTietHelper.cs" />
     <Compile Include="Data\MeTronHelper.cs" />
     <Compile Include="Data\NhanVienHelper.cs" />
     <Compile Include="Data\NhomSiloHelper.cs" />
     <Compile Include="Data\ObjAggregationResult.cs" />
     <Compile Include="Data\ObjCongTruong.cs" />
+    <Compile Include="Data\ObjMeTronChiTietGiaoHang.cs" />
+    <Compile Include="Data\ObjPhieuGiaoHang.cs" />
     <Compile Include="Data\Objvw_DriverDetailDay.cs" />
     <Compile Include="Data\ObjDuLieuTron.cs" />
     <Compile Include="Data\ObjectBase.cs" />
@@ -377,6 +407,7 @@
     <Compile Include="Data\ObjMAC.cs" />
     <Compile Include="Data\ObjMACSilo.cs" />
     <Compile Include="Data\ObjMaterial.cs" />
+    <Compile Include="Data\Objvw_DriverDetailDayWithID.cs" />
     <Compile Include="Data\Objvw_MaterialDetailDay.cs" />
     <Compile Include="Data\ObjMeTron.cs" />
     <Compile Include="Data\ObjMeTronChiTiet.cs" />
@@ -401,6 +432,8 @@
     <Compile Include="Data\ObjTimerPara.cs" />
     <Compile Include="Data\ObjTinhDoHutNuoc.cs" />
     <Compile Include="Data\ObjTinhDoHutNuocChiTiet.cs" />
+    <Compile Include="Data\Objvw_MaterialDetailDayWithID.cs" />
+    <Compile Include="Data\Objvw_PvTotalWeghit.cs" />
     <Compile Include="Data\Objvw_TotalDriver.cs" />
     <Compile Include="Data\Objvw_TotalMaterial.cs" />
     <Compile Include="Data\Objvw_TotalTranfer.cs" />
@@ -408,12 +441,14 @@
     <Compile Include="Data\ObjVatTu.cs" />
     <Compile Include="Data\Objvw_DataMix.cs" />
     <Compile Include="Data\Objvw_SumWeight.cs" />
+    <Compile Include="Data\Objvw_TranferDetailDayWithID.cs" />
     <Compile Include="Data\ObjWeigh.cs" />
     <Compile Include="Data\ObjWeiSiloSaving.cs" />
     <Compile Include="Data\ObjWeiSiloVisible.cs" />
     <Compile Include="Data\ObjXe.cs" />
     <Compile Include="Data\PCInputHelper.cs" />
     <Compile Include="Data\PCOutputHelper.cs" />
+    <Compile Include="Data\PhieuGiaoHangHelper.cs" />
     <Compile Include="Data\PhieuTronHelper.cs" />
     <Compile Include="Data\RptMACHelper.cs" />
     <Compile Include="Data\RptTheoPhieuHelper.cs" />
@@ -430,12 +465,15 @@
     <Compile Include="Data\TinhDoHutNuocChiTietHelper.cs" />
     <Compile Include="Data\TinhDoHutNuocHelper.cs" />
     <Compile Include="Data\vw_DataMixHelper.cs" />
+    <Compile Include="Data\vw_DriverDetailDayWithIDHelper.cs" />
     <Compile Include="Data\vw_MaterialDetailDayHelper.cs" />
+    <Compile Include="Data\vw_PvMaterialDetailDayWithIDHelper.cs" />
     <Compile Include="Data\vw_SumWeightHelper.cs" />
     <Compile Include="Data\vw_TotalDriverHelper.cs" />
     <Compile Include="Data\vw_TotalMaterialHelper.cs" />
     <Compile Include="Data\vw_TotalTranferHelper.cs" />
     <Compile Include="Data\vw_TranferDetailDayHelper.cs" />
+    <Compile Include="Data\vw_TranferDetailDayWithIDHelper.cs" />
     <Compile Include="Data\WeighHelper.cs" />
     <Compile Include="Data\WeiSiloSavingHelper.cs" />
     <Compile Include="Data\WeiSiloVisibleHelper.cs" />
@@ -485,6 +523,9 @@
     <Compile Include="EntityModel\MeTronChiTiet.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\MeTronChiTietGiaoHang.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\NhanVien.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
@@ -495,6 +536,9 @@
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\PCOutput.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\PhieuGiaoHang.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\PhieuTron.cs">
@@ -531,9 +575,6 @@
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\SysCodeGen.cs">
-      <DependentUpon>TramTromModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityModel\sysdiagram.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\TaiXe.cs">
@@ -579,10 +620,13 @@
     <Compile Include="EntityModel\vw_Infos.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\vw_Pivot_Ex.cs">
+    <Compile Include="EntityModel\vw_PvDriverDetailDay_WithID.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_PvMaterialDetailDay.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvMaterialDetailDay_WithID.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_PvSUMTotal.cs">
@@ -604,6 +648,12 @@
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_PvTranferDetailDay.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvTranferDetailDay_WithID.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_SumWeighFolPT.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_SumWeight.cs">
@@ -637,9 +687,19 @@
       <DependentUpon>FormPhieuIn.cs</DependentUpon>
     </Compile>
     <Compile Include="KWS\LoadControlsFromExcel.cs" />
+    <Compile Include="KWS\ObjDriverSummary.cs" />
+    <Compile Include="KWS\ObjMaterialDetailSumary.cs" />
+    <Compile Include="KWS\ObjMaterialSummary.cs" />
     <Compile Include="KWS\ObjMTCTFullPrinter.cs" />
     <Compile Include="KWS\ObjMTCTPrinter.cs" />
     <Compile Include="KWS\ObjTotalMaterialPrinter.cs" />
+    <Compile Include="KWS\ObjTranferSummary.cs" />
+    <Compile Include="KWS\PhieuIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KWS\PhieuIn.Designer.cs">
+      <DependentUpon>PhieuIn.cs</DependentUpon>
+    </Compile>
     <Compile Include="KWS\PhieuTronChiTietRP1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -723,6 +783,7 @@
       <DependentUpon>HangMucMngView.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterData\IConfigUIMngView.cs" />
+    <Compile Include="MasterData\IDataMaterialMngView.cs" />
     <Compile Include="MasterData\IDataMixMngView.cs" />
     <Compile Include="MasterData\IHangMucMngView.cs" />
     <Compile Include="MasterData\INewHangMucView.cs" />
@@ -1610,6 +1671,7 @@
     <Compile Include="UcSearchBase.Designer.cs">
       <DependentUpon>UcSearchBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\asss.cs" />
     <Compile Include="Utils\BKDatabase.cs" />
     <Compile Include="Utils\CheckLastDate.cs" />
     <Compile Include="Utils\ConfigBase.cs" />
@@ -1699,6 +1761,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KWS\FormPhieuIn.resx">
       <DependentUpon>FormPhieuIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KWS\PhieuIn.resx">
+      <DependentUpon>PhieuIn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KWS\PhieuTronChiTietRP1.resx">
       <DependentUpon>PhieuTronChiTietRP1.cs</DependentUpon>
@@ -2220,6 +2285,8 @@
     <Content Include="logo_PNG_32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\word2.png" />
+    <None Include="Resources\wordw.png" />
     <None Include="Resources\logo2.png" />
     <None Include="Resources\z5232171715107_cf5ae6755dc0d30ef5e630728069d7e1.jpg" />
     <None Include="Resources\404_cleanup.jpg" />

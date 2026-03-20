@@ -190,6 +190,7 @@ namespace NDPSo.MasterData
 		public BindingList<ObjMeTronChiTiet> ListMeTronChiTiet() => Converter.ConvertToBindingList<ObjMeTronChiTiet>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronChiTiet() as List<ObjMeTronChiTiet>);
 
 		public BindingList<ObjMeTronChiTiet> ListMeTronChiTietByPhieuTronID(int ptID) => Converter.ConvertToBindingList<ObjMeTronChiTiet>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronChiTietByPhieuTronID(ptID) as List<ObjMeTronChiTiet>);
+		public BindingList<ObjMeTronChiTietGiaoHang> ListMeTronChiTietGiaoHangByPhieuTronID(int ptID) => Converter.ConvertToBindingList<ObjMeTronChiTietGiaoHang>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronChiTietGiaoHangByPhieuTronID(ptID) as List<ObjMeTronChiTietGiaoHang>);
 
 		public bool SaveMeTronChiTiet(BindingList<ObjMeTronChiTiet> blstCT)
 		{
@@ -198,6 +199,7 @@ namespace NDPSo.MasterData
 		}
 
 		public ObjMeTronChiTiet SaveMeTronChiTiet(ObjMeTronChiTiet objMTCT, int phieuTronID) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveMeTronChiTiet(objMTCT, phieuTronID);
+		public ObjMeTronChiTietGiaoHang SaveMeTronChiTietGiaoHang(ObjMeTronChiTietGiaoHang objMTCT, int phieuTronID) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveMeTronChiTietGiaoHang(objMTCT, phieuTronID);
 
 		public ObjMeTronChiTiet GetMeTronChiTietByKey(int ctID) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).GetMeTronChiTietByKey(ctID);
 
@@ -214,12 +216,14 @@ namespace NDPSo.MasterData
 
 
 		public BindingList<ObjPhieuTron> ListPhieuTron() => new BindingList<ObjPhieuTron>((IList<ObjPhieuTron>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuTron() as List<ObjPhieuTron>));
+        public BindingList<ObjPhieuGiaoHang> ListPhieuGiaoHang() => new BindingList<ObjPhieuGiaoHang>((IList<ObjPhieuGiaoHang>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuGiaoHang() as List<ObjPhieuGiaoHang>));
 
-		public BindingList<ObjPhieuTron> ListPhieuTron_ForTronOnline() => new BindingList<ObjPhieuTron>((IList<ObjPhieuTron>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuTron_ForTronOnline() as List<ObjPhieuTron>));
+        public BindingList<ObjPhieuTron> ListPhieuTron_ForTronOnline() => new BindingList<ObjPhieuTron>((IList<ObjPhieuTron>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuTron_ForTronOnline() as List<ObjPhieuTron>));
 
 		public BindingList<ObjPhieuTron> ListPhieuTron_ByStatus(int status) => new BindingList<ObjPhieuTron>((IList<ObjPhieuTron>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuTron_ByStatus(status) as List<ObjPhieuTron>));
 
 		public BindingList<ObjPhieuTron> ListPhieuTron_ByIsQueued(bool isQueued) => new BindingList<ObjPhieuTron>((IList<ObjPhieuTron>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuTron_ByIsQueued(isQueued) as List<ObjPhieuTron>));
+		public BindingList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByIsQueued(bool isQueued) => new BindingList<ObjPhieuGiaoHang>((IList<ObjPhieuGiaoHang>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuGiaoHang_ByIsQueued(isQueued) as List<ObjPhieuGiaoHang>));
 
 		public BindingList<ObjPhieuTron> ListPhieuTron_ByCondition(
 		  string maPhieuTron,
@@ -231,24 +235,44 @@ namespace NDPSo.MasterData
 			return new BindingList<ObjPhieuTron>((IList<ObjPhieuTron>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuTron_ByCondition(maPhieuTron, fromDate, toDate, status, isQueued) as List<ObjPhieuTron>));
 		}
 
-		public bool SavePhieuTron(BindingList<ObjPhieuTron> blstCT)
+        public BindingList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByCondition(
+          string maPhieuTron,
+          DateTime fromDate,
+          DateTime toDate,
+          bool? isQueued)
+        {
+            return new BindingList<ObjPhieuGiaoHang>((IList<ObjPhieuGiaoHang>)(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListPhieuGiaoHang_ByCondition(maPhieuTron, fromDate, toDate, isQueued) as List<ObjPhieuGiaoHang>));
+        }
+
+        public bool SavePhieuTron(BindingList<ObjPhieuTron> blstCT)
 		{
 			List<ObjPhieuTron> list = Converter.ConvertToList<ObjPhieuTron>(blstCT);
 			return ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SavePhieuTron((IList<ObjPhieuTron>)list);
 		}
+        public bool SavePhieuGiaoHang(BindingList<ObjPhieuGiaoHang> blstCT)
+        {
+            List<ObjPhieuGiaoHang> list = Converter.ConvertToList<ObjPhieuGiaoHang>(blstCT);
+            return ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SavePhieuGiaoHang((IList<ObjPhieuGiaoHang>)list);
+        }
 
-		public bool UpdatePhieuTron(ObjPhieuTron objPhieuTron, decimal klThuc)
+        public bool UpdatePhieuTron(ObjPhieuTron objPhieuTron, decimal klThuc)
         {
 			return ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).UpdatePhieuTron(objPhieuTron, klThuc);
 		}
-		public bool ResolveUnfinishPhieuTron()
+        public bool UpdatePhieuGiaoHang(ObjPhieuGiaoHang objPhieuTron, string klThuc)
+        {
+            return ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).UpdatePhieuGiaoHang(objPhieuTron, klThuc);
+        }
+        public bool ResolveUnfinishPhieuTron()
         {
 			return ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ResolveUnfinishPhieuTron();
 
 		}
 		public ObjPhieuTron GetPhieuTronByKey(int ctID) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).GetPhieuTronByKey(ctID);
+		public ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int ctID) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).GetPhieuGiaoHangByKey(ctID);
 
 		public ObjPhieuTron GetPhieuTronByCode(string code) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).GetPhieuTronByCode(code);
+		public ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string code) => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).GetPhieuGiaoHangByCode(code);
 
 		public Decimal GetKLDTPhieuTron(Decimal klLyThuyet, Decimal klMaxXeCho) => klLyThuyet > klMaxXeCho ? klMaxXeCho : klLyThuyet;
 
@@ -474,23 +498,23 @@ namespace NDPSo.MasterData
 			return factory.GetNextCode(strTblName);
 		}
 
-		public BindingList<Objvw_TotalMaterial> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
+		public BindingList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
 		{
-			return Converter.ConvertToBindingList<Objvw_TotalMaterial>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTotalMaterial_ByCondition(materialID, isManual) as List<Objvw_TotalMaterial>);
+			return Converter.ConvertToBindingList<Objvw_MaterialDetailDayWithID>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTotalMaterial_ByCondition(materialID, isManual) as List<Objvw_MaterialDetailDayWithID>);
 		}
 		public BindingList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
 		{
 			return Converter.ConvertToBindingList<Objvw_MaterialDetailDay>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMaterialDetailDay_ByCondition(fromDate, toDate, materialID, isManual) as List<Objvw_MaterialDetailDay>);
 		}
-		public BindingList<Objvw_TranferDetailDay> ListTranferDetailDay_ByCondition(
+		public BindingList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(
 		  DateTime? fromDate,
 		  DateTime? toDate,
 		  int? xeID,
 		  bool? isQueued)
 		{
-			return Converter.ConvertToBindingList<Objvw_TranferDetailDay>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTranferDetailDay_ByCondition(fromDate, toDate, xeID, isQueued) as List<Objvw_TranferDetailDay>);
+			return Converter.ConvertToBindingList<Objvw_TranferDetailDayWithID>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTranferDetailDay_ByCondition(fromDate, toDate, xeID, isQueued) as List<Objvw_TranferDetailDayWithID>);
 		}
 
-        
+       
     }
 }

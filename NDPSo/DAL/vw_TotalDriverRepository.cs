@@ -6,7 +6,7 @@ using NDPSo.Utils;
 
 namespace NDPSo.DAL
 {
-    class vw_TotalDriverRepository : EFRepository<vw_PvTotalDriver>, Ivw_TotalDriverRepository, IEFRepository<vw_PvTotalDriver>
+    class vw_TotalDriverRepository : EFRepository<vw_PvDriverDetailDay_WithID>, Ivw_TotalDriverRepository, IEFRepository<vw_PvDriverDetailDay_WithID>
     {
         public vw_TotalDriverRepository(IDbContextManager dbCtxMng) : base(dbCtxMng)
         {
@@ -14,10 +14,9 @@ namespace NDPSo.DAL
             base.KeyProperty = "TaiXeID";
         }
 
-        public IList<vw_PvTotalDriver> ListvwTotalDriver_ByCondition(int? taixeID, bool? isManual)
+        public IList<vw_PvDriverDetailDay_WithID> ListvwTotalDriver_ByCondition(int? taixeID, bool? isManual)
         {
-            Specification<vw_PvTotalDriver> spec = new Specification<vw_PvTotalDriver>((vw_PvTotalDriver o) => (o.TaiXeID == taixeID || taixeID == null) && ((bool?)o.IsManual == isManual || isManual == null));
-            return base.SelectAll(spec);
+            return (IList<vw_PvDriverDetailDay_WithID>)base.GetAll();
         }
     }
 }

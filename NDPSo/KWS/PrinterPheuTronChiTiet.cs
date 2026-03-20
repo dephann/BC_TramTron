@@ -126,7 +126,8 @@ namespace NDPSo.KWS
         }
         public bool IsSuccessfulSaved { set => throw new NotImplementedException(); }
         public List<FieldCode> LstPhieuTronStatus { set => throw new NotImplementedException(); }
-        
+        public BindingList<ObjPhieuGiaoHang> BLstPhieuGiaoHang { set => throw new NotImplementedException(); }
+        public BindingList<ObjMeTronChiTietGiaoHang> BLstMeTronChiTietGiaoHang { set => throw new NotImplementedException(); }
 
         public PrinterPheuTronChiTiet()
         {

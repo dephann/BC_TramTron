@@ -23,6 +23,7 @@ namespace NDPSo.Data
 			toObj.TON = fromEnt.TON;
 			toObj.TOFF = fromEnt.TOFF;
 			toObj.Spare = fromEnt.Spare;
+			toObj.GiuKLTC = fromEnt.GiuKLTC;
 			//toObj.TiLeXa = fromEnt.TiLeXa;
 			if (toObj.WeighID > 0)
 			{
@@ -47,6 +48,7 @@ namespace NDPSo.Data
 			toEnt.TON = fromObj.TON;
 			toEnt.TOFF = fromObj.TOFF;
 			toEnt.Spare = fromObj.Spare;
+			toEnt.GiuKLTC = fromObj.GiuKLTC;
 			//toEnt.TiLeXa = fromObj.TiLeXa;
 		}
 

@@ -430,11 +430,11 @@ namespace NDPSo.MasterData
             this.spnMaxKLTron.Properties.Appearance.Options.UseFont = true;
             this.spnMaxKLTron.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnMaxKLTron.Properties.DisplayFormat.FormatString = "n1";
+            this.spnMaxKLTron.Properties.DisplayFormat.FormatString = "n2";
             this.spnMaxKLTron.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spnMaxKLTron.Properties.EditFormat.FormatString = "n1";
+            this.spnMaxKLTron.Properties.EditFormat.FormatString = "n2";
             this.spnMaxKLTron.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.spnMaxKLTron.Properties.Mask.EditMask = "n1";
+            this.spnMaxKLTron.Properties.Mask.EditMask = "n2";
             this.spnMaxKLTron.Size = new System.Drawing.Size(120, 22);
             this.spnMaxKLTron.TabIndex = 21;
             this.spnMaxKLTron.EditValueChanged += new System.EventHandler(this.spnMaxKLTron_EditValueChanged);

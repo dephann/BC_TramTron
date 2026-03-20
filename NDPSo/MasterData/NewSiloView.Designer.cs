@@ -71,14 +71,13 @@ namespace NDPSo.MasterData
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.chcChoPhepBuTruKhoiLuong = new System.Windows.Forms.CheckBox();
+            this.chcChoPhepTuDongXNCD = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
-            this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlKLCan)).BeginInit();
-            this.pnlKLCan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLCanLonNhat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLCanNhoNhat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlDoAm)).BeginInit();
-            this.pnlDoAm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnDoHutNuoc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnDoAm.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKPulse.Properties)).BeginInit();
@@ -89,7 +88,6 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.spnSaiSoTren.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnSaiSoDuoi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueSiloNhomAgg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivated.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueNhomSilo.Properties)).BeginInit();
@@ -97,7 +95,6 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.txtTenSilo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaSilo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -147,6 +144,9 @@ namespace NDPSo.MasterData
             this.spnKLCanLonNhat.Location = new System.Drawing.Point(137, 42);
             this.spnKLCanLonNhat.Margin = new System.Windows.Forms.Padding(2);
             this.spnKLCanLonNhat.Name = "spnKLCanLonNhat";
+            // 
+            // 
+            // 
             this.spnKLCanLonNhat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLCanLonNhat.Properties.Appearance.Options.UseFont = true;
             this.spnKLCanLonNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -165,6 +165,9 @@ namespace NDPSo.MasterData
             this.spnKLCanNhoNhat.Location = new System.Drawing.Point(137, 13);
             this.spnKLCanNhoNhat.Margin = new System.Windows.Forms.Padding(2);
             this.spnKLCanNhoNhat.Name = "spnKLCanNhoNhat";
+            // 
+            // 
+            // 
             this.spnKLCanNhoNhat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLCanNhoNhat.Properties.Appearance.Options.UseFont = true;
             this.spnKLCanNhoNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -238,6 +241,9 @@ namespace NDPSo.MasterData
             0});
             this.spnDoHutNuoc.Location = new System.Drawing.Point(96, 42);
             this.spnDoHutNuoc.Name = "spnDoHutNuoc";
+            // 
+            // 
+            // 
             this.spnDoHutNuoc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnDoHutNuoc.Properties.Appearance.Options.UseFont = true;
             this.spnDoHutNuoc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -255,6 +261,9 @@ namespace NDPSo.MasterData
             0});
             this.spnDoAm.Location = new System.Drawing.Point(96, 13);
             this.spnDoAm.Name = "spnDoAm";
+            // 
+            // 
+            // 
             this.spnDoAm.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnDoAm.Properties.Appearance.Options.UseFont = true;
             this.spnDoAm.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -293,6 +302,9 @@ namespace NDPSo.MasterData
             this.spnKPulse.Location = new System.Drawing.Point(340, 282);
             this.spnKPulse.Margin = new System.Windows.Forms.Padding(2);
             this.spnKPulse.Name = "spnKPulse";
+            // 
+            // 
+            // 
             this.spnKPulse.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKPulse.Properties.Appearance.Options.UseFont = true;
             this.spnKPulse.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -312,6 +324,9 @@ namespace NDPSo.MasterData
             this.spnTGKiemTraVatLieuRoi.Location = new System.Drawing.Point(340, 250);
             this.spnTGKiemTraVatLieuRoi.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGKiemTraVatLieuRoi.Name = "spnTGKiemTraVatLieuRoi";
+            // 
+            // 
+            // 
             this.spnTGKiemTraVatLieuRoi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTGKiemTraVatLieuRoi.Properties.Appearance.Options.UseFont = true;
             this.spnTGKiemTraVatLieuRoi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -330,6 +345,9 @@ namespace NDPSo.MasterData
             this.spnKLRoiTrongTGT3.Location = new System.Drawing.Point(340, 220);
             this.spnKLRoiTrongTGT3.Margin = new System.Windows.Forms.Padding(2);
             this.spnKLRoiTrongTGT3.Name = "spnKLRoiTrongTGT3";
+            // 
+            // 
+            // 
             this.spnKLRoiTrongTGT3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLRoiTrongTGT3.Properties.Appearance.Options.UseFont = true;
             this.spnKLRoiTrongTGT3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -348,6 +366,9 @@ namespace NDPSo.MasterData
             this.spnTGNhapNhaOff.Location = new System.Drawing.Point(340, 190);
             this.spnTGNhapNhaOff.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGNhapNhaOff.Name = "spnTGNhapNhaOff";
+            // 
+            // 
+            // 
             this.spnTGNhapNhaOff.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTGNhapNhaOff.Properties.Appearance.Options.UseFont = true;
             this.spnTGNhapNhaOff.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -366,6 +387,9 @@ namespace NDPSo.MasterData
             this.spnTGNhapNhaOn.Location = new System.Drawing.Point(340, 160);
             this.spnTGNhapNhaOn.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGNhapNhaOn.Name = "spnTGNhapNhaOn";
+            // 
+            // 
+            // 
             this.spnTGNhapNhaOn.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTGNhapNhaOn.Properties.Appearance.Options.UseFont = true;
             this.spnTGNhapNhaOn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -384,6 +408,9 @@ namespace NDPSo.MasterData
             this.spnSaiSoTren.Location = new System.Drawing.Point(340, 130);
             this.spnSaiSoTren.Margin = new System.Windows.Forms.Padding(2);
             this.spnSaiSoTren.Name = "spnSaiSoTren";
+            // 
+            // 
+            // 
             this.spnSaiSoTren.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnSaiSoTren.Properties.Appearance.Options.UseFont = true;
             this.spnSaiSoTren.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -402,6 +429,9 @@ namespace NDPSo.MasterData
             this.spnSaiSoDuoi.Location = new System.Drawing.Point(340, 100);
             this.spnSaiSoDuoi.Margin = new System.Windows.Forms.Padding(2);
             this.spnSaiSoDuoi.Name = "spnSaiSoDuoi";
+            // 
+            // 
+            // 
             this.spnSaiSoDuoi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnSaiSoDuoi.Properties.Appearance.Options.UseFont = true;
             this.spnSaiSoDuoi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -514,6 +544,9 @@ namespace NDPSo.MasterData
             this.lueSiloNhomAgg.Location = new System.Drawing.Point(351, 47);
             this.lueSiloNhomAgg.Margin = new System.Windows.Forms.Padding(2);
             this.lueSiloNhomAgg.Name = "lueSiloNhomAgg";
+            // 
+            // 
+            // 
             this.lueSiloNhomAgg.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueSiloNhomAgg.Properties.Appearance.Options.UseFont = true;
             this.lueSiloNhomAgg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -540,6 +573,9 @@ namespace NDPSo.MasterData
             this.chkActivated.Location = new System.Drawing.Point(554, 46);
             this.chkActivated.Margin = new System.Windows.Forms.Padding(2);
             this.chkActivated.Name = "chkActivated";
+            // 
+            // 
+            // 
             this.chkActivated.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkActivated.Properties.Appearance.Options.UseFont = true;
             this.chkActivated.Properties.Caption = "";
@@ -553,6 +589,9 @@ namespace NDPSo.MasterData
             this.lueNhomSilo.Location = new System.Drawing.Point(538, 15);
             this.lueNhomSilo.Margin = new System.Windows.Forms.Padding(2);
             this.lueNhomSilo.Name = "lueNhomSilo";
+            // 
+            // 
+            // 
             this.lueNhomSilo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueNhomSilo.Properties.Appearance.Options.UseFont = true;
             this.lueNhomSilo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -585,6 +624,9 @@ namespace NDPSo.MasterData
             this.lueMaterial.Location = new System.Drawing.Point(119, 45);
             this.lueMaterial.Margin = new System.Windows.Forms.Padding(2);
             this.lueMaterial.Name = "lueMaterial";
+            // 
+            // 
+            // 
             this.lueMaterial.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.lueMaterial.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueMaterial.Properties.Appearance.Options.UseBackColor = true;
@@ -618,6 +660,9 @@ namespace NDPSo.MasterData
             this.txtTenSilo.Location = new System.Drawing.Point(325, 15);
             this.txtTenSilo.Margin = new System.Windows.Forms.Padding(2);
             this.txtTenSilo.Name = "txtTenSilo";
+            // 
+            // 
+            // 
             this.txtTenSilo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtTenSilo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenSilo.Properties.Appearance.Options.UseBackColor = true;
@@ -641,6 +686,9 @@ namespace NDPSo.MasterData
             this.txtMaSilo.Location = new System.Drawing.Point(119, 15);
             this.txtMaSilo.Margin = new System.Windows.Forms.Padding(2);
             this.txtMaSilo.Name = "txtMaSilo";
+            // 
+            // 
+            // 
             this.txtMaSilo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtMaSilo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaSilo.Properties.Appearance.Options.UseBackColor = true;
@@ -695,25 +743,47 @@ namespace NDPSo.MasterData
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // chcChoPhepBuTruKhoiLuong
+            // 
+            this.chcChoPhepBuTruKhoiLuong.AutoSize = true;
+            this.chcChoPhepBuTruKhoiLuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chcChoPhepBuTruKhoiLuong.Location = new System.Drawing.Point(114, 287);
+            this.chcChoPhepBuTruKhoiLuong.Name = "chcChoPhepBuTruKhoiLuong";
+            this.chcChoPhepBuTruKhoiLuong.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chcChoPhepBuTruKhoiLuong.Size = new System.Drawing.Size(230, 20);
+            this.chcChoPhepBuTruKhoiLuong.TabIndex = 2;
+            this.chcChoPhepBuTruKhoiLuong.Text = "Cho phép bù trừ khối lượng mẻ trộn";
+            this.chcChoPhepBuTruKhoiLuong.UseVisualStyleBackColor = true;
+            this.chcChoPhepBuTruKhoiLuong.CheckedChanged += new System.EventHandler(this.chcChoPhepBuTruKhoiLuong_CheckedChanged);
+            // 
+            // chcChoPhepTuDongXNCD
+            // 
+            this.chcChoPhepTuDongXNCD.AutoSize = true;
+            this.chcChoPhepTuDongXNCD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chcChoPhepTuDongXNCD.Location = new System.Drawing.Point(379, 287);
+            this.chcChoPhepTuDongXNCD.Name = "chcChoPhepTuDongXNCD";
+            this.chcChoPhepTuDongXNCD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chcChoPhepTuDongXNCD.Size = new System.Drawing.Size(230, 20);
+            this.chcChoPhepTuDongXNCD.TabIndex = 3;
+            this.chcChoPhepTuDongXNCD.Text = "Cho phép tự động xác nhận cân dư";
+            this.chcChoPhepTuDongXNCD.UseVisualStyleBackColor = true;
+            this.chcChoPhepTuDongXNCD.CheckedChanged += new System.EventHandler(this.chcChoPhepTuDongXNCD_CheckedChanged);
+            // 
             // NewSiloView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chcChoPhepTuDongXNCD);
+            this.Controls.Add(this.chcChoPhepBuTruKhoiLuong);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.pnlMain);
             this.Name = "NewSiloView";
             this.Size = new System.Drawing.Size(686, 366);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
-            this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlKLCan)).EndInit();
-            this.pnlKLCan.ResumeLayout(false);
-            this.pnlKLCan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLCanLonNhat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLCanNhoNhat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlDoAm)).EndInit();
-            this.pnlDoAm.ResumeLayout(false);
-            this.pnlDoAm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnDoHutNuoc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnDoAm.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKPulse.Properties)).EndInit();
@@ -724,8 +794,6 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.spnSaiSoTren.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnSaiSoDuoi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueSiloNhomAgg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkActivated.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueNhomSilo.Properties)).EndInit();
@@ -733,8 +801,8 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.txtTenSilo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaSilo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -782,5 +850,7 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl4;
+        private System.Windows.Forms.CheckBox chcChoPhepBuTruKhoiLuong;
+        private System.Windows.Forms.CheckBox chcChoPhepTuDongXNCD;
     }
 }

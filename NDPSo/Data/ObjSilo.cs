@@ -119,5 +119,9 @@ namespace NDPSo.Data
 
 		[DataMember]
 		public byte[] VersionNo { get; set; }
-	}
+        [DataMember]
+        public bool? BuTruKLMT { get; set; }
+        [DataMember]
+        public bool? TuDongXNCD { get; set; }
+    }
 }

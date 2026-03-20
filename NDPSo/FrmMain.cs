@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using NDPSo.Administration;
+using NDPSo.Chatbot;
 using NDPSo.ClientSetting;
 using NDPSo.Data;
 using NDPSo.KWS;
@@ -49,8 +50,9 @@ namespace NDPSo
 		private DateTime timeOff;
 		private DateTime timeTrie;
 
-		//public static List<NDPSo.Data.ObjSEC_Function> _lstFuncOfUser;
-		public static CultureInfo Culture	
+        //public static List<NDPSo.Data.ObjSEC_Function> _lstFuncOfUser;
+        private ChatbotSidebarPanel _chatbotPanel;
+        public static CultureInfo Culture	
 		{
 			get
 			{
@@ -61,13 +63,27 @@ namespace NDPSo
 		public FrmMain()
         {
             InitializeComponent();
-			this.InitializeViewManager();
+			InitChatbot();
+            this.InitializeViewManager();
 			//Read();
 			StatusConnected.CheckOpenSof(true, false);
 
 		}
+        private void InitChatbot()
+         {
+             _chatbotPanel = new ChatbotSidebarPanel();      // [3] Tạo panel
+             this.Controls.Add(_chatbotPanel);               // [4] Thêm vào form
 
-		private void Read()
+			//[5] Khởi tạo với API key và connection string
+
+			_chatbotPanel.Initialize(
+				//claudeApiKey: "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",           // API key của bạn
+				claudeApiKey: "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",           // API key của bạn
+				sqlConnectionString:                         // Connection string của bạn
+					"Server=localhost;Database=RONEMQu;User Id=sa;Password=1234;"
+			);
+		}
+        private void Read()
         {
 			string rootDirectory = @"D:\";
 			string configFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MachineXL");
@@ -175,10 +191,7 @@ namespace NDPSo
 
 		private void FrmMain_Load(object sender, EventArgs e)
 		{
-			timeNow = DateTime.Now;
-			timeOff = new DateTime(2024, 6, 10, 12, 0, 0); //Ngày OF PM
-			timeTrie = new DateTime(2024, 6, 9, 12, 0, 0); //Ngày Trie PM
-
+			
 			this.LoadLanguage();
 			this.Load_Producer();
 			//this.barMenu.ItemLinks.Add(this._skinMenu);
@@ -191,26 +204,16 @@ namespace NDPSo
 			this.bbiKiemDinhCan.Visibility = visibility;
 			this.KeyPreview = false;
 
-			remainingTimeInSeconds = (int)ConfigManager.TramTronConfig.TimeLife;
-			if (ConfigManager.TramTronConfig.TimeLife > 0)
+			//remainingTimeInSeconds = (int)ConfigManager.TramTronConfig.TimeLife;
+			/*if (ConfigManager.TramTronConfig.TimeLife > 0)
 			{
 				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Never;
-			}
+			}*/
 		}
 
 		private void Load_Producer()
         {
-			if(ConfigManager.TramTronConfig.LogoProduct == string.Empty)
-            {
-				string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logo_PNG_32.png");
-				ConfigManager.TramTronConfig.LogoProduct = imagePath;
-				
-			}
-			Image yourImage = Image.FromFile(ConfigManager.TramTronConfig.LogoProduct);
-			this.bbiLogoProduct.ImageOptions.Image = yourImage;
-			this.bsiNameProduct.Caption = ConfigManager.TramTronConfig.NameProduct;
-			this.bsiWebProduct.Caption = ConfigManager.TramTronConfig.LocalProduct;
-			this.bsiPhoneProduct.Caption = ConfigManager.TramTronConfig.PhoneProduct;
+			
 
 		}
 		private void FrmMain_Shown(object sender, EventArgs e)
@@ -413,50 +416,7 @@ namespace NDPSo
 			}
 			try
 			{
-				//_Cul = CultureInfo.CreateSpecificCulture("en");
-				//FrmMain._ResMng = new ResourceManager("NDPSo.ResourceLanguage.Res", typeof(FrmMain).Assembly);
-				//ResourceManager res = new ResourceManager("NDPSo.ResourceLanguage.Res", typeof(FrmMain).Assembly);
-				//this.bsiSystem.Caption = FrmMain._ResMng.GetString("FrmMain.bsiSystem", _Cul);
-				//this.bbiCloseTabs.Caption = FrmMain._ResMng.GetString("FrmMain.bbiCloseTabs", _Cul);
-				/*this.bbiLogin.Caption = FrmMain._ResMng.GetString("FrmMain.bbiLogin", FrmMain._Cul);
-				this.bbiLogoff.Caption = FrmMain._ResMng.GetString("FrmMain.bbiLogoff", FrmMain._Cul);
-				this.bbiChangePass.Caption = FrmMain._ResMng.GetString("FrmMain.bbiChangePass", FrmMain._Cul);
-				this.bbiCloseTabs.Caption = FrmMain._ResMng.GetString("FrmMain.bbiCloseTabs", FrmMain._Cul);
-				this.bbiConfig.Caption = FrmMain._ResMng.GetString("FrmMain.bbiConfig", FrmMain._Cul);
-				this.bbiExit.Caption = FrmMain._ResMng.GetString("FrmMain.bbiExit", FrmMain._Cul);
-				this.bbiAbout.Caption = FrmMain._ResMng.GetString("FrmMain.bbiAbout", FrmMain._Cul);
-				this.bbiCongThucDoHutNuoc.Caption = FrmMain._ResMng.GetString("FrmMain.bbiCongThucDoHutNuoc", FrmMain._Cul);
-				this.bbiContract.Caption = FrmMain._ResMng.GetString("FrmMain.bbiContract", FrmMain._Cul);
-				this.bbiCustomer.Caption = FrmMain._ResMng.GetString("FrmMain.bbiCustomer", FrmMain._Cul);
-				//this.bbiDashboard.Caption = FrmMain._ResMng.GetString("FrmMain.bbiDashboard", FrmMain._Cul);
-				this.bbiDoAmAgg.Caption = FrmMain._ResMng.GetString("FrmMain.bbiDoAmAgg", FrmMain._Cul);
-				this.bbiDriver.Caption = FrmMain._ResMng.GetString("FrmMain.bbiDriver", FrmMain._Cul);
-				this.bbiFunctionAssign.Caption = FrmMain._ResMng.GetString("FrmMain.bbiFunctionAssign", FrmMain._Cul);
-				this.bbiGroupSilo.Caption = FrmMain._ResMng.GetString("FrmMain.bbiGroupSilo", FrmMain._Cul);
-				//this.bbiIO.Caption = FrmMain._ResMng.GetString("FrmMain.bbiIO", FrmMain._Cul);
-				this.bbiJobSite.Caption = FrmMain._ResMng.GetString("FrmMain.bbiJobSite", FrmMain._Cul);
-				//this.bbiKetNoiLogic.Caption = FrmMain._ResMng.GetString("FrmMain.bbiKetNoiLogic", FrmMain._Cul);
-				this.bbiKiemDinhCan.Caption = FrmMain._ResMng.GetString("FrmMain.bbiKiemDinhCan", FrmMain._Cul);
-				this.bbiMac.Caption = FrmMain._ResMng.GetString("FrmMain.bbiMac", FrmMain._Cul);
-				this.bbiMaterial.Caption = FrmMain._ResMng.GetString("FrmMain.bbiMaterial", FrmMain._Cul);
-				this.bbiPhieuTron.Caption = FrmMain._ResMng.GetString("FrmMain.bbiPhieuTron", FrmMain._Cul);
-				this.bbiReport.Caption = FrmMain._ResMng.GetString("FrmMain.bbiReport", FrmMain._Cul);
-				this.bbiRole.Caption = FrmMain._ResMng.GetString("FrmMain.bbiRole", FrmMain._Cul);
-				this.bbiRoleAssign.Caption = FrmMain._ResMng.GetString("FrmMain.bbiRoleAssign", FrmMain._Cul);
-				this.bbiSilo.Caption = FrmMain._ResMng.GetString("FrmMain.bbiSilo", FrmMain._Cul);
-				this.bbiTimerPara.Caption = FrmMain._ResMng.GetString("FrmMain.bbiTimerPara", FrmMain._Cul);
-				this.bbiTronOnline.Caption = FrmMain._ResMng.GetString("FrmMain.bbiTronOnline", FrmMain._Cul);
-				this.bbiUser.Caption = FrmMain._ResMng.GetString("FrmMain.bbiUser", FrmMain._Cul);
-				this.bbiUserGuide.Caption = FrmMain._ResMng.GetString("FrmMain.bbiUserGuide", FrmMain._Cul);
-				this.bbiWeigh.Caption = FrmMain._ResMng.GetString("FrmMain.bbiWeigh", FrmMain._Cul);
-				this.bbiXe.Caption = FrmMain._ResMng.GetString("FrmMain.bbiXe", FrmMain._Cul);
-				this.bsiAdmin.Caption = FrmMain._ResMng.GetString("FrmMain.bsiAdmin", FrmMain._Cul);
-				this.bsiHelp.Caption = FrmMain._ResMng.GetString("FrmMain.bsiHelp", FrmMain._Cul);
-				this.bsiManage.Caption = FrmMain._ResMng.GetString("FrmMain.bsiManage", FrmMain._Cul);
-				this.bsiMasterData.Caption = FrmMain._ResMng.GetString("FrmMain.bsiMasterData", FrmMain._Cul);
-				this.bsiSystem.Caption = FrmMain._ResMng.GetString("FrmMain.bsiSystem", FrmMain._Cul);
-				this.bsiThongSo.Caption = FrmMain._ResMng.GetString("FrmMain.bsiThongSo", FrmMain._Cul);
-				this.bsiTool.Caption = FrmMain._ResMng.GetString("FrmMain.bsiTool", FrmMain._Cul);*/
+				
 				GlobalValues.Messages.DISCONNECTED = "Mất kết nối với PLC. Vui lòng kết nối lại";
 				GlobalValues.Messages.WAIT_CAPTION = "VUI LÒNG CHỜ!";
 				GlobalValues.Messages.WAIT_LOADING = "Đang tạo dữ liệu…";
@@ -717,23 +677,26 @@ namespace NDPSo
 
 			int checkTimeOff = DateTime.Compare(timeNow, timeOff);
 			int checkTimeTrie = DateTime.Compare(timeNow, timeTrie);
-			
-			if (checkTimeTrie >= 0 )
+            if (!ConfigManager.TramTronConfig.ShowPlantB)
             {
-				this.bsiRemind.Caption = this.barStaticItem4.Caption = Support.SecondToHour(remainingTimeInSeconds);
-				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Always;
-				this.bsiRemind.Appearance.ForeColor = this.barStaticItem4.Appearance.ForeColor = (this.bsiRemind.Appearance.ForeColor == Color.Red) ? Color.Blue : Color.Red;
-				remainingTimeInSeconds--;
-			}
+                if (checkTimeTrie >= 0)
+                {
+                    this.bsiRemind.Caption = this.barStaticItem4.Caption = Support.SecondToHour(remainingTimeInSeconds);
+                    this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Always;
+                    this.bsiRemind.Appearance.ForeColor = this.barStaticItem4.Appearance.ForeColor = (this.bsiRemind.Appearance.ForeColor == Color.Red) ? Color.Blue : Color.Red;
+                    remainingTimeInSeconds--;
+                }
+
+                if (checkTimeOff >= 0)
+                {
+                    //ConfigManager.TramTronConfig.TimeLife = 0;
+                    ShowFormRemind();
+                    this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Never;
+                    this.Enabled = false;
+                    timer.Stop();
+                }
+            }
 			
-			if(checkTimeOff >= 0)
-            {
-				//ConfigManager.TramTronConfig.TimeLife = 0;
-				ShowFormRemind();
-				this.barStaticItem4.Visibility = this.bsiRemind.Visibility = BarItemVisibility.Never;
-				this.Enabled = false;
-				timer.Stop();
-			}
 			/*if (ConfigManager.TramTronConfig.TimeLife >= 0)
             {
 				remainingTimeInSeconds--;
@@ -884,7 +847,7 @@ namespace NDPSo
 			if(result == DialogResult.Yes)
             {
 				e.Cancel = false;
-				ConfigManager.TramTronConfig.TimeLife = remainingTimeInSeconds;
+				//ConfigManager.TramTronConfig.TimeLife = remainingTimeInSeconds;
 				StatusConnected.CheckOpenSof(false, false);
 				Environment.Exit(0);
 			}

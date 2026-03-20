@@ -114,7 +114,7 @@ namespace NDPSo.Reports
             this.lueKhachHang.EditValue = (object)null;
             this.lueCongTruong.EditValue = (object)null;
             this.lueMAC.EditValue = (object)null;
-            this.lueCheDo.EditValue = (object)-1;
+            this.lueCheDo.EditValue = (object)2;
         }
         private void LoadDataMix()
         {

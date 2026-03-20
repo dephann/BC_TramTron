@@ -310,7 +310,6 @@ namespace NDPSo.Reports
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.dpiAwareImageCollection1 = new DevExpress.Utils.DPIAwareImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iicbStatus)).BeginInit();
@@ -319,7 +318,6 @@ namespace NDPSo.Reports
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ilueDMStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime.Properties)).BeginInit();
@@ -333,14 +331,12 @@ namespace NDPSo.Reports
             ((System.ComponentModel.ISupportInitialize)(this.lueKhachHang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCongTruong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueTaiXe.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dpiAwareImageCollection1)).BeginInit();
             this.SuspendLayout();
@@ -3412,6 +3408,9 @@ namespace NDPSo.Reports
             this.tseToTime.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseToTime.Location = new System.Drawing.Point(206, 60);
             this.tseToTime.Name = "tseToTime";
+            // 
+            // 
+            // 
             this.tseToTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseToTime.Properties.Appearance.Options.UseFont = true;
             this.tseToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3424,6 +3423,9 @@ namespace NDPSo.Reports
             this.tseFromTime.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseFromTime.Location = new System.Drawing.Point(206, 30);
             this.tseFromTime.Name = "tseFromTime";
+            // 
+            // 
+            // 
             this.tseFromTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseFromTime.Properties.Appearance.Options.UseFont = true;
             this.tseFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3435,6 +3437,9 @@ namespace NDPSo.Reports
             // 
             this.txtMaPhieuTron.Location = new System.Drawing.Point(112, 90);
             this.txtMaPhieuTron.Name = "txtMaPhieuTron";
+            // 
+            // 
+            // 
             this.txtMaPhieuTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaPhieuTron.Properties.Appearance.Options.UseFont = true;
             this.txtMaPhieuTron.Size = new System.Drawing.Size(150, 22);
@@ -3444,6 +3449,9 @@ namespace NDPSo.Reports
             // 
             this.lueCheDo.Location = new System.Drawing.Point(112, 330);
             this.lueCheDo.Name = "lueCheDo";
+            // 
+            // 
+            // 
             this.lueCheDo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCheDo.Properties.Appearance.Options.UseFont = true;
             this.lueCheDo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3471,6 +3479,9 @@ namespace NDPSo.Reports
             // 
             this.lueNhanVien.Location = new System.Drawing.Point(112, 300);
             this.lueNhanVien.Name = "lueNhanVien";
+            // 
+            // 
+            // 
             this.lueNhanVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueNhanVien.Properties.Appearance.Options.UseFont = true;
             this.lueNhanVien.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3498,6 +3509,9 @@ namespace NDPSo.Reports
             // 
             this.lueMAC.Location = new System.Drawing.Point(112, 270);
             this.lueMAC.Name = "lueMAC";
+            // 
+            // 
+            // 
             this.lueMAC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueMAC.Properties.Appearance.Options.UseFont = true;
             this.lueMAC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3525,6 +3539,9 @@ namespace NDPSo.Reports
             // 
             this.lueBienSo.Location = new System.Drawing.Point(112, 240);
             this.lueBienSo.Name = "lueBienSo";
+            // 
+            // 
+            // 
             this.lueBienSo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBienSo.Properties.Appearance.Options.UseFont = true;
             this.lueBienSo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3552,6 +3569,9 @@ namespace NDPSo.Reports
             // 
             this.lueHangMuc.Location = new System.Drawing.Point(112, 180);
             this.lueHangMuc.Name = "lueHangMuc";
+            // 
+            // 
+            // 
             this.lueHangMuc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueHangMuc.Properties.Appearance.Options.UseFont = true;
             this.lueHangMuc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3579,6 +3599,9 @@ namespace NDPSo.Reports
             // 
             this.lueKhachHang.Location = new System.Drawing.Point(112, 120);
             this.lueKhachHang.Name = "lueKhachHang";
+            // 
+            // 
+            // 
             this.lueKhachHang.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueKhachHang.Properties.Appearance.Options.UseFont = true;
             this.lueKhachHang.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3606,6 +3629,9 @@ namespace NDPSo.Reports
             // 
             this.lueCongTruong.Location = new System.Drawing.Point(112, 150);
             this.lueCongTruong.Name = "lueCongTruong";
+            // 
+            // 
+            // 
             this.lueCongTruong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCongTruong.Properties.Appearance.Options.UseFont = true;
             this.lueCongTruong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3655,6 +3681,9 @@ namespace NDPSo.Reports
             // 
             this.lueTaiXe.Location = new System.Drawing.Point(112, 210);
             this.lueTaiXe.Name = "lueTaiXe";
+            // 
+            // 
+            // 
             this.lueTaiXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueTaiXe.Properties.Appearance.Options.UseFont = true;
             this.lueTaiXe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3690,13 +3719,18 @@ namespace NDPSo.Reports
             // 
             // datToDate
             // 
-            this.datToDate.EditValue = null;
             this.datToDate.Location = new System.Drawing.Point(112, 60);
             this.datToDate.Name = "datToDate";
+            // 
+            // 
+            // 
             this.datToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datToDate.Properties.Appearance.Options.UseFont = true;
             this.datToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datToDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -3709,13 +3743,18 @@ namespace NDPSo.Reports
             // 
             // datFromDate
             // 
-            this.datFromDate.EditValue = null;
             this.datFromDate.Location = new System.Drawing.Point(112, 30);
             this.datFromDate.Name = "datFromDate";
+            // 
+            // 
+            // 
             this.datFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datFromDate.Properties.Appearance.Options.UseFont = true;
             this.datFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datFromDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -3795,7 +3834,6 @@ namespace NDPSo.Reports
             this.Name = "ReportChiTietMeTron";
             this.Size = new System.Drawing.Size(1366, 847);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iicbStatus)).EndInit();
@@ -3804,7 +3842,6 @@ namespace NDPSo.Reports
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ilueDMStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -3824,9 +3861,7 @@ namespace NDPSo.Reports
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dpiAwareImageCollection1)).EndInit();
             this.ResumeLayout(false);

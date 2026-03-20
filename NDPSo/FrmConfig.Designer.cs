@@ -82,6 +82,7 @@ namespace NDPSo
             this.lblContract = new DevExpress.XtraEditors.LabelControl();
             this.tpgOthers = new DevExpress.XtraTab.XtraTabPage();
             this.bteImportPath_CT = new DevExpress.XtraEditors.ButtonEdit();
+            this.btePdfReaderPath = new DevExpress.XtraEditors.ButtonEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.bteImportPath_GH = new DevExpress.XtraEditors.ButtonEdit();
             this.bteExportPath = new DevExpress.XtraEditors.ButtonEdit();
@@ -109,47 +110,37 @@ namespace NDPSo
             this.rdgLanguageRes = new DevExpress.XtraEditors.RadioGroup();
             this.lblLanguage = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabConfig)).BeginInit();
             this.tabConfig.SuspendLayout();
-            this.tpgCompanyInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteLogoPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDienThoaiCty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChiCty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenCty.Properties)).BeginInit();
-            this.tpgRunningMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDatabase.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtServer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpStandAlone)).BeginInit();
-            this.grpStandAlone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpService)).BeginInit();
-            this.grpService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtServerIP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueRunningMode.Properties)).BeginInit();
-            this.tpgOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.tpgRange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLTronLonNhat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLTronNhoNhat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLChoLonNhat.Properties)).BeginInit();
-            this.tpgFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestBaoCaoDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestHopDongDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestPhieuTronDays.Properties)).BeginInit();
-            this.tpgOthers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_CT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btePdfReaderPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_GH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteExportPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDev.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTronOnline.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTinhBuTru.Properties)).BeginInit();
-            this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.beFilePathPLC.Properties)).BeginInit();
-            this.tpgGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueLanguages.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLANPort.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLANIP.Properties)).BeginInit();
@@ -223,6 +214,7 @@ namespace NDPSo
             this.tpgCompanyInfo.Controls.Add(this.lblPhone);
             this.tpgCompanyInfo.Controls.Add(this.lblAddress);
             this.tpgCompanyInfo.Controls.Add(this.lblCompanyName);
+            this.tpgCompanyInfo.Enabled = true;
             this.tpgCompanyInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgCompanyInfo.Name = "tpgCompanyInfo";
             this.tpgCompanyInfo.Size = new System.Drawing.Size(689, 287);
@@ -232,6 +224,9 @@ namespace NDPSo
             // 
             this.bteLogoPath.Location = new System.Drawing.Point(167, 115);
             this.bteLogoPath.Name = "bteLogoPath";
+            // 
+            // 
+            // 
             this.bteLogoPath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.bteLogoPath.Size = new System.Drawing.Size(304, 20);
@@ -291,6 +286,9 @@ namespace NDPSo
             // 
             this.pictureEdit1.Location = new System.Drawing.Point(498, 28);
             this.pictureEdit1.Name = "pictureEdit1";
+            // 
+            // 
+            // 
             this.pictureEdit1.Properties.NullText = " ";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Size = new System.Drawing.Size(100, 100);
@@ -303,6 +301,9 @@ namespace NDPSo
             this.txtDienThoaiCty.Location = new System.Drawing.Point(167, 85);
             this.txtDienThoaiCty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDienThoaiCty.Name = "txtDienThoaiCty";
+            // 
+            // 
+            // 
             this.txtDienThoaiCty.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDienThoaiCty.Properties.Appearance.Options.UseFont = true;
             this.txtDienThoaiCty.Size = new System.Drawing.Size(304, 22);
@@ -313,6 +314,9 @@ namespace NDPSo
             this.txtDiaChiCty.Location = new System.Drawing.Point(167, 55);
             this.txtDiaChiCty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDiaChiCty.Name = "txtDiaChiCty";
+            // 
+            // 
+            // 
             this.txtDiaChiCty.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaChiCty.Properties.Appearance.Options.UseFont = true;
             this.txtDiaChiCty.Size = new System.Drawing.Size(304, 22);
@@ -323,6 +327,9 @@ namespace NDPSo
             this.txtTenCty.Location = new System.Drawing.Point(167, 25);
             this.txtTenCty.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTenCty.Name = "txtTenCty";
+            // 
+            // 
+            // 
             this.txtTenCty.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenCty.Properties.Appearance.Options.UseFont = true;
             this.txtTenCty.Size = new System.Drawing.Size(304, 22);
@@ -381,6 +388,7 @@ namespace NDPSo
             this.tpgRunningMode.Controls.Add(this.lblDatabase);
             this.tpgRunningMode.Controls.Add(this.lblServerName);
             this.tpgRunningMode.Controls.Add(this.grpStandAlone);
+            this.tpgRunningMode.Enabled = true;
             this.tpgRunningMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgRunningMode.Name = "tpgRunningMode";
             this.tpgRunningMode.Size = new System.Drawing.Size(689, 287);
@@ -391,6 +399,9 @@ namespace NDPSo
             this.txtPassword.Location = new System.Drawing.Point(167, 115);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
+            // 
+            // 
+            // 
             this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.MaxLength = 20;
@@ -403,6 +414,9 @@ namespace NDPSo
             this.txtUsername.Location = new System.Drawing.Point(167, 85);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsername.Name = "txtUsername";
+            // 
+            // 
+            // 
             this.txtUsername.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Properties.Appearance.Options.UseFont = true;
             this.txtUsername.Size = new System.Drawing.Size(189, 22);
@@ -413,6 +427,9 @@ namespace NDPSo
             this.txtDatabase.Location = new System.Drawing.Point(167, 55);
             this.txtDatabase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDatabase.Name = "txtDatabase";
+            // 
+            // 
+            // 
             this.txtDatabase.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDatabase.Properties.Appearance.Options.UseFont = true;
             this.txtDatabase.Size = new System.Drawing.Size(189, 22);
@@ -423,6 +440,9 @@ namespace NDPSo
             this.txtServer.Location = new System.Drawing.Point(167, 25);
             this.txtServer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtServer.Name = "txtServer";
+            // 
+            // 
+            // 
             this.txtServer.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServer.Properties.Appearance.Options.UseFont = true;
             this.txtServer.Size = new System.Drawing.Size(189, 22);
@@ -548,6 +568,9 @@ namespace NDPSo
             this.lueRunningMode.Location = new System.Drawing.Point(333, 230);
             this.lueRunningMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lueRunningMode.Name = "lueRunningMode";
+            // 
+            // 
+            // 
             this.lueRunningMode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueRunningMode.Properties.Appearance.Options.UseFont = true;
             this.lueRunningMode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -568,6 +591,7 @@ namespace NDPSo
             // tpgOptions
             // 
             this.tpgOptions.Controls.Add(this.xtraTabControl1);
+            this.tpgOptions.Enabled = true;
             this.tpgOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgOptions.Name = "tpgOptions";
             this.tpgOptions.Size = new System.Drawing.Size(689, 287);
@@ -595,6 +619,7 @@ namespace NDPSo
             this.tpgRange.Controls.Add(this.lblKLTronLonNhat);
             this.tpgRange.Controls.Add(this.lblKLTronNhoNhat);
             this.tpgRange.Controls.Add(this.lblKLChoLonNhat);
+            this.tpgRange.Enabled = true;
             this.tpgRange.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgRange.Name = "tpgRange";
             this.tpgRange.Size = new System.Drawing.Size(681, 257);
@@ -610,6 +635,9 @@ namespace NDPSo
             this.spnKLTronLonNhat.Location = new System.Drawing.Point(232, 90);
             this.spnKLTronLonNhat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spnKLTronLonNhat.Name = "spnKLTronLonNhat";
+            // 
+            // 
+            // 
             this.spnKLTronLonNhat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLTronLonNhat.Properties.Appearance.Options.UseFont = true;
             this.spnKLTronLonNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -631,6 +659,9 @@ namespace NDPSo
             this.spnKLTronNhoNhat.Location = new System.Drawing.Point(232, 60);
             this.spnKLTronNhoNhat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spnKLTronNhoNhat.Name = "spnKLTronNhoNhat";
+            // 
+            // 
+            // 
             this.spnKLTronNhoNhat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLTronNhoNhat.Properties.Appearance.Options.UseFont = true;
             this.spnKLTronNhoNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -653,6 +684,9 @@ namespace NDPSo
             this.spnKLChoLonNhat.Location = new System.Drawing.Point(232, 30);
             this.spnKLChoLonNhat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spnKLChoLonNhat.Name = "spnKLChoLonNhat";
+            // 
+            // 
+            // 
             this.spnKLChoLonNhat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLChoLonNhat.Properties.Appearance.Options.UseFont = true;
             this.spnKLChoLonNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -718,6 +752,7 @@ namespace NDPSo
             this.tpgFilter.Controls.Add(this.lblLatestDay);
             this.tpgFilter.Controls.Add(this.lblPhieuTron);
             this.tpgFilter.Controls.Add(this.lblContract);
+            this.tpgFilter.Enabled = true;
             this.tpgFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgFilter.Name = "tpgFilter";
             this.tpgFilter.Size = new System.Drawing.Size(681, 257);
@@ -733,6 +768,9 @@ namespace NDPSo
             this.spnLatestBaoCaoDays.Location = new System.Drawing.Point(121, 90);
             this.spnLatestBaoCaoDays.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spnLatestBaoCaoDays.Name = "spnLatestBaoCaoDays";
+            // 
+            // 
+            // 
             this.spnLatestBaoCaoDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnLatestBaoCaoDays.Properties.Appearance.Options.UseFont = true;
             this.spnLatestBaoCaoDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -778,6 +816,9 @@ namespace NDPSo
             this.spnLatestHopDongDays.Location = new System.Drawing.Point(121, 30);
             this.spnLatestHopDongDays.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spnLatestHopDongDays.Name = "spnLatestHopDongDays";
+            // 
+            // 
+            // 
             this.spnLatestHopDongDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnLatestHopDongDays.Properties.Appearance.Options.UseFont = true;
             this.spnLatestHopDongDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -795,6 +836,9 @@ namespace NDPSo
             this.spnLatestPhieuTronDays.Location = new System.Drawing.Point(121, 60);
             this.spnLatestPhieuTronDays.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.spnLatestPhieuTronDays.Name = "spnLatestPhieuTronDays";
+            // 
+            // 
+            // 
             this.spnLatestPhieuTronDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnLatestPhieuTronDays.Properties.Appearance.Options.UseFont = true;
             this.spnLatestPhieuTronDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -861,6 +905,7 @@ namespace NDPSo
             // tpgOthers
             // 
             this.tpgOthers.Controls.Add(this.bteImportPath_CT);
+            this.tpgOthers.Controls.Add(this.btePdfReaderPath);
             this.tpgOthers.Controls.Add(this.labelControl9);
             this.tpgOthers.Controls.Add(this.bteImportPath_GH);
             this.tpgOthers.Controls.Add(this.bteExportPath);
@@ -871,6 +916,7 @@ namespace NDPSo
             this.tpgOthers.Controls.Add(this.btnReportPathBrowse);
             this.tpgOthers.Controls.Add(this.btnTestReportPath);
             this.tpgOthers.Controls.Add(this.lblReportPath);
+            this.tpgOthers.Enabled = true;
             this.tpgOthers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgOthers.Name = "tpgOthers";
             this.tpgOthers.Size = new System.Drawing.Size(681, 257);
@@ -880,11 +926,27 @@ namespace NDPSo
             // 
             this.bteImportPath_CT.Location = new System.Drawing.Point(135, 100);
             this.bteImportPath_CT.Name = "bteImportPath_CT";
+            // 
+            // 
+            // 
             this.bteImportPath_CT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.bteImportPath_CT.Size = new System.Drawing.Size(460, 20);
             this.bteImportPath_CT.TabIndex = 16;
             this.bteImportPath_CT.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.bteImportPath_CT_ButtonClick);
+            // 
+            // btePdfReaderPath
+            // 
+            this.btePdfReaderPath.Location = new System.Drawing.Point(135, 135);
+            this.btePdfReaderPath.Name = "btePdfReaderPath";
+            // 
+            // 
+            // 
+            this.btePdfReaderPath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.btePdfReaderPath.Size = new System.Drawing.Size(460, 20);
+            this.btePdfReaderPath.TabIndex = 16;
+            this.btePdfReaderPath.Click += new System.EventHandler(this.btePdfReaderPath_Click);
             // 
             // labelControl9
             // 
@@ -904,6 +966,9 @@ namespace NDPSo
             // 
             this.bteImportPath_GH.Location = new System.Drawing.Point(135, 65);
             this.bteImportPath_GH.Name = "bteImportPath_GH";
+            // 
+            // 
+            // 
             this.bteImportPath_GH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.bteImportPath_GH.Size = new System.Drawing.Size(460, 20);
@@ -914,6 +979,9 @@ namespace NDPSo
             // 
             this.bteExportPath.Location = new System.Drawing.Point(135, 32);
             this.bteExportPath.Name = "bteExportPath";
+            // 
+            // 
+            // 
             this.bteExportPath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.bteExportPath.Size = new System.Drawing.Size(460, 20);
@@ -925,6 +993,9 @@ namespace NDPSo
             this.chkDev.Location = new System.Drawing.Point(42, 225);
             this.chkDev.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkDev.Name = "chkDev";
+            // 
+            // 
+            // 
             this.chkDev.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDev.Properties.Appearance.Options.UseFont = true;
             this.chkDev.Properties.Caption = "Dev";
@@ -951,6 +1022,9 @@ namespace NDPSo
             this.chkTronOnline.Location = new System.Drawing.Point(42, 176);
             this.chkTronOnline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkTronOnline.Name = "chkTronOnline";
+            // 
+            // 
+            // 
             this.chkTronOnline.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTronOnline.Properties.Appearance.Options.UseFont = true;
             this.chkTronOnline.Properties.Caption = "Hiển thị màn hình Vận Hành lúc khởi động";
@@ -962,6 +1036,9 @@ namespace NDPSo
             this.chkTinhBuTru.Location = new System.Drawing.Point(42, 201);
             this.chkTinhBuTru.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkTinhBuTru.Name = "chkTinhBuTru";
+            // 
+            // 
+            // 
             this.chkTinhBuTru.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkTinhBuTru.Properties.Appearance.Options.UseFont = true;
             this.chkTinhBuTru.Properties.Caption = "Tính khối lượng bù trừ";
@@ -1014,6 +1091,7 @@ namespace NDPSo
             this.xtraTabPage1.Controls.Add(this.labelControl8);
             this.xtraTabPage1.Controls.Add(this.beFilePathPLC);
             this.xtraTabPage1.Controls.Add(this.btnUploadToPLC);
+            this.xtraTabPage1.Enabled = true;
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.PageVisible = false;
             this.xtraTabPage1.Size = new System.Drawing.Size(681, 257);
@@ -1037,6 +1115,9 @@ namespace NDPSo
             // 
             this.beFilePathPLC.Location = new System.Drawing.Point(135, 30);
             this.beFilePathPLC.Name = "beFilePathPLC";
+            // 
+            // 
+            // 
             this.beFilePathPLC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.beFilePathPLC.Properties.Appearance.Options.UseFont = true;
             this.beFilePathPLC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1069,6 +1150,7 @@ namespace NDPSo
             this.tpgGeneral.Controls.Add(this.labelControl1);
             this.tpgGeneral.Controls.Add(this.rdgLanguageRes);
             this.tpgGeneral.Controls.Add(this.lblLanguage);
+            this.tpgGeneral.Enabled = true;
             this.tpgGeneral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpgGeneral.Name = "tpgGeneral";
             this.tpgGeneral.Size = new System.Drawing.Size(689, 287);
@@ -1079,6 +1161,9 @@ namespace NDPSo
             this.lueLanguages.Location = new System.Drawing.Point(100, 60);
             this.lueLanguages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lueLanguages.Name = "lueLanguages";
+            // 
+            // 
+            // 
             this.lueLanguages.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueLanguages.Properties.Appearance.Options.UseFont = true;
             this.lueLanguages.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1099,6 +1184,9 @@ namespace NDPSo
             this.txtLANPort.Location = new System.Drawing.Point(77, 242);
             this.txtLANPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLANPort.Name = "txtLANPort";
+            // 
+            // 
+            // 
             this.txtLANPort.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLANPort.Properties.Appearance.Options.UseFont = true;
             this.txtLANPort.Size = new System.Drawing.Size(142, 22);
@@ -1110,6 +1198,9 @@ namespace NDPSo
             this.txtLANIP.Location = new System.Drawing.Point(100, 30);
             this.txtLANIP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLANIP.Name = "txtLANIP";
+            // 
+            // 
+            // 
             this.txtLANIP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLANIP.Properties.Appearance.Options.UseFont = true;
             this.txtLANIP.Size = new System.Drawing.Size(150, 22);
@@ -1143,6 +1234,9 @@ namespace NDPSo
             this.txtPLCPort.Location = new System.Drawing.Point(53, 206);
             this.txtPLCPort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPLCPort.Name = "txtPLCPort";
+            // 
+            // 
+            // 
             this.txtPLCPort.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPLCPort.Properties.Appearance.Options.UseFont = true;
             this.txtPLCPort.Size = new System.Drawing.Size(195, 22);
@@ -1192,6 +1286,9 @@ namespace NDPSo
             this.rdgLanguageRes.Location = new System.Drawing.Point(364, 32);
             this.rdgLanguageRes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rdgLanguageRes.Name = "rdgLanguageRes";
+            // 
+            // 
+            // 
             this.rdgLanguageRes.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdgLanguageRes.Properties.Appearance.Options.UseFont = true;
             this.rdgLanguageRes.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
@@ -1225,50 +1322,37 @@ namespace NDPSo
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmConfig_FormClosing);
             this.Load += new System.EventHandler(this.FrmConfig_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabConfig)).EndInit();
             this.tabConfig.ResumeLayout(false);
-            this.tpgCompanyInfo.ResumeLayout(false);
-            this.tpgCompanyInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteLogoPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDienThoaiCty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaChiCty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenCty.Properties)).EndInit();
-            this.tpgRunningMode.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDatabase.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtServer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpStandAlone)).EndInit();
-            this.grpStandAlone.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpService)).EndInit();
-            this.grpService.ResumeLayout(false);
-            this.grpService.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtServerIP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueRunningMode.Properties)).EndInit();
-            this.tpgOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.tpgRange.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spnKLTronLonNhat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLTronNhoNhat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnKLChoLonNhat.Properties)).EndInit();
-            this.tpgFilter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestBaoCaoDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestHopDongDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnLatestPhieuTronDays.Properties)).EndInit();
-            this.tpgOthers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_CT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btePdfReaderPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteImportPath_GH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteExportPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkDev.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTronOnline.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkTinhBuTru.Properties)).EndInit();
-            this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.beFilePathPLC.Properties)).EndInit();
-            this.tpgGeneral.ResumeLayout(false);
-            this.tpgGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueLanguages.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLANPort.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLANIP.Properties)).EndInit();
@@ -1358,6 +1442,7 @@ namespace NDPSo
         private DevExpress.XtraEditors.ButtonEdit bteImportPath_GH;
         private DevExpress.XtraEditors.ButtonEdit bteExportPath;
         private DevExpress.XtraEditors.ButtonEdit bteImportPath_CT;
+        private DevExpress.XtraEditors.ButtonEdit btePdfReaderPath;
         private DevExpress.XtraEditors.LabelControl labelControl9;
     }
 }

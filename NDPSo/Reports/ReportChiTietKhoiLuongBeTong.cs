@@ -207,7 +207,7 @@ namespace NDPSo.Reports
             this.lueBienSo.EditValue = (object)null;
             this.lueTaiXe.EditValue = (object)null;
             this.lueNhanVien.EditValue = (object)null;
-            this.lueCheDo.EditValue = (object)-1;
+            this.lueCheDo.EditValue = (object)2;
         }
         protected override void PopulateData()
         {

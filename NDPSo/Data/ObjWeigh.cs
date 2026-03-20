@@ -53,5 +53,8 @@ namespace NDPSo.Data
 
 		[DataMember]
 		public decimal? TiLeXa { get; set; }
-	}
+
+        [DataMember]
+        public bool? GiuKLTC { get; set; }
+    }
 }

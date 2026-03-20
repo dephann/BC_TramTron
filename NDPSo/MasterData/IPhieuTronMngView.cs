@@ -12,9 +12,11 @@ namespace NDPSo.MasterData
     public interface IPhieuTronMngView : IBase, IPermission
     {
         BindingList<ObjPhieuTron> BLstPhieuTron { set; }
+        BindingList<ObjPhieuGiaoHang> BLstPhieuGiaoHang { set; }
         BindingList<ObjHopDong> BLstHopDong { set; }
         BindingList<ObjMeTron> BLstMeTron { set; }
         BindingList<ObjMeTronChiTiet> BLstMeTronChiTiet { set; }
+        BindingList<ObjMeTronChiTietGiaoHang> BLstMeTronChiTietGiaoHang { set; }
         bool IsSuccessfulSaved { set; }
         List<FieldCode> LstPhieuTronStatus { set; }
     }

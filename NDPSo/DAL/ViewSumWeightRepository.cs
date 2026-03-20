@@ -32,12 +32,12 @@ namespace NDPSo.DAL
             Specification<vw_SumWeight> spec = new Specification<vw_SumWeight>((vw_SumWeight o) =>
             (o.NgayPhieuTron >= (DateTime?)fromDate) && (o.NgayPhieuTron <= (DateTime?)toDate) &&
             (o.MaPhieuTron.Contains(maPhieuTron) || maPhieuTron.Trim() == string.Empty) &&
-            (o.KhachHangID == khachHang || khachHang == null) &&
-            (o.CongTruongID == congTruong || congTruong == null) &&
-            (o.HangMucID == hangMuc || hangMuc == null) &&
-            (o.MACID == mac || mac == null) &&
-            (o.XeID == bienSo || bienSo == null) &&
-            (o.TaiXeID == taiXe || taiXe == null) &&
+            (o.KH_int == khachHang || khachHang == null) &&
+            (o.CT_int == congTruong || congTruong == null) &&
+            (o.HM_int == hangMuc || hangMuc == null) &&
+            (o.MAC_int == mac || mac == null) &&
+            (o.Xe_int == bienSo || bienSo == null) &&
+            (o.TX_int == taiXe || taiXe == null) &&
             (o.CreatedBy == nhanVien || nhanVien == null) &&
             ((bool?)o.IsQueued == active || active == new bool?()));
             return base.SelectAll(spec);

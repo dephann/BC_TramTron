@@ -45,14 +45,12 @@ namespace NDPSo
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteIconLogoPathProducer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLocalProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -77,6 +75,9 @@ namespace NDPSo
             // 
             this.bteIconLogoPathProducer.Location = new System.Drawing.Point(149, 125);
             this.bteIconLogoPathProducer.Name = "bteIconLogoPathProducer";
+            // 
+            // 
+            // 
             this.bteIconLogoPathProducer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.bteIconLogoPathProducer.Size = new System.Drawing.Size(304, 20);
@@ -112,6 +113,9 @@ namespace NDPSo
             // 
             this.pictureEdit1.Location = new System.Drawing.Point(480, 38);
             this.pictureEdit1.Name = "pictureEdit1";
+            // 
+            // 
+            // 
             this.pictureEdit1.Properties.NullText = " ";
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Size = new System.Drawing.Size(100, 100);
@@ -122,6 +126,9 @@ namespace NDPSo
             this.txtPhoneProduct.Location = new System.Drawing.Point(149, 95);
             this.txtPhoneProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPhoneProduct.Name = "txtPhoneProduct";
+            // 
+            // 
+            // 
             this.txtPhoneProduct.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhoneProduct.Properties.Appearance.Options.UseFont = true;
             this.txtPhoneProduct.Size = new System.Drawing.Size(304, 22);
@@ -132,6 +139,9 @@ namespace NDPSo
             this.txtLocalProduct.Location = new System.Drawing.Point(149, 65);
             this.txtLocalProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLocalProduct.Name = "txtLocalProduct";
+            // 
+            // 
+            // 
             this.txtLocalProduct.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLocalProduct.Properties.Appearance.Options.UseFont = true;
             this.txtLocalProduct.Size = new System.Drawing.Size(304, 22);
@@ -142,6 +152,9 @@ namespace NDPSo
             this.txtNameProduct.Location = new System.Drawing.Point(149, 35);
             this.txtNameProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNameProduct.Name = "txtNameProduct";
+            // 
+            // 
+            // 
             this.txtNameProduct.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNameProduct.Properties.Appearance.Options.UseFont = true;
             this.txtNameProduct.Size = new System.Drawing.Size(304, 22);
@@ -245,18 +258,15 @@ namespace NDPSo
             this.KeyPreview = true;
             this.Name = "SettingProduct";
             this.Text = "SettingProduct";
+            this.Load += new System.EventHandler(this.SettingProduct_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingProduct_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteIconLogoPathProducer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhoneProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLocalProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
             this.ResumeLayout(false);
 
         }

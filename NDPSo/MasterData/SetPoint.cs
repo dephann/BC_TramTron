@@ -43,229 +43,284 @@ namespace NDPSo.MasterData
 
         //================================================= DB3 WRITE DATA SILO
 
-        public Double SaiSoTren_Agg1 { get; set; } //0
-        public Double SaiSoDuoi_Agg1 { get; set; } //4
-        public Double RoiTuDo_Agg1 { get; set; } //8
-        public Double ThoiGianMoCan_Agg1 { get; set; } //12
-        public Double ThoiGianDongCan_Agg1 { get; set; } //16
-        public Double ThoiGianTinhLuongRoiThem_Agg1 { get; set; } //20
-        public Double SaiSoTren_Agg2 { get; set; } //24
-        public Double SaiSoDuoi_Agg2 { get; set; } //28
-        public Double RoiTuDo_Agg2 { get; set; } //32
-        public Double ThoiGianMoCan_Agg2 { get; set; } //36
-        public Double ThoiGianDongCan_Agg2 { get; set; } //40
-        public Double ThoiGianTinhLuongRoiThem_Agg2 { get; set; } //44
-        public Double SaiSoTren_Agg3 { get; set; } //48
-        public Double SaiSoDuoi_Agg3 { get; set; } //52
-        public Double RoiTuDo_Agg3 { get; set; } //56
-        public Double ThoiGianMoCan_Agg3 { get; set; } //60
-        public Double ThoiGianDongCan_Agg3 { get; set; } //64
-        public Double ThoiGianTinhLuongRoiThem_Agg3 { get; set; } //68
-        public Double SaiSoTren_Agg4 { get; set; } //72
-        public Double SaiSoDuoi_Agg4 { get; set; } //76
-        public Double RoiTuDo_Agg4 { get; set; } //80
-        public Double ThoiGianMoCan_Agg4 { get; set; } //84
-        public Double ThoiGianDongCan_Agg4 { get; set; } //88
-        public Double ThoiGianTinhLuongRoiThem_Agg4 { get; set; } //92
-        public Double SaiSoTren_Agg5 { get; set; } //96
-        public Double SaiSoDuoi_Agg5 { get; set; } //100
-        public Double RoiTuDo_Agg5 { get; set; } //104
-        public Double ThoiGianMoCan_Agg5 { get; set; } //108
-        public Double ThoiGianDongCan_Agg5 { get; set; } //112
-        public Double ThoiGianTinhLuongRoiThem_Agg5 { get; set; } //116
-        public Double SaiSoTren_Agg6 { get; set; } //120
-        public Double SaiSoDuoi_Agg6 { get; set; } //124
-        public Double RoiTuDo_Agg6 { get; set; } //128
-        public Double ThoiGianMoCan_Agg6 { get; set; } //132
-        public Double ThoiGianDongCan_Agg6 { get; set; } //136
-        public Double ThoiGianTinhLuongRoiThem_Agg6 { get; set; } //140
-        public Double SaiSoTren_Ce1 { get; set; } //144
-        public Double SaiSoDuoi_Ce1 { get; set; } //148
-        public Double RoiTuDo_Ce1 { get; set; } //152
-        public Double ThoiGianMoCan_Ce1 { get; set; } //156
-        public Double ThoiGianDongCan_Ce1 { get; set; } //160
-        public Double ThoiGianTinhLuongRoiThem_Ce1 { get; set; } //164
-        public Double SaiSoTren_Ce2 { get; set; } //168
-        public Double SaiSoDuoi_Ce2 { get; set; } //172
-        public Double RoiTuDo_Ce2 { get; set; } //176
-        public Double ThoiGianMoCan_Ce2 { get; set; } //180
-        public Double ThoiGianDongCan_Ce2 { get; set; } //184
-        public Double ThoiGianTinhLuongRoiThem_Ce2 { get; set; } //188
-        public Double SaiSoTren_Ce3 { get; set; } //192
-        public Double SaiSoDuoi_Ce3 { get; set; } //196
-        public Double RoiTuDo_Ce3 { get; set; } //200
-        public Double ThoiGianMoCan_Ce3 { get; set; } //204
-        public Double ThoiGianDongCan_Ce3 { get; set; } //208
-        public Double ThoiGianTinhLuongRoiThem_Ce3 { get; set; } //212
-        public Double SaiSoTren_Ce4 { get; set; } //216
-        public Double SaiSoDuoi_Ce4 { get; set; } //220
-        public Double RoiTuDo_Ce4 { get; set; } //224
-        public Double ThoiGianMoCan_Ce4 { get; set; } //228
-        public Double ThoiGianDongCan_Ce4 { get; set; } //232
-        public Double ThoiGianTinhLuongRoiThem_Ce4 { get; set; } //236
-        public Double SaiSoTren_Ce5 { get; set; } //240
-        public Double SaiSoDuoi_Ce5 { get; set; } //244
-        public Double RoiTuDo_Ce5 { get; set; } //248
-        public Double ThoiGianMoCan_Ce5 { get; set; } //252
-        public Double ThoiGianDongCan_Ce5 { get; set; } //256
-        public Double ThoiGianTinhLuongRoiThem_Ce5 { get; set; } //260
-        public Double SaiSoTren_Wa1 { get; set; } //264
-        public Double SaiSoDuoi_Wa1 { get; set; } //268
-        public Double RoiTuDo_Wa1 { get; set; } //272
-        public Double ThoiGianMoCan_Wa1 { get; set; } //276
-        public Double ThoiGianDongCan_Wa1 { get; set; } //280
-        public Double ThoiGianTinhLuongRoiThem_Wa1 { get; set; } //284
-        public Double SaiSoTren_Wa2 { get; set; } //288
-        public Double SaiSoDuoi_Wa2 { get; set; } //292
-        public Double RoiTuDo_Wa2 { get; set; } //296
-        public Double ThoiGianMoCan_Wa2 { get; set; } //300
-        public Double ThoiGianDongCan_Wa2 { get; set; } //304
-        public Double ThoiGianTinhLuongRoiThem_Wa2 { get; set; } //308
-        public Double SaiSoTren_Add1 { get; set; } //312
-        public Double SaiSoDuoi_Add1 { get; set; } //316
-        public Double RoiTuDo_Add1 { get; set; } //320
-        public Double ThoiGianMoCan_Add1 { get; set; } //324
-        public Double ThoiGianDongCan_Add1 { get; set; } //328
-        public Double ThoiGianTinhLuongRoiThem_Add1 { get; set; } //332
-        public Double SaiSoTren_Add2 { get; set; } //336
-        public Double SaiSoDuoi_Add2 { get; set; } //340
-        public Double RoiTuDo_Add2 { get; set; } //344
-        public Double ThoiGianMoCan_Add2 { get; set; } //348
-        public Double ThoiGianDongCan_Add2 { get; set; } //352
-        public Double ThoiGianTinhLuongRoiThem_Add2 { get; set; } //356
-        public Double SaiSoTren_Add3 { get; set; } //360
-        public Double SaiSoDuoi_Add3 { get; set; } //364
-        public Double RoiTuDo_Add3 { get; set; } //368
-        public Double ThoiGianMoCan_Add3 { get; set; } //372
-        public Double ThoiGianDongCan_Add3 { get; set; } //276
-        public Double ThoiGianTinhLuongRoiThem_Add3 { get; set; } //380
-        public Double SaiSoTren_Add4 { get; set; } //384
-        public Double SaiSoDuoi_Add4 { get; set; } //388
-        public Double RoiTuDo_Add4 { get; set; } //392
-        public Double ThoiGianMoCan_Add4 { get; set; } //396
-        public Double ThoiGianDongCan_Add4 { get; set; } //400
-        public Double ThoiGianTinhLuongRoiThem_Add4 { get; set; } //404
-        public Double SaiSoTren_Add5 { get; set; } //408
-        public Double SaiSoDuoi_Add5 { get; set; } //412
-        public Double RoiTuDo_Add5 { get; set; } //416
-        public Double ThoiGianMoCan_Add5 { get; set; } //420
-        public Double ThoiGianDongCan_Add5 { get; set; } //424
-        public Double ThoiGianTinhLuongRoiThem_Add5 { get; set; } //428
-        public Double SaiSoTren_Add6 { get; set; } //432
-        public Double SaiSoDuoi_Add6 { get; set; } //436
-        public Double RoiTuDo_Add6 { get; set; } //440
-        public Double ThoiGianMoCan_Add6 { get; set; } //444
-        public Double ThoiGianDongCan_Add6 { get; set; } //448
-        public Double ThoiGianTinhLuongRoiThem_Add6 { get; set; } //452
+        public Decimal SaiSoTren_Agg1 { get; set; } //0
+        public Decimal SaiSoDuoi_Agg1 { get; set; } //4
+        public Decimal RoiTuDo_Agg1 { get; set; } //8
+        public Decimal ThoiGianMoCan_Agg1 { get; set; } //12
+        public Decimal ThoiGianDongCan_Agg1 { get; set; } //16
+        public Decimal ThoiGianTinhLuongRoiThem_Agg1 { get; set; } //20
+        public Decimal SaiSoTren_Agg2 { get; set; } //24
+        public Decimal SaiSoDuoi_Agg2 { get; set; } //28
+        public Decimal RoiTuDo_Agg2 { get; set; } //32
+        public Decimal ThoiGianMoCan_Agg2 { get; set; } //36
+        public Decimal ThoiGianDongCan_Agg2 { get; set; } //40
+        public Decimal ThoiGianTinhLuongRoiThem_Agg2 { get; set; } //44
+        public Decimal SaiSoTren_Agg3 { get; set; } //48
+        public Decimal SaiSoDuoi_Agg3 { get; set; } //52
+        public Decimal RoiTuDo_Agg3 { get; set; } //56
+        public Decimal ThoiGianMoCan_Agg3 { get; set; } //60
+        public Decimal ThoiGianDongCan_Agg3 { get; set; } //64
+        public Decimal ThoiGianTinhLuongRoiThem_Agg3 { get; set; } //68
+        public Decimal SaiSoTren_Agg4 { get; set; } //72
+        public Decimal SaiSoDuoi_Agg4 { get; set; } //76
+        public Decimal RoiTuDo_Agg4 { get; set; } //80
+        public Decimal ThoiGianMoCan_Agg4 { get; set; } //84
+        public Decimal ThoiGianDongCan_Agg4 { get; set; } //88
+        public Decimal ThoiGianTinhLuongRoiThem_Agg4 { get; set; } //92
+        public Decimal SaiSoTren_Agg5 { get; set; } //96
+        public Decimal SaiSoDuoi_Agg5 { get; set; } //100
+        public Decimal RoiTuDo_Agg5 { get; set; } //104
+        public Decimal ThoiGianMoCan_Agg5 { get; set; } //108
+        public Decimal ThoiGianDongCan_Agg5 { get; set; } //112
+        public Decimal ThoiGianTinhLuongRoiThem_Agg5 { get; set; } //116
+        public Decimal SaiSoTren_Agg6 { get; set; } //120
+        public Decimal SaiSoDuoi_Agg6 { get; set; } //124
+        public Decimal RoiTuDo_Agg6 { get; set; } //128
+        public Decimal ThoiGianMoCan_Agg6 { get; set; } //132
+        public Decimal ThoiGianDongCan_Agg6 { get; set; } //136
+        public Decimal ThoiGianTinhLuongRoiThem_Agg6 { get; set; } //140
+        public Decimal SaiSoTren_Ce1 { get; set; } //144
+        public Decimal SaiSoDuoi_Ce1 { get; set; } //148
+        public Decimal RoiTuDo_Ce1 { get; set; } //152
+        public Decimal ThoiGianMoCan_Ce1 { get; set; } //156
+        public Decimal ThoiGianDongCan_Ce1 { get; set; } //160
+        public Decimal ThoiGianTinhLuongRoiThem_Ce1 { get; set; } //164
+        public Decimal SaiSoTren_Ce2 { get; set; } //168
+        public Decimal SaiSoDuoi_Ce2 { get; set; } //172
+        public Decimal RoiTuDo_Ce2 { get; set; } //176
+        public Decimal ThoiGianMoCan_Ce2 { get; set; } //180
+        public Decimal ThoiGianDongCan_Ce2 { get; set; } //184
+        public Decimal ThoiGianTinhLuongRoiThem_Ce2 { get; set; } //188
+        public Decimal SaiSoTren_Ce3 { get; set; } //192
+        public Decimal SaiSoDuoi_Ce3 { get; set; } //196
+        public Decimal RoiTuDo_Ce3 { get; set; } //200
+        public Decimal ThoiGianMoCan_Ce3 { get; set; } //204
+        public Decimal ThoiGianDongCan_Ce3 { get; set; } //208
+        public Decimal ThoiGianTinhLuongRoiThem_Ce3 { get; set; } //212
+        public Decimal SaiSoTren_Ce4 { get; set; } //216
+        public Decimal SaiSoDuoi_Ce4 { get; set; } //220
+        public Decimal RoiTuDo_Ce4 { get; set; } //224
+        public Decimal ThoiGianMoCan_Ce4 { get; set; } //228
+        public Decimal ThoiGianDongCan_Ce4 { get; set; } //232
+        public Decimal ThoiGianTinhLuongRoiThem_Ce4 { get; set; } //236
+        public Decimal SaiSoTren_Ce5 { get; set; } //240
+        public Decimal SaiSoDuoi_Ce5 { get; set; } //244
+        public Decimal RoiTuDo_Ce5 { get; set; } //248
+        public Decimal ThoiGianMoCan_Ce5 { get; set; } //252
+        public Decimal ThoiGianDongCan_Ce5 { get; set; } //256
+        public Decimal ThoiGianTinhLuongRoiThem_Ce5 { get; set; } //260
+        public Decimal SaiSoTren_Wa1 { get; set; } //264
+        public Decimal SaiSoDuoi_Wa1 { get; set; } //268
+        public Decimal RoiTuDo_Wa1 { get; set; } //272
+        public Decimal ThoiGianMoCan_Wa1 { get; set; } //276
+        public Decimal ThoiGianDongCan_Wa1 { get; set; } //280
+        public Decimal ThoiGianTinhLuongRoiThem_Wa1 { get; set; } //284
+        public Decimal SaiSoTren_Wa2 { get; set; } //288
+        public Decimal SaiSoDuoi_Wa2 { get; set; } //292
+        public Decimal RoiTuDo_Wa2 { get; set; } //296
+        public Decimal ThoiGianMoCan_Wa2 { get; set; } //300
+        public Decimal ThoiGianDongCan_Wa2 { get; set; } //304
+        public Decimal ThoiGianTinhLuongRoiThem_Wa2 { get; set; } //308
+        public Decimal SaiSoTren_Add1 { get; set; } //312
+        public Decimal SaiSoDuoi_Add1 { get; set; } //316
+        public Decimal RoiTuDo_Add1 { get; set; } //320
+        public Decimal ThoiGianMoCan_Add1 { get; set; } //324
+        public Decimal ThoiGianDongCan_Add1 { get; set; } //328
+        public Decimal ThoiGianTinhLuongRoiThem_Add1 { get; set; } //332
+        public Decimal SaiSoTren_Add2 { get; set; } //336
+        public Decimal SaiSoDuoi_Add2 { get; set; } //340
+        public Decimal RoiTuDo_Add2 { get; set; } //344
+        public Decimal ThoiGianMoCan_Add2 { get; set; } //348
+        public Decimal ThoiGianDongCan_Add2 { get; set; } //352
+        public Decimal ThoiGianTinhLuongRoiThem_Add2 { get; set; } //356
+        public Decimal SaiSoTren_Add3 { get; set; } //360
+        public Decimal SaiSoDuoi_Add3 { get; set; } //364
+        public Decimal RoiTuDo_Add3 { get; set; } //368
+        public Decimal ThoiGianMoCan_Add3 { get; set; } //372
+        public Decimal ThoiGianDongCan_Add3 { get; set; } //276
+        public Decimal ThoiGianTinhLuongRoiThem_Add3 { get; set; } //380
+        public Decimal SaiSoTren_Add4 { get; set; } //384
+        public Decimal SaiSoDuoi_Add4 { get; set; } //388
+        public Decimal RoiTuDo_Add4 { get; set; } //392
+        public Decimal ThoiGianMoCan_Add4 { get; set; } //396
+        public Decimal ThoiGianDongCan_Add4 { get; set; } //400
+        public Decimal ThoiGianTinhLuongRoiThem_Add4 { get; set; } //404
+        public Decimal SaiSoTren_Add5 { get; set; } //408
+        public Decimal SaiSoDuoi_Add5 { get; set; } //412
+        public Decimal RoiTuDo_Add5 { get; set; } //416
+        public Decimal ThoiGianMoCan_Add5 { get; set; } //420
+        public Decimal ThoiGianDongCan_Add5 { get; set; } //424
+        public Decimal ThoiGianTinhLuongRoiThem_Add5 { get; set; } //428
+        public Decimal SaiSoTren_Add6 { get; set; } //432
+        public Decimal SaiSoDuoi_Add6 { get; set; } //436
+        public Decimal RoiTuDo_Add6 { get; set; } //440
+        public Decimal ThoiGianMoCan_Add6 { get; set; } //444
+        public Decimal ThoiGianDongCan_Add6 { get; set; } //448
+        public Decimal ThoiGianTinhLuongRoiThem_Add6 { get; set; } //452
+
+        // Add 0208 Bù trừ khối lượng xác nhận cân dư
+
+        public bool BuTruKLMT_Agg1 { get; set; }
+        public bool BuTruKLMT_Agg2 { get; set; }
+        public bool BuTruKLMT_Agg3 { get; set; }
+        public bool BuTruKLMT_Agg4 { get; set; }
+        public bool BuTruKLMT_Agg5 { get; set; }
+        public bool BuTruKLMT_Agg6 { get; set; }
+        public bool BuTruKLMT_Ce1 { get; set; }
+        public bool BuTruKLMT_Ce2 { get; set; }
+        public bool BuTruKLMT_Ce3 { get; set; }
+        public bool BuTruKLMT_Ce4 { get; set; }
+        public bool BuTruKLMT_Ce5 { get; set; }
+        public bool BuTruKLMT_Wa1 { get; set; }
+        public bool BuTruKLMT_Wa2 { get; set; }
+        public bool BuTruKLMT_Add1 { get; set; }
+        public bool BuTruKLMT_Add2 { get; set; }
+        public bool BuTruKLMT_Add3 { get; set; }
+        public bool BuTruKLMT_Add4 { get; set; }
+        public bool BuTruKLMT_Add5 { get; set; }
+        public bool BuTruKLMT_Add6 { get; set; }
+
+        public bool TuDongXNCD_Agg1 { get; set; }
+        public bool TuDongXNCD_Agg2 { get; set; }
+        public bool TuDongXNCD_Agg3 { get; set; }
+        public bool TuDongXNCD_Agg4 { get; set; }
+        public bool TuDongXNCD_Agg5 { get; set; }
+        public bool TuDongXNCD_Agg6 { get; set; }
+        public bool TuDongXNCD_Ce1 { get; set; }
+        public bool TuDongXNCD_Ce2 { get; set; }
+        public bool TuDongXNCD_Ce3 { get; set; }
+        public bool TuDongXNCD_Ce4 { get; set; }
+        public bool TuDongXNCD_Ce5 { get; set; }
+        public bool TuDongXNCD_Wa1 { get; set; }
+        public bool TuDongXNCD_Wa2 { get; set; }
+        public bool TuDongXNCD_Add1 { get; set; }
+        public bool TuDongXNCD_Add2 { get; set; }
+        public bool TuDongXNCD_Add3 { get; set; }
+        public bool TuDongXNCD_Add4 { get; set; }
+        public bool TuDongXNCD_Add5 { get; set; }
+        public bool TuDongXNCD_Add6 { get; set; }
+        public bool GIU_LAI_CAN_AGG1 { get; set; }
+        public bool GIU_LAI_CAN_AGG2 { get; set; }
+        public bool GIU_LAI_CAN_AGG3 { get; set; }
+        public bool GIU_LAI_CAN_AGG4 { get; set; }
+        public bool GIU_LAI_CAN_AGG5 { get; set; }
+        public bool GIU_LAI_CAN_AGG6 { get; set; }
+        public bool GIU_LAI_CAN_CE1 { get; set; }
+        public bool GIU_LAI_CAN_CE2 { get; set; }
+        public bool GIU_LAI_CAN_WA1 { get; set; }
+        public bool GIU_LAI_CAN_WA2 { get; set; }
+        public bool GIU_LAI_CAN_ADD1 { get; set; }
+        public bool GIU_LAI_CAN_ADD2 { get; set; }
+
 
 
         //================================================= DB4 WRITE DATA WEIGHT
         //=================================================AGG1
-        public Double ThoiGianTreCan_Agg1 { get; set; } //0
-        public Double ThoiGianTreXa_Agg1 { get; set; } //4
-        public Double ThoiGianTreDongCan_Agg1 { get; set; } //8
-        public Double KhoiLuongBaoRong_Agg1 { get; set; } //12
-        public Double KhoiLuongRungCan_Agg1 { get; set; } //16
-        public Double ThoiGianBatRung_Agg1 { get; set; } //20
-        public Double ThoiGianTatRung_Agg1 { get; set; } //24
+        public Decimal ThoiGianTreCan_Agg1 { get; set; } //0
+        public Decimal ThoiGianTreXa_Agg1 { get; set; } //4
+        public Decimal ThoiGianTreDongCan_Agg1 { get; set; } //8
+        public Decimal KhoiLuongBaoRong_Agg1 { get; set; } //12
+        public Decimal KhoiLuongRungCan_Agg1 { get; set; } //16
+        public Decimal ThoiGianBatRung_Agg1 { get; set; } //20
+        public Decimal ThoiGianTatRung_Agg1 { get; set; } //24
         //=================================================AGG2
-        public Double ThoiGianTreCan_Agg2 { get; set; } //28
-        public Double ThoiGianTreXa_Agg2 { get; set; } //32
-        public Double ThoiGianTreDongCan_Agg2 { get; set; } //36
-        public Double KhoiLuongBaoRong_Agg2 { get; set; } //40
-        public Double KhoiLuongRungCan_Agg2 { get; set; } //44
-        public Double ThoiGianBatRung_Agg2 { get; set; } //48
-        public Double ThoiGianTatRung_Agg2 { get; set; } //52
+        public Decimal ThoiGianTreCan_Agg2 { get; set; } //28
+        public Decimal ThoiGianTreXa_Agg2 { get; set; } //32
+        public Decimal ThoiGianTreDongCan_Agg2 { get; set; } //36
+        public Decimal KhoiLuongBaoRong_Agg2 { get; set; } //40
+        public Decimal KhoiLuongRungCan_Agg2 { get; set; } //44
+        public Decimal ThoiGianBatRung_Agg2 { get; set; } //48
+        public Decimal ThoiGianTatRung_Agg2 { get; set; } //52
         //=================================================AGG3
-        public Double ThoiGianTreCan_Agg3 { get; set; } //56
-        public Double ThoiGianTreXa_Agg3 { get; set; } //60
-        public Double ThoiGianTreDongCan_Agg3 { get; set; } //64
-        public Double KhoiLuongBaoRong_Agg3 { get; set; } //68
-        public Double KhoiLuongRungCan_Agg3 { get; set; } //72
-        public Double ThoiGianBatRung_Agg3 { get; set; } //76
-        public Double ThoiGianTatRung_Agg3 { get; set; } //80
+        public Decimal ThoiGianTreCan_Agg3 { get; set; } //56
+        public Decimal ThoiGianTreXa_Agg3 { get; set; } //60
+        public Decimal ThoiGianTreDongCan_Agg3 { get; set; } //64
+        public Decimal KhoiLuongBaoRong_Agg3 { get; set; } //68
+        public Decimal KhoiLuongRungCan_Agg3 { get; set; } //72
+        public Decimal ThoiGianBatRung_Agg3 { get; set; } //76
+        public Decimal ThoiGianTatRung_Agg3 { get; set; } //80
         //=================================================AGG4
-        public Double ThoiGianTreCan_Agg4 { get; set; } //84
-        public Double ThoiGianTreXa_Agg4 { get; set; } //88
-        public Double ThoiGianTreDongCan_Agg4 { get; set; } //92
-        public Double KhoiLuongBaoRong_Agg4 { get; set; } //96
-        public Double KhoiLuongRungCan_Agg4 { get; set; } //100
-        public Double ThoiGianBatRung_Agg4 { get; set; } //104
-        public Double ThoiGianTatRung_Agg4 { get; set; } //108
+        public Decimal ThoiGianTreCan_Agg4 { get; set; } //84
+        public Decimal ThoiGianTreXa_Agg4 { get; set; } //88
+        public Decimal ThoiGianTreDongCan_Agg4 { get; set; } //92
+        public Decimal KhoiLuongBaoRong_Agg4 { get; set; } //96
+        public Decimal KhoiLuongRungCan_Agg4 { get; set; } //100
+        public Decimal ThoiGianBatRung_Agg4 { get; set; } //104
+        public Decimal ThoiGianTatRung_Agg4 { get; set; } //108
         //=================================================AGG5
-        public Double ThoiGianTreCan_Agg5 { get; set; } //112
-        public Double ThoiGianTreXa_Agg5 { get; set; } //116
-        public Double ThoiGianTreDongCan_Agg5 { get; set; } //120
-        public Double KhoiLuongBaoRong_Agg5 { get; set; } //124
-        public Double KhoiLuongRungCan_Agg5 { get; set; } //128
-        public Double ThoiGianBatRung_Agg5 { get; set; } //132
-        public Double ThoiGianTatRung_Agg5 { get; set; } //136
+        public Decimal ThoiGianTreCan_Agg5 { get; set; } //112
+        public Decimal ThoiGianTreXa_Agg5 { get; set; } //116
+        public Decimal ThoiGianTreDongCan_Agg5 { get; set; } //120
+        public Decimal KhoiLuongBaoRong_Agg5 { get; set; } //124
+        public Decimal KhoiLuongRungCan_Agg5 { get; set; } //128
+        public Decimal ThoiGianBatRung_Agg5 { get; set; } //132
+        public Decimal ThoiGianTatRung_Agg5 { get; set; } //136
         //=================================================AGG6
-        public Double ThoiGianTreCan_Agg6 { get; set; } //140
-        public Double ThoiGianTreXa_Agg6 { get; set; } //144
-        public Double ThoiGianTreDongCan_Agg6 { get; set; } //148
-        public Double KhoiLuongBaoRong_Agg6 { get; set; } //152
-        public Double KhoiLuongRungCan_Agg6 { get; set; } //156
-        public Double ThoiGianBatRung_Agg6 { get; set; } //160
-        public Double ThoiGianTatRung_Agg6 { get; set; } //164
+        public Decimal ThoiGianTreCan_Agg6 { get; set; } //140
+        public Decimal ThoiGianTreXa_Agg6 { get; set; } //144
+        public Decimal ThoiGianTreDongCan_Agg6 { get; set; } //148
+        public Decimal KhoiLuongBaoRong_Agg6 { get; set; } //152
+        public Decimal KhoiLuongRungCan_Agg6 { get; set; } //156
+        public Decimal ThoiGianBatRung_Agg6 { get; set; } //160
+        public Decimal ThoiGianTatRung_Agg6 { get; set; } //164
         //=================================================CE1
-        public Double ThoiGianTreCan_Ce1 { get; set; } //168
-        public Double ThoiGianTreXa_Ce1 { get; set; } //172
-        public Double ThoiGianTreDongCan_Ce1 { get; set; } //176
-        public Double KhoiLuongBaoRong_Ce1 { get; set; } //180
-        public Double KhoiLuongRungCan_Ce1 { get; set; } //184
-        public Double ThoiGianBatRung_Ce1 { get; set; } //188
-        public Double ThoiGianTatRung_Ce1 { get; set; } //192
+        public Decimal ThoiGianTreCan_Ce1 { get; set; } //168
+        public Decimal ThoiGianTreXa_Ce1 { get; set; } //172
+        public Decimal ThoiGianTreDongCan_Ce1 { get; set; } //176
+        public Decimal KhoiLuongBaoRong_Ce1 { get; set; } //180
+        public Decimal KhoiLuongRungCan_Ce1 { get; set; } //184
+        public Decimal ThoiGianBatRung_Ce1 { get; set; } //188
+        public Decimal ThoiGianTatRung_Ce1 { get; set; } //192
         //=================================================CE2
-        public Double ThoiGianTreCan_Ce2 { get; set; } //196
-        public Double ThoiGianTreXa_Ce2 { get; set; } //200
-        public Double ThoiGianTreDongCan_Ce2 { get; set; } //204
-        public Double KhoiLuongBaoRong_Ce2 { get; set; } //208
-        public Double KhoiLuongRungCan_Ce2 { get; set; } //212
-        public Double ThoiGianBatRung_Ce2 { get; set; } //216
-        public Double ThoiGianTatRung_Ce2 { get; set; } //220
+        public Decimal ThoiGianTreCan_Ce2 { get; set; } //196
+        public Decimal ThoiGianTreXa_Ce2 { get; set; } //200
+        public Decimal ThoiGianTreDongCan_Ce2 { get; set; } //204
+        public Decimal KhoiLuongBaoRong_Ce2 { get; set; } //208
+        public Decimal KhoiLuongRungCan_Ce2 { get; set; } //212
+        public Decimal ThoiGianBatRung_Ce2 { get; set; } //216
+        public Decimal ThoiGianTatRung_Ce2 { get; set; } //220
         //=================================================WA1
-        public Double ThoiGianTreCan_Wa1 { get; set; } //224
-        public Double ThoiGianTreXa_Wa1 { get; set; } //228
-        public Double ThoiGianTreDongCan_Wa1 { get; set; } //232
-        public Double KhoiLuongBaoRong_Wa1 { get; set; } //236
+        public Decimal ThoiGianTreCan_Wa1 { get; set; } //224
+        public Decimal ThoiGianTreXa_Wa1 { get; set; } //228
+        public Decimal ThoiGianTreDongCan_Wa1 { get; set; } //232
+        public Decimal KhoiLuongBaoRong_Wa1 { get; set; } //236
         //=================================================WA2
-        public Double ThoiGianTreCan_Wa2 { get; set; } //240
-        public Double ThoiGianTreXa_Wa2 { get; set; } //244
-        public Double ThoiGianTreDongCan_Wa2 { get; set; } //248
-        public Double KhoiLuongBaoRong_Wa2 { get; set; } //252
+        public Decimal ThoiGianTreCan_Wa2 { get; set; } //240
+        public Decimal ThoiGianTreXa_Wa2 { get; set; } //244
+        public Decimal ThoiGianTreDongCan_Wa2 { get; set; } //248
+        public Decimal KhoiLuongBaoRong_Wa2 { get; set; } //252
         //=================================================ADD1
-        public Double ThoiGianTreCan_Add1 { get; set; } //256
-        public Double ThoiGianTreXa_Add1 { get; set; } //260
-        public Double ThoiGianTreDongCan_Add1 { get; set; } //264
-        public Double KhoiLuongBaoRong_Add1 { get; set; } //268
+        public Decimal ThoiGianTreCan_Add1 { get; set; } //256
+        public Decimal ThoiGianTreXa_Add1 { get; set; } //260
+        public Decimal ThoiGianTreDongCan_Add1 { get; set; } //264
+        public Decimal KhoiLuongBaoRong_Add1 { get; set; } //268
         //=================================================ADD2
-        public Double ThoiGianTreCan_Add2 { get; set; } //272
-        public Double ThoiGianTreXa_Add2 { get; set; } //276
-        public Double ThoiGianTreDongCan_Add2 { get; set; } //280
-        public Double KhoiLuongBaoRong_Add2 { get; set; } //284
+        public Decimal ThoiGianTreCan_Add2 { get; set; } //272
+        public Decimal ThoiGianTreXa_Add2 { get; set; } //276
+        public Decimal ThoiGianTreDongCan_Add2 { get; set; } //280
+        public Decimal KhoiLuongBaoRong_Add2 { get; set; } //284
 
         //================================================DU LIEU TRON
-        public Double SO_ME_TRON { get; set; } //288
-        public Double SV_AGG1 { get; set; } //292
-        public Double SV_AGG2 { get; set; } //296
-        public Double SV_AGG3 { get; set; } //300
-        public Double SV_AGG4 { get; set; } //304
-        public Double SV_AGG5 { get; set; } //308
-        public Double SV_AGG6 { get; set; } //312
-        public Double SV_CE1 { get; set; } //316
-        public Double SV_CE2 { get; set; } //320
-        public Double SV_CE3 { get; set; } //324
-        public Double SV_CE4 { get; set; } //328
-        public Double SV_CE5 { get; set; } //332
-        public Double SV_WA1 { get; set; } //336
-        public Double SV_WA2 { get; set; } //340
-        public Double SV_ADD1 { get; set; } //344
-        public Double SV_ADD2 { get; set; } //348
-        public Double SV_ADD3 { get; set; } //352
-        public Double SV_ADD4 { get; set; } //356
-        public Double SV_ADD5 { get; set; } //360
-        public Double SV_ADD6 { get; set; } //364
+        public Decimal SO_ME_TRON { get; set; } //288
+        public Decimal SV_AGG1 { get; set; } //292
+        public Decimal SV_AGG2 { get; set; } //296
+        public Decimal SV_AGG3 { get; set; } //300
+        public Decimal SV_AGG4 { get; set; } //304
+        public Decimal SV_AGG5 { get; set; } //308
+        public Decimal SV_AGG6 { get; set; } //312
+        public Decimal SV_CE1 { get; set; } //316
+        public Decimal SV_CE2 { get; set; } //320
+        public Decimal SV_CE3 { get; set; } //324
+        public Decimal SV_CE4 { get; set; } //328
+        public Decimal SV_CE5 { get; set; } //332
+        public Decimal SV_WA1 { get; set; } //336
+        public Decimal SV_WA2 { get; set; } //340
+        public Decimal SV_ADD1 { get; set; } //344
+        public Decimal SV_ADD2 { get; set; } //348
+        public Decimal SV_ADD3 { get; set; } //352
+        public Decimal SV_ADD4 { get; set; } //356
+        public Decimal SV_ADD5 { get; set; } //360
+        public Decimal SV_ADD6 { get; set; } //364
 
 
         //================================================= DB5 TIMER   
@@ -338,6 +393,7 @@ namespace NDPSo.MasterData
         public Double HSN_ADD4 { get; set; } //264
         public Double HSN_ADD5 { get; set; } //268
         public Double HSN_ADD6 { get; set; } //272
+        public Double TG_TRON_UOT { get; set; } //272
 
 
 
@@ -419,48 +475,48 @@ namespace NDPSo.MasterData
         
        
         //================================================= DB_4 WRITE DATA UPDATE
-        public Double KLTrenTungMe { get; set; }
-        public Double SoMeTron { get; set; } //288
+        public Decimal KLTrenTungMe { get; set; }
+        public int SoMeTron { get; set; } //288
         
-        public Double KL_CanCan_Agg1 { get; set; } // 292
-        public Double KL_CanCan_Agg2 { get; set; } // 296
-        public Double KL_CanCan_Agg3 { get; set; } // 300
-        public Double KL_CanCan_Agg4 { get; set; } // 304
-        public Double KL_CanCan_Agg5 { get; set; } // 308
-        public Double KL_CanCan_Agg6 { get; set; } // 312
-        public Double KL_CanCan_Ce1 { get; set; } // 316
-        public Double KL_CanCan_Ce2 { get; set; } // 320
-        public Double KL_CanCan_Ce3 { get; set; } // 324
-        public Double KL_CanCan_Ce4 { get; set; } // 328
-        public Double KL_CanCan_Ce5 { get; set; } // 332
-        public Double KL_CanCan_Wa1 { get; set; } // 336
-        public Double KL_CanCan_Wa2 { get; set; } // 340
-        public Double KL_CanCan_Add1 { get; set; } // 344
-        public Double KL_CanCan_Add2 { get; set; } // 348
-        public Double KL_CanCan_Add3 { get; set; } // 352
-        public Double KL_CanCan_Add4 { get; set; } // 356
-        public Double KL_CanCan_Add5 { get; set; } // 360
-        public Double KL_CanCan_Add6 { get; set; } // 360
+        public Decimal KL_CanCan_Agg1 { get; set; } // 292
+        public Decimal KL_CanCan_Agg2 { get; set; } // 296
+        public Decimal KL_CanCan_Agg3 { get; set; } // 300
+        public Decimal KL_CanCan_Agg4 { get; set; } // 304
+        public Decimal KL_CanCan_Agg5 { get; set; } // 308
+        public Decimal KL_CanCan_Agg6 { get; set; } // 312
+        public Decimal KL_CanCan_Ce1 { get; set; } // 316
+        public Decimal KL_CanCan_Ce2 { get; set; } // 320
+        public Decimal KL_CanCan_Ce3 { get; set; } // 324
+        public Decimal KL_CanCan_Ce4 { get; set; } // 328
+        public Decimal KL_CanCan_Ce5 { get; set; } // 332
+        public Decimal KL_CanCan_Wa1 { get; set; } // 336
+        public Decimal KL_CanCan_Wa2 { get; set; } // 340
+        public Decimal KL_CanCan_Add1 { get; set; } // 344
+        public Decimal KL_CanCan_Add2 { get; set; } // 348
+        public Decimal KL_CanCan_Add3 { get; set; } // 352
+        public Decimal KL_CanCan_Add4 { get; set; } // 356
+        public Decimal KL_CanCan_Add5 { get; set; } // 360
+        public Decimal KL_CanCan_Add6 { get; set; } // 360
 
-        public Double KL_CaiDat_Agg1 { get; set; }
-        public Double KL_CaiDat_Agg2 { get; set; }
-        public Double KL_CaiDat_Agg3 { get; set; }
-        public Double KL_CaiDat_Agg4 { get; set; }
-        public Double KL_CaiDat_Agg5 { get; set; }
-        public Double KL_CaiDat_Agg6 { get; set; }
-        public Double KL_CaiDat_Ce1 { get; set; }
-        public Double KL_CaiDat_Ce2 { get; set; }
-        public Double KL_CaiDat_Ce3 { get; set; }
-        public Double KL_CaiDat_Ce4 { get; set; }
-        public Double KL_CaiDat_Ce5 { get; set; }
-        public Double KL_CaiDat_Wa1 { get; set; }
-        public Double KL_CaiDat_Wa2 { get; set; }
-        public Double KL_CaiDat_Add1 { get; set; }
-        public Double KL_CaiDat_Add2 { get; set; }
-        public Double KL_CaiDat_Add3 { get; set; }
-        public Double KL_CaiDat_Add4 { get; set; }
-        public Double KL_CaiDat_Add5 { get; set; }
-        public Double KL_CaiDat_Add6 { get; set; }
+        public Decimal KL_CaiDat_Agg1 { get; set; }
+        public Decimal KL_CaiDat_Agg2 { get; set; }
+        public Decimal KL_CaiDat_Agg3 { get; set; }
+        public Decimal KL_CaiDat_Agg4 { get; set; }
+        public Decimal KL_CaiDat_Agg5 { get; set; }
+        public Decimal KL_CaiDat_Agg6 { get; set; }
+        public Decimal KL_CaiDat_Ce1 { get; set; }
+        public Decimal KL_CaiDat_Ce2 { get; set; }
+        public Decimal KL_CaiDat_Ce3 { get; set; }
+        public Decimal KL_CaiDat_Ce4 { get; set; }
+        public Decimal KL_CaiDat_Ce5 { get; set; }
+        public Decimal KL_CaiDat_Wa1 { get; set; }
+        public Decimal KL_CaiDat_Wa2 { get; set; }
+        public Decimal KL_CaiDat_Add1 { get; set; }
+        public Decimal KL_CaiDat_Add2 { get; set; }
+        public Decimal KL_CaiDat_Add3 { get; set; }
+        public Decimal KL_CaiDat_Add4 { get; set; }
+        public Decimal KL_CaiDat_Add5 { get; set; }
+        public Decimal KL_CaiDat_Add6 { get; set; }
         public void ResetValues()
         {
             

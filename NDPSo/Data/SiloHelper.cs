@@ -132,6 +132,8 @@ namespace NDPSo.Data
 			toObj.LatestUpdateDate = fromEnt.LatestUpdateDate;
 			toObj.LatestUpdatedBy = fromEnt.LatestUpdatedBy;
 			toObj.VersionNo = fromEnt.VersionNo;
+			toObj.BuTruKLMT = fromEnt.BuTruKLMT;
+			toObj.TuDongXNCD = fromEnt.TuDongXNCD;
 			if (toObj.SiloID > 0)
 			{
 				toObj.IsNewObject = false;
@@ -184,6 +186,8 @@ namespace NDPSo.Data
 			toEnt.LatestUpdateDate = fromObj.LatestUpdateDate;
 			toEnt.LatestUpdatedBy = fromObj.LatestUpdatedBy;
 			toEnt.VersionNo = fromObj.VersionNo;
+			toEnt.BuTruKLMT = fromObj.BuTruKLMT;
+			toEnt.TuDongXNCD = fromObj.TuDongXNCD;
 		}
 
 		public static ObjSilo BuildNewObjSilo(Silo entSilo)

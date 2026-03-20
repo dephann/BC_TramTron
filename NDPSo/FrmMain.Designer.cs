@@ -87,10 +87,6 @@ namespace NDPSo
             this.bbiConfigPrint = new DevExpress.XtraBars.BarButtonItem();
             this.bsiRemind = new DevExpress.XtraBars.BarStaticItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
-            this.bbiLogoProduct = new DevExpress.XtraBars.BarButtonItem();
-            this.bsiNameProduct = new DevExpress.XtraBars.BarStaticItem();
-            this.bsiWebProduct = new DevExpress.XtraBars.BarStaticItem();
-            this.bsiPhoneProduct = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.bbiConnectPLC = new DevExpress.XtraBars.BarButtonItem();
             this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
@@ -171,9 +167,6 @@ namespace NDPSo
             this.bbiWeigh,
             this.bbiTimerPara,
             this.barSubItem1,
-            this.bsiWebProduct,
-            this.bsiPhoneProduct,
-            this.bsiNameProduct,
             this.barEditItem1,
             this.barEditItem2,
             this.barEditItem3,
@@ -183,7 +176,6 @@ namespace NDPSo
             this.barButtonItem4,
             this.barButtonItem5,
             this.bbiConnectPLC,
-            this.bbiLogoProduct,
             this.barLinkContainerItem1,
             this.bbiConfigUI,
             this.bsiReports,
@@ -762,7 +754,7 @@ namespace NDPSo
             // 
             // bsiRemind
             // 
-            this.bsiRemind.Caption = "///";
+            this.bsiRemind.Caption = ".";
             this.bsiRemind.Id = 76;
             this.bsiRemind.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bsiRemind.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
@@ -779,10 +771,6 @@ namespace NDPSo
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiLogoProduct),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiNameProduct),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiWebProduct),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bsiPhoneProduct),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiConnectPLC),
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem4)});
@@ -790,46 +778,7 @@ namespace NDPSo
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
-            // 
-            // bbiLogoProduct
-            // 
-            this.bbiLogoProduct.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
-            this.bbiLogoProduct.AllowRightClickInMenu = false;
-            this.bbiLogoProduct.Caption = "bbiLogo";
-            this.bbiLogoProduct.Id = 55;
-            this.bbiLogoProduct.ImageOptions.Image = global::NDPSo.ResourceNDP.logo2;
-            this.bbiLogoProduct.Name = "bbiLogoProduct";
-            this.bbiLogoProduct.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
-            this.bbiLogoProduct.Size = new System.Drawing.Size(0, 30);
-            // 
-            // bsiNameProduct
-            // 
-            this.bsiNameProduct.Caption = "CÔNG TY TNHH CƠ ĐIỆN , XÂY DỰNG VÀ CẢNH QUAN  157";
-            this.bsiNameProduct.Id = 40;
-            this.bsiNameProduct.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsiNameProduct.ItemAppearance.Normal.Options.UseFont = true;
-            this.bsiNameProduct.Name = "bsiNameProduct";
-            // 
-            // bsiWebProduct
-            // 
-            this.bsiWebProduct.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            this.bsiWebProduct.Caption = "namdaiphat.vn";
-            this.bsiWebProduct.Id = 38;
-            this.bsiWebProduct.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsiWebProduct.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Blue;
-            this.bsiWebProduct.ItemAppearance.Normal.Options.UseFont = true;
-            this.bsiWebProduct.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.bsiWebProduct.Name = "bsiWebProduct";
-            // 
-            // bsiPhoneProduct
-            // 
-            this.bsiPhoneProduct.Caption = "Liên hệ: 0901.922.262 - 0902.300.072\r\n";
-            this.bsiPhoneProduct.Id = 39;
-            this.bsiPhoneProduct.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bsiPhoneProduct.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
-            this.bsiPhoneProduct.ItemAppearance.Normal.Options.UseFont = true;
-            this.bsiPhoneProduct.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.bsiPhoneProduct.Name = "bsiPhoneProduct";
+            
             // 
             // barButtonItem2
             // 
@@ -851,7 +800,7 @@ namespace NDPSo
             // 
             // barStaticItem4
             // 
-            this.barStaticItem4.Caption = "///";
+            this.barStaticItem4.Caption = ".";
             this.barStaticItem4.Id = 75;
             this.barStaticItem4.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.barStaticItem4.ItemAppearance.Normal.Options.UseFont = true;
@@ -864,31 +813,31 @@ namespace NDPSo
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1228, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(1225, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 545);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 580);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1228, 35);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1225, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 520);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 580);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1228, 25);
+            this.barDockControlRight.Location = new System.Drawing.Point(1225, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 520);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 580);
             // 
             // bbiReport
             // 
@@ -977,7 +926,7 @@ namespace NDPSo
             // 
             // barHeaderItem1
             // 
-            this.barHeaderItem1.Caption = "///";
+            this.barHeaderItem1.Caption = ".";
             this.barHeaderItem1.Id = 74;
             this.barHeaderItem1.Name = "barHeaderItem1";
             // 
@@ -1007,7 +956,7 @@ namespace NDPSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 580);
+            this.ClientSize = new System.Drawing.Size(1225, 580);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -1016,7 +965,7 @@ namespace NDPSo
             this.IsMdiContainer = true;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CMix - NDP V1. 080524";
+            this.Text = "CMix - DP V1. 02042025";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
@@ -1081,9 +1030,6 @@ namespace NDPSo
         private DevExpress.XtraBars.BarButtonItem bbiWeigh;
         private DevExpress.XtraBars.BarButtonItem bbiTimerPara;
         private DevExpress.XtraBars.BarSubItem barSubItem1;
-        private DevExpress.XtraBars.BarStaticItem bsiWebProduct;
-        private DevExpress.XtraBars.BarStaticItem bsiPhoneProduct;
-        private DevExpress.XtraBars.BarStaticItem bsiNameProduct;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraBars.BarEditItem barEditItem2;
@@ -1097,7 +1043,6 @@ namespace NDPSo
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem bbiConnectPLC;
         private System.Windows.Forms.Timer timer;
-        private DevExpress.XtraBars.BarButtonItem bbiLogoProduct;
         private DevExpress.XtraBars.BarLinkContainerItem barLinkContainerItem1;
         private DevExpress.XtraBars.BarButtonItem bbiConfigUI;
         private DevExpress.XtraBars.BarSubItem bsiReports;
@@ -1119,5 +1064,6 @@ namespace NDPSo
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
         private DevExpress.XtraBars.BarHeaderItem barHeaderItem1;
         private DevExpress.XtraBars.BarStaticItem bsiRemind;
+
     }
 }

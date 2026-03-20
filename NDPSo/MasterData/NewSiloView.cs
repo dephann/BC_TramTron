@@ -145,6 +145,8 @@ namespace NDPSo.MasterData
             this.spnKLRoiTrongTGT3.DataBindings.Add("EditValue", (object)this._sl, "KLRoi");
             this.chkActivated.DataBindings.Clear();
             this.chkActivated.DataBindings.Add("Checked", (object)this._sl, "Activated");
+            this.chcChoPhepBuTruKhoiLuong.DataBindings.Add("Checked", (object)this._sl, "BuTruKLMT");
+            this.chcChoPhepTuDongXNCD.DataBindings.Add("Checked", (object)this._sl, "TuDongXNCD");
         }
         private void SetCaption()
         {
@@ -364,7 +366,11 @@ namespace NDPSo.MasterData
             this.Close();
         }
 
-       
+        private void chcChoPhepBuTruKhoiLuong_CheckedChanged(object sender, EventArgs e) => this._sl.BuTruKLMT = new bool?(this.chcChoPhepBuTruKhoiLuong.Checked);
+
+        private void chcChoPhepTuDongXNCD_CheckedChanged(object sender, EventArgs e) => this._sl.TuDongXNCD = new bool?(this.chcChoPhepTuDongXNCD.Checked);
+
+
 
         //private void spnSoiTrongCat_EditValueChanged(object sender, EventArgs e) => this._sl.SoiTrongCat_NhomSiloAgg = new Decimal?(this.spnSoiTrongCat.Value);
 

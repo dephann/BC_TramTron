@@ -29,5 +29,6 @@ namespace NDPSo.EntityModel
         public Nullable<decimal> TON { get; set; }
         public Nullable<decimal> TOFF { get; set; }
         public Nullable<decimal> Spare { get; set; }
+        public Nullable<bool> GiuKLTC { get; set; }
     }
 }

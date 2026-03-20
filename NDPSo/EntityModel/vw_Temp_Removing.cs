@@ -37,5 +37,24 @@ namespace NDPSo.EntityModel
         public Nullable<decimal> DoAm_NhomSlioAgg { get; set; }
         public Nullable<decimal> DoHutNuoc_NhomSiloAgg { get; set; }
         public string MaSilo { get; set; }
+        public Nullable<int> TinhDoHutNuocID { get; set; }
+        public Nullable<int> SoiTrongCat_SiloId_NhomSiloAgg { get; set; }
+        public Nullable<decimal> SoiTrongCat_Percent_NhomSiloAgg { get; set; }
+        public Nullable<int> MaterialID { get; set; }
+        public string MaterialCode { get; set; }
+        public string MaterialName { get; set; }
+        public Nullable<int> STTSiloPLC { get; set; }
+        public Nullable<bool> IsManual { get; set; }
+        public Nullable<System.DateTime> NgayMTCT { get; set; }
+        public Nullable<int> PLCSaveId { get; set; }
+        public Nullable<System.DateTime> CreationDate { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> LatestUpdateDate { get; set; }
+        public Nullable<int> LatestUpdatedBy { get; set; }
+        public byte[] VersionNo { get; set; }
+        public Nullable<decimal> ValueBatAuto { get; set; }
+        public Nullable<decimal> ValueBatMan { get; set; }
+        public Nullable<decimal> ValueTol { get; set; }
+        public Nullable<decimal> ValuePerTol { get; set; }
     }
 }

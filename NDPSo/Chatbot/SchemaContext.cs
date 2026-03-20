@@ -2,6 +2,9 @@
 {
     public static class SchemaContext
     {
+        // ═══════════════════════════════════════════════════════════════
+        //  SYSTEM_PROMPT — giữ nguyên cũ (dùng cho các nơi gọi trực tiếp)
+        // ═══════════════════════════════════════════════════════════════
         public const string SYSTEM_PROMPT =
 @"Bạn là trợ lý AI vận hành trạm trộn bê tông. Database: Microsoft SQL Server.
 
@@ -17,156 +20,309 @@ KHI ĐÃ CÓ DỮ LIỆU: diễn giải kết quả bằng tiếng Việt, ngắ
 - Hôm nay: CAST(GETDATE() AS DATE)
 - Tháng này: MONTH(col)=MONTH(GETDATE()) AND YEAR(col)=YEAR(GETDATE())
 - Ưu tiên dùng VIEW thay vì tự JOIN nhiều bảng.
+- KHÔNG tự thêm IsDeleted=0.
+- KHÔNG dùng @tham số — dùng giá trị cụ thể hoặc GETDATE().
+- LUÔN dùng JOIN...ON theo FK, KHÔNG dùng IN(subquery).
+- MeTron KHÔNG CÓ cột MACID — phải JOIN qua PhieuTron.";
 
-=== BẢNG CHÍNH ===
+        // ═══════════════════════════════════════════════════════════════
+        //  INTERPRET_PROMPT — giữ nguyên cũ + nâng cấp tone
+        // ═══════════════════════════════════════════════════════════════
+        public const string INTERPRET_PROMPT =
+@"Bạn là trợ lý vận hành trạm trộn bê tông, nói chuyện thân thiện như đồng nghiệp.
 
--- SẢN XUẤT
-dbo.MeTron(MeTronID, LnNo, NgayMeTron, PhieuTronID, KhoiLuong, MoTa, Status, IsManual, IsDeleted, DeletedBy, DeleteReason, CreationDate, CreatedBy, LatestUpdateDate, LatestUpdatedBy)
+CÁCH TRẢ LỜI:
+- Dùng ngôn ngữ tự nhiên, gần gũi — KHÔNG dùng markdown (**, ##, -)
+- Trả lời trực tiếp vào câu hỏi, dùng số liệu cụ thể
+- Tóm tắt tổng thể trước, chi tiết nổi bật sau
+- Nếu không có dữ liệu: gợi ý cách hỏi khác, KHÔNG nói cứng là 'không có'";
 
-dbo.MeTronChiTiet(MeTronChiTietID, MeTronID, MACSiloID, Value, ValueBat, ValueBatAuto, ValueBatMan, ValueTol, ValuePerTol, SiloValue, SaiSoDuoi, SaiSoTren, KLCanNhoNhat, KLCanLonNhat, KLRoi, MaterialID, MaterialCode, MaterialName, MaSilo, STTSiloPLC, IsManual, NgayMTCT, PLCSaveId, CreationDate, CreatedBy)
+        // ═══════════════════════════════════════════════════════════════
+        //  ALL_TABLES — 39 bảng chính xác từ script.sql
+        // ═══════════════════════════════════════════════════════════════
+        public const string ALL_TABLES =
+@"=== 39 BẢNG CHÍNH XÁC TỪ DATABASE ===
 
-dbo.MeTronChiTietGiaoHang(MeTronChiTietID, MeTronID, MACSiloID, Value, ValueBat, SiloValue, MaterialID, MaterialCode, MaterialName, MaSilo, IsManual, NgayMTCT, CreationDate, CreatedBy)
+-- SẢN XUẤT CHÍNH
+MeTron(MeTronID[PK], LnNo, NgayMeTron[datetime], PhieuTronID[FK→PhieuTron],
+  KhoiLuong[m³], MoTa, Status, IsManual, IsDeleted, CreationDate, CreatedBy)
+  !! MeTron KHÔNG CÓ cột MACID, KhachHangID, CongTruongID, XeID, TaiXeID !!
+  !! Muốn lấy MAC/KH/CT/Xe: phải JOIN PhieuTron trước !!
 
-dbo.PhieuTron(PhieuTronID, MaPhieuTron, NgayPhieuTron, KLDuTinh, KLThuc, KLDuTinhCuaTungMe, KLBuTruMeCuoi, SLMeDuTinh, SLMeHieuChinh, SLMeDaTron, HopDongID, KhachHangID, CongTruongID, MACID, HangMucID, XeID, TaiXeID, NhanVienID, NguoiTron, Status, IsQueued, MinKLTron, MaxKLTron, MaxKLXeCho, NoPhieu, CreationDate, CreatedBy, LatestUpdateDate)
+MeTronChiTiet(MeTronChiTietID[PK], MeTronID[FK→MeTron], MACSiloID[FK→MACSilo],
+  Value[KL thiết kế,kg], ValueBat[KL thực tế,kg], ValueBatAuto, ValueBatMan[cân tay,kg],
+  ValueTol[sai số,kg], ValuePerTol[sai số,%], SiloValue,
+  SaiSoDuoi, SaiSoTren, KLCanNhoNhat, KLCanLonNhat, KLRoi,
+  MaterialID[FK→Material], MaterialCode, MaterialName,
+  MaSilo[Agg1-6/Ce1-6/Wa1-2/Add1-8], STTSiloPLC, IsManual, NgayMTCT, CreationDate, CreatedBy)
 
-dbo.PhieuGiaoHang(PhieuTronID, MaPhieuTron, NgayPhieuTron, KLDuTinh, KLThuc, KhachHangID, TenKhachHang, CongTruongID, TenCongTruong, HangMucID, TenHangMuc, DiaDiem, MACID, TenMAC, CuongDo, DoSut, TheTich, LuyKe, TaiXeID, TenTaiXe, XeID, BienSo, NiemChi, NguoiTron, Activated, GioBD, GioKT, MaHopDong, NoPhieu, CreationDate, CreatedBy)
+MeTronChiTietGiaoHang(MeTronChiTietID[PK], MeTronID[FK→MeTron], MACSiloID[FK→MACSilo],
+  Value, ValueBat, SiloValue, MaterialID, MaterialCode, MaterialName,
+  MaSilo, IsManual, NgayMTCT, CreationDate, CreatedBy)
 
-dbo.DuLieuTron(DuLieuTronID, HopDongID, MaHopDong, TenHopDong, NgayHopDong, KhachHangID, CongTruongID, MACID, DoSut, KLDatHang, KLDaGiao, KLConLai, KLTaoPhieuTron, Status, HangMucID, Activated, CreationDate, CreatedBy)
+PhieuTron(PhieuTronID[PK], MaPhieuTron, NgayPhieuTron[datetime],
+  KLDuTinh[m³], KLThuc[m³], KLDuTinhCuaTungMe, KLBuTruMeCuoi,
+  SLMeDuTinh, SLMeHieuChinh, SLMeDaTron,
+  HopDongID[FK→HopDong], KhachHangID[FK→KhachHang],
+  CongTruongID[FK→CongTruong], MACID[FK→MAC],
+  HangMucID[FK→HangMuc], XeID[FK→Xe], TaiXeID[FK→TaiXe],
+  NhanVienID[FK→NhanVien], NguoiTron, MoTa, Status, ThoiGianTron,
+  IsQueued, MinKLTron, MaxKLTron, MaxKLXeCho, NoPhieu, CreationDate, CreatedBy)
 
--- HỢP ĐỒNG & HẠNG MỤC
-dbo.HopDong(HopDongID, MaHopDong, TenHopDong, NgayHopDong, KhachHangID, CongTruongID, MACID, HangMucID, DoSut, KLDatHang, KLDaGiao, KLConLai, Status, TongPhieu, CreationDate, CreatedBy)
+PhieuGiaoHang(PhieuTronID[PK], MaPhieuTron, NgayPhieuTron,
+  KLDuTinh, KLThuc, SLMeDuTinh, SLMeDaTron,
+  HopDongID, KhachHangID, TenKhachHang[denorm],
+  CongTruongID, TenCongTruong[denorm], HangMucID, TenHangMuc[denorm],
+  DiaDiem, MACID, TenMAC[denorm], CuongDo, DoSut, TheTich, LuyKe,
+  TaiXeID, TenTaiXe[denorm], XeID, BienSo[denorm],
+  NiemChi, NguoiTron, Activated, GioBD, GioKT, MaHopDong, NoPhieu,
+  CreationDate, CreatedBy)
 
-dbo.HangMuc(HangMucID, MaHangMuc, TenHangMuc, GhiChu, Activated, CreationDate, CreatedBy)
+HopDong(HopDongID[PK], MaHopDong, TenHopDong, NgayHopDong,
+  KhachHangID[FK→KhachHang], CongTruongID[FK→CongTruong],
+  MACID[FK→MAC], HangMucID[FK→HangMuc], DoSut,
+  KLDatHang[m³], KLDaGiao[m³], KLConLai[m³], KLTaoPhieuTron,
+  Status, TongPhieu, MoTa, CreationDate, CreatedBy)
 
--- KHÁCH HÀNG & CÔNG TRƯỜNG
-dbo.KhachHang(KhachHangID, MaKhachHang, TenKhachHang, GioiTinh, DiaChi, Email, Phone, Fax, GhiChu, Activated)
+DuLieuTron(DuLieuTronID[PK], HopDongID[FK→HopDong],
+  MaHopDong, TenHopDong, NgayHopDong, KhachHangID, CongTruongID, MACID,
+  HangMucID, DoSut, KLDatHang, KLDaGiao, KLConLai, KLTaoPhieuTron,
+  NPKhachHangTenKhachHang, NPCongTruongTenCongTruong,
+  NPMACMaMAC, NPMACTenMAC,
+  Status, LastStatus, LnNo, Activated, CreationDate, CreatedBy)
 
-dbo.CongTruong(CongTruongID, MaCongTruong, TenCongTruong, DiaChi, Phone, GhiChu, Activated)
+KhachHang(KhachHangID[PK], MaKhachHang, TenKhachHang, GioiTinh,
+  DiaChi, Email, Phone, Fax, GhiChu, Activated)
 
--- VẬT LIỆU & SILO
-dbo.Material(MaterialID, MaterialCode, MaterialName, Description, Activated, Supplier, Unit, Price)
+CongTruong(CongTruongID[PK], MaCongTruong, TenCongTruong,
+  DiaChi, Phone, GhiChu, Activated)
 
-dbo.VatTu(VatTuID, MaVatTu, TenVatTu, Description, CreationDate, CreatedBy)
+HangMuc(HangMucID[PK], MaHangMuc, TenHangMuc, GhiChu, Activated)
 
-dbo.Silo(SiloID, MaSilo, TenSilo, NhomSiloID, MaterialID, MaterialCode, MaterialName, SaiSoDuoi, SaiSoTren, KLCanNhoNhat, KLCanLonNhat, DoAm_NhomSlioAgg, DoHutNuoc_NhomSiloAgg, Activated)
+MAC(MACID[PK], MaMAC, TenMAC, GhiChu, DoSut, ThemBotNuoc1, ThemBotNuoc2, Activated)
+  -- MACID chỉ có trong: PhieuTron, HopDong, DuLieuTron, MACSilo
+  -- KHÔNG có trong MeTron — phải qua PhieuTron
 
-dbo.NhomSilo(NhomSiloID, MaNhomSilo, TenNhomSilo, GhiChu)
+MACSilo(MACSiloID[PK], MACID[FK→MAC], SiloID[FK→Silo], SiloValue[kg], GhiChu)
 
-dbo.MACSilo(MACSiloID, MACID, SiloID, SiloValue, GhiChu, CreationDate)
+Silo(SiloID[PK], MaSilo, TenSilo, NhomSiloID[FK→NhomSilo],
+  SaiSoDuoi, SaiSoTren, KLCanNhoNhat, KLCanLonNhat,
+  TinhDoHutNuocID[FK→TinhDoHutNuoc],
+  MaterialID[FK→Material], MaterialCode, MaterialName, Activated)
 
-dbo.WeiSiloSaving(WeiSiloSavingID, MaCan, MaSilo, GhiChu, CreationDate)
+NhomSilo(NhomSiloID[PK], MaNhomSilo, TenNhomSilo, GhiChu)
+Material(MaterialID[PK], MaterialCode, MaterialName, Description, Activated, Supplier, Unit, Price)
+VatTu(VatTuID[PK], MaVatTu, TenVatTu, Description, CreationDate)
 
-dbo.WeiSiloVisible(WeiSiloVisibleID, Code, Type, Visible)
+TinhDoHutNuoc(TinhDoHutNuocID[PK], MaTinhDoHutNuoc, NgayTinhDoHut,
+  NhomSiloID[FK→NhomSilo], Name, DoHutNuoc[%], Description)
+TinhDoHutNuocChiTiet(TinhDoHutNuocChiTietID[PK],
+  TinhDoHutNuocID[FK→TinhDoHutNuoc], KichCo, Percentage, Value)
 
-dbo.Weigh(WeighID, WeighCode, WeighName, STT, Zero, Max, Offset, KLEmpty, Limit)
+WeiSiloSaving(WeiSiloSavingID[PK], MaCan, MaSilo, GhiChu)
+WeiSiloVisible(WeiSiloVisibleID[PK], Code, Type, Visible)
+Weigh(WeighID[PK], WeighCode, WeighName, STT, Zero, Max, Offset, KLEmpty, Limit)
 
-dbo.TinhDoHutNuoc(TinhDoHutNuocID, MaTinhDoHutNuoc, NgayTinhDoHut, NhomSiloID, Name, DoHutNuoc, Description)
+Xe(XeID[PK], BienSo, KhoiLuong[tải trọng,tấn], GhiChu, Activated)
+TaiXe(TaiXeID[PK], MaTaiXe, TenTaiXe, NamSinh, GioiTinh, Phone, GhiChu, Activated)
+NhanVien(NhanVienID[PK], MaNhanVien, TenNhanVien, NamSinh, GioiTinh, Phone, GhiChu, Activated)
 
-dbo.TinhDoHutNuocChiTiet(TinhDoHutNuocChiTietID, TinhDoHutNuocID, KichCo, Percentage, Value)
+SEC_User(UserID[PK], UserName, FullName, Department, Email, Phone, IsActived, IsInUse)
+SEC_Role(RoleID[PK], RoleName, Description)
+SEC_UserRole(UserRoleID[PK], UserID[FK→SEC_User], RoleID[FK→SEC_Role])
+SEC_Function(FunctionID[PK], FunctionCode, FunctionName, FunctionType, ParentID, Visible)
+SEC_RoleFunction(RoleFunctionID[PK], RoleID[FK→SEC_Role], FunctionID[FK→SEC_Function])
+SEC_TypeInfo(TypeInfoID[PK], TypeInfo, AssemblyID[FK→SEC_Assembly])
+SEC_Assembly(AssemblyID[PK], AssemblyInfo)
 
--- MÁY TRỘN
-dbo.MAC(MACID, MaMAC, TenMAC, GhiChu, DoSut, ThemBotNuoc1, ThemBotNuoc2, Activated)
+EventLog(EventLogID[PK], LogCode, LogDate[datetime], UserID, UserName,
+  EventActionCodeID[FK→EventActionCode], EventActionContent, Description,
+  OldValueText, NewValueText, Title1, Value1, Content1, CreationDate)
+EventActionCode(EventActionCodeID[PK], Code, CodeNumber, Content, Description, LnNo)
+TraceRecord(TraceRecordID[PK], RecordTime[datetime], UserID, UserName, FullName, FormName, ActionName)
 
--- VẬN CHUYỂN
-dbo.TaiXe(TaiXeID, MaTaiXe, TenTaiXe, NamSinh, GioiTinh, Phone, GhiChu, Activated)
+PCInput(PCInputID[PK], Code, Value, Description)
+PCOutput(PCOutputID[PK], Code, Value, Description)
+TimerPara(TimerParaID[PK], TimerParaCode, TimerParaValue, Description)
+SysCodeGen(SysCodeGenID[PK], TableName, Prefix, Length, CurrentNumber)
+bandwidth(bandwidthid[PK], networkid, lastday, lasthour, lastweek, lastmonth, active)
 
-dbo.Xe(XeID, BienSo, KhoiLuong, GhiChu, Activated)
+RptTongTungXe(MeTronID[PK], Ngay, MaPhieuTron, KH, CT, Name, Plate, MAC, KLMe,
+  Agg1-5, Ce1-6, Wa1-2, Add1-8 + _Bat variants)
+RptViewDataMix(MeTronID[PK], NgayMeTron, Ngay, Gio, MaPhieuTron, KH, CT, MAC, KLMe,
+  Agg1-5, Ce1-6, Wa1-2, Add1-8 + _Bat variants)";
 
--- NHÂN SỰ & USER
-dbo.NhanVien(NhanVienID, MaNhanVien, TenNhanVien, NamSinh, GioiTinh, Phone, GhiChu, Activated)
+        // ═══════════════════════════════════════════════════════════════
+        //  FK_COMPLETE — 31 FK chính xác từ script.sql
+        // ═══════════════════════════════════════════════════════════════
+        public const string FK_COMPLETE =
+@"=== 31 FOREIGN KEYS CHÍNH XÁC ===
+MeTron.PhieuTronID                        → PhieuTron.PhieuTronID
+MeTronChiTiet.MeTronID                    → MeTron.MeTronID
+MeTronChiTiet.MACSiloID                   → MACSilo.MACSiloID
+MeTronChiTietGiaoHang.MeTronID            → MeTron.MeTronID
+MeTronChiTietGiaoHang.MACSiloID           → MACSilo.MACSiloID
+PhieuTron.HopDongID                       → HopDong.HopDongID
+PhieuTron.KhachHangID                     → KhachHang.KhachHangID
+PhieuTron.CongTruongID                    → CongTruong.CongTruongID
+PhieuTron.MACID                           → MAC.MACID
+PhieuTron.HangMucID                       → HangMuc.HangMucID
+PhieuTron.XeID                            → Xe.XeID
+PhieuTron.TaiXeID                         → TaiXe.TaiXeID
+PhieuTron.NhanVienID                      → NhanVien.NhanVienID
+HopDong.KhachHangID                       → KhachHang.KhachHangID
+HopDong.CongTruongID                      → CongTruong.CongTruongID
+HopDong.MACID                             → MAC.MACID
+HopDong.HangMucID                         → HangMuc.HangMucID
+DuLieuTron.HopDongID                      → HopDong.HopDongID
+MACSilo.MACID                             → MAC.MACID
+MACSilo.SiloID                            → Silo.SiloID
+Silo.NhomSiloID                           → NhomSilo.NhomSiloID
+Silo.MaterialID                           → Material.MaterialID
+Silo.TinhDoHutNuocID                      → TinhDoHutNuoc.TinhDoHutNuocID
+Silo.SoiTrongCat_TruVaoSilo_NhomSiloAgg   → Silo.SiloID
+TinhDoHutNuoc.NhomSiloID                  → NhomSilo.NhomSiloID
+TinhDoHutNuocChiTiet.TinhDoHutNuocID      → TinhDoHutNuoc.TinhDoHutNuocID
+EventLog.EventActionCodeID                → EventActionCode.EventActionCodeID
+SEC_Function.TypeInfoID                   → SEC_TypeInfo.TypeInfoID
+SEC_RoleFunction.FunctionID               → SEC_Function.FunctionID
+SEC_RoleFunction.RoleID                   → SEC_Role.RoleID
+SEC_TypeInfo.AssemblyID                   → SEC_Assembly.AssemblyID
+SEC_UserRole.RoleID                       → SEC_Role.RoleID
+SEC_UserRole.UserID                       → SEC_User.UserID";
 
-dbo.SEC_User(UserID, UserName, FullName, Department, Email, Phone, CellPhone, IsActived)
+        // ═══════════════════════════════════════════════════════════════
+        //  ALL_VIEWS — 16 view với cột đầy đủ
+        // ═══════════════════════════════════════════════════════════════
+        public const string ALL_VIEWS =
+@"=== 16 VIEWS ===
 
-dbo.SEC_Role(RoleID, RoleName, Description)
-
-dbo.SEC_UserRole(UserRoleID, UserID, RoleID)
-
-dbo.SEC_Function(FunctionID, FunctionCode, FunctionName, FunctionType, ParentID, Visible, DisplayOrder)
-
--- SỰ KIỆN & THEO DÕI
-dbo.EventLog(EventLogID, LogCode, LogDate, UserID, UserName, EventActionCodeID, EventActionContent, Description, OldValueText, NewValueText, Title1, Value1, Content1, CreationDate)
-
-dbo.EventActionCode(EventActionCodeID, Code, CodeNumber, Content, Description, LnNo)
-
-dbo.TraceRecord(TraceRecordID, RecordTime, UserID, UserName, FullName, FormName, ActionName)
-
-dbo.PCInput(PCInputID, Code, Value, Description)
-
-dbo.PCOutput(PCOutputID, Code, Value, Description)
-
-dbo.TimerPara(TimerParaID, TimerParaCode, TimerParaValue, Description)
-
-dbo.bandwidth(bandwidthid, networkid, lastday, lasthour, lastweek, lastmonth, active)
-
-=== VIEWS (ưu tiên dùng cho báo cáo) ===
-
--- Thông tin đầy đủ mẻ trộn (JOIN sẵn PhieuTron, KhachHang, CongTruong, TaiXe, Xe, MAC, NhanVien)
-dbo.vw_Infos: MeTronID, NgayMeTron, Ngay(date), Gio(time), Phieu(MeTronID), PhieuTronID, MaPhieuTron, LnNo, KLDuTinhCuaTungMe, KLBuTruMeCuoi, MaHopDong, KH(TenKhachHang), CT(TenCongTruong), Name(TenTaiXe), Plate(BienSo), MAC(MaMAC), NoteMAC(TenMAC), DoSut, KLVC(KhoiLuongXe), KLMe(KhoiLuong), TenNV, NV(NguoiTron), KLDuTinh, HM(TenHangMuc), FullName
-
--- Mẻ trộn + chi tiết vật liệu pivot theo silo
-dbo.vw_DataMix: (tất cả cột vw_Infos) + Agg1-6, Ce1-6, Wa1-2, Add1-8, và _Bat/_Mac/_Man/_Tol/_PerTol variants
+-- Mẻ trộn đầy đủ (ưu tiên dùng nhất)
+vw_Infos: MeTronID, NgayMeTron, Ngay[date], Gio[time], Phieu, PhieuTronID, MaPhieuTron,
+  LnNo, KLDuTinhCuaTungMe, KLBuTruMeCuoi, MaHopDong,
+  KH[TenKhachHang], KH_int[KhachHangID],
+  CT[TenCongTruong], CT_int[CongTruongID],
+  Name[TenTaiXe], TaiXeID, Plate[BienSo], Xe_int[XeID],
+  MAC[MaMAC], NoteMAC[TenMAC], MAC_int[MACID], DoSut,
+  KLVC[KhoiLuongXe], KLMe[KhoiLuong_m³],
+  NV[NguoiTron], NV_int[NhanVienID], TenNV,
+  KLDuTinh, IsQueued, HM[TenHangMuc], HM_int[HangMucID],
+  CreatedBy, FullName
 
 -- Phiếu trộn đầy đủ
-dbo.vw_InfoPT: PhieuTronID, MaPhieuTron, NgayPhieuTron, Ngay, Gio, KLDuTinh, KLThuc, SLMeDuTinh, KH(TenKhachHang), KH_int, CT(TenCongTruong), CT_int, MAC(TenMAC), MAC_int, BS(BienSo), Xe_int, TX(TenTaiXe), TX_int, HM(TenHangMuc), HM_int, IsQueued, FullName
+vw_InfoPT: PhieuTronID, MaPhieuTron, NgayPhieuTron, Ngay, Gio,
+  KLDuTinh, KLThuc, SLMeDuTinh, KLDuTinhCuaTungMe,
+  KH[TenKhachHang], KH_int, CT[TenCongTruong], CT_int,
+  MAC[TenMAC], MAC_int[MACID], BS[BienSo], Xe_int,
+  TX[TenTaiXe], TX_int, HM[TenHangMuc], HM_int,
+  IsQueued, CreatedBy, FullName, UserID
 
--- Phiếu trộn + tổng khối lượng vật liệu
-dbo.vw_SumWeight: PhieuTronID, MaPhieuTron, NgayPhieuTron, KLDuTinh, KLThuc, SUM_Total_Value, SUM_Total_ValueBat, SUM_Total_ValueBatMan, IsQueued, FullName
+-- Mẻ trộn + vật liệu pivot
+vw_DataMix: (tất cả cột vw_Infos)
+  + Agg1..6, Ce1..6, Wa1..2, Add1..8
+  + _Bat, _Mac, _Man, _Tol, _PerTol variants
 
--- Thống kê tài xế theo ngày
-dbo.vw_PvDriverDetailDay: NgayMeTron, TaiXeID, TenTaiXe, Total_Tranfer, Total_KL, IsManual
-dbo.vw_PvDriverDetailDay_WithID: (như trên + ID)
+-- Phiếu + tổng KL vật liệu
+vw_SumWeight: PhieuTronID, MaPhieuTron, NgayPhieuTron,
+  KLDuTinh, KLThuc, SLMeDuTinh,
+  SUM_Total_Value, SUM_Total_ValueBat, SUM_Total_ValueBatMan,
+  IsQueued, FullName
 
--- Tổng hợp tài xế (tất cả thời gian)
-dbo.vw_PvTotalDriver: TaiXeID, MaTaiXe, TenTaiXe, Total_Tranfer, Total_KL, IsManual
+-- Thống kê xe
+vw_PvTranferDetailDay:       XeID, BienSo, Total_Tranfer, Total_KL, NgayMeTron[date]
+vw_PvTranferDetailDay_WithID: (như trên + ID)
+vw_PvTotalTranfer:            XeID, BienSo, Total_Tranfer, Total_KL, IsManual
 
--- Thống kê vật liệu theo ngày
-dbo.vw_PvMaterialDetailDay: MaterialID, MaterialCode, MaterialName, Sum_ValueCP, Sum_ValueBat, Sum_ValueBatMan, SaiSo, PerSaiSo, NgayMeTron, IsManual, KhoiLuong
-dbo.vw_PvMaterialDetailDay_WithID: (như trên + ID)
+-- Thống kê tài xế
+vw_PvDriverDetailDay:        NgayMeTron[date], TaiXeID, TenTaiXe, Total_Tranfer, Total_KL, IsManual
+vw_PvDriverDetailDay_WithID: (như trên + ID)
+vw_PvTotalDriver:             TaiXeID, MaTaiXe, TenTaiXe, Total_Tranfer, Total_KL, IsManual
 
--- Tổng hợp vật liệu (tất cả thời gian)
-dbo.vw_PvTotalMaterial: MaterialID, MaterialCode, MaterialName, Sum_ValueCP, Sum_ValueBat, Sum_ValueBatMan, SaiSo, PerSaiSo, IsManual
+-- Thống kê vật liệu
+vw_PvMaterialDetailDay:       MaterialID, MaterialCode, MaterialName,
+  Sum_ValueCP[KL thiết kế,kg], Sum_ValueBat[KL thực tế,kg], Sum_ValueBatMan,
+  SaiSo[kg], PerSaiSo[%], NgayMeTron[datetime], IsManual, KhoiLuong
+vw_PvMaterialDetailDay_WithID: (như trên + ID)
+vw_PvTotalMaterial:            MaterialID, MaterialCode, MaterialName,
+  Sum_ValueCP, Sum_ValueBat, Sum_ValueBatMan, SaiSo, PerSaiSo, IsManual
 
--- Thống kê xe theo ngày
-dbo.vw_PvTranferDetailDay: XeID, BienSo, Total_Tranfer, Total_KL, NgayMeTron, IsQueued
-dbo.vw_PvTranferDetailDay_WithID: (như trên + ID)
+-- KL vật liệu theo phiếu
+vw_PvTotalWeghit: PhieuTronID, NgayPhieuTron,
+  Total_Value/ValueBat/ValueBatMan_Agg1..6, Ce1..5, Wa1..2, Add1..6
+vw_PvSUMTotal: PhieuTronID, SUM_Total_Value, SUM_Total_ValueBat, SUM_Total_ValueBatMan
 
--- Tổng hợp xe (tất cả thời gian)
-dbo.vw_PvTotalTranfer: XeID, BienSo, Total_Tranfer, Total_KL, IsManual
+-- Pivot chi tiết mẻ
+vw_PvtMTCT: MeTronID, Agg1..6, Ce1..6, Wa1..2, Add1..8 (Value/Bat/Mac/Man/Tol/PerTol)";
 
--- Tổng khối lượng vật liệu theo phiếu trộn
-dbo.vw_PvTotalWeghit: PhieuTronID, NgayPhieuTron, Total_Value_Agg1..6, Ce1..5, Wa1..2, Add1..6 + ValueBat + ValueBatMan variants
-dbo.vw_PvSUMTotal: PhieuTronID, SUM_Total_Value, SUM_Total_ValueBat, SUM_Total_ValueBatMan
+        // ═══════════════════════════════════════════════════════════════
+        //  JOIN_PATHS — đường đi FK đúng + ví dụ SQL chuẩn
+        // ═══════════════════════════════════════════════════════════════
+        public const string JOIN_PATHS =
+@"=== ĐƯỜNG ĐI JOIN ĐÚNG ===
 
-=== VÍ DỤ SQL ===
--- Sản lượng hôm nay
-SELECT COUNT(*) AS SoMe, SUM(KhoiLuong) AS TongKL_m3
-FROM dbo.MeTron WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE) AND IsDeleted=0
+[MAC từ mẻ trộn] — MeTron KHÔNG có MACID:
+  MeTron → PhieuTron (PhieuTronID) → MAC (MACID)
+  SQL: FROM dbo.MeTron mt
+       JOIN dbo.PhieuTron pt ON mt.PhieuTronID=pt.PhieuTronID
+       JOIN dbo.MAC m ON pt.MACID=m.MACID
+  HOẶC ngắn hơn: SELECT MAC_int,MAC,NoteMAC FROM dbo.vw_Infos
 
--- Mẻ trộn hôm nay đầy đủ thông tin
-SELECT TOP 50 MaPhieuTron, KH, CT, Plate, KLMe, LnNo, TenNV, NgayMeTron
-FROM dbo.vw_Infos WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE)
+[KhachHang/CongTruong/Xe/TaiXe từ mẻ trộn]:
+  MeTron → PhieuTron → KhachHang/CongTruong/Xe/TaiXe
+  HOẶC: SELECT KH,CT,Plate,TX FROM dbo.vw_Infos
 
--- Thống kê tài xế hôm nay
-SELECT TenTaiXe, Total_Tranfer, Total_KL
-FROM dbo.vw_PvDriverDetailDay WHERE NgayMeTron=CAST(GETDATE() AS DATE)
+[Vật liệu từ mẻ trộn]:
+  MeTronChiTiet.MaterialName, MaterialCode, MaSilo (cột trực tiếp — không cần JOIN)
 
--- Tiêu thụ vật liệu hôm nay
-SELECT MaterialName, Sum_ValueCP, Sum_ValueBat, SaiSo
-FROM dbo.vw_PvMaterialDetailDay WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE)
+[Silo từ mẻ trộn]:
+  MeTronChiTiet → MACSilo (MACSiloID) → Silo (SiloID)
 
--- Tồn kho silo hiện tại
-SELECT s.MaSilo, s.TenSilo, s.MaterialName, ms.SiloValue
-FROM dbo.Silo s LEFT JOIN dbo.MACSilo ms ON s.SiloID=ms.SiloID WHERE s.Activated=1
+[MAC từ silo]:
+  Silo → MACSilo (SiloID) → MAC (MACID)
 
--- Phiếu trộn tháng này
-SELECT TOP 100 MaPhieuTron, NgayPhieuTron, KH, CT, KLDuTinh, KLThuc, BS, TX
-FROM dbo.vw_InfoPT
-WHERE MONTH(NgayPhieuTron)=MONTH(GETDATE()) AND YEAR(NgayPhieuTron)=YEAR(GETDATE())";
+=== VÍ DỤ SQL CHUẨN ===
 
-        public const string INTERPRET_PROMPT =
-@"Bạn là trợ lý trạm trộn bê tông.
-Dựa vào dữ liệu DB, trả lời bằng tiếng Việt, ngắn gọn, dùng số liệu cụ thể.
-Nếu không có dữ liệu thì nói rõ không tìm thấy.";
+-- MAC dùng nhiều nhất năm 2024 (dùng view):
+SQL: SELECT MAC, NoteMAC, MAC_int, COUNT(MeTronID) AS SoMe, SUM(KLMe) AS TongKL_m3
+     FROM dbo.vw_Infos WHERE YEAR(NgayMeTron)=2024
+     GROUP BY MAC, NoteMAC, MAC_int ORDER BY SoMe DESC
+
+-- MAC dùng nhiều nhất (tự JOIN đúng cách):
+SQL: SELECT m.MACID, m.MaMAC, m.TenMAC,
+       COUNT(mt.MeTronID) AS SoMe, SUM(mt.KhoiLuong) AS TongKL_m3
+     FROM dbo.MeTron mt
+     JOIN dbo.PhieuTron pt ON mt.PhieuTronID=pt.PhieuTronID
+     JOIN dbo.MAC m ON pt.MACID=m.MACID
+     WHERE YEAR(mt.NgayMeTron)=2024
+     GROUP BY m.MACID,m.MaMAC,m.TenMAC ORDER BY SoMe DESC
+
+-- Sản lượng hôm nay:
+SQL: SELECT COUNT(*) AS SoMe, SUM(KhoiLuong) AS TongKL_m3
+     FROM dbo.MeTron WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE)
+
+-- Mẻ trộn hôm nay đầy đủ:
+SQL: SELECT TOP 50 MaPhieuTron,KH,CT,Plate,KLMe,LnNo,TenNV,NgayMeTron
+     FROM dbo.vw_Infos WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE)
+
+-- KL vật liệu hôm nay:
+SQL: SELECT MaterialCode,MaterialName,Sum_ValueCP,Sum_ValueBat,SaiSo
+     FROM dbo.vw_PvMaterialDetailDay
+     WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE)
+
+-- Phiếu tháng này:
+SQL: SELECT TOP 100 MaPhieuTron,NgayPhieuTron,KH,CT,KLDuTinh,KLThuc,BS,TX
+     FROM dbo.vw_InfoPT
+     WHERE MONTH(NgayPhieuTron)=MONTH(GETDATE()) AND YEAR(NgayPhieuTron)=YEAR(GETDATE())
+
+-- Tồn kho silo:
+SQL: SELECT s.MaSilo,s.TenSilo,s.MaterialName,ms.SiloValue
+     FROM dbo.Silo s LEFT JOIN dbo.MACSilo ms ON s.SiloID=ms.SiloID
+     WHERE s.Activated=1
+
+=== QUY TẮC ALIAS CHUẨN ===
+mt=MeTron, mct=MeTronChiTiet, pt=PhieuTron,
+kh=KhachHang, ct=CongTruong, m=MAC, ms=MACSilo,
+s=Silo, ns=NhomSilo, tx=TaiXe, xe=Xe, nv=NhanVien,
+hd=HopDong, hm=HangMuc, el=EventLog, u=SEC_User";
     }
 }
-///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

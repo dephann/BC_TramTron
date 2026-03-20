@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Transactions;
+using NDPSo.KWS;
 
 namespace NDPSo.BusinessObject
 {
@@ -691,6 +692,7 @@ namespace NDPSo.BusinessObject
         public IList<ObjMeTronChiTiet> ListMeTronChiTiet() => MeTronChiTietHelper.BuildListObjMeTronChiTiet(IoC.Current.Container.Resolve<IMeTronChiTietRepository>().SelectAll());
 
         public IList<ObjMeTronChiTiet> ListMeTronChiTietByPhieuTronID(int ptID) => MeTronChiTietHelper.BuildListObjMeTronChiTiet((IList<MeTronChiTiet>)IoC.Current.Container.Resolve<IMeTronChiTietRepository>().DoQuery().Where<MeTronChiTiet>((Expression<Func<MeTronChiTiet, bool>>)(o => o.MeTron.PhieuTronID == ptID)).ToList<MeTronChiTiet>());
+        public IList<ObjMeTronChiTietGiaoHang> ListMeTronChiTietGiaoHangByPhieuTronID(int ptID) => MeTronChiTietGiaoHangHelper.BuildListObjMeTronChiTiet((IList<MeTronChiTietGiaoHang>)IoC.Current.Container.Resolve<IMeTronChiTietGiaoHangRepository>().DoQuery().Where<MeTronChiTietGiaoHang>((Expression<Func<MeTronChiTietGiaoHang, bool>>)(o => o.MeTron.PhieuTronID == ptID)).ToList<MeTronChiTietGiaoHang>());
 
         public bool SaveMeTronChiTiet(IList<ObjMeTronChiTiet> lstCT)
         {
@@ -859,7 +861,7 @@ namespace NDPSo.BusinessObject
                     CreatedBy = GlobalValues.UserID,
                     CreationDate = new DateTime?(DateTime.Now)
                 };
-
+                
                 repMT.Add(entMT);
             }
             else
@@ -871,14 +873,126 @@ namespace NDPSo.BusinessObject
 
             repMT.Save();
             objMTCT.MeTronID = entMT.MeTronID;
+
+            
+
             MeTronChiTiet entMTCT = MeTronChiTietHelper.BuildNewEntMeTronChiTiet(objMTCT);
             // Sử dụng repMTCT.Add hoặc repMTCT.Update tùy vào việc bạn muốn thêm mới hoặc cập nhật entMTCT
             repMTCT.Add(entMTCT);
+
+            if (objMTCT.PLCSaveId == 1) //Add save by hand mix
+            {
+                entMT.KhoiLuong = 0;
+                entMT.LatestUpdatedBy = GlobalValues.UserID;
+                entMT.LatestUpdateDate = DateTime.Now;
+                repMT.Update(entMT);// Add  save by hand mix
+                repMT.Save();
+            }
             repMTCT.Save();
 
             MeTronChiTietHelper.CopyToObjMeTronChiTiet(entMTCT, objMTCT);
             return objMTCT;
         }
+        public ObjMeTronChiTietGiaoHang SaveMeTronChiTietGiaoHang(ObjMeTronChiTietGiaoHang objMTCT, int phieuTronID1)
+        {
+
+            IMeTronChiTietGiaoHangRepository repMTCT = IoC.Current.Container.Resolve<IMeTronChiTietGiaoHangRepository>();
+            IMeTronRepository repMT = IoC.Current.Container.Resolve<IMeTronRepository>();
+            IPhieuTronRepository repPT = IoC.Current.Container.Resolve<IPhieuTronRepository>();
+            PhieuTron entLastestPT = repPT.GetLastest();
+
+            if (entLastestPT == null)
+            {
+                entLastestPT = new PhieuTron
+                {
+                    MaPhieuTron = "PHIEU_RONG",
+                    NgayPhieuTron = new DateTime?(DateTime.Now)
+                };
+                repPT.Add(entLastestPT);
+                repPT.Save();
+            }
+
+            MeTron entMT = null;
+            MeTron entLatestMT = repMT.GetLatestMeTronFromPhieuTron(entLastestPT.PhieuTronID);
+            bool isNewPT_TronManual = false;
+
+            if (entLatestMT == null)
+            {
+                int? sttsiloPLC = objMTCT.STTSiloPLC;
+                int num = 0;
+
+                if (sttsiloPLC.GetValueOrDefault() == num && sttsiloPLC != null)
+                {
+                    isNewPT_TronManual = true;
+                }
+            }
+
+            if (isNewPT_TronManual)
+            {
+                entMT = new MeTron
+                {
+                    PhieuTronID = entLastestPT.PhieuTronID,
+                    LnNo = objMTCT.STTSiloPLC,
+                    IsManual = objMTCT.IsManual,
+                    NgayMeTron = new DateTime?(DateTime.Now),
+                    KhoiLuong = entLastestPT.KLDuTinhCuaTungMe,
+                    CreatedBy = GlobalValues.UserID,
+                    CreationDate = new DateTime?(DateTime.Now)
+                };
+                repMT.Add(entMT);
+            }
+
+            if (entMT == null)
+            {
+                entMT = repMT.GetMeTron(entLastestPT.PhieuTronID, objMTCT.STTSiloPLC.Value);
+            }
+
+            if (entMT == null)
+            {
+                entMT = new MeTron
+                {
+                    PhieuTronID = entLastestPT.PhieuTronID,
+                    LnNo = objMTCT.STTSiloPLC,
+                    IsManual = objMTCT.IsManual,
+                    NgayMeTron = new DateTime?(DateTime.Now),
+                    KhoiLuong = entLastestPT.KLDuTinhCuaTungMe,
+                    CreatedBy = GlobalValues.UserID,
+                    CreationDate = new DateTime?(DateTime.Now)
+                };
+                
+                repMT.Add(entMT);
+            }
+            else
+            {
+                // Thực hiện cập nhật dữ liệu của entMT bằng cách gọi repMT.Update(entMT);
+                repMT.Update(entMT);
+            }
+
+
+            repMT.Save();
+            objMTCT.MeTronID = entMT.MeTronID;
+
+            
+
+            MeTronChiTietGiaoHang entMTCT = MeTronChiTietGiaoHangHelper.BuildNewEntMeTronChiTiet(objMTCT);
+            // Sử dụng repMTCT.Add hoặc repMTCT.Update tùy vào việc bạn muốn thêm mới hoặc cập nhật entMTCT
+            repMTCT.Add(entMTCT);
+
+            if (objMTCT.PLCSaveId == 1) //Add save by hand mix
+            {
+                entMT.KhoiLuong = 0;
+                entMT.LatestUpdatedBy = GlobalValues.UserID;
+                entMT.LatestUpdateDate = DateTime.Now;
+                repMT.Update(entMT);// Add  save by hand mix
+                repMT.Save();
+            }
+            repMTCT.Save();
+
+            MeTronChiTietGiaoHangHelper.CopyToObjMeTronChiTiet(entMTCT, objMTCT);
+            return objMTCT;
+        }
+
+
         public ObjNhomSilo GetNhomSiloByKey(int miID) => NhomSiloHelper.BuildNewObjNhomSilo(IoC.Current.Container.Resolve<INhomSiloRepository>().GetById(miID));
 
         public IList<ObjNhomSilo> ListNhomSilo() => NhomSiloHelper.BuildListObjNhomSilo(IoC.Current.Container.Resolve<INhomSiloRepository>().SelectAll());
@@ -904,20 +1018,28 @@ namespace NDPSo.BusinessObject
 
       
         public ObjPhieuTron GetPhieuTronByKey(int miID) => PhieuTronHelper.BuildNewObjPhieuTron(IoC.Current.Container.Resolve<IPhieuTronRepository>().GetById(miID));
+        public ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int miID) => PhieuGiaoHangHelper.BuildNewObjPhieuTron(IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>().GetById(miID));
 
         public ObjPhieuTron GetPhieuTronByCode(string code)
         {
             PhieuTron byCode = IoC.Current.Container.Resolve<IPhieuTronRepository>().GetByCode(code);
             return byCode == null ? (ObjPhieuTron)null : PhieuTronHelper.BuildNewObjPhieuTron(byCode);
         }
+        public ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string code)
+        {
+            PhieuGiaoHang byCode = IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>().GetByCode(code);
+            return byCode == null ? (ObjPhieuGiaoHang)null : PhieuGiaoHangHelper.BuildNewObjPhieuTron(byCode);
+        }
 
         public IList<ObjPhieuTron> ListPhieuTron() => PhieuTronHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuTronRepository>().SelectAll());
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang() => PhieuGiaoHangHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>().SelectAll());
 
         public IList<ObjPhieuTron> ListPhieuTron_ForTronOnline() => PhieuTronHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuTronRepository>().ListPhieuTron_ForTronOnline());
 
         public IList<ObjPhieuTron> ListPhieuTron_ByStatus(int status) => PhieuTronHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuTronRepository>().ListPhieuTron_ByStatus(status));
 
         public IList<ObjPhieuTron> ListPhieuTron_ByIsQueued(bool isQueued) => PhieuTronHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuTronRepository>().ListPhieuTron_ByIsQueued(isQueued));
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByIsQueued(bool isQueued) => PhieuGiaoHangHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>().ListPhieuTron_ByIsQueued(isQueued));
 
         public IList<ObjPhieuTron> ListPhieuTron_ByCondition(
           string maPhieuTron,
@@ -927,6 +1049,14 @@ namespace NDPSo.BusinessObject
           bool? isQueued)
         {
             return PhieuTronHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuTronRepository>().ListPhieuTron_ByCondition(maPhieuTron, fromDate, toDate, status, isQueued));
+        }
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByCondition(
+          string maPhieuTron,
+          DateTime fromDate,
+          DateTime toDate,
+          bool? isQueued)
+        {
+            return PhieuGiaoHangHelper.BuildListObjPhieuTron(IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>().ListPhieuTron_ByCondition(maPhieuTron, fromDate, toDate, isQueued));
         }
 
         public IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length) => IoC.Current.Container.Resolve<IPhieuTronRepository>().ListMaPhieuTron_AutoComplete(strInput, length);
@@ -984,6 +1114,40 @@ namespace NDPSo.BusinessObject
             phieuTronRepository.Save();
             return true;
         }
+        public bool SavePhieuGiaoHang(IList<ObjPhieuGiaoHang> lstPT)
+        {
+            IPhieuGiaoHangRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>();
+            foreach (ObjPhieuGiaoHang objPhieuTron in (IEnumerable<ObjPhieuGiaoHang>)lstPT)
+            {
+                if (objPhieuTron.MarkAsDeleted)
+                {
+                    phieuTronRepository.Delete(phieuTronRepository.GetById(objPhieuTron.PhieuTronID));
+                }
+                else
+                {
+                    PhieuGiaoHang phieuTron;
+                    if (objPhieuTron.IsNewObject)
+                    {
+                        phieuTron = PhieuGiaoHangHelper.BuildNewEntPhieuTron(objPhieuTron);
+                        phieuTron.GioBD = DateTime.Now.ToString("HH:mm:ss");
+                        phieuTron.GioKT = DateTime.Now.AddMinutes(ConfigManager.TramTronConfig.AddMinuteGioKT).ToString("HH:mm:ss");
+                        phieuTron.CreatedBy = new int?(GlobalValues.UserID);
+                        phieuTron.CreationDate = DateTime.Now;
+                        phieuTronRepository.Add(phieuTron);
+                    }
+                    else
+                    {
+                        phieuTron = phieuTronRepository.GetById(objPhieuTron.PhieuTronID);
+                        PhieuGiaoHangHelper.CopyToEntPhieuTron(objPhieuTron, phieuTron);
+                        phieuTron.LatestUpdatedBy = new int?(GlobalValues.UserID);
+                        phieuTron.LatestUpdateDate = DateTime.Now;
+                        phieuTronRepository.Update(phieuTron);
+                    }
+                }
+            }
+            phieuTronRepository.Save();
+            return true;
+        }
 
         public bool AddOrAttachPhieuTron(ObjPhieuTron objPT)
         {
@@ -1021,7 +1185,34 @@ namespace NDPSo.BusinessObject
                 return false;
             }
         }
+        public bool UpdatePhieuGiaoHang(ObjPhieuGiaoHang objPT, string gioKT)
+        {
+            try
+            {
+                IPhieuGiaoHangRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>();
 
+                PhieuGiaoHang existingEntity = phieuTronRepository.GetById(objPT.PhieuTronID);
+
+                if (existingEntity != null)
+                {
+                    existingEntity.GioKT = gioKT;
+                    existingEntity.LatestUpdateDate = new DateTime?(DateTime.Now);
+                    phieuTronRepository.Update(existingEntity);
+                    phieuTronRepository.Save();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
         public bool ResolveUnfinishPhieuTron1()
         {
             IPhieuTronRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuTronRepository>();
@@ -1581,6 +1772,22 @@ namespace NDPSo.BusinessObject
                 return false;
             }
         }
+        public bool SaveTaiXeTronOnlinePhieuGiaoHang(string id)
+        {
+            try
+            {
+                IPhieuGiaoHangRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>();
+                PhieuGiaoHang lastest = phieuTronRepository.GetLastest();
+                lastest.TenTaiXe = id;
+                phieuTronRepository.Update(lastest);
+                phieuTronRepository.Save();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                return false;
+            }
+        }
 
         public bool SaveXeTronOnline(int id)
         {
@@ -1598,6 +1805,22 @@ namespace NDPSo.BusinessObject
                     return false;
             }
         }
+        public bool SaveXeTronOnlinePhieuGiaoHang(string id)
+        {
+            try
+            {
+                IPhieuGiaoHangRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>();
+                PhieuGiaoHang lastest = phieuTronRepository.GetLastest();
+                lastest.BienSo = id;
+                phieuTronRepository.Update(lastest);
+                phieuTronRepository.Save();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                return false;
+            }
+        }
 
         public bool SaveNiemChiTronOnline(string niemchi)
         {
@@ -1606,6 +1829,22 @@ namespace NDPSo.BusinessObject
                 IPhieuTronRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuTronRepository>();
                 PhieuTron lastest = phieuTronRepository.GetLastest();
                 lastest.MoTa = niemchi;
+                phieuTronRepository.Update(lastest);
+                phieuTronRepository.Save();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool SaveNiemChiTronOnlinePhieuGiaoHang(string niemchi)
+        {
+            try
+            {
+                IPhieuGiaoHangRepository phieuTronRepository = IoC.Current.Container.Resolve<IPhieuGiaoHangRepository>();
+                PhieuGiaoHang lastest = phieuTronRepository.GetLastest();
+                lastest.NiemChi = niemchi;
                 phieuTronRepository.Update(lastest);
                 phieuTronRepository.Save();
                 return true;
@@ -1745,34 +1984,44 @@ namespace NDPSo.BusinessObject
             return vw_DataMixHelper.BuildNewAggregation(IoC.Current.Container.Resolve<IViewDataMixRepository>().GetSumForIsQueuedAndTimeRange(fromDate, toDate, mophong));
         }
 
-        public IList<Objvw_TotalMaterial> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
+        public IList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
         {
-            return vw_TotalMaterialHelper.BuildListObjvw_TotalMateria(IoC.Current.Container.Resolve<Ivw_TotalMaterialRepository>().ListvwTotalMaterial_ByCondition(materialID, isManual));
+            //return vw_TotalMaterialHelper.BuildListObjvw_TotalMateria(IoC.Current.Container.Resolve<Ivw_TotalMaterialRepository>().ListvwTotalMaterial_ByCondition(materialID, isManual));
+            return vw_PvMaterialDetailDayWithIDHelper.BuildListObjvw_MaterialDetailDayWithID(IoC.Current.Container.Resolve<Ivw_MaterialDetailDayRepository>().ListvwMaterialDetailDay_ByCondition(null, null, materialID, isManual));
         }
-        public IList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
+        public IList<Objvw_MaterialDetailDayWithID> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
         {
-            return vw_MaterialDetailDayHelper.BuildListObjvw_MaterialDetailDay(IoC.Current.Container.Resolve<Ivw_MaterialDetailDayRepository>().ListvwMaterialDetailDay_ByCondition(fromDate, toDate, materialID, isManual));
+            return vw_PvMaterialDetailDayWithIDHelper.BuildListObjvw_MaterialDetailDayWithID(IoC.Current.Container.Resolve<Ivw_MaterialDetailDayRepository>().ListvwMaterialDetailDay_ByCondition_Update(fromDate, toDate, materialID, isManual));
         }
-
-        public IList<Objvw_TranferDetailDay> ListTranferDetailDay_ByCondition(
+        
+        public IList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(
          DateTime? fromDate,
          DateTime? toDate,
          int? xeID,
          bool? isQueued)
         {
-            return vw_TranferDetailDayHelper.BuildListObjvw_TranferDetailDay(IoC.Current.Container.Resolve<Ivw_TranferDetailDayRepository>().ListTranferDetailDay_ByCondition(fromDate, toDate, xeID, isQueued));
+            return vw_TranferDetailDayWithIDHelper.BuildListObjvw_TranferDetailDayWithID(IoC.Current.Container.Resolve<Ivw_TranferDetailDayRepository>().ListTranferDetailDay_ByCondition_Update(fromDate, toDate, xeID, isQueued));
         }
-        public IList<Objvw_TotalTranfer> ListTotalTranfer_ByCondition(
+        public IList<Objvw_TranferDetailDayWithID> ListTotalTranfer_ByCondition(
          int? xeID,
          bool? isManual)
         {
-            return vw_TotalTranferHelper.BuildListObjvw_TotalTranfer(IoC.Current.Container.Resolve<Ivw_TotalTranferRepository>().ListvwTotalTranfer_ByCondition(xeID, isManual));
+            return vw_TranferDetailDayWithIDHelper.BuildListObjvw_TranferDetailDayWithID(IoC.Current.Container.Resolve<Ivw_TotalTranferRepository>().ListvwTotalTranfer_ByCondition(xeID, isManual));
         }
-        public IList<Objvw_TotalDriver> ListTotalDriver_ByCondition(
+        public IList<Objvw_DriverDetailDayWithID> ListTotalDriver_ByCondition(
         int? taixeID,
         bool? isManual)
         {
-            return vw_TotalDriverHelper.BuildListObjvw_TotalDriver(IoC.Current.Container.Resolve<Ivw_TotalDriverRepository>().ListvwTotalDriver_ByCondition(taixeID, isManual));
+            return vw_DriverDetailDayWithIDHelper.BuildListObjvw_DriverDetailDayWithID(IoC.Current.Container.Resolve<Ivw_TotalDriverRepository>().ListvwTotalDriver_ByCondition(taixeID, isManual));
+        }
+
+        public IList<Objvw_DriverDetailDayWithID> ListDriverDetailDay__ByCondition(
+            DateTime? fromDate,
+            DateTime? toDate,
+            int? taiXeID,
+            bool? isManual)
+        {
+            return vw_DriverDetailDayWithIDHelper.BuildListObjvw_DriverDetailDayWithID(IoC.Current.Container.Resolve<Ivw_DriverDetailDayRepository>().ListDriverDetailDay_ByCondition_Update(fromDate, toDate, taiXeID, isManual));
         }
     }
 }

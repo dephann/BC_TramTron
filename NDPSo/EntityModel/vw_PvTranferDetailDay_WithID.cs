@@ -12,12 +12,15 @@ namespace NDPSo.EntityModel
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class vw_PvTranferDetailDay_WithID
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Nullable<long> ID { get; set; }
+        public int XeID { get; set; }
+        public string BienSo { get; set; }
+        public Nullable<int> Total_Tranfer { get; set; }
+        public Nullable<decimal> Total_KL { get; set; }
+        public Nullable<System.DateTime> NgayMeTron { get; set; }
+        public Nullable<bool> IsQueued { get; set; }
+        public string NgayMeTron_BienSo { get; set; }
     }
 }

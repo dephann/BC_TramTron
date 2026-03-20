@@ -6,7 +6,7 @@ using NDPSo.Utils;
 
 namespace NDPSo.DAL
 {
-    class vw_TotalTranferRepository : EFRepository<vw_PvTotalTranfer>, Ivw_TotalTranferRepository, IEFRepository<vw_PvTotalTranfer>
+    class vw_TotalTranferRepository : EFRepository<vw_PvTranferDetailDay_WithID>, Ivw_TotalTranferRepository, IEFRepository<vw_PvTranferDetailDay_WithID>
     {
         public vw_TotalTranferRepository(IDbContextManager dbCtxMng) : base(dbCtxMng)
         {
@@ -14,9 +14,9 @@ namespace NDPSo.DAL
             base.KeyProperty = "XeID";
         }
 
-        public IList<vw_PvTotalTranfer> ListvwTotalTranfer_ByCondition(int? xeID, bool? isManual)
+        public IList<vw_PvTranferDetailDay_WithID> ListvwTotalTranfer_ByCondition(int? xeID, bool? isManual)
         {
-            Specification<vw_PvTotalTranfer> spec = new Specification<vw_PvTotalTranfer>((vw_PvTotalTranfer o) => (o.XeID == xeID || xeID == null) && ((bool?)o.IsManual == isManual || isManual == null));
+            Specification<vw_PvTranferDetailDay_WithID> spec = new Specification<vw_PvTranferDetailDay_WithID>((vw_PvTranferDetailDay_WithID o) => (o.XeID == xeID || xeID == null));
             return base.SelectAll(spec);
         }
     }

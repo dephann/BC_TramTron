@@ -33,10 +33,12 @@ namespace NDPSo.KWS
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.lblLoaaded = new DevExpress.XtraEditors.LabelControl();
+            this.bttExportFile_PDF_GH = new DevExpress.XtraEditors.SimpleButton();
             this.spin_numberOfCopies = new DevExpress.XtraEditors.SpinEdit();
             this.label1 = new System.Windows.Forms.Label();
             this.labelControl43 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.bttExportFile_Word_GH = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.luePrinter_GH = new DevExpress.XtraEditors.LookUpEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
@@ -71,11 +73,13 @@ namespace NDPSo.KWS
             this.txtTenMAC = new DevExpress.XtraEditors.TextEdit();
             this.lblTenMAC = new DevExpress.XtraEditors.LabelControl();
             this.txtNiemChi = new DevExpress.XtraEditors.TextEdit();
+            this.txtBom = new DevExpress.XtraEditors.TextEdit();
             this.txtCuongDo = new DevExpress.XtraEditors.TextEdit();
             this.txtTenCongTruong = new DevExpress.XtraEditors.TextEdit();
             this.txtTenKhachHang = new DevExpress.XtraEditors.TextEdit();
             this.txtMaPhieuTron = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControlBom = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -140,12 +144,14 @@ namespace NDPSo.KWS
             this.gcTotal_Add6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand60 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
+            this.bttExportFile_Word_CT = new DevExpress.XtraEditors.SimpleButton();
+            this.bttExportFile_PDF_CT = new DevExpress.XtraEditors.SimpleButton();
             this.spin_numberOfCopies_02 = new DevExpress.XtraEditors.SpinEdit();
             this.label2 = new System.Windows.Forms.Label();
             this.labelControl44 = new DevExpress.XtraEditors.LabelControl();
             this.luePrinter_CT = new DevExpress.XtraEditors.LookUpEdit();
             this.btnInPCT = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.lblLoaadedCT = new DevExpress.XtraEditors.LabelControl();
             this.grChiTietMeTron = new DevExpress.XtraEditors.GroupControl();
             this.grcPhieuTronChiTiet = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
@@ -249,18 +255,18 @@ namespace NDPSo.KWS
             this.gridBand59 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gcPV_Add6_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
-            this.txtGioKTTron_02 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
-            this.txtSTTPhieuTron_02 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
-            this.datNgayTron_02 = new DevExpress.XtraEditors.DateEdit();
-            this.txtGioTron_02 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
-            this.txtXe_02 = new DevExpress.XtraEditors.TextEdit();
-            this.txtTaiXe_02 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSTTPhieuTron_02 = new DevExpress.XtraEditors.TextEdit();
             this.txtHangMuc_02 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
+            this.txtTaiXe_02 = new DevExpress.XtraEditors.TextEdit();
+            this.txtXe_02 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
+            this.txtGioTron_02 = new DevExpress.XtraEditors.TextEdit();
+            this.datNgayTron_02 = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
+            this.txtGioKTTron_02 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
             this.txtDiaDiem_02 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
@@ -295,6 +301,7 @@ namespace NDPSo.KWS
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl9 = new DevExpress.XtraEditors.GroupControl();
+            this.bttDataF = new DevExpress.XtraEditors.SimpleButton();
             this.tseToTime_02 = new DevExpress.XtraEditors.TimeSpanEdit();
             this.tseFromTime_02 = new DevExpress.XtraEditors.TimeSpanEdit();
             this.btnLamMoi_02 = new DevExpress.XtraEditors.SimpleButton();
@@ -305,18 +312,15 @@ namespace NDPSo.KWS
             this.labelControl42 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luePrinter_GH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
-            this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTTPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHopDong.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNguoiTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtXe.Properties)).BeginInit();
@@ -329,45 +333,39 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtDoSut.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenMAC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNiemChi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCuongDo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenCongTruong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKhachHang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTron)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tseFromTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties)).BeginInit();
-            this.xtraTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
-            this.groupControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcTotalMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
-            this.groupControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.luePrinter_CT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grChiTietMeTron)).BeginInit();
-            this.grChiTietMeTron.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTronChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
-            this.groupControl7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTTPhieuTron_02.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron_02.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron_02.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGioTron_02.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtXe_02.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaiXe_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHangMuc_02.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaiXe_02.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtXe_02.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGioTron_02.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron_02.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron_02.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaDiem_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuyKe_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKhoiLuongDatHang_02.Properties)).BeginInit();
@@ -381,17 +379,15 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKhachHang_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).BeginInit();
-            this.groupControl8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTron_02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron_02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).BeginInit();
-            this.groupControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tseFromTime_02.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datDenNgay_02.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datDenNgay_02.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datTuNgay_02.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datDenNgay_02.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay_02.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datTuNgay_02.Properties.CalendarTimeProperties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -412,6 +408,7 @@ namespace NDPSo.KWS
             this.xtraTabPage1.Controls.Add(this.groupControl4);
             this.xtraTabPage1.Controls.Add(this.groupControl2);
             this.xtraTabPage1.Controls.Add(this.groupControl1);
+            this.xtraTabPage1.Enabled = true;
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1146, 694);
             this.xtraTabPage1.Text = "Phiếu giao hàng";
@@ -420,10 +417,12 @@ namespace NDPSo.KWS
             // 
             this.groupControl3.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupControl3.AppearanceCaption.Options.UseFont = true;
+            this.groupControl3.Controls.Add(this.lblLoaaded);
+            this.groupControl3.Controls.Add(this.bttExportFile_PDF_GH);
             this.groupControl3.Controls.Add(this.spin_numberOfCopies);
             this.groupControl3.Controls.Add(this.label1);
             this.groupControl3.Controls.Add(this.labelControl43);
-            this.groupControl3.Controls.Add(this.simpleButton1);
+            this.groupControl3.Controls.Add(this.bttExportFile_Word_GH);
             this.groupControl3.Controls.Add(this.btnPrint);
             this.groupControl3.Controls.Add(this.luePrinter_GH);
             this.groupControl3.Location = new System.Drawing.Point(0, 535);
@@ -432,6 +431,32 @@ namespace NDPSo.KWS
             this.groupControl3.TabIndex = 12;
             this.groupControl3.Text = "Tác vụ";
             // 
+            // lblLoaaded
+            // 
+            this.lblLoaaded.Location = new System.Drawing.Point(307, 130);
+            this.lblLoaaded.Name = "lblLoaaded";
+            this.lblLoaaded.Size = new System.Drawing.Size(4, 13);
+            this.lblLoaaded.TabIndex = 83;
+            this.lblLoaaded.Text = ".";
+            // 
+            // bttExportFile_PDF_GH
+            // 
+            this.bttExportFile_PDF_GH.AllowFocus = false;
+            this.bttExportFile_PDF_GH.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttExportFile_PDF_GH.Appearance.Options.UseFont = true;
+            this.bttExportFile_PDF_GH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bttExportFile_PDF_GH.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.bttExportFile_PDF_GH.ImageOptions.Image = global::NDPSo.ResourceNDP.pdf;
+            this.bttExportFile_PDF_GH.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.bttExportFile_PDF_GH.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.bttExportFile_PDF_GH.Location = new System.Drawing.Point(102, 98);
+            this.bttExportFile_PDF_GH.Name = "bttExportFile_PDF_GH";
+            this.bttExportFile_PDF_GH.Size = new System.Drawing.Size(70, 45);
+            this.bttExportFile_PDF_GH.TabIndex = 82;
+            this.bttExportFile_PDF_GH.Text = "PDF";
+            this.bttExportFile_PDF_GH.ToolTip = "Xuất file PDF";
+            this.bttExportFile_PDF_GH.Click += new System.EventHandler(this.bttExportFile_PDF_GH_Click);
+            // 
             // spin_numberOfCopies
             // 
             this.spin_numberOfCopies.EditValue = new decimal(new int[] {
@@ -439,8 +464,11 @@ namespace NDPSo.KWS
             0,
             0,
             0});
-            this.spin_numberOfCopies.Location = new System.Drawing.Point(108, 65);
+            this.spin_numberOfCopies.Location = new System.Drawing.Point(102, 65);
             this.spin_numberOfCopies.Name = "spin_numberOfCopies";
+            // 
+            // 
+            // 
             this.spin_numberOfCopies.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spin_numberOfCopies.Properties.Appearance.Options.UseFont = true;
             this.spin_numberOfCopies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -460,44 +488,46 @@ namespace NDPSo.KWS
             0,
             0,
             0});
-            this.spin_numberOfCopies.Size = new System.Drawing.Size(193, 22);
+            this.spin_numberOfCopies.Size = new System.Drawing.Size(199, 22);
             this.spin_numberOfCopies.TabIndex = 81;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 68);
+            this.label1.Location = new System.Drawing.Point(10, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 16);
+            this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 80;
-            this.label1.Text = "Số bản in:";
+            this.label1.Text = "Số bản in";
             // 
             // labelControl43
             // 
             this.labelControl43.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl43.Appearance.Options.UseFont = true;
-            this.labelControl43.Location = new System.Drawing.Point(30, 38);
+            this.labelControl43.Location = new System.Drawing.Point(12, 38);
             this.labelControl43.Name = "labelControl43";
             this.labelControl43.Size = new System.Drawing.Size(71, 16);
             this.labelControl43.TabIndex = 78;
             this.labelControl43.Text = "Chọn máy in";
             // 
-            // simpleButton1
+            // bttExportFile_Word_GH
             // 
-            this.simpleButton1.AllowFocus = false;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.simpleButton1.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.simpleButton1.ImageOptions.Image = global::NDPSo.ResourceNDP.wath_;
-            this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.simpleButton1.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton1.Location = new System.Drawing.Point(31, 98);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(131, 45);
-            this.simpleButton1.TabIndex = 77;
-            this.simpleButton1.Text = "Xem Phiếu";
+            this.bttExportFile_Word_GH.AllowFocus = false;
+            this.bttExportFile_Word_GH.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttExportFile_Word_GH.Appearance.Options.UseFont = true;
+            this.bttExportFile_Word_GH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bttExportFile_Word_GH.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.bttExportFile_Word_GH.ImageOptions.Image = global::NDPSo.ResourceNDP.word2;
+            this.bttExportFile_Word_GH.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.bttExportFile_Word_GH.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.bttExportFile_Word_GH.Location = new System.Drawing.Point(8, 98);
+            this.bttExportFile_Word_GH.Name = "bttExportFile_Word_GH";
+            this.bttExportFile_Word_GH.Size = new System.Drawing.Size(88, 45);
+            this.bttExportFile_Word_GH.TabIndex = 77;
+            this.bttExportFile_Word_GH.Text = "Word";
+            this.bttExportFile_Word_GH.ToolTip = "Xuất file Word";
+            this.bttExportFile_Word_GH.Click += new System.EventHandler(this.bttExportFile_Word_GH_Click);
             // 
             // btnPrint
             // 
@@ -513,19 +543,23 @@ namespace NDPSo.KWS
             this.btnPrint.Size = new System.Drawing.Size(120, 45);
             this.btnPrint.TabIndex = 76;
             this.btnPrint.Text = "In Phiếu";
+            this.btnPrint.ToolTip = "In phiếu giao hàng";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // luePrinter_GH
             // 
             this.luePrinter_GH.EditValue = "<Null>";
-            this.luePrinter_GH.Location = new System.Drawing.Point(108, 36);
+            this.luePrinter_GH.Location = new System.Drawing.Point(102, 36);
             this.luePrinter_GH.Name = "luePrinter_GH";
+            // 
+            // 
+            // 
             this.luePrinter_GH.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luePrinter_GH.Properties.Appearance.Options.UseFont = true;
             this.luePrinter_GH.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.luePrinter_GH.Properties.NullText = "";
-            this.luePrinter_GH.Size = new System.Drawing.Size(193, 20);
+            this.luePrinter_GH.Size = new System.Drawing.Size(199, 20);
             this.luePrinter_GH.TabIndex = 1;
             this.luePrinter_GH.EditValueChanged += new System.EventHandler(this.luePrinter_GH_EditValueChanged);
             // 
@@ -564,11 +598,13 @@ namespace NDPSo.KWS
             this.groupControl4.Controls.Add(this.txtTenMAC);
             this.groupControl4.Controls.Add(this.lblTenMAC);
             this.groupControl4.Controls.Add(this.txtNiemChi);
+            this.groupControl4.Controls.Add(this.txtBom);
             this.groupControl4.Controls.Add(this.txtCuongDo);
             this.groupControl4.Controls.Add(this.txtTenCongTruong);
             this.groupControl4.Controls.Add(this.txtTenKhachHang);
             this.groupControl4.Controls.Add(this.txtMaPhieuTron);
             this.groupControl4.Controls.Add(this.labelControl8);
+            this.groupControl4.Controls.Add(this.labelControlBom);
             this.groupControl4.Controls.Add(this.labelControl6);
             this.groupControl4.Controls.Add(this.labelControl5);
             this.groupControl4.Controls.Add(this.labelControl2);
@@ -583,6 +619,9 @@ namespace NDPSo.KWS
             // 
             this.txtGioKTTron.Location = new System.Drawing.Point(498, 115);
             this.txtGioKTTron.Name = "txtGioKTTron";
+            // 
+            // 
+            // 
             this.txtGioKTTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGioKTTron.Properties.Appearance.Options.UseFont = true;
             this.txtGioKTTron.Size = new System.Drawing.Size(300, 24);
@@ -602,6 +641,9 @@ namespace NDPSo.KWS
             // 
             this.txtSTTPhieuTron.Location = new System.Drawing.Point(498, 150);
             this.txtSTTPhieuTron.Name = "txtSTTPhieuTron";
+            // 
+            // 
+            // 
             this.txtSTTPhieuTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSTTPhieuTron.Properties.Appearance.Options.UseFont = true;
             this.txtSTTPhieuTron.Size = new System.Drawing.Size(300, 24);
@@ -621,6 +663,9 @@ namespace NDPSo.KWS
             // 
             this.txtMaHopDong.Location = new System.Drawing.Point(106, 45);
             this.txtMaHopDong.Name = "txtMaHopDong";
+            // 
+            // 
+            // 
             this.txtMaHopDong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaHopDong.Properties.Appearance.Options.UseFont = true;
             this.txtMaHopDong.Size = new System.Drawing.Size(692, 24);
@@ -638,13 +683,19 @@ namespace NDPSo.KWS
             // 
             // datNgayTron
             // 
-            this.datNgayTron.EditValue = null;
+            this.datNgayTron.EditValue = new System.DateTime(2024, 5, 27, 0, 0, 0, 0);
             this.datNgayTron.Location = new System.Drawing.Point(106, 80);
             this.datNgayTron.Name = "datNgayTron";
+            // 
+            // 
+            // 
             this.datNgayTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datNgayTron.Properties.Appearance.Options.UseFont = true;
             this.datNgayTron.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datNgayTron.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datNgayTron.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -659,6 +710,9 @@ namespace NDPSo.KWS
             // 
             this.txtNguoiTron.Location = new System.Drawing.Point(498, 500);
             this.txtNguoiTron.Name = "txtNguoiTron";
+            // 
+            // 
+            // 
             this.txtNguoiTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNguoiTron.Properties.Appearance.Options.UseFont = true;
             this.txtNguoiTron.Size = new System.Drawing.Size(300, 24);
@@ -678,6 +732,9 @@ namespace NDPSo.KWS
             // 
             this.txtGioTron.Location = new System.Drawing.Point(106, 115);
             this.txtGioTron.Name = "txtGioTron";
+            // 
+            // 
+            // 
             this.txtGioTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGioTron.Properties.Appearance.Options.UseFont = true;
             this.txtGioTron.Size = new System.Drawing.Size(300, 24);
@@ -697,6 +754,9 @@ namespace NDPSo.KWS
             // 
             this.txtXe.Location = new System.Drawing.Point(498, 465);
             this.txtXe.Name = "txtXe";
+            // 
+            // 
+            // 
             this.txtXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtXe.Properties.Appearance.Options.UseFont = true;
             this.txtXe.Size = new System.Drawing.Size(300, 24);
@@ -706,6 +766,9 @@ namespace NDPSo.KWS
             // 
             this.txtTaiXe.Location = new System.Drawing.Point(106, 465);
             this.txtTaiXe.Name = "txtTaiXe";
+            // 
+            // 
+            // 
             this.txtTaiXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTaiXe.Properties.Appearance.Options.UseFont = true;
             this.txtTaiXe.Size = new System.Drawing.Size(300, 24);
@@ -735,6 +798,9 @@ namespace NDPSo.KWS
             // 
             this.txtHangMuc.Location = new System.Drawing.Point(106, 255);
             this.txtHangMuc.Name = "txtHangMuc";
+            // 
+            // 
+            // 
             this.txtHangMuc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHangMuc.Properties.Appearance.Options.UseFont = true;
             this.txtHangMuc.Size = new System.Drawing.Size(692, 24);
@@ -752,8 +818,12 @@ namespace NDPSo.KWS
             // 
             // txtDiaDiem
             // 
+            this.txtDiaDiem.EditValue = "";
             this.txtDiaDiem.Location = new System.Drawing.Point(106, 290);
             this.txtDiaDiem.Name = "txtDiaDiem";
+            // 
+            // 
+            // 
             this.txtDiaDiem.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaDiem.Properties.Appearance.Options.UseFont = true;
             this.txtDiaDiem.Size = new System.Drawing.Size(692, 24);
@@ -773,6 +843,9 @@ namespace NDPSo.KWS
             // 
             this.txtLuyKe.Location = new System.Drawing.Point(106, 430);
             this.txtLuyKe.Name = "txtLuyKe";
+            // 
+            // 
+            // 
             this.txtLuyKe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLuyKe.Properties.Appearance.Options.UseFont = true;
             this.txtLuyKe.Size = new System.Drawing.Size(692, 24);
@@ -792,6 +865,9 @@ namespace NDPSo.KWS
             // 
             this.txtKhoiLuongDatHang.Location = new System.Drawing.Point(498, 395);
             this.txtKhoiLuongDatHang.Name = "txtKhoiLuongDatHang";
+            // 
+            // 
+            // 
             this.txtKhoiLuongDatHang.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKhoiLuongDatHang.Properties.Appearance.Options.UseFont = true;
             this.txtKhoiLuongDatHang.Size = new System.Drawing.Size(300, 24);
@@ -811,6 +887,9 @@ namespace NDPSo.KWS
             // 
             this.txtTheTich.Location = new System.Drawing.Point(106, 395);
             this.txtTheTich.Name = "txtTheTich";
+            // 
+            // 
+            // 
             this.txtTheTich.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTheTich.Properties.Appearance.Options.UseFont = true;
             this.txtTheTich.Size = new System.Drawing.Size(300, 24);
@@ -830,6 +909,9 @@ namespace NDPSo.KWS
             // 
             this.txtDoSut.Location = new System.Drawing.Point(498, 360);
             this.txtDoSut.Name = "txtDoSut";
+            // 
+            // 
+            // 
             this.txtDoSut.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDoSut.Properties.Appearance.Options.UseFont = true;
             this.txtDoSut.Size = new System.Drawing.Size(300, 24);
@@ -859,6 +941,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenMAC.Location = new System.Drawing.Point(106, 325);
             this.txtTenMAC.Name = "txtTenMAC";
+            // 
+            // 
+            // 
             this.txtTenMAC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenMAC.Properties.Appearance.Options.UseFont = true;
             this.txtTenMAC.Size = new System.Drawing.Size(692, 24);
@@ -878,15 +963,33 @@ namespace NDPSo.KWS
             // 
             this.txtNiemChi.Location = new System.Drawing.Point(106, 500);
             this.txtNiemChi.Name = "txtNiemChi";
+            // 
+            // 
+            // 
             this.txtNiemChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNiemChi.Properties.Appearance.Options.UseFont = true;
             this.txtNiemChi.Size = new System.Drawing.Size(300, 24);
             this.txtNiemChi.TabIndex = 14;
             // 
+            // txtBom
+            // 
+            this.txtBom.Location = new System.Drawing.Point(106, 535);
+            this.txtBom.Name = "txtBom";
+            // 
+            // 
+            // 
+            this.txtBom.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBom.Properties.Appearance.Options.UseFont = true;
+            this.txtBom.Size = new System.Drawing.Size(300, 24);
+            this.txtBom.TabIndex = 14;
+            // 
             // txtCuongDo
             // 
             this.txtCuongDo.Location = new System.Drawing.Point(106, 360);
             this.txtCuongDo.Name = "txtCuongDo";
+            // 
+            // 
+            // 
             this.txtCuongDo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCuongDo.Properties.Appearance.Options.UseFont = true;
             this.txtCuongDo.Size = new System.Drawing.Size(300, 24);
@@ -896,6 +999,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenCongTruong.Location = new System.Drawing.Point(106, 220);
             this.txtTenCongTruong.Name = "txtTenCongTruong";
+            // 
+            // 
+            // 
             this.txtTenCongTruong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenCongTruong.Properties.Appearance.Options.UseFont = true;
             this.txtTenCongTruong.Size = new System.Drawing.Size(692, 24);
@@ -905,15 +1011,22 @@ namespace NDPSo.KWS
             // 
             this.txtTenKhachHang.Location = new System.Drawing.Point(106, 185);
             this.txtTenKhachHang.Name = "txtTenKhachHang";
+            // 
+            // 
+            // 
             this.txtTenKhachHang.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenKhachHang.Properties.Appearance.Options.UseFont = true;
             this.txtTenKhachHang.Size = new System.Drawing.Size(692, 24);
             this.txtTenKhachHang.TabIndex = 10;
+            this.txtTenKhachHang.EditValueChanged += new System.EventHandler(this.txtTenKhachHang_EditValueChanged);
             // 
             // txtMaPhieuTron
             // 
             this.txtMaPhieuTron.Location = new System.Drawing.Point(106, 150);
             this.txtMaPhieuTron.Name = "txtMaPhieuTron";
+            // 
+            // 
+            // 
             this.txtMaPhieuTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaPhieuTron.Properties.Appearance.Options.UseFont = true;
             this.txtMaPhieuTron.Size = new System.Drawing.Size(270, 24);
@@ -928,6 +1041,16 @@ namespace NDPSo.KWS
             this.labelControl8.Size = new System.Drawing.Size(74, 18);
             this.labelControl8.TabIndex = 5;
             this.labelControl8.Text = "Số niêm chì";
+            // 
+            // labelControlBom
+            // 
+            this.labelControlBom.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlBom.Appearance.Options.UseFont = true;
+            this.labelControlBom.Location = new System.Drawing.Point(10, 538);
+            this.labelControlBom.Name = "labelControlBom";
+            this.labelControlBom.Size = new System.Drawing.Size(30, 18);
+            this.labelControlBom.TabIndex = 5;
+            this.labelControlBom.Text = "Bơm";
             // 
             // labelControl6
             // 
@@ -1072,6 +1195,9 @@ namespace NDPSo.KWS
             this.tseToTime.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseToTime.Location = new System.Drawing.Point(471, 37);
             this.tseToTime.Name = "tseToTime";
+            // 
+            // 
+            // 
             this.tseToTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseToTime.Properties.Appearance.Options.UseFont = true;
             this.tseToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1084,6 +1210,9 @@ namespace NDPSo.KWS
             this.tseFromTime.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseFromTime.Location = new System.Drawing.Point(216, 37);
             this.tseFromTime.Name = "tseFromTime";
+            // 
+            // 
+            // 
             this.tseFromTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseFromTime.Properties.Appearance.Options.UseFont = true;
             this.tseFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1115,13 +1244,19 @@ namespace NDPSo.KWS
             // 
             // datDenNgay
             // 
-            this.datDenNgay.EditValue = null;
+            this.datDenNgay.EditValue = new System.DateTime(2024, 5, 27, 0, 0, 0, 0);
             this.datDenNgay.Location = new System.Drawing.Point(365, 37);
             this.datDenNgay.Name = "datDenNgay";
+            // 
+            // 
+            // 
             this.datDenNgay.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datDenNgay.Properties.Appearance.Options.UseFont = true;
             this.datDenNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datDenNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datDenNgay.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -1134,13 +1269,19 @@ namespace NDPSo.KWS
             // 
             // datTuNgay
             // 
-            this.datTuNgay.EditValue = null;
+            this.datTuNgay.EditValue = new System.DateTime(2024, 5, 27, 0, 0, 0, 0);
             this.datTuNgay.Location = new System.Drawing.Point(110, 37);
             this.datTuNgay.Name = "datTuNgay";
+            // 
+            // 
+            // 
             this.datTuNgay.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datTuNgay.Properties.Appearance.Options.UseFont = true;
             this.datTuNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datTuNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datTuNgay.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -1179,6 +1320,7 @@ namespace NDPSo.KWS
             this.xtraTabPage2.Controls.Add(this.groupControl7);
             this.xtraTabPage2.Controls.Add(this.groupControl8);
             this.xtraTabPage2.Controls.Add(this.groupControl9);
+            this.xtraTabPage2.Enabled = true;
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(1146, 694);
             this.xtraTabPage2.Text = "Phiêu In Chi Tiết";
@@ -1740,17 +1882,55 @@ namespace NDPSo.KWS
             // 
             // groupControl6
             // 
+            this.groupControl6.Controls.Add(this.bttExportFile_Word_CT);
+            this.groupControl6.Controls.Add(this.bttExportFile_PDF_CT);
             this.groupControl6.Controls.Add(this.spin_numberOfCopies_02);
             this.groupControl6.Controls.Add(this.label2);
             this.groupControl6.Controls.Add(this.labelControl44);
             this.groupControl6.Controls.Add(this.luePrinter_CT);
             this.groupControl6.Controls.Add(this.btnInPCT);
-            this.groupControl6.Controls.Add(this.simpleButton2);
+            this.groupControl6.Controls.Add(this.lblLoaadedCT);
             this.groupControl6.Location = new System.Drawing.Point(0, 535);
             this.groupControl6.Name = "groupControl6";
             this.groupControl6.Size = new System.Drawing.Size(332, 155);
             this.groupControl6.TabIndex = 16;
             this.groupControl6.Text = "Tác vụ";
+            // 
+            // bttExportFile_Word_CT
+            // 
+            this.bttExportFile_Word_CT.AllowFocus = false;
+            this.bttExportFile_Word_CT.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttExportFile_Word_CT.Appearance.Options.UseFont = true;
+            this.bttExportFile_Word_CT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bttExportFile_Word_CT.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.bttExportFile_Word_CT.ImageOptions.Image = global::NDPSo.ResourceNDP.word2;
+            this.bttExportFile_Word_CT.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.bttExportFile_Word_CT.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.bttExportFile_Word_CT.Location = new System.Drawing.Point(8, 98);
+            this.bttExportFile_Word_CT.Name = "bttExportFile_Word_CT";
+            this.bttExportFile_Word_CT.Size = new System.Drawing.Size(88, 45);
+            this.bttExportFile_Word_CT.TabIndex = 84;
+            this.bttExportFile_Word_CT.Text = "Word";
+            this.bttExportFile_Word_CT.ToolTip = "Xuất file Word";
+            this.bttExportFile_Word_CT.Click += new System.EventHandler(this.bttExportFile_Word_CT_Click);
+            // 
+            // bttExportFile_PDF_CT
+            // 
+            this.bttExportFile_PDF_CT.AllowFocus = false;
+            this.bttExportFile_PDF_CT.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttExportFile_PDF_CT.Appearance.Options.UseFont = true;
+            this.bttExportFile_PDF_CT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bttExportFile_PDF_CT.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
+            this.bttExportFile_PDF_CT.ImageOptions.Image = global::NDPSo.ResourceNDP.pdf;
+            this.bttExportFile_PDF_CT.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.bttExportFile_PDF_CT.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.bttExportFile_PDF_CT.Location = new System.Drawing.Point(102, 98);
+            this.bttExportFile_PDF_CT.Name = "bttExportFile_PDF_CT";
+            this.bttExportFile_PDF_CT.Size = new System.Drawing.Size(70, 45);
+            this.bttExportFile_PDF_CT.TabIndex = 85;
+            this.bttExportFile_PDF_CT.Text = "PDF";
+            this.bttExportFile_PDF_CT.ToolTip = "Xuất file PDF";
+            this.bttExportFile_PDF_CT.Click += new System.EventHandler(this.bttExportFile_PDF_CT_Click);
             // 
             // spin_numberOfCopies_02
             // 
@@ -1759,8 +1939,11 @@ namespace NDPSo.KWS
             0,
             0,
             0});
-            this.spin_numberOfCopies_02.Location = new System.Drawing.Point(108, 65);
+            this.spin_numberOfCopies_02.Location = new System.Drawing.Point(102, 65);
             this.spin_numberOfCopies_02.Name = "spin_numberOfCopies_02";
+            // 
+            // 
+            // 
             this.spin_numberOfCopies_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spin_numberOfCopies_02.Properties.Appearance.Options.UseFont = true;
             this.spin_numberOfCopies_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1780,24 +1963,24 @@ namespace NDPSo.KWS
             0,
             0,
             0});
-            this.spin_numberOfCopies_02.Size = new System.Drawing.Size(193, 22);
+            this.spin_numberOfCopies_02.Size = new System.Drawing.Size(199, 22);
             this.spin_numberOfCopies_02.TabIndex = 83;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(28, 68);
+            this.label2.Location = new System.Drawing.Point(10, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 16);
+            this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 82;
-            this.label2.Text = "Số bản in:";
+            this.label2.Text = "Số bản in";
             // 
             // labelControl44
             // 
             this.labelControl44.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl44.Appearance.Options.UseFont = true;
-            this.labelControl44.Location = new System.Drawing.Point(30, 38);
+            this.labelControl44.Location = new System.Drawing.Point(12, 38);
             this.labelControl44.Name = "labelControl44";
             this.labelControl44.Size = new System.Drawing.Size(71, 16);
             this.labelControl44.TabIndex = 80;
@@ -1805,14 +1988,17 @@ namespace NDPSo.KWS
             // 
             // luePrinter_CT
             // 
-            this.luePrinter_CT.Location = new System.Drawing.Point(108, 36);
+            this.luePrinter_CT.Location = new System.Drawing.Point(102, 36);
             this.luePrinter_CT.Name = "luePrinter_CT";
+            // 
+            // 
+            // 
             this.luePrinter_CT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.luePrinter_CT.Properties.Appearance.Options.UseFont = true;
             this.luePrinter_CT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.luePrinter_CT.Properties.NullText = "";
-            this.luePrinter_CT.Size = new System.Drawing.Size(193, 20);
+            this.luePrinter_CT.Size = new System.Drawing.Size(199, 20);
             this.luePrinter_CT.TabIndex = 79;
             this.luePrinter_CT.EditValueChanged += new System.EventHandler(this.luePrinter_CT_EditValueChanged);
             // 
@@ -1831,24 +2017,16 @@ namespace NDPSo.KWS
             this.btnInPCT.Size = new System.Drawing.Size(120, 45);
             this.btnInPCT.TabIndex = 75;
             this.btnInPCT.Text = "In Phiếu";
+            this.btnInPCT.ToolTip = "In phiếu trộn chi tiết";
             this.btnInPCT.Click += new System.EventHandler(this.btnInPCT_Click);
             // 
-            // simpleButton2
+            // lblLoaadedCT
             // 
-            this.simpleButton2.AllowFocus = false;
-            this.simpleButton2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton2.Appearance.Options.UseFont = true;
-            this.simpleButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.simpleButton2.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.False;
-            this.simpleButton2.ImageOptions.Image = global::NDPSo.ResourceNDP.printe;
-            this.simpleButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
-            this.simpleButton2.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.simpleButton2.Location = new System.Drawing.Point(31, 98);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(120, 45);
-            this.simpleButton2.TabIndex = 74;
-            this.simpleButton2.Text = "Phiếu PDF";
-            this.simpleButton2.Visible = false;
+            this.lblLoaadedCT.Location = new System.Drawing.Point(307, 130);
+            this.lblLoaadedCT.Name = "lblLoaadedCT";
+            this.lblLoaadedCT.Size = new System.Drawing.Size(4, 13);
+            this.lblLoaadedCT.TabIndex = 83;
+            this.lblLoaadedCT.Text = ".";
             // 
             // grChiTietMeTron
             // 
@@ -2936,18 +3114,18 @@ namespace NDPSo.KWS
             // 
             // groupControl7
             // 
-            this.groupControl7.Controls.Add(this.txtGioKTTron_02);
-            this.groupControl7.Controls.Add(this.labelControl22);
-            this.groupControl7.Controls.Add(this.txtSTTPhieuTron_02);
             this.groupControl7.Controls.Add(this.labelControl23);
-            this.groupControl7.Controls.Add(this.datNgayTron_02);
-            this.groupControl7.Controls.Add(this.txtGioTron_02);
-            this.groupControl7.Controls.Add(this.labelControl24);
-            this.groupControl7.Controls.Add(this.txtXe_02);
-            this.groupControl7.Controls.Add(this.txtTaiXe_02);
-            this.groupControl7.Controls.Add(this.labelControl25);
-            this.groupControl7.Controls.Add(this.labelControl26);
+            this.groupControl7.Controls.Add(this.txtSTTPhieuTron_02);
             this.groupControl7.Controls.Add(this.txtHangMuc_02);
+            this.groupControl7.Controls.Add(this.labelControl26);
+            this.groupControl7.Controls.Add(this.labelControl25);
+            this.groupControl7.Controls.Add(this.txtTaiXe_02);
+            this.groupControl7.Controls.Add(this.txtXe_02);
+            this.groupControl7.Controls.Add(this.labelControl24);
+            this.groupControl7.Controls.Add(this.txtGioTron_02);
+            this.groupControl7.Controls.Add(this.datNgayTron_02);
+            this.groupControl7.Controls.Add(this.labelControl22);
+            this.groupControl7.Controls.Add(this.txtGioKTTron_02);
             this.groupControl7.Controls.Add(this.labelControl27);
             this.groupControl7.Controls.Add(this.txtDiaDiem_02);
             this.groupControl7.Controls.Add(this.labelControl28);
@@ -2980,109 +3158,39 @@ namespace NDPSo.KWS
             this.groupControl7.TabIndex = 14;
             this.groupControl7.Text = "Thông tin phiếu trộn";
             // 
-            // txtGioKTTron_02
-            // 
-            this.txtGioKTTron_02.Location = new System.Drawing.Point(721, 62);
-            this.txtGioKTTron_02.Name = "txtGioKTTron_02";
-            this.txtGioKTTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGioKTTron_02.Properties.Appearance.Options.UseFont = true;
-            this.txtGioKTTron_02.Size = new System.Drawing.Size(73, 20);
-            this.txtGioKTTron_02.TabIndex = 46;
-            // 
-            // labelControl22
-            // 
-            this.labelControl22.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl22.Appearance.Options.UseFont = true;
-            this.labelControl22.Location = new System.Drawing.Point(654, 65);
-            this.labelControl22.Name = "labelControl22";
-            this.labelControl22.Size = new System.Drawing.Size(63, 14);
-            this.labelControl22.TabIndex = 45;
-            this.labelControl22.Text = "Giờ KT trộn";
-            // 
-            // txtSTTPhieuTron_02
-            // 
-            this.txtSTTPhieuTron_02.Location = new System.Drawing.Point(577, 116);
-            this.txtSTTPhieuTron_02.Name = "txtSTTPhieuTron_02";
-            this.txtSTTPhieuTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSTTPhieuTron_02.Properties.Appearance.Options.UseFont = true;
-            this.txtSTTPhieuTron_02.Size = new System.Drawing.Size(217, 20);
-            this.txtSTTPhieuTron_02.TabIndex = 44;
-            // 
             // labelControl23
             // 
             this.labelControl23.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl23.Appearance.Options.UseFont = true;
             this.labelControl23.Location = new System.Drawing.Point(496, 119);
             this.labelControl23.Name = "labelControl23";
-            this.labelControl23.Size = new System.Drawing.Size(75, 14);
             this.labelControl23.TabIndex = 43;
             this.labelControl23.Text = "Số Phiếu trộn";
             // 
-            // datNgayTron_02
+            // txtSTTPhieuTron_02
             // 
-            this.datNgayTron_02.EditValue = null;
-            this.datNgayTron_02.Location = new System.Drawing.Point(577, 35);
-            this.datNgayTron_02.Name = "datNgayTron_02";
-            this.datNgayTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datNgayTron_02.Properties.Appearance.Options.UseFont = true;
-            this.datNgayTron_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.datNgayTron_02.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.datNgayTron_02.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
-            this.datNgayTron_02.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.datNgayTron_02.Properties.EditFormat.FormatString = "dd/MM/yyyy";
-            this.datNgayTron_02.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.datNgayTron_02.Properties.Mask.EditMask = "dd/MM/yyyy";
-            this.datNgayTron_02.Size = new System.Drawing.Size(217, 20);
-            this.datNgayTron_02.TabIndex = 42;
+            this.txtSTTPhieuTron_02.Location = new System.Drawing.Point(577, 116);
+            this.txtSTTPhieuTron_02.Name = "txtSTTPhieuTron_02";
             // 
-            // txtGioTron_02
             // 
-            this.txtGioTron_02.Location = new System.Drawing.Point(577, 62);
-            this.txtGioTron_02.Name = "txtGioTron_02";
-            this.txtGioTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGioTron_02.Properties.Appearance.Options.UseFont = true;
-            this.txtGioTron_02.Size = new System.Drawing.Size(73, 20);
-            this.txtGioTron_02.TabIndex = 40;
             // 
-            // labelControl24
+            this.txtSTTPhieuTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSTTPhieuTron_02.Properties.Appearance.Options.UseFont = true;
+            this.txtSTTPhieuTron_02.Size = new System.Drawing.Size(217, 20);
+            this.txtSTTPhieuTron_02.TabIndex = 44;
+            this.txtSTTPhieuTron_02.EditValueChanged += new System.EventHandler(this.txtSTTPhieuTron_02_EditValueChanged);
             // 
-            this.labelControl24.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl24.Appearance.Options.UseFont = true;
-            this.labelControl24.Location = new System.Drawing.Point(497, 65);
-            this.labelControl24.Name = "labelControl24";
-            this.labelControl24.Size = new System.Drawing.Size(63, 14);
-            this.labelControl24.TabIndex = 38;
-            this.labelControl24.Text = "Giờ BĐ trộn";
+            // txtHangMuc_02
             // 
-            // txtXe_02
+            this.txtHangMuc_02.Location = new System.Drawing.Point(90, 89);
+            this.txtHangMuc_02.Name = "txtHangMuc_02";
             // 
-            this.txtXe_02.Location = new System.Drawing.Point(316, 170);
-            this.txtXe_02.Name = "txtXe_02";
-            this.txtXe_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtXe_02.Properties.Appearance.Options.UseFont = true;
-            this.txtXe_02.Size = new System.Drawing.Size(160, 20);
-            this.txtXe_02.TabIndex = 37;
             // 
-            // txtTaiXe_02
             // 
-            this.txtTaiXe_02.Location = new System.Drawing.Point(90, 170);
-            this.txtTaiXe_02.Name = "txtTaiXe_02";
-            this.txtTaiXe_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTaiXe_02.Properties.Appearance.Options.UseFont = true;
-            this.txtTaiXe_02.Size = new System.Drawing.Size(160, 20);
-            this.txtTaiXe_02.TabIndex = 36;
-            // 
-            // labelControl25
-            // 
-            this.labelControl25.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl25.Appearance.Options.UseFont = true;
-            this.labelControl25.Location = new System.Drawing.Point(270, 173);
-            this.labelControl25.Name = "labelControl25";
-            this.labelControl25.Size = new System.Drawing.Size(40, 14);
-            this.labelControl25.TabIndex = 35;
-            this.labelControl25.Text = "Biển xe";
+            this.txtHangMuc_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHangMuc_02.Properties.Appearance.Options.UseFont = true;
+            this.txtHangMuc_02.Size = new System.Drawing.Size(386, 20);
+            this.txtHangMuc_02.TabIndex = 33;
             // 
             // labelControl26
             // 
@@ -3094,14 +3202,108 @@ namespace NDPSo.KWS
             this.labelControl26.TabIndex = 34;
             this.labelControl26.Text = "Tài xế";
             // 
-            // txtHangMuc_02
+            // labelControl25
             // 
-            this.txtHangMuc_02.Location = new System.Drawing.Point(90, 89);
-            this.txtHangMuc_02.Name = "txtHangMuc_02";
-            this.txtHangMuc_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHangMuc_02.Properties.Appearance.Options.UseFont = true;
-            this.txtHangMuc_02.Size = new System.Drawing.Size(386, 20);
-            this.txtHangMuc_02.TabIndex = 33;
+            this.labelControl25.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl25.Appearance.Options.UseFont = true;
+            this.labelControl25.Location = new System.Drawing.Point(270, 173);
+            this.labelControl25.Name = "labelControl25";
+            this.labelControl25.Size = new System.Drawing.Size(40, 14);
+            this.labelControl25.TabIndex = 35;
+            this.labelControl25.Text = "Biển xe";
+            // 
+            // txtTaiXe_02
+            // 
+            this.txtTaiXe_02.Location = new System.Drawing.Point(90, 170);
+            this.txtTaiXe_02.Name = "txtTaiXe_02";
+            // 
+            // 
+            // 
+            this.txtTaiXe_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTaiXe_02.Properties.Appearance.Options.UseFont = true;
+            this.txtTaiXe_02.Size = new System.Drawing.Size(160, 20);
+            this.txtTaiXe_02.TabIndex = 36;
+            // 
+            // txtXe_02
+            // 
+            this.txtXe_02.Location = new System.Drawing.Point(316, 170);
+            this.txtXe_02.Name = "txtXe_02";
+            // 
+            // 
+            // 
+            this.txtXe_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtXe_02.Properties.Appearance.Options.UseFont = true;
+            this.txtXe_02.Size = new System.Drawing.Size(160, 20);
+            this.txtXe_02.TabIndex = 37;
+            // 
+            // labelControl24
+            // 
+            this.labelControl24.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl24.Appearance.Options.UseFont = true;
+            this.labelControl24.Location = new System.Drawing.Point(497, 65);
+            this.labelControl24.Name = "labelControl24";
+            this.labelControl24.Size = new System.Drawing.Size(63, 14);
+            this.labelControl24.TabIndex = 38;
+            this.labelControl24.Text = "Giờ BĐ trộn";
+            // 
+            // txtGioTron_02
+            // 
+            this.txtGioTron_02.Location = new System.Drawing.Point(577, 62);
+            this.txtGioTron_02.Name = "txtGioTron_02";
+            // 
+            // 
+            // 
+            this.txtGioTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGioTron_02.Properties.Appearance.Options.UseFont = true;
+            this.txtGioTron_02.Size = new System.Drawing.Size(73, 20);
+            this.txtGioTron_02.TabIndex = 40;
+            // 
+            // datNgayTron_02
+            // 
+            this.datNgayTron_02.EditValue = new System.DateTime(2024, 5, 27, 0, 0, 0, 0);
+            this.datNgayTron_02.Location = new System.Drawing.Point(577, 35);
+            this.datNgayTron_02.Name = "datNgayTron_02";
+            // 
+            // 
+            // 
+            this.datNgayTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datNgayTron_02.Properties.Appearance.Options.UseFont = true;
+            this.datNgayTron_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
+            this.datNgayTron_02.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datNgayTron_02.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.datNgayTron_02.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datNgayTron_02.Properties.EditFormat.FormatString = "dd/MM/yyyy";
+            this.datNgayTron_02.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datNgayTron_02.Properties.Mask.EditMask = "dd/MM/yyyy";
+            this.datNgayTron_02.Size = new System.Drawing.Size(217, 20);
+            this.datNgayTron_02.TabIndex = 42;
+            // 
+            // labelControl22
+            // 
+            this.labelControl22.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl22.Appearance.Options.UseFont = true;
+            this.labelControl22.Location = new System.Drawing.Point(654, 65);
+            this.labelControl22.Name = "labelControl22";
+            this.labelControl22.Size = new System.Drawing.Size(63, 14);
+            this.labelControl22.TabIndex = 45;
+            this.labelControl22.Text = "Giờ KT trộn";
+            // 
+            // txtGioKTTron_02
+            // 
+            this.txtGioKTTron_02.Location = new System.Drawing.Point(721, 62);
+            this.txtGioKTTron_02.Name = "txtGioKTTron_02";
+            // 
+            // 
+            // 
+            this.txtGioKTTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGioKTTron_02.Properties.Appearance.Options.UseFont = true;
+            this.txtGioKTTron_02.Size = new System.Drawing.Size(73, 20);
+            this.txtGioKTTron_02.TabIndex = 46;
             // 
             // labelControl27
             // 
@@ -3117,6 +3319,9 @@ namespace NDPSo.KWS
             // 
             this.txtDiaDiem_02.Location = new System.Drawing.Point(90, 116);
             this.txtDiaDiem_02.Name = "txtDiaDiem_02";
+            // 
+            // 
+            // 
             this.txtDiaDiem_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaDiem_02.Properties.Appearance.Options.UseFont = true;
             this.txtDiaDiem_02.Size = new System.Drawing.Size(386, 20);
@@ -3136,6 +3341,9 @@ namespace NDPSo.KWS
             // 
             this.txtLuyKe_02.Location = new System.Drawing.Point(577, 224);
             this.txtLuyKe_02.Name = "txtLuyKe_02";
+            // 
+            // 
+            // 
             this.txtLuyKe_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLuyKe_02.Properties.Appearance.Options.UseFont = true;
             this.txtLuyKe_02.Size = new System.Drawing.Size(217, 20);
@@ -3155,6 +3363,9 @@ namespace NDPSo.KWS
             // 
             this.txtKhoiLuongDatHang_02.Location = new System.Drawing.Point(577, 170);
             this.txtKhoiLuongDatHang_02.Name = "txtKhoiLuongDatHang_02";
+            // 
+            // 
+            // 
             this.txtKhoiLuongDatHang_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKhoiLuongDatHang_02.Properties.Appearance.Options.UseFont = true;
             this.txtKhoiLuongDatHang_02.Size = new System.Drawing.Size(217, 20);
@@ -3174,6 +3385,9 @@ namespace NDPSo.KWS
             // 
             this.txtTheTich_02.Location = new System.Drawing.Point(577, 197);
             this.txtTheTich_02.Name = "txtTheTich_02";
+            // 
+            // 
+            // 
             this.txtTheTich_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTheTich_02.Properties.Appearance.Options.UseFont = true;
             this.txtTheTich_02.Size = new System.Drawing.Size(217, 20);
@@ -3193,6 +3407,9 @@ namespace NDPSo.KWS
             // 
             this.txtDoSut_02.Location = new System.Drawing.Point(316, 224);
             this.txtDoSut_02.Name = "txtDoSut_02";
+            // 
+            // 
+            // 
             this.txtDoSut_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDoSut_02.Properties.Appearance.Options.UseFont = true;
             this.txtDoSut_02.Size = new System.Drawing.Size(160, 20);
@@ -3222,6 +3439,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenMAC_02.Location = new System.Drawing.Point(90, 197);
             this.txtTenMAC_02.Name = "txtTenMAC_02";
+            // 
+            // 
+            // 
             this.txtTenMAC_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenMAC_02.Properties.Appearance.Options.UseFont = true;
             this.txtTenMAC_02.Size = new System.Drawing.Size(386, 20);
@@ -3241,6 +3461,9 @@ namespace NDPSo.KWS
             // 
             this.txtNguoiTron_02.Location = new System.Drawing.Point(90, 143);
             this.txtNguoiTron_02.Name = "txtNguoiTron_02";
+            // 
+            // 
+            // 
             this.txtNguoiTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNguoiTron_02.Properties.Appearance.Options.UseFont = true;
             this.txtNguoiTron_02.Size = new System.Drawing.Size(386, 20);
@@ -3250,6 +3473,9 @@ namespace NDPSo.KWS
             // 
             this.txtNiemChi_02.Location = new System.Drawing.Point(577, 143);
             this.txtNiemChi_02.Name = "txtNiemChi_02";
+            // 
+            // 
+            // 
             this.txtNiemChi_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNiemChi_02.Properties.Appearance.Options.UseFont = true;
             this.txtNiemChi_02.Size = new System.Drawing.Size(217, 20);
@@ -3259,6 +3485,9 @@ namespace NDPSo.KWS
             // 
             this.txtCuongDo_02.Location = new System.Drawing.Point(90, 224);
             this.txtCuongDo_02.Name = "txtCuongDo_02";
+            // 
+            // 
+            // 
             this.txtCuongDo_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCuongDo_02.Properties.Appearance.Options.UseFont = true;
             this.txtCuongDo_02.Size = new System.Drawing.Size(160, 20);
@@ -3268,6 +3497,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenCongTruong_02.Location = new System.Drawing.Point(90, 62);
             this.txtTenCongTruong_02.Name = "txtTenCongTruong_02";
+            // 
+            // 
+            // 
             this.txtTenCongTruong_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenCongTruong_02.Properties.Appearance.Options.UseFont = true;
             this.txtTenCongTruong_02.Size = new System.Drawing.Size(386, 20);
@@ -3277,6 +3509,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenKhachHang_02.Location = new System.Drawing.Point(90, 35);
             this.txtTenKhachHang_02.Name = "txtTenKhachHang_02";
+            // 
+            // 
+            // 
             this.txtTenKhachHang_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenKhachHang_02.Properties.Appearance.Options.UseFont = true;
             this.txtTenKhachHang_02.Size = new System.Drawing.Size(386, 20);
@@ -3286,6 +3521,9 @@ namespace NDPSo.KWS
             // 
             this.txtMaPhieuTron_02.Location = new System.Drawing.Point(577, 89);
             this.txtMaPhieuTron_02.Name = "txtMaPhieuTron_02";
+            // 
+            // 
+            // 
             this.txtMaPhieuTron_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaPhieuTron_02.Properties.Appearance.Options.UseFont = true;
             this.txtMaPhieuTron_02.Size = new System.Drawing.Size(217, 20);
@@ -3430,6 +3668,7 @@ namespace NDPSo.KWS
             // 
             // groupControl9
             // 
+            this.groupControl9.Controls.Add(this.bttDataF);
             this.groupControl9.Controls.Add(this.tseToTime_02);
             this.groupControl9.Controls.Add(this.tseFromTime_02);
             this.groupControl9.Controls.Add(this.btnLamMoi_02);
@@ -3445,11 +3684,27 @@ namespace NDPSo.KWS
             this.groupControl9.TabIndex = 12;
             this.groupControl9.Text = "Tìm kiếm";
             // 
+            // bttDataF
+            // 
+            this.bttDataF.AllowFocus = false;
+            this.bttDataF.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttDataF.Appearance.Options.UseFont = true;
+            this.bttDataF.Location = new System.Drawing.Point(1000, 35);
+            this.bttDataF.Name = "bttDataF";
+            this.bttDataF.Size = new System.Drawing.Size(40, 20);
+            this.bttDataF.TabIndex = 100;
+            this.bttDataF.Text = ".";
+            this.bttDataF.Visible = false;
+            this.bttDataF.Click += new System.EventHandler(this.bttExportFile_PDF_CT_Click);
+            // 
             // tseToTime_02
             // 
             this.tseToTime_02.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseToTime_02.Location = new System.Drawing.Point(471, 37);
             this.tseToTime_02.Name = "tseToTime_02";
+            // 
+            // 
+            // 
             this.tseToTime_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseToTime_02.Properties.Appearance.Options.UseFont = true;
             this.tseToTime_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3462,6 +3717,9 @@ namespace NDPSo.KWS
             this.tseFromTime_02.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseFromTime_02.Location = new System.Drawing.Point(216, 37);
             this.tseFromTime_02.Name = "tseFromTime_02";
+            // 
+            // 
+            // 
             this.tseFromTime_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseFromTime_02.Properties.Appearance.Options.UseFont = true;
             this.tseFromTime_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -3493,13 +3751,19 @@ namespace NDPSo.KWS
             // 
             // datDenNgay_02
             // 
-            this.datDenNgay_02.EditValue = null;
+            this.datDenNgay_02.EditValue = new System.DateTime(2024, 5, 27, 0, 0, 0, 0);
             this.datDenNgay_02.Location = new System.Drawing.Point(365, 37);
             this.datDenNgay_02.Name = "datDenNgay_02";
+            // 
+            // 
+            // 
             this.datDenNgay_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datDenNgay_02.Properties.Appearance.Options.UseFont = true;
             this.datDenNgay_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datDenNgay_02.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datDenNgay_02.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -3512,13 +3776,19 @@ namespace NDPSo.KWS
             // 
             // datTuNgay_02
             // 
-            this.datTuNgay_02.EditValue = null;
+            this.datTuNgay_02.EditValue = new System.DateTime(2024, 5, 27, 0, 0, 0, 0);
             this.datTuNgay_02.Location = new System.Drawing.Point(110, 37);
             this.datTuNgay_02.Name = "datTuNgay_02";
+            // 
+            // 
+            // 
             this.datTuNgay_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datTuNgay_02.Properties.Appearance.Options.UseFont = true;
             this.datTuNgay_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datTuNgay_02.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datTuNgay_02.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -3559,15 +3829,10 @@ namespace NDPSo.KWS
             this.Load += new System.EventHandler(this.FormPhieuIn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            this.groupControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luePrinter_GH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
-            this.groupControl4.ResumeLayout(false);
-            this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTTPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaHopDong.Properties)).EndInit();
@@ -3585,48 +3850,39 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtDoSut.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenMAC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNiemChi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCuongDo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenCongTruong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKhachHang.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTron)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tseFromTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties)).EndInit();
-            this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
-            this.groupControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcTotalMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
-            this.groupControl6.ResumeLayout(false);
-            this.groupControl6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.luePrinter_CT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grChiTietMeTron)).EndInit();
-            this.grChiTietMeTron.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTronChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
-            this.groupControl7.ResumeLayout(false);
-            this.groupControl7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSTTPhieuTron_02.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHangMuc_02.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaiXe_02.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtXe_02.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGioTron_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron_02.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron_02.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGioTron_02.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtXe_02.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTaiXe_02.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHangMuc_02.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiaDiem_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLuyKe_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKhoiLuongDatHang_02.Properties)).EndInit();
@@ -3640,12 +3896,9 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKhachHang_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).EndInit();
-            this.groupControl8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTron_02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron_02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).EndInit();
-            this.groupControl9.ResumeLayout(false);
-            this.groupControl9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tseFromTime_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datDenNgay_02.Properties.CalendarTimeProperties)).EndInit();
@@ -3662,7 +3915,7 @@ namespace NDPSo.KWS
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton bttExportFile_Word_GH;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraEditors.TextEdit txtGioKTTron;
@@ -3696,11 +3949,13 @@ namespace NDPSo.KWS
         private DevExpress.XtraEditors.TextEdit txtTenMAC;
         private DevExpress.XtraEditors.LabelControl lblTenMAC;
         private DevExpress.XtraEditors.TextEdit txtNiemChi;
+        private DevExpress.XtraEditors.TextEdit txtBom;
         private DevExpress.XtraEditors.TextEdit txtCuongDo;
         private DevExpress.XtraEditors.TextEdit txtTenCongTruong;
         private DevExpress.XtraEditors.TextEdit txtTenKhachHang;
         private DevExpress.XtraEditors.TextEdit txtMaPhieuTron;
         private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControlBom;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -3766,7 +4021,6 @@ namespace NDPSo.KWS
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand60;
         private DevExpress.XtraEditors.GroupControl groupControl6;
         private DevExpress.XtraEditors.SimpleButton btnInPCT;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.GroupControl grChiTietMeTron;
         private DevExpress.XtraGrid.GridControl grcPhieuTronChiTiet;
         private DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView bandedGridView1;
@@ -3931,5 +4185,11 @@ namespace NDPSo.KWS
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.SpinEdit spin_numberOfCopies_02;
         private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.SimpleButton bttExportFile_PDF_GH;
+        private DevExpress.XtraEditors.SimpleButton bttExportFile_PDF_CT;
+        private DevExpress.XtraEditors.SimpleButton bttDataF;
+        private DevExpress.XtraEditors.SimpleButton bttExportFile_Word_CT;
+        private DevExpress.XtraEditors.LabelControl lblLoaaded;
+        private DevExpress.XtraEditors.LabelControl lblLoaadedCT;
     }
 }

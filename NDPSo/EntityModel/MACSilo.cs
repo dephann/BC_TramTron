@@ -18,6 +18,7 @@ namespace NDPSo.EntityModel
         public MACSilo()
         {
             this.MeTronChiTiets = new HashSet<MeTronChiTiet>();
+            this.MeTronChiTietGiaoHangs = new HashSet<MeTronChiTietGiaoHang>();
         }
     
         public int MACSiloID { get; set; }
@@ -34,5 +35,7 @@ namespace NDPSo.EntityModel
         public virtual Silo Silo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MeTronChiTiet> MeTronChiTiets { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MeTronChiTietGiaoHang> MeTronChiTietGiaoHangs { get; set; }
     }
 }

@@ -28,7 +28,7 @@ QUAN TRỌNG: Ưu tiên dùng VIEW trước, chỉ dùng bảng gốc khi VIEW k
 
         private const string SCHEMA_METRON =
 @"=== MẺ TRỘN ===
--- Bảng gốc (dùng khi cần lọc IsDeleted, Status, IsManual)
+-- Bảng gốc
 dbo.MeTron(MeTronID, LnNo, NgayMeTron, PhieuTronID, KhoiLuong, MoTa, Status, IsManual, CreationDate, CreatedBy)
 dbo.MeTronChiTiet(MeTronChiTietID, MeTronID, MACSiloID, Value, ValueBat, ValueBatMan, ValueTol, SiloValue, MaterialID, MaterialCode, MaterialName, MaSilo, STTSiloPLC, IsManual, NgayMTCT, CreationDate)
 
@@ -168,9 +168,9 @@ SQL: SELECT TOP 20 RecordTime, UserName, FullName, FormName, ActionName FROM dbo
         private static readonly string[] KW_METRON = {
             "me tron", "metron", "me ", "san luong", "san xuat",
             "trong luong", "khoiluong", "bao nhieu m3", "bao nhieu m³",
-            "lnno", "so me", "tong kl", "mẻ", "sản lượng",
+            "lnno", "isdeleted", "so me", "tong kl", "mẻ", "sản lượng",
             "mẻ trộn", "trộn hôm", "trộn tuần", "trộn tháng",
-            "san luong hom nay", "hom nay tron"
+            "san luong hom nay", "hom nay tron","khối", "m3", "m khối", "đổ được", "chạy được", "sản lượng", "tổng kết"
         };
 
         private static readonly string[] KW_PHIEU = {
@@ -232,21 +232,21 @@ SQL: SELECT TOP 20 RecordTime, UserName, FullName, FormName, ActionName FROM dbo
         public static string GetSchema(string question)
         {
             // Chuẩn hóa: lowercase + bỏ dấu tiếng Việt
-            var q      = question.ToLower();
+            var q = question.ToLower();
             var qNoDau = RemoveDiacritics(q);
 
-            var sb      = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine(BASE_RULES);
 
             bool matched = false;
 
-            if (MatchAny(q, qNoDau, KW_METRON))   { sb.AppendLine(SCHEMA_METRON);    matched = true; }
-            if (MatchAny(q, qNoDau, KW_PHIEU))     { sb.AppendLine(SCHEMA_PHIEU);     matched = true; }
+            if (MatchAny(q, qNoDau, KW_METRON)) { sb.AppendLine(SCHEMA_METRON); matched = true; }
+            if (MatchAny(q, qNoDau, KW_PHIEU)) { sb.AppendLine(SCHEMA_PHIEU); matched = true; }
             if (MatchAny(q, qNoDau, KW_KHACHHANG)) { sb.AppendLine(SCHEMA_KHACHHANG); matched = true; }
-            if (MatchAny(q, qNoDau, KW_VATTU))     { sb.AppendLine(SCHEMA_VATTU);     matched = true; }
-            if (MatchAny(q, qNoDau, KW_XETAIXE))   { sb.AppendLine(SCHEMA_XETAIXE);   matched = true; }
-            if (MatchAny(q, qNoDau, KW_NHANSU))    { sb.AppendLine(SCHEMA_NHANSU);    matched = true; }
-            if (MatchAny(q, qNoDau, KW_SUKIEN))    { sb.AppendLine(SCHEMA_SUKIEN);    matched = true; }
+            if (MatchAny(q, qNoDau, KW_VATTU)) { sb.AppendLine(SCHEMA_VATTU); matched = true; }
+            if (MatchAny(q, qNoDau, KW_XETAIXE)) { sb.AppendLine(SCHEMA_XETAIXE); matched = true; }
+            if (MatchAny(q, qNoDau, KW_NHANSU)) { sb.AppendLine(SCHEMA_NHANSU); matched = true; }
+            if (MatchAny(q, qNoDau, KW_SUKIEN)) { sb.AppendLine(SCHEMA_SUKIEN); matched = true; }
 
             // Không match → gửi schema phổ biến nhất
             if (!matched)
@@ -277,19 +277,19 @@ SQL: SELECT TOP 20 RecordTime, UserName, FullName, FormName, ActionName FROM dbo
             if (string.IsNullOrEmpty(text)) return text;
 
             text = text
-                .Replace("à","a").Replace("á","a").Replace("ả","a").Replace("ã","a").Replace("ạ","a")
-                .Replace("ă","a").Replace("ắ","a").Replace("ằ","a").Replace("ẳ","a").Replace("ẵ","a").Replace("ặ","a")
-                .Replace("â","a").Replace("ấ","a").Replace("ầ","a").Replace("ẩ","a").Replace("ẫ","a").Replace("ậ","a")
-                .Replace("è","e").Replace("é","e").Replace("ẻ","e").Replace("ẽ","e").Replace("ẹ","e")
-                .Replace("ê","e").Replace("ế","e").Replace("ề","e").Replace("ể","e").Replace("ễ","e").Replace("ệ","e")
-                .Replace("ì","i").Replace("í","i").Replace("ỉ","i").Replace("ĩ","i").Replace("ị","i")
-                .Replace("ò","o").Replace("ó","o").Replace("ỏ","o").Replace("õ","o").Replace("ọ","o")
-                .Replace("ô","o").Replace("ố","o").Replace("ồ","o").Replace("ổ","o").Replace("ỗ","o").Replace("ộ","o")
-                .Replace("ơ","o").Replace("ớ","o").Replace("ờ","o").Replace("ở","o").Replace("ỡ","o").Replace("ợ","o")
-                .Replace("ù","u").Replace("ú","u").Replace("ủ","u").Replace("ũ","u").Replace("ụ","u")
-                .Replace("ư","u").Replace("ứ","u").Replace("ừ","u").Replace("ử","u").Replace("ữ","u").Replace("ự","u")
-                .Replace("ỳ","y").Replace("ý","y").Replace("ỷ","y").Replace("ỹ","y").Replace("ỵ","y")
-                .Replace("đ","d");
+                .Replace("à", "a").Replace("á", "a").Replace("ả", "a").Replace("ã", "a").Replace("ạ", "a")
+                .Replace("ă", "a").Replace("ắ", "a").Replace("ằ", "a").Replace("ẳ", "a").Replace("ẵ", "a").Replace("ặ", "a")
+                .Replace("â", "a").Replace("ấ", "a").Replace("ầ", "a").Replace("ẩ", "a").Replace("ẫ", "a").Replace("ậ", "a")
+                .Replace("è", "e").Replace("é", "e").Replace("ẻ", "e").Replace("ẽ", "e").Replace("ẹ", "e")
+                .Replace("ê", "e").Replace("ế", "e").Replace("ề", "e").Replace("ể", "e").Replace("ễ", "e").Replace("ệ", "e")
+                .Replace("ì", "i").Replace("í", "i").Replace("ỉ", "i").Replace("ĩ", "i").Replace("ị", "i")
+                .Replace("ò", "o").Replace("ó", "o").Replace("ỏ", "o").Replace("õ", "o").Replace("ọ", "o")
+                .Replace("ô", "o").Replace("ố", "o").Replace("ồ", "o").Replace("ổ", "o").Replace("ỗ", "o").Replace("ộ", "o")
+                .Replace("ơ", "o").Replace("ớ", "o").Replace("ờ", "o").Replace("ở", "o").Replace("ỡ", "o").Replace("ợ", "o")
+                .Replace("ù", "u").Replace("ú", "u").Replace("ủ", "u").Replace("ũ", "u").Replace("ụ", "u")
+                .Replace("ư", "u").Replace("ứ", "u").Replace("ừ", "u").Replace("ử", "u").Replace("ữ", "u").Replace("ự", "u")
+                .Replace("ỳ", "y").Replace("ý", "y").Replace("ỷ", "y").Replace("ỹ", "y").Replace("ỵ", "y")
+                .Replace("đ", "d");
             return text;
         }
     }

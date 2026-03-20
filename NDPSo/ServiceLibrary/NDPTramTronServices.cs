@@ -32,10 +32,12 @@ namespace NDPSo.ServiceLibrary
             IoC.Current.Container.RegisterType<IMACSiloRepository, MACSiloRepository>();
             IoC.Current.Container.RegisterType<IMaterialRepository, MaterialRepository>();
             IoC.Current.Container.RegisterType<IMeTronChiTietRepository, MeTronChiTietRepository>();
+            IoC.Current.Container.RegisterType<IMeTronChiTietGiaoHangRepository, MeTronChiTietGiaoHangRepository>();
             IoC.Current.Container.RegisterType<IMeTronRepository, MeTronRepository>();
             IoC.Current.Container.RegisterType<INhomSiloRepository, NhomSiloRepository>();
             IoC.Current.Container.RegisterType<IPCInputRepository, PCInputRepository>();
             IoC.Current.Container.RegisterType<IPhieuTronRepository, PhieuTronRepository>();
+            IoC.Current.Container.RegisterType<IPhieuGiaoHangRepository, PhieuGiaoHangRepository>();
             IoC.Current.Container.RegisterType<ISEC_AssemblyRepository, SEC_AssemblyRepository>();
             IoC.Current.Container.RegisterType<ISEC_FunctionRepository, SEC_FunctionRepository>();
             IoC.Current.Container.RegisterType<ISEC_RoleFunctionRepository, SEC_RoleFunctionRepository>();
@@ -62,6 +64,7 @@ namespace NDPSo.ServiceLibrary
             IoC.Current.Container.RegisterType<Ivw_TranferDetailDayRepository, vw_TranferDetailDayRepository>();
             IoC.Current.Container.RegisterType<Ivw_TotalTranferRepository, vw_TotalTranferRepository>();
             IoC.Current.Container.RegisterType<Ivw_TotalDriverRepository, vw_TotalDriverRepository>();
+            IoC.Current.Container.RegisterType<Ivw_DriverDetailDayRepository, vw_DriverDetailDayRepository>();
 
         }
 
@@ -472,10 +475,12 @@ namespace NDPSo.ServiceLibrary
         public IList<ObjMeTronChiTiet> ListMeTronChiTiet() => new NDPTramTronBO().ListMeTronChiTiet();
 
         public IList<ObjMeTronChiTiet> ListMeTronChiTietByPhieuTronID(int ptID) => new NDPTramTronBO().ListMeTronChiTietByPhieuTronID(ptID);
+        public IList<ObjMeTronChiTietGiaoHang> ListMeTronChiTietGiaoHangByPhieuTronID(int ptID) => new NDPTramTronBO().ListMeTronChiTietGiaoHangByPhieuTronID(ptID);
 
         public bool SaveMeTronChiTiet(IList<ObjMeTronChiTiet> lstMTCT) => new NDPTramTronBO().SaveMeTronChiTiet(lstMTCT);
 
         public ObjMeTronChiTiet SaveMeTronChiTiet(ObjMeTronChiTiet objMTCT, int phieuTronID) => new NDPTramTronBO().SaveMeTronChiTiet(objMTCT, phieuTronID);
+        public ObjMeTronChiTietGiaoHang SaveMeTronChiTietGiaoHang(ObjMeTronChiTietGiaoHang objMTCT, int phieuTronID) => new NDPTramTronBO().SaveMeTronChiTietGiaoHang(objMTCT, phieuTronID);
 
 
         public ObjNhomSilo GetNhomSiloByKey(int nsID)
@@ -510,7 +515,20 @@ namespace NDPSo.ServiceLibrary
                 throw new FaultException("Exception getting data: " + ex.Message, new FaultCode("Iterate through data"));
             }
         }
-
+        public ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int ptID)
+        {
+            try
+            {
+                return new NDPTramTronBO().GetPhieuGiaoHangByKey(ptID);
+            }
+            catch (System.Exception ex)
+            {
+                if (ex.InnerException is SqlException)
+                    throw new FaultException("Exception accessing database: " + ex.InnerException.Message, new FaultCode("Connect to database"));
+                throw new FaultException("Exception getting data: " + ex.Message, new FaultCode("Iterate through data"));
+            }
+        }
+        
         public ObjPhieuTron GetPhieuTronByCode(string code)
         {
             try
@@ -524,14 +542,29 @@ namespace NDPSo.ServiceLibrary
                 throw new FaultException("Exception getting data: " + ex.Message, new FaultCode("Iterate through data"));
             }
         }
+        public ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string code)
+        {
+            try
+            {
+                return new NDPTramTronBO().GetPhieuGiaoHangByCode(code);
+            }
+            catch (System.Exception ex)
+            {
+                if (ex.InnerException is SqlException)
+                    throw new FaultException("Exception accessing database: " + ex.InnerException.Message, new FaultCode("Connect to database"));
+                throw new FaultException("Exception getting data: " + ex.Message, new FaultCode("Iterate through data"));
+            }
+        }
 
         public IList<ObjPhieuTron> ListPhieuTron() => new NDPTramTronBO().ListPhieuTron();
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang() => new NDPTramTronBO().ListPhieuGiaoHang();
 
         public IList<ObjPhieuTron> ListPhieuTron_ForTronOnline() => new NDPTramTronBO().ListPhieuTron_ForTronOnline();
 
         public IList<ObjPhieuTron> ListPhieuTron_ByStatus(int status) => new NDPTramTronBO().ListPhieuTron_ByStatus(status);
 
         public IList<ObjPhieuTron> ListPhieuTron_ByIsQueued(bool isQueued) => new NDPTramTronBO().ListPhieuTron_ByIsQueued(isQueued);
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByIsQueued(bool isQueued) => new NDPTramTronBO().ListPhieuGiaoHang_ByIsQueued(isQueued);
 
         public IList<ObjPhieuTron> ListPhieuTron_ByCondition(
           string maPhieuTron,
@@ -542,16 +575,26 @@ namespace NDPSo.ServiceLibrary
         {
             return new NDPTramTronBO().ListPhieuTron_ByCondition(maPhieuTron, fromDate, toDate, status, isQueued);
         }
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByCondition(
+         string maPhieuTron,
+         DateTime fromDate,
+         DateTime toDate,
+         bool? isQueued)
+        {
+            return new NDPTramTronBO().ListPhieuGiaoHang_ByCondition(maPhieuTron, fromDate, toDate, isQueued);
+        }
 
         public IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length) => new NDPTramTronBO().ListMaPhieuTron_AutoComplete(strInput, length);
 
         public IList<ObjPhieuTron> ListPhieuTron_AutoComplete(string strInput, int? length) => new NDPTramTronBO().ListPhieuTron_AutoComplete(strInput, length);
 
         public bool SavePhieuTron(IList<ObjPhieuTron> lstPT) => new NDPTramTronBO().SavePhieuTron(lstPT);
+        public bool SavePhieuGiaoHang(IList<ObjPhieuGiaoHang> lstPT) => new NDPTramTronBO().SavePhieuGiaoHang(lstPT);
 
         public bool AddOrAttachPhieuTron(ObjPhieuTron objPT) => new NDPTramTronBO().AddOrAttachPhieuTron(objPT);
 
         public bool UpdatePhieuTron(ObjPhieuTron objPT, decimal klThuc) => new NDPTramTronBO().UpdatePhieuTron(objPT, klThuc);
+        public bool UpdatePhieuGiaoHang(ObjPhieuGiaoHang objPT, string klThuc) => new NDPTramTronBO().UpdatePhieuGiaoHang(objPT, klThuc);
 
         public bool ResolveUnfinishPhieuTron() => new NDPTramTronBO().ResolveUnfinishPhieuTron();
 
@@ -789,9 +832,12 @@ namespace NDPSo.ServiceLibrary
         public bool SaveNhanVienTronOnline(int id) => new NDPTramTronBO().SaveNhanVienTronOnline(id);
 
         public bool SaveTaiXeTronOnline(int id) => new NDPTramTronBO().SaveTaiXeTronOnline(id);
+        public bool SaveTaiXeTronOnlinePhieuGiaoHang(string id) => new NDPTramTronBO().SaveTaiXeTronOnlinePhieuGiaoHang(id);
 
         public bool SaveXeTronOnline(int id) => new NDPTramTronBO().SaveXeTronOnline(id);
+        public bool SaveXeTronOnlinePhieuGiaoHang(string id) => new NDPTramTronBO().SaveXeTronOnlinePhieuGiaoHang(id);
         public bool SaveNiemChiTronOnline(string niemchi) => new NDPTramTronBO().SaveNiemChiTronOnline(niemchi);
+        public bool SaveNiemChiTronOnlinePhieuGiaoHang(string niemchi) => new NDPTramTronBO().SaveNiemChiTronOnlinePhieuGiaoHang(niemchi);
         public bool UpdateDoAmSiloOnlineBySiloID(int siloID, Decimal doAm) => new NDPTramTronBO().UpdateDoAmSiloOnlineBySiloID(siloID, doAm);
         public bool UpdateHutNuocSiloOnlineBySiloID(int siloID, Decimal doAm) => new NDPTramTronBO().UpdateHutNuocSiloOnlineBySiloID(siloID, doAm);
 
@@ -871,15 +917,15 @@ namespace NDPSo.ServiceLibrary
 
         public string GetNextCode(string strTblName) => new NDPSystemBO().GetNextCode(strTblName);
 
-        public IList<Objvw_TotalMaterial> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
+        public IList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
         {
             return new NDPTramTronBO().ListTotalMaterial_ByCondition(materialID, isManual);
         }
-        public IList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
+        public IList<Objvw_MaterialDetailDayWithID> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
         {
             return new NDPTramTronBO().ListMaterialDetailDay_ByCondition(fromDate, toDate, materialID, isManual);
         }
-        public IList<Objvw_TranferDetailDay> ListTranferDetailDay_ByCondition(
+        public IList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(
           DateTime? fromDate,
           DateTime? toDate,
           int? xeID,
@@ -887,17 +933,25 @@ namespace NDPSo.ServiceLibrary
         {
             return new NDPTramTronBO().ListTranferDetailDay_ByCondition(fromDate, toDate, xeID, isQueued);
         }
-        public IList<Objvw_TotalTranfer> ListTotalTranfer_ByCondition(
+        public IList<Objvw_TranferDetailDayWithID> ListTotalTranfer_ByCondition(
           int? xeID,
           bool? isManual)
         {
             return new NDPTramTronBO().ListTotalTranfer_ByCondition(xeID, isManual);
         }
-        public IList<Objvw_TotalDriver> ListTotalDriver_ByCondition(
+        public IList<Objvw_DriverDetailDayWithID> ListTotalDriver_ByCondition(
           int? taixeID,
           bool? isManual)
         {
             return new NDPTramTronBO().ListTotalDriver_ByCondition(taixeID, isManual);
+        }
+        public IList<Objvw_DriverDetailDayWithID> ListDriverDetailDay_ByCondition(
+          DateTime? fromDate,
+          DateTime? toDate,
+          int? taiXeID,
+          bool? isManual)
+        {
+            return new NDPTramTronBO().ListDriverDetailDay__ByCondition(fromDate, toDate, taiXeID, isManual);
         }
     }
 }

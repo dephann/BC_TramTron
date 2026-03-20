@@ -30,6 +30,12 @@ namespace NDPSo.MasterData
         private byte _Byte_16;
         private byte _Byte_17;
         private byte _Byte_18;
+        private byte _Byte_19;
+        private byte _Byte_20;
+        private byte _Byte_21;
+        private byte _Byte_22;
+        private byte _Byte_23;
+        private byte _Byte_24;
         
         private SendingCommand _objSC = new SendingCommand();
         //========================================================DB2 WRITE  BIT
@@ -414,13 +420,144 @@ namespace NDPSo.MasterData
                 {
                     [0] = this._objSC.NN_GAU_LEN,
                     [1] = this._objSC.NN_DUNG_GAU,
-                    [2] = this._objSC.NN_GAU_XUONG
+                    [2] = this._objSC.NN_GAU_XUONG,
+                    [3] = this._objSC.SW_BAT_PG_NGOAI,
+                   /* [4] = this._objSC.XAC_NHAN_CAN_DU,
+                    [5] = this._objSC.XNC_AUT_AGG1,
+                    [6] = this._objSC.XNC_AUT_AGG2,
+                    [7] = this._objSC.XNC_AUT_AGG3*/
 
                 });
 
                 return this._Byte_18;
             }
             set => this._Byte_18 = value;
+        }
+        public byte Byte_19
+        {
+            get
+            {
+                this._Byte_19 = Converter.ConvertBitArrayToByte(new BitArray(8)
+                {
+                    [0] = this._objSC.XNC_AUT_AGG4,
+                    [1] = this._objSC.XNC_AUT_AGG5,
+                    [2] = this._objSC.XNC_AUT_AGG6,
+                    [3] = this._objSC.XNC_AUT_CE1,
+                    [4] = this._objSC.XNC_AUT_CE2,
+                    [5] = this._objSC.XNC_AUT_CE3,
+                    [6] = this._objSC.XNC_AUT_CE4,
+                    [7] = this._objSC.XNC_AUT_CE5,
+
+                });
+
+                return this._Byte_19;
+            }
+            set => this._Byte_19 = value;
+        }
+        public byte Byte_20
+        {
+            get
+            {
+                this._Byte_20 = Converter.ConvertBitArrayToByte(new BitArray(8)
+                {
+                    [0] = this._objSC.XNC_AUT_WA1,
+                    [1] = this._objSC.XNC_AUT_WA2,
+                    [2] = this._objSC.XNC_AUT_ADD1,
+                    [3] = this._objSC.XNC_AUT_ADD2,
+                    [4] = this._objSC.XNC_AUT_ADD3,
+                    [5] = this._objSC.XNC_AUT_ADD4,
+                    [6] = this._objSC.XNC_AUT_ADD5,
+                    [7] = this._objSC.XNC_AUT_ADD6,
+
+                });
+
+                return this._Byte_20;
+            }
+            set => this._Byte_20 = value;
+        }
+        public byte Byte_21
+        {
+            get
+            {
+                this._Byte_21 = Converter.ConvertBitArrayToByte(new BitArray(8)
+                {
+                    [0] = this._objSC.GIU_LAI_CAN_AGG1,
+                    [1] = this._objSC.GIU_LAI_CAN_AGG2,
+                    [2] = this._objSC.GIU_LAI_CAN_AGG3,
+                    [3] = this._objSC.GIU_LAI_CAN_AGG4,
+                    [4] = this._objSC.GIU_LAI_CAN_AGG5,
+                    [5] = this._objSC.GIU_LAI_CAN_AGG6,
+                    [6] = this._objSC.GIU_LAI_CAN_CE1,
+                    [7] = this._objSC.GIU_LAI_CAN_CE2,
+
+                });
+
+                return this._Byte_21;
+            }
+            set => this._Byte_21 = value;
+        }
+        public byte Byte_22
+        {
+            get
+            {
+                this._Byte_22 = Converter.ConvertBitArrayToByte(new BitArray(8)
+                {
+                    [0] = this._objSC.GIU_LAI_CAN_WA1,
+                    [1] = this._objSC.GIU_LAI_CAN_WA2,
+                    [2] = this._objSC.GIU_LAI_CAN_ADD1,
+                    [3] = this._objSC.GIU_LAI_CAN_ADD2,
+                    [4] = this._objSC.BUTRU_AGG1,
+                    [5] = this._objSC.BUTRU_AGG2,
+                    [6] = this._objSC.BUTRU_AGG3,
+                    [7] = this._objSC.BUTRU_AGG4,
+
+                });
+
+                return this._Byte_22;
+            }
+            set => this._Byte_22 = value;
+        }
+        public byte Byte_23
+        {
+            get
+            {
+                this._Byte_23 = Converter.ConvertBitArrayToByte(new BitArray(8)
+                {
+                    [0] = this._objSC.BUTRU_AGG5,
+                    [1] = this._objSC.BUTRU_AGG6,
+                    [2] = this._objSC.BUTRU_CE1,
+                    [3] = this._objSC.BUTRU_CE2,
+                    [4] = this._objSC.BUTRU_CE3,
+                    [5] = this._objSC.BUTRU_CE4,
+                    [6] = this._objSC.BUTRU_CE5,
+                    [7] = this._objSC.BUTRU_WA1,
+
+                });
+
+                return this._Byte_23;
+            }
+            set => this._Byte_23 = value;
+        }
+        public byte Byte_24
+        {
+            get
+            {
+                this._Byte_24 = Converter.ConvertBitArrayToByte(new BitArray(8)
+                {
+                    [0] = this._objSC.BUTRU_WA2,
+                    [1] = this._objSC.BUTRU_ADD1,
+                    [2] = this._objSC.BUTRU_ADD2,
+                    [3] = this._objSC.BUTRU_ADD3,
+                    [4] = this._objSC.BUTRU_ADD4,
+                    [5] = this._objSC.BUTRU_ADD5,
+                    [6] = this._objSC.BUTRU_ADD6
+                    
+
+                });
+
+                return this._Byte_24;
+            }
+            set => this._Byte_24 = value;
         }
         public int SIM_WeiAgg1 { get; set; }
 

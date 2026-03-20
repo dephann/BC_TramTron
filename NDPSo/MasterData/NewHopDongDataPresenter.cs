@@ -23,6 +23,7 @@ namespace NDPSo.MasterData
                 MaHopDong = MasterDataPresenter<INewHopDongView>._iMasterDataModel.GetNextCode("HopDong"),
                 TenHopDong = string.Empty,
                 NgayHopDong = new DateTime?(DateTime.Now),
+                HangMucID = ConfigManager.TramTronConfig.HangMucNumNA,
                 MoTa = string.Empty,
                 DoSut = string.Empty,
                 KLDatHang = new Decimal?(0M),
@@ -63,6 +64,7 @@ namespace NDPSo.MasterData
 
         public void SaveHopDong(ObjHopDong objHD)
         {
+            
             ObjHopDong objHopDong = MasterDataPresenter<INewHopDongView>._iMasterDataModel.SaveHopDong(objHD);
             this._iView.HopDong = objHopDong;
             this._iView.IsSuccessfulSaved = objHopDong != null && objHopDong.HopDongID > 0;

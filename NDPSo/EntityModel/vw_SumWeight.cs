@@ -16,32 +16,32 @@ namespace NDPSo.EntityModel
     {
         public int PhieuTronID { get; set; }
         public string MaPhieuTron { get; set; }
+        public Nullable<System.DateTime> NgayPhieuTron { get; set; }
         public Nullable<System.DateTime> Ngay { get; set; }
         public Nullable<System.TimeSpan> Gio { get; set; }
         public Nullable<decimal> KLDuTinh { get; set; }
         public Nullable<decimal> KLThuc { get; set; }
         public Nullable<decimal> SLMeDuTinh { get; set; }
         public Nullable<decimal> KLDuTinhCuaTungMe { get; set; }
-        public int KhachHangID { get; set; }
-        public string TenKhachHang { get; set; }
-        public int CongTruongID { get; set; }
-        public string TenCongTruong { get; set; }
-        public int HangMucID { get; set; }
-        public string TenHangMuc { get; set; }
-        public int MACID { get; set; }
-        public string TenMAC { get; set; }
-        public int NhanVienID { get; set; }
-        public string TenNhanVien { get; set; }
-        public int XeID { get; set; }
-        public string BienSo { get; set; }
-        public int TaiXeID { get; set; }
-        public string TenTaiXe { get; set; }
+        public int KH_int { get; set; }
+        public Nullable<int> CT_int { get; set; }
+        public Nullable<int> HM_int { get; set; }
+        public Nullable<int> MAC_int { get; set; }
+        public Nullable<int> Xe_int { get; set; }
+        public Nullable<int> TX_int { get; set; }
         public Nullable<decimal> SUM_Total_Value { get; set; }
         public Nullable<decimal> SUM_Total_ValueBat { get; set; }
         public Nullable<decimal> SUM_Total_ValueBatMan { get; set; }
         public Nullable<bool> IsQueued { get; set; }
-        public Nullable<System.DateTime> NgayPhieuTron { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public string FullName { get; set; }
+        public string KH { get; set; }
+        public string CT { get; set; }
+        public string BS { get; set; }
+        public string MAC { get; set; }
+        public string TX { get; set; }
+        public string HM { get; set; }
+        public Nullable<decimal> TongKhoiLuong { get; set; }
+        public Nullable<int> TongMeTron { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using DevExpress.XtraEditors;
+
 namespace NDPSo.Reports
 {
     partial class ReportTongVatTu
@@ -29,15 +31,21 @@ namespace NDPSo.Reports
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridGroupSummaryItem gridGroupSummaryItem1 = new DevExpress.XtraGrid.GridGroupSummaryItem();
+            DevExpress.XtraGrid.GridGroupSummaryItem gridGroupSummaryItem2 = new DevExpress.XtraGrid.GridGroupSummaryItem();
+            DevExpress.XtraGrid.GridGroupSummaryItem gridGroupSummaryItem3 = new DevExpress.XtraGrid.GridGroupSummaryItem();
+            this.gcCapPhoi = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcThucCan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSaiSo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.lblSoM3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSoKhoi = new System.Windows.Forms.TextBox();
             this.grcTongVatTu = new DevExpress.XtraGrid.GridControl();
             this.grvTongVatTu = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcMaVatTu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcNgayMeTron = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcTenVatTu = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcCapPhoi = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcThucCan = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSaiSo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcPerSaiSo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,34 +65,102 @@ namespace NDPSo.Reports
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcTongVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTongVatTu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCheDo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMaterial.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // gcCapPhoi
+            // 
+            this.gcCapPhoi.Caption = "Cấp phối";
+            this.gcCapPhoi.FieldName = "Sum_ValueCP";
+            this.gcCapPhoi.GroupFormat.FormatString = "n2";
+            this.gcCapPhoi.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gcCapPhoi.Name = "gcCapPhoi";
+            this.gcCapPhoi.OptionsColumn.AllowFocus = false;
+            this.gcCapPhoi.OptionsColumn.ReadOnly = true;
+            this.gcCapPhoi.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueCP", "{0:0.##}")});
+            this.gcCapPhoi.Visible = true;
+            this.gcCapPhoi.VisibleIndex = 2;
+            // 
+            // gcThucCan
+            // 
+            this.gcThucCan.Caption = "Thực cân";
+            this.gcThucCan.FieldName = "Sum_ValueBat";
+            this.gcThucCan.GroupFormat.FormatString = "n2";
+            this.gcThucCan.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gcThucCan.Name = "gcThucCan";
+            this.gcThucCan.OptionsColumn.AllowFocus = false;
+            this.gcThucCan.OptionsColumn.ReadOnly = true;
+            this.gcThucCan.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueBat", "{0:0.##}")});
+            this.gcThucCan.Visible = true;
+            this.gcThucCan.VisibleIndex = 3;
+            // 
+            // gcSaiSo
+            // 
+            this.gcSaiSo.Caption = "Sai số";
+            this.gcSaiSo.FieldName = "SaiSo";
+            this.gcSaiSo.GroupFormat.FormatString = "n2";
+            this.gcSaiSo.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gcSaiSo.Name = "gcSaiSo";
+            this.gcSaiSo.OptionsColumn.AllowFocus = false;
+            this.gcSaiSo.OptionsColumn.ReadOnly = true;
+            this.gcSaiSo.Visible = true;
+            this.gcSaiSo.VisibleIndex = 4;
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.panelControl3);
             this.groupControl2.Controls.Add(this.grcTongVatTu);
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl2.Location = new System.Drawing.Point(2, 2);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(629, 462);
+            this.groupControl2.Size = new System.Drawing.Size(644, 480);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Dữ liệu";
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.lblSoM3);
+            this.panelControl3.Controls.Add(this.txtSoKhoi);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelControl3.Location = new System.Drawing.Point(2, 448);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(640, 30);
+            this.panelControl3.TabIndex = 1;
+            // 
+            // lblSoM3
+            // 
+            this.lblSoM3.Appearance.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoM3.Appearance.Options.UseFont = true;
+            this.lblSoM3.Location = new System.Drawing.Point(250, 5);
+            this.lblSoM3.Name = "lblSoM3";
+            this.lblSoM3.Size = new System.Drawing.Size(25, 18);
+            this.lblSoM3.TabIndex = 5;
+            this.lblSoM3.Text = " M3";
+            // 
+            // txtSoKhoi
+            // 
+            this.txtSoKhoi.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtSoKhoi.Location = new System.Drawing.Point(2, 2);
+            this.txtSoKhoi.Name = "txtSoKhoi";
+            this.txtSoKhoi.ReadOnly = true;
+            this.txtSoKhoi.Size = new System.Drawing.Size(240, 21);
+            this.txtSoKhoi.TabIndex = 0;
+            this.txtSoKhoi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // grcTongVatTu
             // 
@@ -92,7 +168,7 @@ namespace NDPSo.Reports
             this.grcTongVatTu.Location = new System.Drawing.Point(2, 23);
             this.grcTongVatTu.MainView = this.grvTongVatTu;
             this.grcTongVatTu.Name = "grcTongVatTu";
-            this.grcTongVatTu.Size = new System.Drawing.Size(625, 437);
+            this.grcTongVatTu.Size = new System.Drawing.Size(640, 455);
             this.grcTongVatTu.TabIndex = 0;
             this.grcTongVatTu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvTongVatTu});
@@ -114,10 +190,23 @@ namespace NDPSo.Reports
             this.gcSaiSo,
             this.gcPerSaiSo});
             this.grvTongVatTu.GridControl = this.grcTongVatTu;
+            gridGroupSummaryItem1.DisplayFormat = "Tổng CP:{0:0.##}";
+            gridGroupSummaryItem1.FieldName = "Sum_ValueCP";
+            gridGroupSummaryItem1.ShowInGroupColumnFooter = this.gcCapPhoi;
+            gridGroupSummaryItem1.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridGroupSummaryItem1.Tag = "Sum_ValueCP";
+            gridGroupSummaryItem2.DisplayFormat = "Tổng Thực cân:{0:0.##}";
+            gridGroupSummaryItem2.FieldName = "Sum_ValueBat";
+            gridGroupSummaryItem2.ShowInGroupColumnFooter = this.gcThucCan;
+            gridGroupSummaryItem2.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridGroupSummaryItem2.Tag = "Sum_ValueBat";
+            gridGroupSummaryItem3.DisplayFormat = "Sai số: {Sum_ValueCP} -{Sum_ValueBat}";
+            gridGroupSummaryItem3.ShowInGroupColumnFooter = this.gcSaiSo;
+            gridGroupSummaryItem3.SummaryType = DevExpress.Data.SummaryItemType.Custom;
             this.grvTongVatTu.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueCP", this.gcCapPhoi, "Tổng CP:{0:0.##}", "Sum_ValueCP"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueBat", this.gcThucCan, "Tổng Thực cân:{0:0.##}", "Sum_ValueBat"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", this.gcSaiSo, "Sai số: {Sum_ValueCP} -{Sum_ValueBat}")});
+            gridGroupSummaryItem1,
+            gridGroupSummaryItem2,
+            gridGroupSummaryItem3});
             this.grvTongVatTu.Name = "grvTongVatTu";
             this.grvTongVatTu.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.True;
             this.grvTongVatTu.OptionsBehavior.AutoExpandAllGroups = true;
@@ -176,9 +265,9 @@ namespace NDPSo.Reports
             this.groupControl1.Controls.Add(this.groupBox2);
             this.groupControl1.Controls.Add(this.groupBox1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl1.Location = new System.Drawing.Point(631, 2);
+            this.groupControl1.Location = new System.Drawing.Point(646, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(280, 462);
+            this.groupControl1.Size = new System.Drawing.Size(280, 480);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Tác vụ";
             // 
@@ -197,7 +286,7 @@ namespace NDPSo.Reports
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(2, 23);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(276, 291);
+            this.groupBox2.Size = new System.Drawing.Size(276, 309);
             this.groupBox2.TabIndex = 75;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bộ lọc";
@@ -206,6 +295,9 @@ namespace NDPSo.Reports
             // 
             this.lueCheDo.Location = new System.Drawing.Point(112, 120);
             this.lueCheDo.Name = "lueCheDo";
+            // 
+            // 
+            // 
             this.lueCheDo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCheDo.Properties.Appearance.Options.UseFont = true;
             this.lueCheDo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -245,6 +337,9 @@ namespace NDPSo.Reports
             // 
             this.lueMaterial.Location = new System.Drawing.Point(112, 90);
             this.lueMaterial.Name = "lueMaterial";
+            // 
+            // 
+            // 
             this.lueMaterial.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueMaterial.Properties.Appearance.Options.UseFont = true;
             this.lueMaterial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -281,13 +376,19 @@ namespace NDPSo.Reports
             // 
             // datToDate
             // 
-            this.datToDate.EditValue = null;
+            this.datToDate.EditValue = new System.DateTime(2024, 6, 12, 0, 0, 0, 0);
             this.datToDate.Location = new System.Drawing.Point(112, 60);
             this.datToDate.Name = "datToDate";
+            // 
+            // 
+            // 
             this.datToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datToDate.Properties.Appearance.Options.UseFont = true;
             this.datToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datToDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -300,13 +401,19 @@ namespace NDPSo.Reports
             // 
             // datFromDate
             // 
-            this.datFromDate.EditValue = null;
+            this.datFromDate.EditValue = new System.DateTime(2024, 6, 12, 0, 0, 0, 0);
             this.datFromDate.Location = new System.Drawing.Point(112, 30);
             this.datFromDate.Name = "datFromDate";
+            // 
+            // 
+            // 
             this.datFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datFromDate.Properties.Appearance.Options.UseFont = true;
             this.datFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datFromDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -341,7 +448,7 @@ namespace NDPSo.Reports
             // 
             this.groupBox1.Controls.Add(this.btnExportExcel);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(2, 314);
+            this.groupBox1.Location = new System.Drawing.Point(2, 332);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 146);
             this.groupBox1.TabIndex = 74;
@@ -370,7 +477,7 @@ namespace NDPSo.Reports
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(913, 50);
+            this.panelControl1.Size = new System.Drawing.Size(928, 50);
             this.panelControl1.TabIndex = 2;
             // 
             // labelControl4
@@ -382,7 +489,7 @@ namespace NDPSo.Reports
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.Location = new System.Drawing.Point(10, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(903, 50);
+            this.labelControl4.Size = new System.Drawing.Size(903, 0);
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "BÁO CÁO TỔNG VẬT TƯ";
             // 
@@ -393,7 +500,7 @@ namespace NDPSo.Reports
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 50);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(913, 466);
+            this.panelControl2.Size = new System.Drawing.Size(928, 484);
             this.panelControl2.TabIndex = 3;
             // 
             // ReportTongVatTu
@@ -403,13 +510,12 @@ namespace NDPSo.Reports
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Name = "ReportTongVatTu";
-            this.Size = new System.Drawing.Size(913, 516);
+            this.Size = new System.Drawing.Size(928, 534);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcTongVatTu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTongVatTu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCheDo.Properties)).EndInit();
@@ -420,9 +526,7 @@ namespace NDPSo.Reports
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -456,5 +560,8 @@ namespace NDPSo.Reports
         private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraEditors.SimpleButton btnExportExcel;
         private DevExpress.XtraGrid.Columns.GridColumn gcNgayMeTron;
+        private PanelControl panelControl3;
+        private System.Windows.Forms.TextBox txtSoKhoi;
+        private DevExpress.XtraEditors.LabelControl lblSoM3;
     }
 }

@@ -79,6 +79,7 @@ namespace NDPSo.MasterData
             this.spnTGTreXa.DataBindings.Add("EditValue", (object)this._wei, "Max");
             this.spnTGTreDong.DataBindings.Clear();
             this.spnTGTreDong.DataBindings.Add("EditValue", (object)this._wei, "Offset");
+            this.chkGiuKL.DataBindings.Add("Checked", (object)this._wei, "GiuKLTC");
 
         }
         private void SetCaption()
@@ -211,5 +212,7 @@ namespace NDPSo.MasterData
         {
             this.Close();
         }
+
+        private void chkGiuKL_CheckedChanged(object sender, EventArgs e) => this._wei.GiuKLTC = new bool?(this.chkGiuKL.Checked);
     }
 }

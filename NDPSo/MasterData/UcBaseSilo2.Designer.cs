@@ -139,6 +139,11 @@ namespace NDPSo.MasterData
             this.spn0.Properties.EditFormat.FormatString = "n2";
             this.spn0.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.spn0.Properties.Mask.EditMask = "n2";
+            this.spn0.Properties.MaxValue = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
             this.spn0.Size = new System.Drawing.Size(92, 22);
             this.spn0.TabIndex = 3;
             this.spn0.ToolTip = "Độ Ẩm Cát Đá";

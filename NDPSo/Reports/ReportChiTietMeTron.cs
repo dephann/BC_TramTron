@@ -159,7 +159,7 @@ namespace NDPSo.Reports
        
         protected override void PopulateStaticData()
         {
-            this.lueCheDo.Properties.DataSource = (object)Converter.EnumToListFieldCode<Enums.SimMode>(true);
+            this.lueCheDo.Properties.DataSource = (object)Converter.EnumToListFieldCode<Enums.SimMode>(false);
             int num_silo_Agg;
             num_silo_Agg = ConfigManager.TramTronConfig.SL_Silo_AGG;
             if (num_silo_Agg == 0)
@@ -329,7 +329,7 @@ namespace NDPSo.Reports
                     active = new bool?(false);
                 else if (Convert.ToInt32(this.lueCheDo.EditValue) == 2)
                     active = new bool?(true);
-
+                
                 /*this._presenter.ListDataMix_ByCondition(
                     Searching.BuildNew_StartDateTime(this.datFromDate.DateTime, this.tseFromTime.TimeSpan),
                     //this.datFromDate.DateTime,
@@ -390,7 +390,7 @@ namespace NDPSo.Reports
             this.lueBienSo.EditValue = (object)null;
             this.lueTaiXe.EditValue = (object)null;
             this.lueNhanVien.EditValue = (object)null;
-            this.lueCheDo.EditValue = (object)-1;
+            this.lueCheDo.EditValue = (object)2;
         }
         protected override void PopulateData()
         {

@@ -201,6 +201,7 @@ namespace NDPSo.MasterData
                 this.spnWidthBTC.EditValue = ConfigManager.TramTronConfig.Width_BTC;
                 this.funnel.Visible = ConfigManager.TramTronConfig.Show_Funnel;
                 this.chk_BTC.Checked = ConfigManager.TramTronConfig.Show_BTC;
+                this.chk_PGN.Checked = ConfigManager.TramTronConfig.PGN;
                 this.chk_Funnel.Checked = ConfigManager.TramTronConfig.Show_Funnel;
                 if (rdgCapPhoiRes.SelectedIndex == 0)
                 {
@@ -668,6 +669,7 @@ namespace NDPSo.MasterData
                 ConfigManager.TramTronConfig.Wei_ADD_2_X = this.wei_Add2.Location.X;
 
                 ConfigManager.TramTronConfig.Show_BTC = this.chk_BTC.Checked;
+                ConfigManager.TramTronConfig.PGN = this.chk_PGN.Checked;
                 ConfigManager.TramTronConfig.Width_BTC = (int)this.spnWidthBTC.Value;
                 ConfigManager.TramTronConfig.BTC_X = this.ucBTC1.Location.X;
 

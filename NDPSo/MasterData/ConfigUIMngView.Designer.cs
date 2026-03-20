@@ -29,6 +29,8 @@ namespace NDPSo.MasterData
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.RadioGroupItem radioGroupItem1 = new DevExpress.XtraEditors.Controls.RadioGroupItem();
+            DevExpress.XtraEditors.Controls.RadioGroupItem radioGroupItem2 = new DevExpress.XtraEditors.Controls.RadioGroupItem();
             this.btnCreateConfig = new DevExpress.XtraEditors.GroupControl();
             this.spnWidthBTC = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -44,6 +46,7 @@ namespace NDPSo.MasterData
             this.btnCreate = new DevExpress.XtraEditors.SimpleButton();
             this.chk_Funnel = new DevExpress.XtraEditors.CheckEdit();
             this.chk_BTC = new DevExpress.XtraEditors.CheckEdit();
+            this.chk_PGN = new DevExpress.XtraEditors.CheckEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdgCapPhoiRes = new DevExpress.XtraEditors.RadioGroup();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
@@ -95,7 +98,6 @@ namespace NDPSo.MasterData
             this.silo_Agg1 = new NDPSo.MasterData.Config.ucSilo();
             this.funnel = new NDPSo.MasterData.TronOnlineView.UserControls.UcFunnel();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateConfig)).BeginInit();
-            this.btnCreateConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnWidthBTC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lue_Wei_Add.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lue_Wei_Wa.Properties)).BeginInit();
@@ -106,11 +108,11 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.lue_Silo_Ce.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chk_Funnel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chk_BTC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_PGN.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdgCapPhoiRes.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lue_Silo_Agg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCreateConfig
@@ -129,6 +131,7 @@ namespace NDPSo.MasterData
             this.btnCreateConfig.Controls.Add(this.btnCreate);
             this.btnCreateConfig.Controls.Add(this.chk_Funnel);
             this.btnCreateConfig.Controls.Add(this.chk_BTC);
+            this.btnCreateConfig.Controls.Add(this.chk_PGN);
             this.btnCreateConfig.Controls.Add(this.groupBox1);
             this.btnCreateConfig.Controls.Add(this.labelControl10);
             this.btnCreateConfig.Controls.Add(this.labelControl9);
@@ -157,6 +160,9 @@ namespace NDPSo.MasterData
             0});
             this.spnWidthBTC.Location = new System.Drawing.Point(655, 66);
             this.spnWidthBTC.Name = "spnWidthBTC";
+            // 
+            // 
+            // 
             this.spnWidthBTC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnWidthBTC.Properties.Appearance.Options.UseFont = true;
             this.spnWidthBTC.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -179,6 +185,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Wei_Add.Location = new System.Drawing.Point(383, 127);
             this.lue_Wei_Add.Name = "lue_Wei_Add";
+            // 
+            // 
+            // 
             this.lue_Wei_Add.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Wei_Add.Properties.Appearance.Options.UseFont = true;
             this.lue_Wei_Add.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -198,6 +207,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Wei_Wa.Location = new System.Drawing.Point(383, 101);
             this.lue_Wei_Wa.Name = "lue_Wei_Wa";
+            // 
+            // 
+            // 
             this.lue_Wei_Wa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Wei_Wa.Properties.Appearance.Options.UseFont = true;
             this.lue_Wei_Wa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -217,6 +229,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Wei_Ce.Location = new System.Drawing.Point(383, 75);
             this.lue_Wei_Ce.Name = "lue_Wei_Ce";
+            // 
+            // 
+            // 
             this.lue_Wei_Ce.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Wei_Ce.Properties.Appearance.Options.UseFont = true;
             this.lue_Wei_Ce.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -236,6 +251,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Wei_Agg.Location = new System.Drawing.Point(383, 49);
             this.lue_Wei_Agg.Name = "lue_Wei_Agg";
+            // 
+            // 
+            // 
             this.lue_Wei_Agg.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Wei_Agg.Properties.Appearance.Options.UseFont = true;
             this.lue_Wei_Agg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -255,6 +273,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Silo_Add.Location = new System.Drawing.Point(132, 127);
             this.lue_Silo_Add.Name = "lue_Silo_Add";
+            // 
+            // 
+            // 
             this.lue_Silo_Add.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Silo_Add.Properties.Appearance.Options.UseFont = true;
             this.lue_Silo_Add.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -274,6 +295,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Silo_Wa.Location = new System.Drawing.Point(132, 101);
             this.lue_Silo_Wa.Name = "lue_Silo_Wa";
+            // 
+            // 
+            // 
             this.lue_Silo_Wa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Silo_Wa.Properties.Appearance.Options.UseFont = true;
             this.lue_Silo_Wa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -293,6 +317,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Silo_Ce.Location = new System.Drawing.Point(132, 75);
             this.lue_Silo_Ce.Name = "lue_Silo_Ce";
+            // 
+            // 
+            // 
             this.lue_Silo_Ce.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Silo_Ce.Properties.Appearance.Options.UseFont = true;
             this.lue_Silo_Ce.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -323,7 +350,7 @@ namespace NDPSo.MasterData
             // 
             this.btnReset.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Appearance.Options.UseFont = true;
-            this.btnReset.Location = new System.Drawing.Point(821, 104);
+            this.btnReset.Location = new System.Drawing.Point(821, 130);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(128, 29);
             this.btnReset.TabIndex = 22;
@@ -334,7 +361,7 @@ namespace NDPSo.MasterData
             // 
             this.btnCreate.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreate.Appearance.Options.UseFont = true;
-            this.btnCreate.Location = new System.Drawing.Point(821, 60);
+            this.btnCreate.Location = new System.Drawing.Point(821, 80);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(128, 29);
             this.btnCreate.TabIndex = 21;
@@ -345,6 +372,9 @@ namespace NDPSo.MasterData
             // 
             this.chk_Funnel.Location = new System.Drawing.Point(735, 41);
             this.chk_Funnel.Name = "chk_Funnel";
+            // 
+            // 
+            // 
             this.chk_Funnel.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chk_Funnel.Properties.Appearance.Options.UseFont = true;
             this.chk_Funnel.Properties.Caption = "";
@@ -355,11 +385,27 @@ namespace NDPSo.MasterData
             // 
             this.chk_BTC.Location = new System.Drawing.Point(615, 41);
             this.chk_BTC.Name = "chk_BTC";
+            // 
+            // 
+            // 
             this.chk_BTC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chk_BTC.Properties.Appearance.Options.UseFont = true;
             this.chk_BTC.Properties.Caption = "";
             this.chk_BTC.Size = new System.Drawing.Size(20, 20);
             this.chk_BTC.TabIndex = 19;
+            // 
+            // chk_PGN
+            // 
+            this.chk_PGN.Location = new System.Drawing.Point(815, 41);
+            this.chk_PGN.Name = "chk_PGN";
+            // 
+            // 
+            // 
+            this.chk_PGN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_PGN.Properties.Appearance.Options.UseFont = true;
+            this.chk_PGN.Properties.Caption = "Phụ gia ngoài";
+            this.chk_PGN.Size = new System.Drawing.Size(100, 20);
+            this.chk_PGN.TabIndex = 19;
             // 
             // groupBox1
             // 
@@ -377,14 +423,21 @@ namespace NDPSo.MasterData
             this.rdgCapPhoiRes.EditValue = ((byte)(0));
             this.rdgCapPhoiRes.Location = new System.Drawing.Point(25, 20);
             this.rdgCapPhoiRes.Name = "rdgCapPhoiRes";
+            // 
+            // 
+            // 
             this.rdgCapPhoiRes.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.rdgCapPhoiRes.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdgCapPhoiRes.Properties.Appearance.Options.UseBackColor = true;
             this.rdgCapPhoiRes.Properties.Appearance.Options.UseFont = true;
             this.rdgCapPhoiRes.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            radioGroupItem1.Description = "Băng tải xiên";
+            radioGroupItem1.Value = ((byte)(0));
+            radioGroupItem2.Description = "Gàu tải";
+            radioGroupItem2.Value = ((byte)(1));
             this.rdgCapPhoiRes.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((byte)(0)), "Băng tải xiên"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(((byte)(1)), "Gàu tải")});
+            radioGroupItem1,
+            radioGroupItem2});
             this.rdgCapPhoiRes.Size = new System.Drawing.Size(181, 58);
             this.rdgCapPhoiRes.TabIndex = 0;
             // 
@@ -482,6 +535,9 @@ namespace NDPSo.MasterData
             // 
             this.lue_Silo_Agg.Location = new System.Drawing.Point(132, 49);
             this.lue_Silo_Agg.Name = "lue_Silo_Agg";
+            // 
+            // 
+            // 
             this.lue_Silo_Agg.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lue_Silo_Agg.Properties.Appearance.Options.UseFont = true;
             this.lue_Silo_Agg.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -683,7 +739,7 @@ namespace NDPSo.MasterData
             // 
             this.wei_Agg6.BackColor = System.Drawing.Color.Transparent;
             this.wei_Agg6.Caption = "AGG 6";
-            this.wei_Agg6.Location = new System.Drawing.Point(2, 384);
+            this.wei_Agg6.Location = new System.Drawing.Point(2, 306);
             this.wei_Agg6.Name = "wei_Agg6";
             this.wei_Agg6.Size = new System.Drawing.Size(94, 94);
             this.wei_Agg6.TabIndex = 590;
@@ -697,7 +753,7 @@ namespace NDPSo.MasterData
             // 
             this.wei_Agg5.BackColor = System.Drawing.Color.Transparent;
             this.wei_Agg5.Caption = "AGG 5";
-            this.wei_Agg5.Location = new System.Drawing.Point(102, 384);
+            this.wei_Agg5.Location = new System.Drawing.Point(102, 306);
             this.wei_Agg5.Name = "wei_Agg5";
             this.wei_Agg5.Size = new System.Drawing.Size(94, 94);
             this.wei_Agg5.TabIndex = 589;
@@ -711,7 +767,7 @@ namespace NDPSo.MasterData
             // 
             this.wei_Agg4.BackColor = System.Drawing.Color.Transparent;
             this.wei_Agg4.Caption = "AGG 4";
-            this.wei_Agg4.Location = new System.Drawing.Point(202, 384);
+            this.wei_Agg4.Location = new System.Drawing.Point(202, 306);
             this.wei_Agg4.Name = "wei_Agg4";
             this.wei_Agg4.Size = new System.Drawing.Size(94, 94);
             this.wei_Agg4.TabIndex = 588;
@@ -725,7 +781,7 @@ namespace NDPSo.MasterData
             // 
             this.wei_Agg3.BackColor = System.Drawing.Color.Transparent;
             this.wei_Agg3.Caption = "AGG 3";
-            this.wei_Agg3.Location = new System.Drawing.Point(302, 384);
+            this.wei_Agg3.Location = new System.Drawing.Point(302, 306);
             this.wei_Agg3.Name = "wei_Agg3";
             this.wei_Agg3.Size = new System.Drawing.Size(94, 94);
             this.wei_Agg3.TabIndex = 587;
@@ -739,7 +795,7 @@ namespace NDPSo.MasterData
             // 
             this.wei_Agg2.BackColor = System.Drawing.Color.Transparent;
             this.wei_Agg2.Caption = "AGG 2";
-            this.wei_Agg2.Location = new System.Drawing.Point(402, 384);
+            this.wei_Agg2.Location = new System.Drawing.Point(402, 306);
             this.wei_Agg2.Name = "wei_Agg2";
             this.wei_Agg2.Size = new System.Drawing.Size(94, 94);
             this.wei_Agg2.TabIndex = 586;
@@ -767,7 +823,7 @@ namespace NDPSo.MasterData
             // 
             this.wei_Agg1.BackColor = System.Drawing.Color.Transparent;
             this.wei_Agg1.Caption = "AGG 1";
-            this.wei_Agg1.Location = new System.Drawing.Point(502, 384);
+            this.wei_Agg1.Location = new System.Drawing.Point(502, 306);
             this.wei_Agg1.Name = "wei_Agg1";
             this.wei_Agg1.Size = new System.Drawing.Size(94, 94);
             this.wei_Agg1.TabIndex = 584;
@@ -977,7 +1033,7 @@ namespace NDPSo.MasterData
             this.silo_Agg6.AllowDrop = true;
             this.silo_Agg6.BackColor = System.Drawing.Color.Transparent;
             this.silo_Agg6.Caption = "AGG 6";
-            this.silo_Agg6.Location = new System.Drawing.Point(2, 109);
+            this.silo_Agg6.Location = new System.Drawing.Point(2, 31);
             this.silo_Agg6.Name = "silo_Agg6";
             this.silo_Agg6.Silo = NDPSo.MasterData.Config.ucSilo.MySilo.AGG;
             this.silo_Agg6.Size = new System.Drawing.Size(94, 206);
@@ -992,7 +1048,7 @@ namespace NDPSo.MasterData
             this.silo_Agg5.AllowDrop = true;
             this.silo_Agg5.BackColor = System.Drawing.Color.Transparent;
             this.silo_Agg5.Caption = "AGG 5";
-            this.silo_Agg5.Location = new System.Drawing.Point(102, 109);
+            this.silo_Agg5.Location = new System.Drawing.Point(102, 31);
             this.silo_Agg5.Name = "silo_Agg5";
             this.silo_Agg5.Silo = NDPSo.MasterData.Config.ucSilo.MySilo.AGG;
             this.silo_Agg5.Size = new System.Drawing.Size(94, 206);
@@ -1007,7 +1063,7 @@ namespace NDPSo.MasterData
             this.silo_Agg4.AllowDrop = true;
             this.silo_Agg4.BackColor = System.Drawing.Color.Transparent;
             this.silo_Agg4.Caption = "AGG 4";
-            this.silo_Agg4.Location = new System.Drawing.Point(202, 109);
+            this.silo_Agg4.Location = new System.Drawing.Point(202, 31);
             this.silo_Agg4.Name = "silo_Agg4";
             this.silo_Agg4.Silo = NDPSo.MasterData.Config.ucSilo.MySilo.AGG;
             this.silo_Agg4.Size = new System.Drawing.Size(94, 206);
@@ -1022,7 +1078,7 @@ namespace NDPSo.MasterData
             this.silo_Agg3.AllowDrop = true;
             this.silo_Agg3.BackColor = System.Drawing.Color.Transparent;
             this.silo_Agg3.Caption = "AGG 3";
-            this.silo_Agg3.Location = new System.Drawing.Point(302, 109);
+            this.silo_Agg3.Location = new System.Drawing.Point(302, 31);
             this.silo_Agg3.Name = "silo_Agg3";
             this.silo_Agg3.Silo = NDPSo.MasterData.Config.ucSilo.MySilo.AGG;
             this.silo_Agg3.Size = new System.Drawing.Size(94, 206);
@@ -1037,7 +1093,7 @@ namespace NDPSo.MasterData
             this.silo_Agg2.AllowDrop = true;
             this.silo_Agg2.BackColor = System.Drawing.Color.Transparent;
             this.silo_Agg2.Caption = "AGG 2";
-            this.silo_Agg2.Location = new System.Drawing.Point(402, 109);
+            this.silo_Agg2.Location = new System.Drawing.Point(402, 31);
             this.silo_Agg2.Name = "silo_Agg2";
             this.silo_Agg2.Silo = NDPSo.MasterData.Config.ucSilo.MySilo.AGG;
             this.silo_Agg2.Size = new System.Drawing.Size(94, 206);
@@ -1052,7 +1108,7 @@ namespace NDPSo.MasterData
             this.silo_Agg1.AllowDrop = true;
             this.silo_Agg1.BackColor = System.Drawing.Color.Transparent;
             this.silo_Agg1.Caption = "AGG 1";
-            this.silo_Agg1.Location = new System.Drawing.Point(504, 109);
+            this.silo_Agg1.Location = new System.Drawing.Point(504, 31);
             this.silo_Agg1.Name = "silo_Agg1";
             this.silo_Agg1.Silo = NDPSo.MasterData.Config.ucSilo.MySilo.AGG;
             this.silo_Agg1.Size = new System.Drawing.Size(94, 206);
@@ -1081,8 +1137,6 @@ namespace NDPSo.MasterData
             this.Size = new System.Drawing.Size(1920, 1080);
             this.Load += new System.EventHandler(this.ConfigUIMngView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateConfig)).EndInit();
-            this.btnCreateConfig.ResumeLayout(false);
-            this.btnCreateConfig.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnWidthBTC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lue_Wei_Add.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lue_Wei_Wa.Properties)).EndInit();
@@ -1093,11 +1147,11 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.lue_Silo_Ce.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chk_Funnel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chk_BTC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_PGN.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rdgCapPhoiRes.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lue_Silo_Agg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1118,6 +1172,7 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.CheckEdit chk_Funnel;
         private DevExpress.XtraEditors.CheckEdit chk_BTC;
+        private DevExpress.XtraEditors.CheckEdit chk_PGN;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.RadioGroup rdgCapPhoiRes;
         private DevExpress.XtraEditors.LabelControl labelControl10;

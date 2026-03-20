@@ -15,6 +15,7 @@ namespace NDPSo
 {
     public partial class SettingProduct : DialogViewBase
     {
+        private string a = "";
         public SettingProduct()
         {
             InitializeComponent();
@@ -23,12 +24,22 @@ namespace NDPSo
         {
             try
             {
+                if (ConfigManager.TramTronConfig.ShowPlantB)
+                {
+                    a = "true";
+                }
+                else
+                {
+                    a = "false";
+                }
                 this.txtNameProduct.Text = ConfigManager.TramTronConfig.NameProduct;
                 this.txtLocalProduct.Text = ConfigManager.TramTronConfig.LocalProduct;
                 this.txtPhoneProduct.Text = ConfigManager.TramTronConfig.PhoneProduct;
                 this.bteIconLogoPathProducer.Text = ConfigManager.TramTronConfig.LogoProduct;
-                this.lblTime.Text = ConfigManager.TramTronConfig.TimeLife.ToString();
+                this.lblTime.Text = ConfigManager.TramTronConfig.TimeLife.ToString("dd/MM/yyyy hh:mm tt" + a);
+
                 this.lblTime.Visible = false;
+                
             }
             catch (System.Exception ex)
             {
@@ -106,6 +117,11 @@ namespace NDPSo
             {
                 this.lblTime.Visible = true;
             }
+        }
+
+        private void SettingProduct_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

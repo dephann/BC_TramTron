@@ -1,13 +1,20 @@
-﻿using DevExpress.Utils.Menu;
+﻿using DevExpress.Data;
+using DevExpress.DataProcessing.InMemoryDataProcessor;
+using DevExpress.Utils.Menu;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using DocumentFormat.OpenXml.ExtendedProperties;
 using Microsoft.Office.Interop.Word;
 using NDPSo.ClientSetting;
 using NDPSo.Data;
+using NDPSo.EntityModel;
 using NDPSo.KWS;
 using NDPSo.MasterData.Config;
 using NDPSo.MasterData.TronOnlineView.UserControls;
@@ -49,6 +56,7 @@ namespace NDPSo.MasterData
         private List<ObjSEC_Function> _lstFunction = new List<ObjSEC_Function>();
 
         private SetPoint _sp = new SetPoint();
+        private SetPoint _sp_NotHD = new SetPoint();
         private ReceivingFromPLC _ro = new ReceivingFromPLC();
         private SendingToPLC _so = new SendingToPLC();
         private TronOnlineAttributes _TronOnlineAttributes = new TronOnlineAttributes();
@@ -73,6 +81,7 @@ namespace NDPSo.MasterData
         private ObjPhieuTron _selectedPT_NextRun;
 
         private ObjPhieuTron _selectedPT_Run;
+        private ObjPhieuGiaoHang _selectedPGH_Run;
         private Decimal _themBotNuoc;
         private Decimal _giuNuocTenCan;
 
@@ -88,20 +97,45 @@ namespace NDPSo.MasterData
 
         private int _idSavePLC = -1;
         private int _idSave = -1;
-        
+
         private int soMeCanTronTest = -1;
         private int randomNumberTest = 1;
         private bool isTesst = false;
 
-        private int some = 0;
+        private int some;
+        private int slMeCanTron;
+
+        private int lastClickedRowHandle = GridControl.InvalidRowHandle;
 
         private bool IsRunningNoiTron = false;
 
         private decimal _LuyKe_InNhanh;
+
         List<string> paras = new List<string>();
+
         //PlayOff
         private DateTime timeNow;
         private DateTime timeTrie;
+
+        private bool _previousCanDuAgg1State = false;
+        private bool _previousCanDuAgg2State = false;
+        private bool _previousCanDuAgg3State = false;
+        private bool _previousCanDuAgg4State = false;
+        private bool _previousCanDuAgg5State = false;
+        private bool _previousCanDuAgg6State = false;
+        private bool _previousCanDuCe1State = false;
+        private bool _previousCanDuCe2State = false;
+        private bool _previousCanDuCe3State = false;
+        private bool _previousCanDuCe4State = false;
+        private bool _previousCanDuCe5State = false;
+        private bool _previousCanDuWa1State = false;
+        private bool _previousCanDuWa2State = false;
+        private bool _previousCanDuAdd1State = false;
+        private bool _previousCanDuAdd2State = false;
+        private bool _previousCanDuAdd3State = false;
+        private bool _previousCanDuAdd4State = false;
+        private bool _previousCanDuAdd5State = false;
+        private bool _previousCanDuAdd6State = false;
 
         public bool IsRunNoiTron
         {
@@ -121,6 +155,7 @@ namespace NDPSo.MasterData
                 }
             }
         }
+
         public bool IsRunBTX
         {
             get => _isRunBTX;
@@ -138,6 +173,7 @@ namespace NDPSo.MasterData
                 }
             }
         }
+
         public bool IsRunBTC
         {
             get => _isRunBTC;
@@ -155,7 +191,7 @@ namespace NDPSo.MasterData
                 }
             }
         }
-        
+
         public SetPoint SP
         {
             set
@@ -164,7 +200,14 @@ namespace NDPSo.MasterData
                 this.BindSetPoint(this._sp);
             }
         }
-
+        public SetPoint SP_NotHD
+        {
+            set
+            {
+                this._sp_NotHD = value;
+                //this.BindSetPoint(this._sp);
+            }
+        }
         public BindingList<ObjDuLieuTron> BLstDuLieuTron
         {
             set
@@ -174,11 +217,10 @@ namespace NDPSo.MasterData
                 this.grcHopDong.DataSource = this._blstDuLieuTron;
             }
         }
-        public BindingList<ObjMAC> BLstMAC { 
-            set
-            {
-                this._blstMAC = value;
-            }
+
+        public BindingList<ObjMAC> BLstMAC
+        {
+            set { this._blstMAC = value; }
         }
 
         public BindingList<ObjMACSilo> BLstMACSilo
@@ -192,10 +234,7 @@ namespace NDPSo.MasterData
 
         public BindingList<ObjPhieuTron> BLstPhieuTron
         {
-            set
-            {
-
-            }
+            set { }
         }
 
         public BindingList<ObjSilo> BLstSilo
@@ -317,36 +356,27 @@ namespace NDPSo.MasterData
                 _seletedLogic = false;
             }
         }
+
         public BindingList<ObjSilo> BLstSiloLogicAD
         {
-            set
-            {
-                this._blstSiloLogicAD = value;
-            }
+            set { this._blstSiloLogicAD = value; }
         }
 
         public BindingList<ObjSilo> BLstSiloLogicCE
         {
-            set
-            {
-                this._blstSiloLogicCE = value;
-            }
+            set { this._blstSiloLogicCE = value; }
         }
 
         public BindingList<ObjSilo> BLstSilo_DoAmHutAgg
         {
-            set
-            {
-                this._blstSilo_DoAmHutAgg = value;
-            }
+            set { this._blstSilo_DoAmHutAgg = value; }
         }
+
         public BindingList<ObjNhanVien> BLstNhanVien
         {
-            set
-            {
-                this._blstNhanVien = value;
-            }
+            set { this._blstNhanVien = value; }
         }
+
         public BindingList<ObjTaiXe> BLstTaiXe
         {
             set
@@ -361,7 +391,7 @@ namespace NDPSo.MasterData
             set
             {
                 this._blstTimerPara = value;
-                
+
                 foreach (ObjTimerPara current in this._blstTimerPara)
                 {
                     string timerParaCode;
@@ -446,16 +476,16 @@ namespace NDPSo.MasterData
                         case "TG_TRE_TAT_VTX":
                             this._sp.TG_TRE_TAT_VTX = (double)current.TimerParaValue.Value;
                             break;
-                        case "TG_BAT_RUNG_WAGG":
-                            this._sp.TG_BAT_RUNG_WAGG = (double)current.TimerParaValue.Value;
+                        case "TG_TRON_UOT":
+                            this._sp.TG_TRON_UOT = (double)current.TimerParaValue.Value;
                             break;
                         case "TG_TAT_RUNG_WAGG":
                             this._sp.TG_TAT_RUNG_WAGG = (double)current.TimerParaValue.Value;
                             break;
-                        case "TG_BAT_RUNG_WCE":
+                        case "TG_BAT_BOM_MO": // Update CE
                             this._sp.TG_BAT_RUNG_WCE = (double)current.TimerParaValue.Value;
                             break;
-                        case "TG_TAT_RUNG_WCE":
+                        case "TG_TAT_BOM_MO": // Update CE
                             this._sp.TG_TAT_RUNG_WCE = (double)current.TimerParaValue.Value;
                             break;
                         case "TG_BAT_SKSL":
@@ -464,10 +494,10 @@ namespace NDPSo.MasterData
                         case "TG_TAT_SKSL":
                             this._sp.TG_TAT_SKSL = (double)current.TimerParaValue.Value;
                             break;
-                        case "TG_TRE_MO_VAN_CE":
-                            this._sp.TG_TRE_MO_VAN_CE = (double)current.TimerParaValue.Value;
+                        case "TT_AGG": // Update TG_TRE_MO_VAN_CE
+                            this._sp.TG_TAT_RUNG_WCE = (double)current.TimerParaValue.Value;
                             break;
-                        
+
                         case "TG_PheuChoDay":
                             this._sp.ThoiGian_PheuChoDay = (double)current.TimerParaValue.Value;
                             break;
@@ -519,7 +549,7 @@ namespace NDPSo.MasterData
                         case "HSX_AGG6":
                             this._sp.HSX_AGG6 = (double)current.TimerParaValue.Value;
                             break;
-                       
+
                         case "HSN_CE1":
                             this._sp.HSN_CE1 = (double)current.TimerParaValue.Value;
                             break;
@@ -578,6 +608,7 @@ namespace NDPSo.MasterData
                         case "HSN_ADD6":
                             this._sp.HSN_ADD6 = (double)current.TimerParaValue.Value;
                             break;
+                        
                         default:
                             // Không có xử lý đặc biệt cho các giá trị timerParaCode khác
                             break;
@@ -590,27 +621,17 @@ namespace NDPSo.MasterData
 
         public BindingList<ObjWeigh> BLstWeigh
         {
-            set
-            {
-                this._blstWeigh = value;
-
-            }
+            set { this._blstWeigh = value; }
         }
 
         public BindingList<ObjWeiSiloSaving> BLstWeiSiloSaving
         {
-            set
-            {
-                this._blstWeiSiloSaving = value;
-            }
+            set { this._blstWeiSiloSaving = value; }
         }
 
         public BindingList<ObjWeiSiloVisible> BLstWeiSiloVisible
         {
-            set
-            {
-                this._blstWeiSiloVisible = value;
-            }
+            set { this._blstWeiSiloVisible = value; }
         }
 
         public BindingList<ObjXe> BLstXe
@@ -642,10 +663,7 @@ namespace NDPSo.MasterData
         {
             if (base.InvokeRequired)
             {
-                base.Invoke(new MethodInvoker(delegate ()
-                {
-                    this.BindSetPoint(sp);
-                }));
+                base.Invoke(new MethodInvoker(delegate() { this.BindSetPoint(sp); }));
                 return;
             }
             else
@@ -660,56 +678,59 @@ namespace NDPSo.MasterData
                 //if (this._ro.WeiRuning_F1_FromPLC && !this._flagSaveMAC && !sp.CanUpdateWhenRunning)
                 //   return;
                 //this._flagSaveMAC = false;
-                this.siloAdd1.KLCaiDat = (decimal)sp.KL_CaiDat_Add1;
-                this.siloAdd1.KLCanCan = (decimal)sp.KL_CanCan_Add1;
-                this.siloAdd2.KLCaiDat = (decimal)sp.KL_CaiDat_Add2;
-                this.siloAdd2.KLCanCan = (decimal)sp.KL_CanCan_Add2;
-                this.siloAdd3.KLCaiDat = (decimal)sp.KL_CaiDat_Add3;
-                this.siloAdd3.KLCanCan = (decimal)sp.KL_CanCan_Add3;
-                this.siloAdd4.KLCaiDat = (decimal)sp.KL_CaiDat_Add4;
-                this.siloAdd4.KLCanCan = (decimal)sp.KL_CanCan_Add4;
-                this.siloAdd5.KLCaiDat = (decimal)sp.KL_CaiDat_Add5;
-                this.siloAdd5.KLCanCan = (decimal)sp.KL_CanCan_Add5;
-                this.siloAdd6.KLCaiDat = (decimal)sp.KL_CaiDat_Add6;
-                this.siloAdd6.KLCanCan = (decimal)sp.KL_CanCan_Add6;
+                this.siloAdd1.KLCaiDat = sp.KL_CaiDat_Add1;
+                this.siloAdd1.KLCanCan = sp.KL_CanCan_Add1;
+                this.siloAdd2.KLCaiDat = sp.KL_CaiDat_Add2;
+                this.siloAdd2.KLCanCan = sp.KL_CanCan_Add2;
+                this.siloAdd3.KLCaiDat = sp.KL_CaiDat_Add3;
+                this.siloAdd3.KLCanCan = sp.KL_CanCan_Add3;
+                this.siloAdd4.KLCaiDat = sp.KL_CaiDat_Add4;
+                this.siloAdd4.KLCanCan = sp.KL_CanCan_Add4;
+                this.siloAdd5.KLCaiDat = sp.KL_CaiDat_Add5;
+                this.siloAdd5.KLCanCan = sp.KL_CanCan_Add5;
+                this.siloAdd6.KLCaiDat = sp.KL_CaiDat_Add6;
+                this.siloAdd6.KLCanCan = sp.KL_CanCan_Add6;
 
-                this.siloCe1.KLCaiDat = (decimal)sp.KL_CaiDat_Ce1;
-                this.siloCe1.KLCanCan = (decimal)sp.KL_CanCan_Ce1;
-                this.siloCe2.KLCaiDat = (decimal)sp.KL_CaiDat_Ce2;
-                this.siloCe2.KLCanCan = (decimal)sp.KL_CanCan_Ce2;
-                this.siloCe3.KLCaiDat = (decimal)sp.KL_CaiDat_Ce3;
-                this.siloCe3.KLCanCan = (decimal)sp.KL_CanCan_Ce3;
-                this.siloCe4.KLCaiDat = (decimal)sp.KL_CaiDat_Ce4;
-                this.siloCe4.KLCanCan = (decimal)sp.KL_CanCan_Ce4;
-                this.siloCe5.KLCaiDat = (decimal)sp.KL_CaiDat_Ce5;
-                this.siloCe5.KLCanCan = (decimal)sp.KL_CanCan_Ce5;
+                this.siloCe1.KLCaiDat = sp.KL_CaiDat_Ce1;
+                this.siloCe1.KLCanCan = sp.KL_CanCan_Ce1;
+                this.siloCe2.KLCaiDat = sp.KL_CaiDat_Ce2;
+                this.siloCe2.KLCanCan = sp.KL_CanCan_Ce2;
+                this.siloCe3.KLCaiDat = sp.KL_CaiDat_Ce3;
+                this.siloCe3.KLCanCan = sp.KL_CanCan_Ce3;
+                this.siloCe4.KLCaiDat = sp.KL_CaiDat_Ce4;
+                this.siloCe4.KLCanCan = sp.KL_CanCan_Ce4;
+                this.siloCe5.KLCaiDat = sp.KL_CaiDat_Ce5;
+                this.siloCe5.KLCanCan = sp.KL_CanCan_Ce5;
 
                 if (sp.KL_CaiDat_Wa1 < 0)
                     sp.KL_CaiDat_Wa1 = 0;
 
-                this.siloWa1.KLCaiDat = (decimal)sp.KL_CaiDat_Wa1;
-                this.siloWa1.KLCanCan = (decimal)sp.KL_CanCan_Wa1;
-                this.siloWa2.KLCaiDat = (decimal)sp.KL_CaiDat_Wa2;
-                this.siloWa2.KLCanCan = (decimal)sp.KL_CanCan_Wa2;
+                this.siloWa1.KLCaiDat = sp.KL_CaiDat_Wa1;
+                this.siloWa1.KLCanCan = sp.KL_CanCan_Wa1;
+                this.siloWa2.KLCaiDat = sp.KL_CaiDat_Wa2;
+                this.siloWa2.KLCanCan = sp.KL_CanCan_Wa2;
 
-                this.siloAgg6.KLCaiDat = (decimal)sp.KL_CaiDat_Agg6;
-                this.siloAgg6.KLCanCan = (decimal)sp.KL_CanCan_Agg6;
-                this.siloAgg5.KLCaiDat = (decimal)sp.KL_CaiDat_Agg5;
-                this.siloAgg5.KLCanCan = (decimal)sp.KL_CanCan_Agg5;
-                this.siloAgg4.KLCaiDat = (decimal)sp.KL_CaiDat_Agg4;
-                this.siloAgg4.KLCanCan = (decimal)sp.KL_CanCan_Agg4;
-                this.siloAgg3.KLCaiDat = (decimal)sp.KL_CaiDat_Agg3;
-                this.siloAgg3.KLCanCan = (decimal)sp.KL_CanCan_Agg3;
-                this.siloAgg2.KLCaiDat = (decimal)sp.KL_CaiDat_Agg2;
-                this.siloAgg2.KLCanCan = (decimal)sp.KL_CanCan_Agg2;
-                this.siloAgg1.KLCaiDat = (decimal)sp.KL_CaiDat_Agg1;
-                this.siloAgg1.KLCanCan = (decimal)sp.KL_CanCan_Agg1;
-                this.SetSLMe((int)sp.SoMeTron);
+                this.siloAgg6.KLCaiDat = sp.KL_CaiDat_Agg6;
+                this.siloAgg6.KLCanCan = sp.KL_CanCan_Agg6;
+                this.siloAgg5.KLCaiDat = sp.KL_CaiDat_Agg5;
+                this.siloAgg5.KLCanCan = sp.KL_CanCan_Agg5;
+                this.siloAgg4.KLCaiDat = sp.KL_CaiDat_Agg4;
+                this.siloAgg4.KLCanCan = sp.KL_CanCan_Agg4;
+                this.siloAgg3.KLCaiDat = sp.KL_CaiDat_Agg3;
+                this.siloAgg3.KLCanCan = sp.KL_CanCan_Agg3;
+                this.siloAgg2.KLCaiDat = sp.KL_CaiDat_Agg2;
+                this.siloAgg2.KLCanCan = sp.KL_CanCan_Agg2;
+                this.siloAgg1.KLCaiDat = sp.KL_CaiDat_Agg1;
+                this.siloAgg1.KLCanCan = sp.KL_CanCan_Agg1;
+                this.SetSLMe(sp.SoMeTron);
 
                 this.lblSoMeCheck.Text = sp.SoMeTron.ToString();
 
-                this.ucSoKhoiTrenMe.GiaTri = (decimal)sp.KLTrenTungMe;
+                this.ucSoKhoiTrenMe.GiaTri = sp.KLTrenTungMe;
                 System.Windows.Forms.Application.DoEvents();
+
+                TramTronLogger.WriteInfo("CHECKING KL TRON: " + sp.KL_CanCan_Agg1);
+
             }
         }
 
@@ -728,7 +749,7 @@ namespace NDPSo.MasterData
         private BindingList<ObjSilo> _blstSiloLogicAG = new BindingList<ObjSilo>();
 
         private BindingList<ObjSilo> _blstSiloLogicAD = new BindingList<ObjSilo>();
-        
+
         private BindingList<ObjSilo> _blstSiloLogicCE = new BindingList<ObjSilo>();
 
         private BindingList<ObjSilo> _blstSilo_DoAmHutAgg = new BindingList<ObjSilo>();
@@ -752,36 +773,72 @@ namespace NDPSo.MasterData
         private List<FieldCode> _lstPhieuTronStatus = new List<FieldCode>();
 
         private List<FieldCode> _lstDuLieuTronStatus = new List<FieldCode>();
-        public List<FieldCode> LstPhieuTronStatus { set => throw new NotImplementedException(); }
-        public List<FieldCode> LstDuLieuTronStatus 
+
+        public List<FieldCode> LstPhieuTronStatus
+        {
+            set => throw new NotImplementedException();
+        }
+
+        public List<FieldCode> LstDuLieuTronStatus
         {
             set
             {
                 this._lstDuLieuTronStatus = value;
                 this.ilueHDStatus.DataSource = (object)this._lstDuLieuTronStatus;
                 this.iicbStatus.Items.Clear();
-                this.iicbStatus.Items.Add(new ImageComboBoxItem(((DisplayAttribute)Attribute.GetCustomAttribute(typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.New.ToString()), typeof(DisplayAttribute)))?.Name, (object)0.ToString(), 0));
-                this.iicbStatus.Items.Add(new ImageComboBoxItem(((DisplayAttribute)Attribute.GetCustomAttribute(typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Running.ToString()), typeof(DisplayAttribute)))?.Name, (object)1.ToString(), 1));
-                this.iicbStatus.Items.Add(new ImageComboBoxItem(((DisplayAttribute)Attribute.GetCustomAttribute(typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Pause.ToString()), typeof(DisplayAttribute)))?.Name, (object)2.ToString(), 2));
-                this.iicbStatus.Items.Add(new ImageComboBoxItem(((DisplayAttribute)Attribute.GetCustomAttribute(typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Abort.ToString()), typeof(DisplayAttribute)))?.Name, (object)3.ToString(), 3));
-                this.iicbStatus.Items.Add(new ImageComboBoxItem(((DisplayAttribute)Attribute.GetCustomAttribute(typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Finished.ToString()), typeof(DisplayAttribute)))?.Name, (object)4.ToString(), 4));
+                this.iicbStatus.Items.Add(new ImageComboBoxItem(
+                    ((DisplayAttribute)Attribute.GetCustomAttribute(
+                        typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.New.ToString()),
+                        typeof(DisplayAttribute)))?.Name, (object)0.ToString(), 0));
+                this.iicbStatus.Items.Add(new ImageComboBoxItem(
+                    ((DisplayAttribute)Attribute.GetCustomAttribute(
+                        typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Running.ToString()),
+                        typeof(DisplayAttribute)))?.Name, (object)1.ToString(), 1));
+                this.iicbStatus.Items.Add(new ImageComboBoxItem(
+                    ((DisplayAttribute)Attribute.GetCustomAttribute(
+                        typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Pause.ToString()),
+                        typeof(DisplayAttribute)))?.Name, (object)2.ToString(), 2));
+                this.iicbStatus.Items.Add(new ImageComboBoxItem(
+                    ((DisplayAttribute)Attribute.GetCustomAttribute(
+                        typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Abort.ToString()),
+                        typeof(DisplayAttribute)))?.Name, (object)3.ToString(), 3));
+                this.iicbStatus.Items.Add(new ImageComboBoxItem(
+                    ((DisplayAttribute)Attribute.GetCustomAttribute(
+                        typeof(Enums.DuLieuTronStatus).GetField(Enums.DuLieuTronStatus.Finished.ToString()),
+                        typeof(DisplayAttribute)))?.Name, (object)4.ToString(), 4));
             }
         }
 
-        public InitOnline IO { set => throw new NotImplementedException(); }
-        public SendingToPLC SO { set => throw new NotImplementedException(); }
-        public bool IsSuccessfulUpdatePT { set => throw new NotImplementedException(); }
-        public bool IsSuccessfulSaveTronOnline { set => throw new NotImplementedException(); }
-        public ObjPhieuTron SavingPhieuTron { set => throw new NotImplementedException(); }
+        public InitOnline IO
+        {
+            set => throw new NotImplementedException();
+        }
+
+        public SendingToPLC SO
+        {
+            set => throw new NotImplementedException();
+        }
+
+        public bool IsSuccessfulUpdatePT
+        {
+            set => throw new NotImplementedException();
+        }
+
+        public bool IsSuccessfulSaveTronOnline
+        {
+            set => throw new NotImplementedException();
+        }
+
+        public ObjPhieuTron SavingPhieuTron
+        {
+            set => throw new NotImplementedException();
+        }
 
         private bool _htAuto = false;
 
         private bool HeThongAuto
         {
-            get
-            {
-                return this._htAuto;
-            }
+            get { return this._htAuto; }
             set
             {
                 this._htAuto = value;
@@ -789,6 +846,10 @@ namespace NDPSo.MasterData
             }
         }
 
+        public ObjMeTronChiTietGiaoHang CurMeTronChiTietGiaoHang
+        {
+            set => throw new NotImplementedException();
+        }
 
         public VanHanh()
         {
@@ -796,11 +857,11 @@ namespace NDPSo.MasterData
             this._presenter = new TronOnlineDataPresenter((ITronOnlineView)this);
             //this._TronOnlineAttributes.WeiRunningStatusChanged += new TronOnlineAttributes.WeiEventHandler(this._TronOnlineAttributes_WeiRunningStatusChanged);
             this.Caption = "Vận hành";
-        }
-        public VanHanh(int a) : this()
-        {
 
         }
+
+        
+
         public void CloseForm()
         {
             this.Close();
@@ -831,6 +892,7 @@ namespace NDPSo.MasterData
                             objDuLieuTron.Activated = false;
                     }
                 }
+
                 int focusedRowHandle = this.grvHopDong.FocusedRowHandle;
                 this._presenter.SaveDuLieuTron(this._blstDuLieuTron);
                 this._presenter.ListDuLieuTron();
@@ -838,6 +900,7 @@ namespace NDPSo.MasterData
                 if (flag)
                     return;
                 this.GetNextDLT_Run();
+
             }
         }*/
 
@@ -845,34 +908,35 @@ namespace NDPSo.MasterData
         {
             if (selectedHD != null)
             {
-                this.labelControl6.Text = selectedHD.DLT_KLDuTinhCuaTungMe.ToString();
+                //this.labelControl6.Text = selectedHD.DLT_KLDuTinhCuaTungMe.ToString();
+                this.labelControl6.Text = selectedHD.DLT_SLMeDuTinh.ToString();
                 this._presenter.ListMACSilo_ByHopDongID(selectedHD.HopDongID);
                 this._presenter.ListSilo();
                 this._presenter.ListSilo_DoAmHutAgg();
                 this._presenter.ListWei();
-                this._presenter.BuildSetPoint(selectedHD, this._blstMACSilo, this._blstWeigh, this._blstSilo, this.siloAgg1.DoAm, this.siloAgg2.DoAm, this.siloAgg3.DoAm, _themBotNuoc, _giuNuocTenCan, canUpdateWhenRunning);
+
+                this._presenter.BuildSetPoint(selectedHD, this._blstMACSilo, this._blstWeigh, this._blstSilo,
+                    this.siloAgg1.DoAm, this.siloAgg2.DoAm, this.siloAgg3.DoAm, _themBotNuoc, _giuNuocTenCan,
+                    slMeCanTron, canUpdateWhenRunning);
                 return;
             }
             else
             {
-                TramTromMessageBox.ShowErrorDialog("Bạn chưa chọn Dữ liệu trộn");
+                //TramTromMessageBox.ShowErrorDialog("Bạn chưa chọn Dữ liệu trộn");
                 //this._presenter.BuildNullSetPoint();
+                ShowMessage("Không có dữ liệu trộn", Enums.MsgType.Warning);
+                //BuildSetPointNotHD(canUpdateWhenRunning);
+                //this._presenter.ListSilo();
+                //this._presenter.ListWei();
+                //this.BuildSetPointNotHD(this._blstWeigh, this._blstSilo, _giuNuocTenCan, this._sp_NotHD);
+                return;
 
             }
         }
+       
 
         protected override void PopulateData()
         {
-            timeNow = DateTime.Now;
-            timeTrie = new DateTime(2024, 6, 9, 12, 0, 0); //Ngày Trie PM
-            int checkTimeTrie = DateTime.Compare(timeNow, timeTrie);
-            if (checkTimeTrie >= 0)
-            {
-                PlayOffPL(false);
-            }
-
-            //this._presenter.ListPhieuTron_ForTronOnline();
-
             this._presenter.ListTimerPara();
             this._presenter.ListDuLieuTron();
             this._presenter.ListMAC();
@@ -880,54 +944,86 @@ namespace NDPSo.MasterData
 
             // Load SILO
             CreateSilo_AGG(ConfigManager.TramTronConfig.SL_Silo_AGG);
-            this.pnl_Silo_Agg1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_1_X, this.pnl_Silo_Agg1.Location.Y);
-            this.pnl_Silo_Agg2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_2_X, this.pnl_Silo_Agg2.Location.Y);
-            this.pnl_Silo_Agg3.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_3_X, this.pnl_Silo_Agg3.Location.Y);
-            this.pnl_Silo_Agg4.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_4_X, this.pnl_Silo_Agg4.Location.Y);
-            this.pnl_Silo_Agg5.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_5_X, this.pnl_Silo_Agg5.Location.Y);
-            this.pnl_Silo_Agg6.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_6_X, this.pnl_Silo_Agg6.Location.Y);
+            this.pnl_Silo_Agg1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_1_X,
+                this.pnl_Silo_Agg1.Location.Y);
+            this.pnl_Silo_Agg2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_2_X,
+                this.pnl_Silo_Agg2.Location.Y);
+            this.pnl_Silo_Agg3.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_3_X,
+                this.pnl_Silo_Agg3.Location.Y);
+            this.pnl_Silo_Agg4.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_4_X,
+                this.pnl_Silo_Agg4.Location.Y);
+            this.pnl_Silo_Agg5.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_5_X,
+                this.pnl_Silo_Agg5.Location.Y);
+            this.pnl_Silo_Agg6.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_AGG_6_X,
+                this.pnl_Silo_Agg6.Location.Y);
 
             CreateSilo_CE(ConfigManager.TramTronConfig.SL_Silo_CE);
-            this.pnl_Silo_Ce1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_1_X, this.pnl_Silo_Ce1.Location.Y);
-            this.pnl_Silo_Ce2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_2_X, this.pnl_Silo_Ce2.Location.Y);
-            this.pnl_Silo_Ce3.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_3_X, this.pnl_Silo_Ce3.Location.Y);
-            this.pnl_Silo_Ce4.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_4_X, this.pnl_Silo_Ce4.Location.Y);
-            this.pnl_Silo_Ce5.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_5_X, this.pnl_Silo_Ce5.Location.Y);
+            this.pnl_Silo_Ce1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_1_X, this.pnl_Silo_Ce1.Location.Y);
+            this.pnl_Silo_Ce2.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_2_X, this.pnl_Silo_Ce2.Location.Y);
+            this.pnl_Silo_Ce3.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_3_X, this.pnl_Silo_Ce3.Location.Y);
+            this.pnl_Silo_Ce4.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_4_X, this.pnl_Silo_Ce4.Location.Y);
+            this.pnl_Silo_Ce5.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_CE_5_X, this.pnl_Silo_Ce5.Location.Y);
 
             CreateSilo_WA(ConfigManager.TramTronConfig.SL_Silo_WA);
-            this.pnl_Silo_Wa1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_WA_1_X, this.pnl_Silo_Wa1.Location.Y);
-            this.pnl_Silo_Wa2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_WA_2_X, this.pnl_Silo_Wa2.Location.Y);
+            this.pnl_Silo_Wa1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_WA_1_X, this.pnl_Silo_Wa1.Location.Y);
+            this.pnl_Silo_Wa2.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_WA_2_X, this.pnl_Silo_Wa2.Location.Y);
 
             CreateSilo_ADD(ConfigManager.TramTronConfig.SL_Silo_ADD);
-            this.pnl_Silo_Add1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_1_X, this.pnl_Silo_Add1.Location.Y);
-            this.pnl_Silo_Add2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_2_X, this.pnl_Silo_Add2.Location.Y);
-            this.pnl_Silo_Add3.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_3_X, this.pnl_Silo_Add3.Location.Y);
-            this.pnl_Silo_Add4.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_4_X, this.pnl_Silo_Add4.Location.Y);
-            this.pnl_Silo_Add5.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_5_X, this.pnl_Silo_Add5.Location.Y);
-            this.pnl_Silo_Add6.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_6_X, this.pnl_Silo_Add6.Location.Y);
+            this.pnl_Silo_Add1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_1_X,
+                this.pnl_Silo_Add1.Location.Y);
+            this.pnl_Silo_Add2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_2_X,
+                this.pnl_Silo_Add2.Location.Y);
+            this.pnl_Silo_Add3.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_3_X,
+                this.pnl_Silo_Add3.Location.Y);
+            this.pnl_Silo_Add4.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_4_X,
+                this.pnl_Silo_Add4.Location.Y);
+            this.pnl_Silo_Add5.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_5_X,
+                this.pnl_Silo_Add5.Location.Y);
+            this.pnl_Silo_Add6.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Silo_ADD_6_X,
+                this.pnl_Silo_Add6.Location.Y);
 
             CreateWei_AGG(ConfigManager.TramTronConfig.SL_Wei_AGG);
-            this.pnl_Wei_Agg1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_1_X, this.pnl_Wei_Agg1.Location.Y);
-            this.pnl_Wei_Agg2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_2_X, this.pnl_Wei_Agg2.Location.Y);
-            this.pnl_Wei_Agg3.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_3_X, this.pnl_Wei_Agg3.Location.Y);
-            this.pnl_Wei_Agg4.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_4_X, this.pnl_Wei_Agg4.Location.Y);
-            this.pnl_Wei_Agg5.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_5_X, this.pnl_Wei_Agg5.Location.Y);
-            this.pnl_Wei_Agg6.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_6_X, this.pnl_Wei_Agg6.Location.Y);
+            this.pnl_Wei_Agg1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_1_X, this.pnl_Wei_Agg1.Location.Y);
+            this.pnl_Wei_Agg2.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_2_X, this.pnl_Wei_Agg2.Location.Y);
+            this.pnl_Wei_Agg3.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_3_X, this.pnl_Wei_Agg3.Location.Y);
+            this.pnl_Wei_Agg4.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_4_X, this.pnl_Wei_Agg4.Location.Y);
+            this.pnl_Wei_Agg5.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_5_X, this.pnl_Wei_Agg5.Location.Y);
+            this.pnl_Wei_Agg6.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_AGG_6_X, this.pnl_Wei_Agg6.Location.Y);
 
             CreateWei_CE(ConfigManager.TramTronConfig.SL_Wei_CE);
-            this.pnl_Wei_Ce1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_CE_1_X, this.pnl_Wei_Ce1.Location.Y);
-            this.pnl_Wei_Ce2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_CE_2_X, this.pnl_Wei_Ce2.Location.Y);
+            this.pnl_Wei_Ce1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_CE_1_X, this.pnl_Wei_Ce1.Location.Y);
+            this.pnl_Wei_Ce2.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_CE_2_X, this.pnl_Wei_Ce2.Location.Y);
 
             CreateWei_WA(ConfigManager.TramTronConfig.SL_Wei_WA);
-            this.pnl_Wei_Wa1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_WA_1_X, this.pnl_Wei_Wa1.Location.Y);
-            this.pnl_Wei_Wa2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_WA_2_X, this.pnl_Wei_Wa2.Location.Y);
+            this.pnl_Wei_Wa1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_WA_1_X, this.pnl_Wei_Wa1.Location.Y);
+            this.pnl_Wei_Wa2.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_WA_2_X, this.pnl_Wei_Wa2.Location.Y);
 
             CreateWei_ADD(ConfigManager.TramTronConfig.SL_Wei_ADD);
-            this.pnl_Wei_Add1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_ADD_1_X, this.pnl_Wei_Add1.Location.Y);
-            this.pnl_Wei_Add2.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_ADD_2_X, this.pnl_Wei_Add2.Location.Y);
+            this.pnl_Wei_Add1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_ADD_1_X, this.pnl_Wei_Add1.Location.Y);
+            this.pnl_Wei_Add2.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.Wei_ADD_2_X, this.pnl_Wei_Add2.Location.Y);
 
             this.ucBTCan1.Visible = ConfigManager.TramTronConfig.Show_BTC;
-            this.ucBTCan1.Location = new System.Drawing.Point(ConfigManager.TramTronConfig.BTC_X, this.ucBTCan1.Location.Y);
+            this.ucBTCan1.Location =
+                new System.Drawing.Point(ConfigManager.TramTronConfig.BTC_X, this.ucBTCan1.Location.Y);
             this.ucBTCan1.Size = new Size(ConfigManager.TramTronConfig.Width_BTC, this.ucBTCan1.Size.Height);
 
             this.pnl_Funnel.Visible = ConfigManager.TramTronConfig.Show_Funnel;
@@ -944,55 +1040,89 @@ namespace NDPSo.MasterData
                 this.pnlGauTai.Visible = true;
                 btnXaCanCotLieu.Caption = "GÀU TẢI TAY";
             }
+
             CreateGroupLogicAG(ConfigManager.TramTronConfig.SL_Silo_AGG);
             CreateGroupLogicCE(ConfigManager.TramTronConfig.SL_Silo_CE);
             CreateGroupLogicAD(ConfigManager.TramTronConfig.SL_Silo_ADD);
 
             this.checkAutoPrint.Checked = ConfigManager.TramTronConfig.AutoPrint;
+            this.lueDriver.EditValue = ConfigManager.TramTronConfig.DriverNum;
+            this.lueXe.EditValue = ConfigManager.TramTronConfig.XeNum;
+            this.grvHopDong.OptionsCustomization.AllowSort = false;
+
+            this._so.SendingCommand.SW_BAT_PG_NGOAI = ConfigManager.TramTronConfig.PGN; //add 0107
+            SendData_DB2_NewTread();
+
         }
+
 
         private void PlayOffPL(bool isOff)
         {
             this.btnVanXa_Agg1_1.Enabled //Silo
                 = this.btnVanXa_Agg1_2.Enabled
-                = this.btnVanXa_Agg2_1.Enabled
-                = this.btnVanXa_Agg2_2.Enabled
-                = this.btnVanXa_Agg3_1.Enabled
-                = this.btnVanXa_Agg3_2.Enabled
-                = this.btnVanXa_Agg4_1.Enabled
-                = this.btnVanXa_Agg4_2.Enabled
-                = this.btnVanXa_Agg5_1.Enabled
-                = this.btnVanXa_Agg5_2.Enabled
-                = this.btnVanXa_Agg6_1.Enabled
-                = this.btnVanXa_Agg6_2.Enabled
-                = this.btnVanXa_Ce1.Enabled
-                = this.btnVanXa_Ce2.Enabled
-                = this.btnVanXa_Ce3.Enabled
-                = this.btnVanXa_Ce4.Enabled
-                = this.btnVanXa_Ce5.Enabled
-                //= this.btnVanXa_Wa1.Enabled
-                //= this.btnVanXa_Wa2.Enabled
-                = this.btnVanXa_Add1.Enabled
-                = this.btnVanXa_Add2.Enabled
-                = this.btnVanXa_Add3.Enabled
-                = this.btnVanXa_Add4.Enabled
-                = this.btnVanXa_Add5.Enabled
-                = this.btnVanXa_Add6.Enabled
-                = this.btnXaCan_Agg1.Enabled // Can
-                = this.btnXaCan_Agg2.Enabled
-                = this.btnXaCan_Agg3.Enabled
-                = this.btnXaCan_Agg4.Enabled
-                = this.btnXaCan_Agg5.Enabled
-                = this.btnXaCan_Agg6.Enabled
-                = this.btnXaCan_Ce1.Enabled
-                = this.btnXaCan_Ce2.Enabled
-                //= this.btnXaCan_Wa1.Enabled
-                //= this.btnXaCan_Wa2.Enabled
-                = this.btnXaCan_Add1.Enabled
-                = this.btnXaCan_Add2.Enabled
-                = this.ucHeThongAuto1.Enabled // HeThong
-                = isOff;
+                    = this.btnVanXa_Agg2_1.Enabled
+                        = this.btnVanXa_Agg2_2.Enabled
+                            = this.btnVanXa_Agg3_1.Enabled
+                                = this.btnVanXa_Agg3_2.Enabled
+                                    = this.btnVanXa_Agg4_1.Enabled
+                                        = this.btnVanXa_Agg4_2.Enabled
+                                            = this.btnVanXa_Agg5_1.Enabled
+                                                = this.btnVanXa_Agg5_2.Enabled
+                                                    = this.btnVanXa_Agg6_1.Enabled
+                                                        = this.btnVanXa_Agg6_2.Enabled
+                                                            = this.btnVanXa_Ce1.Enabled
+                                                                = this.btnVanXa_Ce2.Enabled
+                                                                    = this.btnVanXa_Ce3.Enabled
+                                                                        = this.btnVanXa_Ce4.Enabled
+                                                                            = this.btnVanXa_Ce5.Enabled
+                                                                                //= this.btnVanXa_Wa1.Enabled
+                                                                                //= this.btnVanXa_Wa2.Enabled
+                                                                                = this.btnVanXa_Add1.Enabled
+                                                                                    = this.btnVanXa_Add2.Enabled
+                                                                                        = this.btnVanXa_Add3.Enabled
+                                                                                            = this.btnVanXa_Add4.Enabled
+                                                                                                = this.btnVanXa_Add5
+                                                                                                        .Enabled
+                                                                                                    = this.btnVanXa_Add6
+                                                                                                            .Enabled
+                                                                                                        = this
+                                                                                                                .btnXaCan_Agg1
+                                                                                                                .Enabled // Can
+                                                                                                            = this
+                                                                                                                    .btnXaCan_Agg2
+                                                                                                                    .Enabled
+                                                                                                                = this
+                                                                                                                        .btnXaCan_Agg3
+                                                                                                                        .Enabled
+                                                                                                                    = this
+                                                                                                                            .btnXaCan_Agg4
+                                                                                                                            .Enabled
+                                                                                                                        = this
+                                                                                                                                .btnXaCan_Agg5
+                                                                                                                                .Enabled
+                                                                                                                            = this
+                                                                                                                                    .btnXaCan_Agg6
+                                                                                                                                    .Enabled
+                                                                                                                                = this
+                                                                                                                                        .btnXaCan_Ce1
+                                                                                                                                        .Enabled
+                                                                                                                                    = this
+                                                                                                                                            .btnXaCan_Ce2
+                                                                                                                                            .Enabled
+                                                                                                                                        //= this.btnXaCan_Wa1.Enabled
+                                                                                                                                        //= this.btnXaCan_Wa2.Enabled
+                                                                                                                                        = this
+                                                                                                                                                .btnXaCan_Add1
+                                                                                                                                                .Enabled
+                                                                                                                                            = this
+                                                                                                                                                    .btnXaCan_Add2
+                                                                                                                                                    .Enabled
+                                                                                                                                                = this
+                                                                                                                                                        .ucHeThongAuto1
+                                                                                                                                                        .Enabled // HeThong
+                                                                                                                                                    = isOff;
         }
+
         protected override void PopulateStaticData()
         {
             this._presenter.ListNhanVien();
@@ -1007,7 +1137,7 @@ namespace NDPSo.MasterData
             this._presenter.ListSiloLogicCE();
 
             GetNiemChi();
-            
+
         }
 
         protected override void Loaded()
@@ -1016,7 +1146,7 @@ namespace NDPSo.MasterData
             this._presenter.ListTimerPara();
             SendData_DB5_NewTread();
             //this.SendData_NewTread();
-           
+
 
         }
 
@@ -1025,7 +1155,7 @@ namespace NDPSo.MasterData
         {
             //logicSilo.GetBlstSiloLogic(blstSilo);
         }
-        
+
         private void VanHanh_Load(object sender, EventArgs e)
         {
             this._Ready = true;
@@ -1035,58 +1165,83 @@ namespace NDPSo.MasterData
             _thread.Start();
 
             ChangeStusLight(false);
-            
 
-           // this.ucLogicSiloAgg1._blstSiloLogicAggSelected1 = this._blstSiloLogicAG;
+
+            // this.ucLogicSiloAgg1._blstSiloLogicAggSelected1 = this._blstSiloLogicAG;
         }
-        
-         private void ChangeStusLight(bool isOn) //funcction
+
+        private void ChangeStusLight(bool isOn) //funcction
         {
-            this.ucBaoRung_Agg1.Visible 
+            this.ucBaoRung_Agg1.Visible
                 = this.ucBaoRung_Agg2.Visible
-                = this.ucBaoRung_Agg3.Visible
-                = this.ucBaoRung_Agg4.Visible
-                = this.ucBaoRung_Agg5.Visible
-                = this.ucBaoRung_Agg6.Visible
-                = this.ucBaoRung_Ce1.Visible
-                = this.ucBaoRung_Ce2.Visible
-                = this.ucTinHieu_PCD.Visible
-                = this.ucTinHieu_PCM.Visible
-                = this.ucBaoRung_Funnel.Visible
-                = this.uc_TinHieu_CuaNoiDong.Visible
-                = this.uc_TinHieu_CuaNoiMo.Visible
-                = this.uc_TinHieu_CuaNoi1per2.Visible
+                    = this.ucBaoRung_Agg3.Visible
+                        = this.ucBaoRung_Agg4.Visible
+                            = this.ucBaoRung_Agg5.Visible
+                                = this.ucBaoRung_Agg6.Visible
+                                    = this.ucBaoRung_Ce1.Visible
+                                        = this.ucBaoRung_Ce2.Visible
+                                            = this.ucTinHieu_PCD.Visible
+                                                = this.ucTinHieu_PCM.Visible
+                                                    = this.ucBaoRung_Funnel.Visible
+                                                        = this.uc_TinHieu_CuaNoiDong.Visible
+                                                            = this.uc_TinHieu_CuaNoiMo.Visible
+                                                                = this.uc_TinHieu_CuaNoi1per2.Visible
 
-                = this.btnF_Agg1.Visible
-                = this.btnF_Agg2.Visible
-                = this.btnF_Agg3.Visible
-                = this.btnF_Agg4.Visible
-                = this.btnF_Agg5.Visible
-                = this.btnF_Agg6.Visible
-                = this.btnF_Ce1.Visible
-                = this.btnF_Ce2.Visible
-                = this.btnF_Ce3.Visible
-                = this.btnF_Ce4.Visible
-                = this.btnF_Ce5.Visible
-                = this.btnF_Wa1.Visible
-                = this.btnF_Wa2.Visible
-                = this.btnF_Add1.Visible
-                = this.btnF_Add1.Visible
-                = this.btnF_Add2.Visible
-                = this.btnF_Add3.Visible
-                = this.btnF_Add4.Visible
-                = this.btnF_Add5.Visible
-                = this.btnF_Add6.Visible
+                                                                    = this.btnF_Agg1.Visible
+                                                                        = this.btnF_Agg2.Visible
+                                                                            = this.btnF_Agg3.Visible
+                                                                                = this.btnF_Agg4.Visible
+                                                                                    = this.btnF_Agg5.Visible
+                                                                                        = this.btnF_Agg6.Visible
+                                                                                            = this.btnF_Ce1.Visible
+                                                                                                = this.btnF_Ce2.Visible
+                                                                                                    = this.btnF_Ce3
+                                                                                                            .Visible
+                                                                                                        = this.btnF_Ce4
+                                                                                                                .Visible
+                                                                                                            = this
+                                                                                                                    .btnF_Ce5
+                                                                                                                    .Visible
+                                                                                                                = this
+                                                                                                                        .btnF_Wa1
+                                                                                                                        .Visible
+                                                                                                                    = this
+                                                                                                                            .btnF_Wa2
+                                                                                                                            .Visible
+                                                                                                                        = this
+                                                                                                                                .btnF_Add1
+                                                                                                                                .Visible
+                                                                                                                            = this
+                                                                                                                                    .btnF_Add1
+                                                                                                                                    .Visible
+                                                                                                                                = this
+                                                                                                                                        .btnF_Add2
+                                                                                                                                        .Visible
+                                                                                                                                    = this
+                                                                                                                                            .btnF_Add3
+                                                                                                                                            .Visible
+                                                                                                                                        = this
+                                                                                                                                                .btnF_Add4
+                                                                                                                                                .Visible
+                                                                                                                                            = this
+                                                                                                                                                    .btnF_Add5
+                                                                                                                                                    .Visible
+                                                                                                                                                = this
+                                                                                                                                                        .btnF_Add6
+                                                                                                                                                        .Visible
 
-                = this.lblSim.Visible
+                                                                                                                                                    = this
+                                                                                                                                                            .lblSim
+                                                                                                                                                            .Visible
 
-                = isOn;
+                                                                                                                                                        = isOn;
         }
+
         private void RunningBTX()
         {
             if (base.InvokeRequired)
             {
-                base.Invoke(new MethodInvoker(delegate ()
+                base.Invoke(new MethodInvoker(delegate()
                 {
                     if (_isRunBTX)
                     {
@@ -1096,10 +1251,11 @@ namespace NDPSo.MasterData
                     {
                         this.ucBTXien1.CheDo = UcBTXien.Action.Pause;
                     }
-                    
+
                 }));
             }
         }
+
         private void Running()
         {
             while (this._Ready)
@@ -1113,13 +1269,13 @@ namespace NDPSo.MasterData
                         ShowMessage(GlobalValues.Messages.DISCONNECTED, Enums.MsgType.Warning);
 
                     }
-                    
+
                     if (this._plcController.IsConnected)
                     {
 
                         if (base.InvokeRequired)
                         {
-                            base.Invoke(new MethodInvoker(delegate ()
+                            base.Invoke(new MethodInvoker(delegate()
                             {
                                 this.labelControl1.Text = "CONNECT";
                                 ShowMessage("PLC ĐÃ KẾT NỐI", Enums.MsgType.Info);
@@ -1133,7 +1289,7 @@ namespace NDPSo.MasterData
                     {
                         if (base.InvokeRequired)
                         {
-                            base.Invoke(new MethodInvoker(delegate ()
+                            base.Invoke(new MethodInvoker(delegate()
                             {
                                 ShowMessage(GlobalValues.Messages.DISCONNECTED, Enums.MsgType.Warning);
                                 //_plcController.AttemptReconnect();
@@ -1168,108 +1324,40 @@ namespace NDPSo.MasterData
             this._ro.StatusIO_03 = a[3];
             this._ro.StatusIO_04 = a[4];
             this._ro.StatusIO_05 = a[5];
-            this._ro.StatusIO_06 = a[6];
-            this._ro.StatusIO_07 = a[7];
-            this._ro.StatusIO_08 = a[8];
-            this._ro.StatusIO_09 = a[9];
-            this._ro.StatusIO_10 = a[10];
-            this._ro.StatusIO_11 = a[11];
-            this._ro.StatusIO_12 = a[12];
-            this._ro.StatusIO_13 = a[13];
+            
         }
-        private void ReceiveData_DB6(byte[] a) //READ DATA FROM PLC
-        {
-            this._ro.Xung_Agg_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[0], a[1], a[2], a[3])); // 0
-            this._ro.Xung_Agg_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[4], a[5], a[6], a[7])); // 4
-            this._ro.Xung_Agg_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[8], a[9], a[10], a[11])); // 8
-            this._ro.Xung_Agg_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[12], a[13], a[14], a[15])); // 12
-            this._ro.Xung_Agg_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[16], a[17], a[18], a[19])); // 16
-            this._ro.Xung_Agg_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[20], a[21], a[22], a[23])); // 20
-            this._ro.Xung_Cem_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[24], a[25], a[26], a[27])); // 24
-            this._ro.Xung_Cem_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[28], a[29], a[30], a[31])); // 28
-            this._ro.Xung_Wa_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[32], a[33], a[34], a[35])); // 32
-            this._ro.Xung_Wa_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 36
-            this._ro.Xung_Add_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 40
-            this._ro.Xung_Add_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 44
-        }
-        private void ReceiveData_DB7(byte[] a) //READ DATA FROM PLC
+
+        private void ReceiveData_DB7(byte[] a) //READ DATA FROM PLC 7 to 25
         {
             this._ro.PV_AGG_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[0], a[1], a[2], a[3])); // 0.0
             this._ro.Per_WAGG_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[4], a[5], a[6], a[7])); // 4.0
             this._ro.WE_AGG_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[8], a[9], a[10], a[11])); // 8.0
             this._ro.SMC_AGG_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[12], a[13], a[14], a[15])); // 12.0
             this._ro.SMX_AGG_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[16], a[17], a[18], a[19])); // 16.0
-            this._ro.PV_AGG_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[20], a[21], a[22], a[23])); // 20.0
-            this._ro.Per_WAGG_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[24], a[25], a[26], a[27])); // 24.0
-            this._ro.WE_AGG_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[28], a[29], a[30], a[31])); // 28.0
-            this._ro.SMC_AGG_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[32], a[33], a[34], a[35])); // 32.0
-            this._ro.SMX_AGG_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 36.0
-            this._ro.PV_AGG_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 40.0
-            this._ro.Per_WAGG_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 44.0
-            this._ro.WE_AGG_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 48.0
-            this._ro.SMC_AGG_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[52], a[53], a[54], a[55])); // 52.0
-            this._ro.SMX_AGG_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[56], a[57], a[58], a[59])); // 56.0
-            this._ro.PV_AGG_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[60], a[61], a[62], a[63])); // 60.0
-            this._ro.Per_WAGG_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[64], a[65], a[66], a[67])); // 64.0
-            this._ro.WE_AGG_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[68], a[69], a[70], a[71])); // 68.0
-            this._ro.SMC_AGG_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[72], a[73], a[74], a[75])); // 72.0
-            this._ro.SMX_AGG_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[76], a[77], a[78], a[79])); // 76.0
-            this._ro.PV_AGG_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[80], a[81], a[82], a[83])); // 80.0
-            this._ro.Per_WAGG_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[84], a[85], a[86], a[87])); // 84.0
-            this._ro.WE_AGG_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[88], a[89], a[90], a[91])); // 88.0
-            this._ro.SMC_AGG_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[92], a[93], a[94], a[95])); // 92.0
-            this._ro.SMX_AGG_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[96], a[97], a[98], a[99])); // 96.0
-            this._ro.PV_AGG_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[100], a[101], a[102], a[103])); // 100.0
-            this._ro.Per_WAGG_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104.0
-            this._ro.WE_AGG_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[108], a[109], a[110], a[111])); // 108.0
-            this._ro.SMC_AGG_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[112], a[113], a[114], a[115])); // 112
-            this._ro.SMX_AGG_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[116], a[117], a[118], a[119])); // 116
-            this._ro.PV_SILO_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[120], a[121], a[122], a[123])); // 120
-            this._ro.PV_SILO_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[124], a[125], a[126], a[127])); // 124
-            this._ro.PV_SILO_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[128], a[129], a[130], a[131])); // 128
-            this._ro.Per_WCEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[132], a[133], a[134], a[135])); // 132
-            this._ro.WE_CEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[136], a[137], a[138], a[139])); // 136
-            this._ro.SMC_CEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[140], a[141], a[142], a[143])); // 140
-            this._ro.SMX_CEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[144], a[145], a[146], a[147])); // 144
-            this._ro.PV_SILO_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[148], a[149], a[150], a[151])); // 148
-            this._ro.PV_SILO_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[152], a[153], a[154], a[155])); // 152
-            this._ro.Per_WCEM_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[156], a[157], a[158], a[159])); // 156
-            this._ro.WE_CEM_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[160], a[161], a[162], a[163])); // 160
-            this._ro.SMC_CEM_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[164], a[165], a[166], a[167])); // 164
-            this._ro.SMX_CEM_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[168], a[169], a[170], a[171])); // 168
-            this._ro.PV_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[172], a[173], a[174], a[175])); // 172
-            this._ro.Per_WWA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[176], a[177], a[178], a[179])); // 176
-            this._ro.WE_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[180], a[181], a[182], a[183])); // 180
-            this._ro.SMC_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[184], a[185], a[186], a[187])); // 184
-            this._ro.SMX_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[188], a[189], a[190], a[191])); // 188
-            this._ro.PV_WA_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[192], a[193], a[194], a[195])); // 192
-            this._ro.Per_WWA_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[196], a[197], a[198], a[199])); // 196
-            this._ro.WE_WA_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[200], a[201], a[202], a[203])); // 200
-            this._ro.SMC_WA_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[204], a[205], a[206], a[207])); // 204
-            this._ro.SMX_WA_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[208], a[209], a[210], a[211])); // 208
-            this._ro.PV_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[212], a[213], a[214], a[215])); // 212
-            this._ro.PV_ADD_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[216], a[217], a[218], a[219])); // 216
-            this._ro.PV_ADD_3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[220], a[221], a[222], a[223])); // 220
-            this._ro.Per_WADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[224], a[225], a[226], a[227])); // 224
-            this._ro.WE_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[228], a[229], a[230], a[231])); // 228
-            this._ro.SMC_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[232], a[233], a[234], a[235])); // 232
-            this._ro.SMX_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[236], a[237], a[238], a[239])); // 236
-            this._ro.PV_ADD_4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[240], a[241], a[242], a[243])); // 240
-            this._ro.PV_ADD_5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[244], a[245], a[246], a[247])); // 244
-            this._ro.PV_ADD_6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[248], a[249], a[250], a[251])); // 248
-            this._ro.Per_WADD_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[252], a[253], a[254], a[255])); // 252
-            this._ro.WE_ADD_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[256], a[257], a[258], a[259])); // 256
-            this._ro.SMC_ADD_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[260], a[261], a[262], a[263])); // 260
-            this._ro.SMX_ADD_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[264], a[265], a[266], a[267])); // 264
-            this._ro.SMC_SKIP = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[268], a[269], a[270], a[271])); // 268
-            this._ro.SMX_SKIP = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[272], a[273], a[274], a[275])); // 272
-            this._ro.SMC_PTG = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[276], a[277], a[278], a[279])); // 276
-            this._ro.SMX_PTG = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[280], a[281], a[282], a[283])); // 280
-            this._ro.SMC_MIXER = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[284], a[285], a[286], a[287])); // 284
-            this._ro.SMX_MIXER = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[288], a[289], a[290], a[291])); // 288
-            this._ro.ThoiGianThucTron = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[292], a[293], a[294], a[295])); // 292
-            this._ro.ThoiGianThucXa = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[296], a[297], a[298], a[299])); // 296
-            this._ro.PheuChoStatus = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[300], a[301], a[302], a[303])); // 300
+            this._ro.PV_SILO_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[20], a[21], a[22], a[23])); // 20
+            this._ro.Per_WCEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[24], a[25], a[26], a[27])); // 24
+            this._ro.WE_CEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[28], a[29], a[30], a[31])); // 28
+            this._ro.SMC_CEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[32], a[33], a[34], a[35])); // 32
+            this._ro.SMX_CEM_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 36
+            this._ro.PV_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 40
+            this._ro.Per_WWA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 44
+            this._ro.WE_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 48
+            this._ro.SMC_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[52], a[53], a[54], a[55])); // 52
+            this._ro.SMX_WA_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[56], a[57], a[58], a[59])); // 56
+            this._ro.PV_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[60], a[61], a[62], a[63])); // 60
+            this._ro.Per_WADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[64], a[65], a[66], a[67])); // 64
+            this._ro.WE_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[68], a[69], a[70], a[71])); // 68
+            this._ro.SMC_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[72], a[73], a[74], a[75])); // 72
+            this._ro.SMX_ADD_1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[76], a[77], a[76], a[79])); // 76
+            this._ro.SMC_PTG = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[80], a[81], a[82], a[83])); // 80
+            this._ro.SMX_PTG = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[84], a[85], a[86], a[87])); // 84
+            this._ro.SMC_MIXER = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[88], a[89], a[90], a[91])); // 88
+            this._ro.SMX_MIXER = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[92], a[93], a[94], a[95])); // 92
+            this._ro.ThoiGianThucTron = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[96], a[97], a[98], a[99])); // 96
+            this._ro.ThoiGianThucXa = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[100], a[101], a[102], a[103])); // 100
+            this._ro.PheuChoStatus = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104
+            this._ro.ThoiGianThucTronUot = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[108], a[109], a[110], a[111])); // 108
+            this._ro.KhoiLuongThucNoiTron = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[112], a[113], a[114], a[115])); // 112
         }
 
         private void ReceiveData_DB8(byte[] a) //READ DATA FROM PLC
@@ -1286,34 +1374,56 @@ namespace NDPSo.MasterData
             this._ro.RE_PV_AGG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 36
             this._ro.RE_PVM_AGG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 40
             this._ro.RE_PV_AGG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 44
-            this._ro.RE_PVM_AGG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 48.0
+            this._ro.RE_PVM_AGG6 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 48.0
             this._ro.RE_PV_CE1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[52], a[53], a[54], a[55])); // 52.0
-            this._ro.RE_PVM_CE1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[56], a[57], a[58], a[59])); // 56.0
+            this._ro.RE_PVM_CE1 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[56], a[57], a[58], a[59])); // 56.0
             this._ro.RE_PV_CE2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[60], a[61], a[62], a[63])); // 60.0
-            this._ro.RE_PVM_CE2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[64], a[65], a[66], a[67])); // 64.0
+            this._ro.RE_PVM_CE2 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[64], a[65], a[66], a[67])); // 64.0
             this._ro.RE_PV_CE3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[68], a[69], a[70], a[71])); // 68.0
-            this._ro.RE_PVM_CE3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[72], a[73], a[74], a[75])); // 72.0
+            this._ro.RE_PVM_CE3 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[72], a[73], a[74], a[75])); // 72.0
             this._ro.RE_PV_CE4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[76], a[77], a[78], a[79])); // 76.0
-            this._ro.RE_PVM_CE4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[80], a[81], a[82], a[83])); // 80.0
+            this._ro.RE_PVM_CE4 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[80], a[81], a[82], a[83])); // 80.0
             this._ro.RE_PV_CE5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[84], a[85], a[86], a[87])); // 84.0
-            this._ro.RE_PVM_CE5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[88], a[89], a[90], a[91])); // 88.0
+            this._ro.RE_PVM_CE5 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[88], a[89], a[90], a[91])); // 88.0
             this._ro.RE_PV_WA1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[92], a[93], a[94], a[95])); // 92.0
-            this._ro.RE_PVM_WA1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[96], a[97], a[98], a[99])); // 96.0
-            this._ro.RE_PV_WA2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[100], a[101], a[102], a[103])); // 100.0
-            this._ro.RE_PVM_WA2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104.0
-            this._ro.RE_PV_PG1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[108], a[109], a[110], a[111])); // 108.0
-            this._ro.RE_PVM_PG1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[112], a[113], a[114], a[115])); // 112
-            this._ro.RE_PV_PG2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[116], a[117], a[118], a[119])); // 116
-            this._ro.RE_PVM_PG2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[120], a[121], a[122], a[123])); // 120
-            this._ro.RE_PV_PG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[124], a[125], a[126], a[127])); // 124
-            this._ro.RE_PVM_PG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[128], a[129], a[130], a[131])); // 128
-            this._ro.RE_PV_PG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[132], a[133], a[134], a[135])); // 132
-            this._ro.RE_PVM_PG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[136], a[137], a[138], a[139])); // 136
-            this._ro.RE_PV_PG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[140], a[141], a[142], a[143])); // 140
-            this._ro.RE_PVM_PG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[144], a[145], a[146], a[147])); // 144
-            this._ro.RE_PV_PG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[148], a[149], a[150], a[151])); // 148
-            this._ro.RE_PVM_PG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[152], a[153], a[154], a[155])); // 152
+            this._ro.RE_PVM_WA1 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[96], a[97], a[98], a[99])); // 96.0
+            this._ro.RE_PV_WA2 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[100], a[101], a[102], a[103])); // 100.0
+            this._ro.RE_PVM_WA2 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104.0
+            this._ro.RE_PV_PG1 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[108], a[109], a[110], a[111])); // 108.0
+            this._ro.RE_PVM_PG1 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[112], a[113], a[114], a[115])); // 112
+            this._ro.RE_PV_PG2 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[116], a[117], a[118], a[119])); // 116
+            this._ro.RE_PVM_PG2 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[120], a[121], a[122], a[123])); // 120
+            this._ro.RE_PV_PG3 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[124], a[125], a[126], a[127])); // 124
+            this._ro.RE_PVM_PG3 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[128], a[129], a[130], a[131])); // 128
+            this._ro.RE_PV_PG4 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[132], a[133], a[134], a[135])); // 132
+            this._ro.RE_PVM_PG4 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[136], a[137], a[138], a[139])); // 136
+            this._ro.RE_PV_PG5 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[140], a[141], a[142], a[143])); // 140
+            this._ro.RE_PVM_PG5 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[144], a[145], a[146], a[147])); // 144
+            this._ro.RE_PV_PG6 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[148], a[149], a[150], a[151])); // 148
+            this._ro.RE_PVM_PG6 =
+                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[152], a[153], a[154], a[155])); // 152
         }
+
         private decimal CorectData(double data)
         {
             decimal a;
@@ -1333,14 +1443,17 @@ namespace NDPSo.MasterData
                 {
                     return 0;
                 }
+
                 return a;
             }
+
             return a;
         }
 
         private bool isGiuaDuoi = false;
         private bool isGiuaTren = false;
         private int tempGau = 0;
+
         private void BindReceivingOnline(ReceivingFromPLC ro)
         {
             try
@@ -1372,10 +1485,11 @@ namespace NDPSo.MasterData
                     {
                         btnRun.Visible = true;
                     }
+
                     _isSimulation = _ro.Op_SIMULATION;
                     labelControl6.Enabled = _ro.Op_SIMULATION;
                     lblSim.Visible = _ro.Op_SIMULATION;
-                    
+
                     if (_isSimulation)
                     {
                         this.ucBtnMoPhong1.IsTrangThai = UcBtnMoPhong.TrangThai.Run;
@@ -1386,31 +1500,33 @@ namespace NDPSo.MasterData
                         this.ucBtnMoPhong1.IsTrangThai = UcBtnMoPhong.TrangThai.Stop;
                         this._so.SendingCommand.F4_MoPhong = false;
                     }
-                    
+
                     if (_ro.STT_MAN_AUT)
                     {
-                        ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Auto;
+                       /* ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Auto;
                         this._so.SendingCommand.SW_MAN_AUTO = true;
                         this.lblCheDoHeThongAut.ForeColor = Color.Blue;
-                        this.lblCheDoHeThongMan.ForeColor = Color.DarkGray;
+                        this.lblCheDoHeThongMan.ForeColor = Color.DarkGray;*/
                     }
                     else
                     {
-                        ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Manual;
+                       /* ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Manual;
                         this._so.SendingCommand.SW_MAN_AUTO = false;
                         this.lblCheDoHeThongAut.ForeColor = Color.DarkGray;
-                        this.lblCheDoHeThongMan.ForeColor = Color.Red;
+                        this.lblCheDoHeThongMan.ForeColor = Color.Red;*/
                     }
-                    if (_ro.STT_PAUSE)
-                    {
-                        btnPause.IsTrangThai = UcBtnPause.TrangThai.Run;
-                        this._so.SendingCommand.F2_Pause = true;
-                    }
-                    else
-                    {
-                        btnPause.IsTrangThai = UcBtnPause.TrangThai.Stop;
-                        this._so.SendingCommand.F2_Pause = false;
-                    }
+
+                    //if (_ro.STT_PAUSE)
+                    //{
+                    //    btnPause.IsTrangThai = UcBtnPause.TrangThai.Run;
+                    //    this._so.SendingCommand.F2_Pause = true;
+                    //}
+                    //else
+                    //{
+                    //    btnPause.IsTrangThai = UcBtnPause.TrangThai.Stop;
+                    //    this._so.SendingCommand.F2_Pause = false;
+                    //}
+
                     if (_ro.STT_CANCEL)
                     {
                         btnHuy.IsTrangThai = UcBtnHuyMe.TrangThai.Run;
@@ -1421,6 +1537,7 @@ namespace NDPSo.MasterData
                         btnHuy.IsTrangThai = UcBtnHuyMe.TrangThai.Stop;
                         this._so.SendingCommand.F3_Cancel = false;
                     }
+
                     ucTinHieu_Can_Agg1_1.Visible = _ro.Op_VanCan_Agg_1_1;
                     ucTinHieu_Can_Agg1_2.Visible = _ro.Op_VanCan_Agg_1_2;
 
@@ -1455,7 +1572,7 @@ namespace NDPSo.MasterData
                     ucTinHieu_Can_Add5.Visible = _ro.Op_VanCan_PhuGia_5;
                     ucTinHieu_Can_Add6.Visible = _ro.Op_VanCan_PhuGia_6;
 
-                    
+
                     ucButtonRungCanAgg2.IsOn = _ro.Op_RungPheuCan_CotLieu_2;
                     ucButtonRungCanAgg3.IsOn = _ro.Op_RungPheuCan_CotLieu_3;
                     ucButtonRungCanAgg4.IsOn = _ro.Op_RungPheuCan_CotLieu_4;
@@ -1517,7 +1634,7 @@ namespace NDPSo.MasterData
                         ucButtonRungCanAgg1.IsOn = _ro.Op_RungPheuCan_CotLieu_1;
                         ucButtonRungCanPC.IsOn = _ro.Op_RungPheuCho;
                     }
-                    
+
 
                     ucTinHieu_PCD.Visible = _ro.Op_TinHieu_PheuChoDong;
                     ucTinHieu_PCD.IsOn = _ro.Op_TinHieu_PheuChoDong;
@@ -1539,34 +1656,27 @@ namespace NDPSo.MasterData
                     uc_TinHIeu_VanMoCuaNoi.Visible = _ro.Op_Van_MoCuaNoi;
                     uc_TinHIeu_VanDongCuaNoi.Visible = _ro.Op_Van_DongCuaNoi;
 
-                    ucThoiGianThucTron.Visible = _ro.Op_MIXER_FULL;
-                    
-                    ucThoiGianThucXa.Visible = _ro.Op_TinHieu_CuaNoiMo;
-                    if(_ro.PheuChoStatus != double.NaN)
+                    if (_ro.PheuChoStatus != double.NaN)
                     {
                         switch (_ro.PheuChoStatus)
                         {
                             case 0:
                                 this.lblStatusPC.Text = "EM";
-                                this.ucGauTai1.IsGauTaiStatus = UcGauTai.GauTaiStatus.Empty;
                                 break;
                             case 1:
                                 this.lblStatusPC.Text = "FU";
-                                this.ucGauTai1.IsGauTaiStatus = UcGauTai.GauTaiStatus.Full;
                                 break;
                             case 2:
                                 this.lblStatusPC.Text = "IN";
-                                this.ucGauTai1.IsGauTaiStatus = UcGauTai.GauTaiStatus.In;
                                 break;
                             case 3:
                                 this.lblStatusPC.Text = "OU";
-                                this.ucGauTai1.IsGauTaiStatus = UcGauTai.GauTaiStatus.Out;
                                 break;
                         }
                     }
 
                     checkEdit2.Checked = _ro.Op_TinHieu_NoiTron;
-                    
+
                     btnF_Agg1.Visible = _ro.Op_TTC_AGG1;
                     btnF_Agg2.Visible = _ro.Op_TTC_AGG2;
                     btnF_Agg3.Visible = _ro.Op_TTC_AGG3;
@@ -1589,67 +1699,137 @@ namespace NDPSo.MasterData
                     btnF_Add4.Visible = _ro.Op_TTC_ADD4;
                     btnF_Add5.Visible = _ro.Op_TTC_ADD5;
                     btnF_Add6.Visible = _ro.Op_TTC_ADD6;
+                    //=========================================CAN DU
+                    if (_ro.CAN_DU_AGG1 && _previousCanDuAgg1State == false)
+                    {
+                        ShowNotifiCanDu("Agg1");
+                        _previousCanDuAgg1State = true;
+                    }
 
+
+                    if (_ro.CAN_DU_AGG2 && _previousCanDuAgg2State == false)
+                    {
+                        ShowNotifiCanDu("Agg2");
+                        _previousCanDuAgg2State = true;
+                    }
+
+                    if (_ro.CAN_DU_AGG3 && _previousCanDuAgg3State == false)
+                    {
+                        ShowNotifiCanDu("Agg3");
+                        _previousCanDuAgg3State = true;
+                    }
+
+                    if (_ro.CAN_DU_AGG4 && _previousCanDuAgg4State == false)
+                    {
+                        ShowNotifiCanDu("Agg4");
+                        _previousCanDuAgg4State = true;
+                    }
+
+                    if (_ro.CAN_DU_AGG5 && _previousCanDuAgg5State == false)
+                    {
+                        ShowNotifiCanDu("Agg5");
+                        _previousCanDuAgg5State = true;
+                    }
+
+                    if (_ro.CAN_DU_AGG6 && _previousCanDuAgg6State == false)
+                    {
+                        ShowNotifiCanDu("Agg6");
+                        _previousCanDuAgg6State = true;
+                    }
+
+                    if (_ro.CAN_DU_CE1 && _previousCanDuCe1State == false)
+                    {
+                        ShowNotifiCanDu("Ce1");
+                        _previousCanDuCe1State = true;
+                    }
+
+                    if (_ro.CAN_DU_CE2 && _previousCanDuCe2State == false)
+                    {
+                        ShowNotifiCanDu("Ce2");
+                        _previousCanDuCe2State = true;
+                    }
+
+                    if (_ro.CAN_DU_CE3 && _previousCanDuCe3State == false)
+                    {
+                        ShowNotifiCanDu("Ce3");
+                        _previousCanDuCe3State = true;
+                    }
+
+                    if (_ro.CAN_DU_CE4 && _previousCanDuCe4State == false)
+                    {
+                        ShowNotifiCanDu("Ce4");
+                        _previousCanDuCe4State = true;
+                    }
+
+                    if (_ro.CAN_DU_CE5 && _previousCanDuCe5State == false)
+                    {
+                        ShowNotifiCanDu("Ce5");
+                        _previousCanDuCe5State = true;
+                    }
+
+                    if (_ro.CAN_DU_WA1 && _previousCanDuWa1State == false)
+                    {
+                        ShowNotifiCanDu("Wa1");
+                        _previousCanDuWa1State = true;
+                    }
+
+                    if (_ro.CAN_DU_WA2 && _previousCanDuWa2State == false)
+                    {
+                        ShowNotifiCanDu("Wa2");
+                        _previousCanDuWa2State = true;
+                    }
+
+                    if (_ro.CAN_DU_ADD1 && _previousCanDuAdd1State == false)
+                    {
+                        ShowNotifiCanDu("Add1");
+                        _previousCanDuAdd1State = true;
+                    }
+
+                    
 
                     //=========================================GAU TAI
 
 
-                    ucTinHieu_GT_Duoi.IsOn = _ro.Op_TinHieu_GauDuoi;
-                    ucTinHieu_GT_Cho.IsOn = _ro.Op_TinHieu_GauCho;
-                    ucTinHieu_GT_Tren.IsOn = _ro.Op_TinHieu_GauTren;
-                    ucTinHieu_GT_AnToan.IsOn = _ro.Op_TinHieu_GauAnToan;
+                    
                     if (_ro.Op_TinHieu_GauDuoi)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauDuoi;
-                        
+
                         tempGau = 1;
                     }
-                    else if(tempGau == 1 && _ro.Op_TinHieu_GauLen)
+                    else if (tempGau == 1 && _ro.Op_TinHieu_GauLen)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauGiuaDuoi;
                         tempGau = 2;
                     }
-                    else if(_ro.Op_TinHieu_GauCho)
+                    else if (_ro.Op_TinHieu_GauCho)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauCho;
                         tempGau = 3;
                     }
-                    else if(tempGau == 3 && _ro.Op_TinHieu_GauLen)
+                    else if (tempGau == 3 && _ro.Op_TinHieu_GauLen)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauGiuaTren;
                         tempGau = 4;
                     }
-                    else if(_ro.Op_TinHieu_GauTren)
+                    else if (_ro.Op_TinHieu_GauTren)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauTren;
                         tempGau = 5;
                     }
-                    else if(_ro.Op_TinHieu_GauAnToan)
+                    else if (_ro.Op_TinHieu_GauAnToan)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauAnToan;
                     }
 
-                    else if(tempGau == 5 && _ro.Op_TinHieu_GauXuong)
+                    else if (tempGau == 5 && _ro.Op_TinHieu_GauXuong)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauGiuaTren;
                         tempGau = 4;
                     }
-                    else if(_ro.Op_TinHieu_GauDuoi)
+                    else if (_ro.Op_TinHieu_GauDuoi)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauCho;
                         tempGau = 3;
                     }
-                    else if(tempGau == 3 && _ro.Op_TinHieu_GauXuong)
+                    else if (tempGau == 3 && _ro.Op_TinHieu_GauXuong)
                     {
-                        ucGauTai1.IsTrangThai = UcGauTai.TrangThai.GauGiuaDuoi;
                         tempGau = 2;
                     }
 
-                    ucTinHieuGauLen.Visible = _ro.Op_TinHieu_GauLen;
-                    ucTinHieuGauLen1.Visible = _ro.Op_TinHieu_GauLen;
-                    ucTinHieuGauXuong.Visible = _ro.Op_TinHieu_GauXuong;
-                    ucTinHieuGauXuong1.Visible = _ro.Op_TinHieu_GauXuong;
-
+                    
                     //=========================================THDC
 
                     ucBaoDongThungCanAgg1.IsOn = _ro.Op_THDC_WAGG1;
@@ -1730,11 +1910,82 @@ namespace NDPSo.MasterData
 
                     slMeDaCanPC.SoLuongMeDaTron = this.CorectData(_ro.SMC_PTG);
 
-                    ucGauTai1.SoMeDaTron = this.CorectData(_ro.SMC_SKIP);
 
                     this.ucThoiGianThucTron.GiaTri = this.CorectData(_ro.ThoiGianThucTron);
-                    this.ucThoiGianThucXa.GiaTri = this.CorectData(_ro.ThoiGianThucXa);
+                    this.ucThoiGianThucTronUot.GiaTri = this.CorectData(_ro.ThoiGianThucTronUot);
+                    this.ucKLThucNoiTron.GiaTri = this.CorectData(_ro.KhoiLuongThucNoiTron);
                     this.slMeDaCanNoiTron.SoLuongMeDaTron = this.CorectData(_ro.SMC_MIXER);
+
+                    //Add tramcanduoclongan
+
+                    if (_ro.Op_HeThong)
+                    {
+                        //ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Auto;
+                        //this._so.SendingCommand.SW_MAN_AUTO = true;
+                        //this.lblCheDoHeThongAut.ForeColor = Color.Blue;
+                        //this.lblCheDoHeThongMan.ForeColor = Color.DarkGray;
+
+                       
+
+                    }
+                    else
+                    {
+
+                        //ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Manual;
+                        //this._so.SendingCommand.SW_MAN_AUTO = false;
+                        //this.lblCheDoHeThongAut.ForeColor = Color.DarkGray;
+                        //this.lblCheDoHeThongMan.ForeColor = Color.Red;
+
+                       
+
+                    }
+
+                    if (_ro.Op_NapLieuNoiTron)
+                    {
+                        //btnNapLieuNoiTron.IsTrangThai = UcButton.TrangThai.Stop;
+                        //btnNapLieuNoiTron.Caption = "NẠP LIỆU TỰ ĐỘNG";
+                    }
+                    else
+                    {
+                        //btnNapLieuNoiTron.IsTrangThai = UcButton.TrangThai.Run;
+                        //btnNapLieuNoiTron.Caption = "NẠP LIỆU TAY";
+                    }
+
+                    if (_ro.Op_Gau)
+                    {
+                        Debug.WriteLine("GIAU ON");
+                        if (ConfigManager.TramTronConfig.CapPhoiRes == 1)
+                        {
+                            //btnXaCanCotLieu.IsTrangThai = UcButton.TrangThai.Stop;
+                            //btnXaCanCotLieu.Caption = "GÀU TẢI TỰ ĐỘNG";
+                            //this.ucButtonGauUp1.Visible = false;
+                            //this.ucButtonGauStop2.Visible = false;
+                            //this.ucButtonGauDown1.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ConfigManager.TramTronConfig.CapPhoiRes == 1)
+                        {
+                            //btnXaCanCotLieu.IsTrangThai = UcButton.TrangThai.Run;
+                            //btnXaCanCotLieu.Caption = "GÀU TẢI TAY";
+                            //this.ucButtonGauUp1.Visible = true;
+                            //this.ucButtonGauStop2.Visible = true;
+                            //this.ucButtonGauDown1.Visible = true;
+                        }
+                        Debug.WriteLine("GIAU OFF");
+                    }
+
+                    if (_ro.Op_CuaNoi)
+                    {
+                        //btnXaNoiTron.IsTrangThai = UcButton.TrangThai.Stop;
+                        //btnXaNoiTron.Caption = "CỬA NỒI TỰ ĐỘNG";
+                    }
+                    else
+                    {
+                        //btnXaNoiTron.IsTrangThai = UcButton.TrangThai.Run;
+                        //btnXaNoiTron.Caption = "CỬA NỒI TAY";
+                    }
                     //RunFan_NewThread(true);
                 }
             }
@@ -1743,7 +1994,51 @@ namespace NDPSo.MasterData
                 TramTromMessageBox.ShowMessageDialog(ex.ToString());
             }
         }
-        
+
+        private void ResetPrevousBuTru()
+        {
+            _previousCanDuAgg1State = false;
+            _previousCanDuAgg2State = false;
+            _previousCanDuAgg3State = false;
+            _previousCanDuAgg4State = false;
+            _previousCanDuAgg5State = false;
+            _previousCanDuAgg6State = false;
+            _previousCanDuCe1State = false;
+            _previousCanDuCe2State = false;
+            _previousCanDuCe3State = false;
+            _previousCanDuCe4State = false;
+            _previousCanDuCe5State = false;
+            _previousCanDuWa1State = false;
+            _previousCanDuWa2State = false;
+            _previousCanDuAdd1State = false;
+            _previousCanDuAdd2State = false;
+            _previousCanDuAdd3State = false;
+            _previousCanDuAdd4State = false;
+            _previousCanDuAdd5State = false;
+            _previousCanDuAdd6State = false;
+        }
+        private void ShowNotifiCanDu(string maSilo)
+        {
+            string notifi = "";
+            string a = GetNameSilo(maSilo);
+            notifi = a + " cân dư ";
+            ShowMessage(notifi, Enums.MsgType.Error);
+        }
+
+        private string GetNameSilo(string maSilo)
+        {
+            string nameSilo = "";
+            ObjSilo objSilo = (from o in this._blstSilo where o.MaSilo == maSilo select o).First<ObjSilo>();
+            if (objSilo != null)
+            {
+                nameSilo = objSilo.MaterialName;
+            }
+            else
+            {
+                nameSilo = "";
+            }
+            return nameSilo;
+        }
         private void DoCreateNewDuLieuTron(object sender, EventArgs e)
         {
             this.CreateNewDuLieuTron(((sender as DXMenuItem).Tag as VanHanh.RowInfo).RowHandle);
@@ -1823,6 +2118,7 @@ namespace NDPSo.MasterData
             this.lblMaPhieuTron.Text
             = this.lblTenKhachHang.Text
             = this.lblTenCongTruong.Text
+            = this.lblDiaDiem.Text
             = this.lblMAC.Text
             = this.lblTenHangMuc.Text
             = this.lblLuyKe.Text = "----------";
@@ -1855,8 +2151,10 @@ namespace NDPSo.MasterData
                             this.lblTenHangMuc.Text = this._presenter.GetHangMucByKey(_idHangMuc).TenHangMuc;
                         }
                         //this.lblMaPhieuTron.Text = hopDongByKey.MaHopDong;
+                        
                         this.lblTenKhachHang.Text = this._presenter.GetKhachHangByKey(_idKhachHang).TenKhachHang;
                         this.lblTenCongTruong.Text = this._presenter.GetCongTruongByKey(_idCongTruong).TenCongTruong;
+                        this.lblDiaDiem.Text = this._presenter.GetCongTruongByKey(_idCongTruong).DiaChi;
                         this.lblMAC.Text = hopDongByKey.NPMACTenMAC;
                         this.lblMAC.Tag = hopDongByKey;
                         this.lblKhoiLuong.Text = hopDongByKey.DLT_KLDuTinh.ToString();
@@ -1865,7 +2163,7 @@ namespace NDPSo.MasterData
                         this.spnThemBotNc.EditValue = hopDongByKey.NPMACThemBotNuoc1;
                         this.ucSoKhoiTrenMe.GiaTri = (decimal)hopDongByKey.DLT_KLDuTinhCuaTungMe;
                         this.lblNguoiTron.Text = GlobalValues.DisplayUser;
-                        
+                       // this.slMeCanTron = (int)hopDongByKey.DLT_SLMeDuTinh;
                         this.BuildSetPoint(hopDongByKey, false);
 
                     }
@@ -1873,113 +2171,9 @@ namespace NDPSo.MasterData
                 }
             }
         }
-        private void Test_DoFocusHopDong(int row)
-        {
-
-            ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(row) as ObjDuLieuTron;
-            if (objDuLieuTron != null && objDuLieuTron.HopDongID != null)
-            {
-                int? hopDongID = objDuLieuTron.HopDongID;
-                int num = 0;
-                if (!(hopDongID.GetValueOrDefault() == num & hopDongID != null))
-                {
-                    ObjHopDong hopDongByKey = this._presenter.GetHopDongByKey(objDuLieuTron.HopDongID.Value);
-                    if (hopDongByKey == null)
-                    {
-                        return;
-                    }
-                    this.BuildSetPoint(hopDongByKey, false);
-                    if (!this._TronOnlineAttributes.IsRunning)
-                    {
-                        int _idMAC = (int)hopDongByKey.MACID;
-                        int _idKhachHang = (int)hopDongByKey.KhachHangID;
-                        int _idCongTruong = (int)hopDongByKey.CongTruongID;
-                        int _idHangMuc = (int)hopDongByKey.HangMucID;
-                        this.lblMaPhieuTron.Text = hopDongByKey.MaHopDong;
-                        this.lblTenKhachHang.Text = this._presenter.GetKhachHangByKey(_idKhachHang).TenKhachHang;
-                        this.lblTenCongTruong.Text = this._presenter.GetCongTruongByKey(_idCongTruong).TenCongTruong;
-                        this.lblTenHangMuc.Text = this._presenter.GetHangMucByKey(_idHangMuc).TenHangMuc;
-                        this.lblMAC.Text = hopDongByKey.NPMACTenMAC;
-                        this.lblKhoiLuong.Text = hopDongByKey.DLT_KLDuTinh.ToString();
-                        this.spnThemBotNc.Tag = hopDongByKey.MACID;
-                        this.spnThemBotNc.EditValue = hopDongByKey.NPMACThemBotNuoc1;
-                        this.ucSoKhoiTrenMe.GiaTri = (decimal)hopDongByKey.DLT_KLDuTinhCuaTungMe;
-
-                        /*Send_Data_DB_2_To_PLC();
-                        Send_Data_DB_3_To_PLC();
-                        Send_Data_DB_4_To_PLC();
-                        Send_Data_DB_5_To_PLC();*/
-
-                    }
-                    return;
-                }
-            }
-        }
-
-        private void Test_InitRunning(int row)
-        {
-            
-            ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(row) as ObjDuLieuTron;
-            int hopDongID = objDuLieuTron.HopDongID.Value;
-            
-            if (objDuLieuTron == null || objDuLieuTron.HopDongID == null)
-            {
-                return;
-            }
-
-            this._selectedHD_Run = this._presenter.GetHopDongByKey(hopDongID);
-
-            this._selectedPT_Run = this._presenter.CreateAndSaveNewPhieuTron(this._selectedHD_Run, false);
-            this.some = 1;
-            this.lblMaPhieuTron.Text = this._selectedPT_Run.MaPhieuTron;
-            this.lblDriver.Text = string.Empty;
-            this.lblXe.Text = string.Empty;
-            this.ChangeStatusSelectedDuLieuTron(1, null);
-            //this.BuildSetPoint(this._selectedHD_Run, true);
-
-            Random ramNV = new Random();
-            int intNV = ramNV.Next(1, this._blstNhanVien.Count);
-            Random ramXe = new Random();
-            int intXe = ramXe.Next(1, this._blstXe.Count);
-            Random ramTãie = new Random();
-            int intTaiXe = ramTãie.Next(1, this._blstTaiXe.Count);
-
-            this.lueDriver.EditValue = intTaiXe;
-            this.lueXe.EditValue = intXe;
-            
-            SaveTaiXe();
-            SaveXe();
-            
-        }
-        private void AutoTest(int randomNumber)
-        {
-
-            this._so.SendingCommand.NN_MCN = true;
-            labelControl1.Visible = true;
-            this.SendData_DB2_NewTread();
-            Thread.Sleep(500);
-            this._so.SendingCommand.NN_MCN = false;
-            labelControl1.Visible = false;
-            this.SendData_DB2_NewTread();
-
-            lblTest.Text = "DLT: " + randomNumber.ToString();
-            Test_DoFocusHopDong(randomNumber);
-            Thread.Sleep(3000);
-
-            this._so.SendingCommand.F1_Run = true;
-            this.SendData_DB2_NewTread();
-            Thread.Sleep(1000);
-            this._so.SendingCommand.F1_Run = false;
-            this.SendData_DB2_NewTread();
-
-            Test_InitRunning(randomNumber);
-            lblTest.Text = "Bắt đầu trộn";
-            Thread.Sleep(2000);
-            soMeCanTronTest = (int)this.slMeDaCanNoiTron.SoLuongMeCanTron;
-            lblTest.Text = "Tổng số mẻ: " + soMeCanTronTest.ToString();
-
-            
-        }
+        
+        
+        
         private void grcHopDong_DoubleClick(object sender, EventArgs e)
         {
             GridHitInfo gridHitInfo = this.grvHopDong.CalcHitInfo((e as MouseEventArgs).Location);
@@ -2135,9 +2329,12 @@ namespace NDPSo.MasterData
                 this.grvHopDong.RefreshRow(rowHandle);
                 if (!this._TronOnlineAttributes.IsRunning)
                 {
+                    //this.slMeCanTron = (int)objHopDong.DLT_SLMeDuTinh;
                     this.BuildSetPoint(objHopDong, false);
+                    UpdateRankingDLT(objDuLieuTron);
                 }
                 //Update Thong tin PT
+                //UpdateRankingDLT(objDuLieuTron);
                 UpdateInfoPT(rowHandle);
                 //DoFocusHopDong();
             }
@@ -2172,6 +2369,7 @@ namespace NDPSo.MasterData
                         //this.lblMaPhieuTron.Text = hopDongByKey.MaHopDong;
                         this.lblTenKhachHang.Text = this._presenter.GetKhachHangByKey(_idKhachHang).TenKhachHang;
                         this.lblTenCongTruong.Text = this._presenter.GetCongTruongByKey(_idCongTruong).TenCongTruong;
+                        this.lblDiaDiem.Text = this._presenter.GetCongTruongByKey(_idCongTruong).DiaChi;
                         this.lblMAC.Text = hopDongByKey.NPMACTenMAC;
                         this.lblMAC.Tag = hopDongByKey;
                         this.lblKhoiLuong.Text = hopDongByKey.DLT_KLDuTinh.ToString();
@@ -2299,7 +2497,7 @@ namespace NDPSo.MasterData
             }
             if (!objDLT.VersionNo.SequenceEqual(dLTByKey.VersionNo))
             {
-                TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.DataEditedPleaseRefresh);
+                //TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.DataEditedPleaseRefresh);
                 return true;
             }
             return false;
@@ -2319,9 +2517,10 @@ namespace NDPSo.MasterData
 
         private void grvHopDong_FocusedRowChanged_1(object sender, FocusedRowChangedEventArgs e)
         {
+            
             this.DoFocusHopDong();
         }
-
+        
         private void txtNiemChi_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8)
@@ -2330,9 +2529,9 @@ namespace NDPSo.MasterData
             }
         }
         #region SetSLMe
-        private void SetSLMe(int slMe)
+        private void SetSLMe(int slMeTron)
         {
-
+            TramTronLogger.WriteInfo("CHECKING ME TRON: " + slMeTron);
             this.slMeDaCanAgg1.SoLuongMeCanTron
                 = (this.slMeDaCanAgg2.SoLuongMeCanTron
                  = (this.slMeDaCanAgg3.SoLuongMeCanTron
@@ -2346,8 +2545,7 @@ namespace NDPSo.MasterData
                          = (this.slMeDaCanAdd1.SoLuongMeCanTron
                           = (this.slMeDaCanAdd2.SoLuongMeCanTron
                            = (this.slMeDaCanPC.SoLuongMeCanTron
-                           = (this.ucGauTai1.SoLuongMeCanTron
-                            = (this.slMeDaCanNoiTron.SoLuongMeCanTron = slMe))))))))))))));
+                            = (this.slMeDaCanNoiTron.SoLuongMeCanTron = slMeTron)))))))))))));
         }
         #endregion
 
@@ -2501,8 +2699,12 @@ namespace NDPSo.MasterData
                     }*/
                     
                 }
-                BuildSetPoint(selectedHD, true);
+                BuildSetPoint(_selectedHD_Run, true);
+                //this.SendData_DB2_NewTread();
                 this.SendData_DB3_NewTread();
+                //Add 2906
+                this._presenter.ListSilo();
+                this._presenter.ListSilo_DoAmHutAgg();
             }
         }
         //  Caption Click
@@ -2664,8 +2866,10 @@ namespace NDPSo.MasterData
             ViewManager.ShowViewDialog(ctrView);
             if (ctrView.GetDialogResult() != DialogResult.OK)
                 return;
-            BuildSetPoint(selectedHD, true);
+            BuildSetPoint(_selectedHD_Run, true);
             this.SendData_DB4_NewTread();
+            //this.SendData_DB2_NewTread();
+            this._presenter.ListWei();
         }
 
         private void btnMoCuaNoi_ButtonMouseDown(object sender, EventArgs e)
@@ -2751,7 +2955,7 @@ namespace NDPSo.MasterData
 
         private void btnNapLieuNoiTron_ButtonClick(object sender, EventArgs e)
         {
-            
+
             if (btnNapLieuNoiTron.IsRun)
             {
                 this._so.SendingCommand.SW_NAP_NOI_TRON = true;
@@ -2812,28 +3016,28 @@ namespace NDPSo.MasterData
             TramTronLogger.WriteInfo(sender.ToString());
             if (btnRun.IsOn)
             {
-                /*DialogResult result = MessageBox.Show("Xác nhận chạy tiến trình trộn?", "Thông báo", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Xác nhận chạy tiến trình trộn?", "Thông báo", MessageBoxButtons.YesNo);
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        *//*this._so.SendingCommand.F1_Run = true;
+                        this._so.SendingCommand.F1_Run = true;
                         this.SendData_DB2_NewTread();
                         //StatusConnected.CheckOpenSof(true, true);
                         Thread.Sleep(100);
                         this._so.SendingCommand.F1_Run = false;
-                        this.SendData_DB2_NewTread();*//*
+                        this.SendData_DB2_NewTread();
                         this.InitRunning(true);
-                        
+
                         if (checkEdit3.Checked)
                         {
                             isTesst = true;
                             lblTest.Text = "Đang chạy Auto";
                         }
-                       
+
                         break;
                     case DialogResult.No:
                         break;
-                }*/
+                }
                 this.InitRunning(true);
 
                 if (checkEdit3.Checked)
@@ -2873,7 +3077,6 @@ namespace NDPSo.MasterData
             {
                 this._so.SendingCommand.SW_MAN_AUTO = false;
                 this.SendData_DB2_NewTread();
-
             }
             else if (!ucHeThongAuto1.IsAuto)
             {
@@ -2883,9 +3086,6 @@ namespace NDPSo.MasterData
             TramTronLogger.WriteInfo(sender.ToString());
         }
         
-        
-        
-
         private void Send_Data_DB_3_To_PLC() //WRITE DATA TO PLC
         {
             List<byte> list_00 = new List<byte>();
@@ -3017,94 +3217,30 @@ namespace NDPSo.MasterData
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Agg1));// 16
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Agg1));// 20
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Agg1));// 24
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Agg2));// 28
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Agg2));// 32
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Agg2));// 36
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Agg2));// 40
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Agg2));// 44
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Agg2));// 48
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Agg2));// 52
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Agg3));// 56
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Agg3));// 60
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Agg3));// 64
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Agg3));// 68
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Agg3));// 72
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Agg3));// 76
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Agg3));// 80
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Agg4));// 84
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Agg4));// 88
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Agg4));// 92
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Agg4));// 96
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Agg4));// 100
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Agg4));// 104
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Agg4));// 108
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Agg5));// 112
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Agg5));// 116
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Agg5));// 120`
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Agg5));// 124
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Agg5));// 128
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Agg5));// 132
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Agg5));// 136
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Agg6));// 140
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Agg6));// 144
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Agg6));// 148
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Agg6));// 152
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Agg6));// 156
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Agg6));// 160
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Agg6));// 164
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Ce1));// 168
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Ce1));// 172
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Ce1));// 176
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Ce1));// 180
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Ce1));// 184
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Ce1));// 188
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Ce1));// 192
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Ce2));// 196
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Ce2));// 200
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Ce2));// 204
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Ce2));// 208
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Ce2));// 212
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Ce2));// 216
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Ce2));// 220
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Wa1));// 224
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Wa1));// 228
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Wa1));// 232
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Wa1));// 236
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Wa2));// 240
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Wa2));// 244
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Wa2));// 248
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Wa2));// 252
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Add1));// 256
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Add1));// 260
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Add1));// 264
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Add1));// 268
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Add2));// 272
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Add2));// 276
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Add2));// 280
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Add2));// 284
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.SoMeTron));// 288
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg1));// 292
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg2));// 296
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg3));// 300
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg4));// 304
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg5));// 308
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg6));// 312
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce1));// 316
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce2));// 320
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce3));// 324
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce4));// 328
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce5));// 332
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Wa1));// 336
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Wa2));// 340
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add1));// 344
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add2));// 348
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add3));// 352
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add4));// 356
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add5));// 360
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add6));// 364
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Ce1));// 28
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Ce1));// 32
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Ce1));// 36
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Ce1));// 40
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongRungCan_Ce1));// 44
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianBatRung_Ce1));// 48
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTatRung_Ce1));// 52
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Wa1));// 56
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Wa1));// 60
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Wa1));// 64
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Wa1));// 68
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Add1));// 72
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreXa_Add1));// 76
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreDongCan_Add1));// 80
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KhoiLuongBaoRong_Add1));// 84
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.SoMeTron));// 88
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg1));// 92
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce1));// 96
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Wa1));// 100
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add1));// 104
+
 
             byte[] value = list_00.ToArray();
-            this._plcController.WriteBytes(DataType.DataBlock, 4, 0, value);
+            this._plcController.WriteBytes(DataType.DataBlock, 23, 0, value);
         }
         private void Send_Data_DB_4_To_PLC_Update()
         {
@@ -3128,10 +3264,11 @@ namespace NDPSo.MasterData
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add4));// 356
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add5));// 360
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add6));// 364
+
             byte[] value = list_00.ToArray();
             this._plcController.WriteBytes(DataType.DataBlock, 4, 292, value);
         }
-        private void Send_Data_DB_5_To_PLC() //WRITE DATA TO PLC
+        private void Send_Data_DB_5_To_PLC() //WRITE DATA TO PLC 5 to 24
         {
             List<byte> list_00 = new List<byte>();
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_Tron));// 0
@@ -3139,15 +3276,15 @@ namespace NDPSo.MasterData
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_Xa100));// 8
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_PheuChoDay));// 12
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCe1SauPC));// 16
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCe2SauPC));// 20
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaNuocSauPC));// 24
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaNuocSauPC));// 20
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaPC));// 24
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaPC));// 28
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_PC_ChoPhepRung));// 32
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_Rung_PC_ON));// 36
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_Rung_PC_OFF));// 40
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg1));// 44
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg2));// 48
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg3));// 52
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_Rung_PC_ON));// 32
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_Rung_PC_OFF));// 36
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg1));// 40
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaWa2_PC));// 44
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaAdd1_PC));// 48
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_AnToanGau));// 52
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg4));// 56
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg5));// 60
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGian_XaCan_Agg6));// 64
@@ -3166,47 +3303,12 @@ namespace NDPSo.MasterData
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_XaTruoc_Agg6));// 116
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TRE_TAT_VTX));// 120
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_BAT_RUNG_WAGG));// 124
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TAT_RUNG_WAGG));// 128
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_BAT_RUNG_WCE));// 132
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TAT_RUNG_WCE));// 136
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_BAT_SKSL));// 140
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TAT_SKSL));// 144
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TRE_MO_VAN_CE));// 148
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_AGG1));// 152
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_AGG1));// 156
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_AGG2));// 160
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_AGG2));// 164
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_AGG3));// 168
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_AGG3));// 172
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_AGG4));// 176
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_AGG4));// 180
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_AGG5));// 184
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_AGG5));// 188
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_AGG6));// 192
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_AGG6));// 196
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_CE1));// 200
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_CE1));// 204
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_CE2));// 208
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_CE2));// 212
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_CE3));// 216
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_CE4));// 220
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_CE5));// 224
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_WA1));// 228
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_WA1));// 232
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_WA2));// 236
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_WA2));// 240
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD1));// 244
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_ADD1));// 248
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD2));// 252
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_ADD2));// 256
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD3));// 260
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD4));// 264
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD5));// 268
-            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD6));// 272
-
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD1));// 128
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_ADD1));// 132
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TRON_UOT));// 136
 
             byte[] value = list_00.ToArray();
-            this._plcController.WriteBytes(DataType.DataBlock, 5, 0, value);
+            this._plcController.WriteBytes(DataType.DataBlock, 24, 0, value);
         }
         private void Send_Data_DB_6_To_PLC()   //WRITE DATA TO PLC
         {
@@ -3271,6 +3373,445 @@ namespace NDPSo.MasterData
             this._plcController.WriteBytes(DataType.DataBlock, 6, 192, value);
         }
 
+        public void BuildSetPointNotHD(BindingList<ObjWeigh> blstWei, BindingList<ObjSilo> blstSilo , Decimal giuNuocTenCan, SetPoint setPoint1)
+        {
+            foreach (ObjWeigh objWei in (Collection<ObjWeigh>)blstWei)
+            {
+                switch (objWei.WeighCode)
+                {
+                    case "Agg1":
+                        SetPoint setPoint30 = setPoint1;
+                        setPoint30.ThoiGianTreCan_Agg1 = (decimal)objWei.TimeEmpty;
+                        setPoint30.ThoiGianTreXa_Agg1 = (decimal)objWei.Max;
+                        setPoint30.ThoiGianTreDongCan_Agg1 = (decimal)objWei.Offset;
+                        setPoint30.KhoiLuongBaoRong_Agg1 = (decimal)objWei.KLEmpty;
+                        setPoint30.KhoiLuongRungCan_Agg1 = (decimal)objWei.WeiToVib;
+                        setPoint30.ThoiGianBatRung_Agg1 = (decimal)objWei.TON;
+                        setPoint30.ThoiGianTatRung_Agg1 = (decimal)objWei.TOFF;
+                        setPoint30.GIU_LAI_CAN_AGG1 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Agg2":
+                        SetPoint setPoint31 = setPoint1;
+                        setPoint31.ThoiGianTreCan_Agg2 = (decimal)objWei.TimeEmpty;
+                        setPoint31.ThoiGianTreXa_Agg2 = (decimal)objWei.Max;
+                        setPoint31.ThoiGianTreDongCan_Agg2 = (decimal)objWei.Offset;
+                        setPoint31.KhoiLuongBaoRong_Agg2 = (decimal)objWei.KLEmpty;
+                        setPoint31.KhoiLuongRungCan_Agg2 = (decimal)objWei.WeiToVib;
+                        setPoint31.ThoiGianBatRung_Agg2 = (decimal)objWei.TON;
+                        setPoint31.ThoiGianTatRung_Agg2 = (decimal)objWei.TOFF;
+                        setPoint31.GIU_LAI_CAN_AGG2 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Agg3":
+                        SetPoint setPoint32 = setPoint1;
+                        setPoint32.ThoiGianTreCan_Agg3 = (decimal)objWei.TimeEmpty;
+                        setPoint32.ThoiGianTreXa_Agg3 = (decimal)objWei.Max;
+                        setPoint32.ThoiGianTreDongCan_Agg3 = (decimal)objWei.Offset;
+                        setPoint32.KhoiLuongBaoRong_Agg3 = (decimal)objWei.KLEmpty;
+                        setPoint32.KhoiLuongRungCan_Agg3 = (decimal)objWei.WeiToVib;
+                        setPoint32.ThoiGianBatRung_Agg3 = (decimal)objWei.TON;
+                        setPoint32.ThoiGianTatRung_Agg3 = (decimal)objWei.TOFF;
+                        setPoint32.GIU_LAI_CAN_AGG3 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Agg4":
+                        SetPoint setPoint33 = setPoint1;
+                        setPoint33.ThoiGianTreCan_Agg4 = (decimal)objWei.TimeEmpty;
+                        setPoint33.ThoiGianTreXa_Agg4 = (decimal)objWei.Max;
+                        setPoint33.ThoiGianTreDongCan_Agg4 = (decimal)objWei.Offset;
+                        setPoint33.KhoiLuongBaoRong_Agg4 = (decimal)objWei.KLEmpty;
+                        setPoint33.KhoiLuongRungCan_Agg4 = (decimal)objWei.WeiToVib;
+                        setPoint33.ThoiGianBatRung_Agg4 = (decimal)objWei.TON;
+                        setPoint33.ThoiGianTatRung_Agg4 = (decimal)objWei.TOFF;
+                        setPoint33.GIU_LAI_CAN_AGG4 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Agg5":
+                        SetPoint setPoint34 = setPoint1;
+                        setPoint34.ThoiGianTreCan_Agg5 = (decimal)objWei.TimeEmpty;
+                        setPoint34.ThoiGianTreXa_Agg5 = (decimal)objWei.Max;
+                        setPoint34.ThoiGianTreDongCan_Agg5 = (decimal)objWei.Offset;
+                        setPoint34.KhoiLuongBaoRong_Agg5 = (decimal)objWei.KLEmpty;
+                        setPoint34.KhoiLuongRungCan_Agg5 = (decimal)objWei.WeiToVib;
+                        setPoint34.ThoiGianBatRung_Agg5 = (decimal)objWei.TON;
+                        setPoint34.ThoiGianTatRung_Agg5 = (decimal)objWei.TOFF;
+                        setPoint34.GIU_LAI_CAN_AGG5 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Agg6":
+                        SetPoint setPoint35 = setPoint1;
+                        setPoint35.ThoiGianTreCan_Agg6 = (decimal)objWei.TimeEmpty;
+                        setPoint35.ThoiGianTreXa_Agg6 = (decimal)objWei.Max;
+                        setPoint35.ThoiGianTreDongCan_Agg6 = (decimal)objWei.Offset;
+                        setPoint35.KhoiLuongBaoRong_Agg6 = (decimal)objWei.KLEmpty;
+                        setPoint35.KhoiLuongRungCan_Agg6 = (decimal)objWei.WeiToVib;
+                        setPoint35.ThoiGianBatRung_Agg6 = (decimal)objWei.TON;
+                        setPoint35.ThoiGianTatRung_Agg6 = (decimal)objWei.TOFF;
+                        setPoint35.GIU_LAI_CAN_AGG6 = (bool)objWei.GiuKLTC;
+                        continue;
+
+                    case "Ce1":
+                        SetPoint setPoint36 = setPoint1;
+                        setPoint36.ThoiGianTreCan_Ce1 = (decimal)objWei.TimeEmpty;
+                        setPoint36.ThoiGianTreXa_Ce1 = (decimal)objWei.Max;
+                        setPoint36.ThoiGianTreDongCan_Ce1 = (decimal)objWei.Offset;
+                        setPoint36.KhoiLuongBaoRong_Ce1 = (decimal)objWei.KLEmpty;
+                        setPoint36.KhoiLuongRungCan_Ce1 = (decimal)objWei.WeiToVib;
+                        setPoint36.ThoiGianBatRung_Ce1 = (decimal)objWei.TON;
+                        setPoint36.ThoiGianTatRung_Ce1 = (decimal)objWei.TOFF;
+                        setPoint36.GIU_LAI_CAN_CE1 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Ce2":
+                        SetPoint setPoint37 = setPoint1;
+                        setPoint37.ThoiGianTreCan_Ce2 = (decimal)objWei.TimeEmpty;
+                        setPoint37.ThoiGianTreXa_Ce2 = (decimal)objWei.Max;
+                        setPoint37.ThoiGianTreDongCan_Ce2 = (decimal)objWei.Offset;
+                        setPoint37.KhoiLuongBaoRong_Ce2 = (decimal)objWei.KLEmpty;
+                        setPoint37.KhoiLuongRungCan_Ce2 = (decimal)objWei.WeiToVib;
+                        setPoint37.ThoiGianBatRung_Ce2 = (decimal)objWei.TON;
+                        setPoint37.ThoiGianTatRung_Ce2 = (decimal)objWei.TOFF;
+                        setPoint37.GIU_LAI_CAN_CE2 = (bool)objWei.GiuKLTC;
+                        continue;
+
+                    case "Wa1":
+                        SetPoint setPoint38 = setPoint1;
+                        setPoint38.ThoiGianTreCan_Wa1 = (decimal)objWei.TimeEmpty;
+                        setPoint38.ThoiGianTreXa_Wa1 = (decimal)objWei.Max;
+                        setPoint38.ThoiGianTreDongCan_Wa1 = (decimal)objWei.Offset;
+                        decimal? numWa1 = objWei.KLEmpty;
+                        numWa1 = numWa1.Value + giuNuocTenCan;
+                        setPoint38.KhoiLuongBaoRong_Wa1 = (decimal)numWa1;
+                        setPoint38.GIU_LAI_CAN_WA1 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Wa2":
+                        SetPoint setPoint39 = setPoint1;
+                        setPoint39.ThoiGianTreCan_Wa2 = (decimal)objWei.TimeEmpty;
+                        setPoint39.ThoiGianTreXa_Wa2 = (decimal)objWei.Max;
+                        setPoint39.ThoiGianTreDongCan_Wa2 = (decimal)objWei.Offset;
+                        setPoint39.KhoiLuongBaoRong_Wa2 = (decimal)objWei.KLEmpty;
+                        setPoint39.GIU_LAI_CAN_WA2 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Add1":
+                        SetPoint setPoint40 = setPoint1;
+                        setPoint40.ThoiGianTreCan_Add1 = (decimal)objWei.TimeEmpty;
+                        setPoint40.ThoiGianTreXa_Add1 = (decimal)objWei.Max;
+                        setPoint40.ThoiGianTreDongCan_Add1 = (decimal)objWei.Offset;
+                        setPoint40.KhoiLuongBaoRong_Add1 = (decimal)objWei.KLEmpty;
+                        setPoint40.GIU_LAI_CAN_ADD1 = (bool)objWei.GiuKLTC;
+                        continue;
+                    case "Add2":
+                        SetPoint setPoint41 = setPoint1;
+                        setPoint41.ThoiGianTreCan_Add2 = (decimal)objWei.TimeEmpty;
+                        setPoint41.ThoiGianTreXa_Add2 = (decimal)objWei.Max;
+                        setPoint41.ThoiGianTreDongCan_Add2 = (decimal)objWei.Offset;
+                        setPoint41.KhoiLuongBaoRong_Add2 = (decimal)objWei.KLEmpty;
+                        setPoint41.GIU_LAI_CAN_ADD2 = (bool)objWei.GiuKLTC;
+                        continue;
+                }
+            }
+
+            Decimal? nullable;
+            foreach (ObjSilo objSilo in (Collection<ObjSilo>)blstSilo)
+            {
+                switch (objSilo.MaSilo)
+                {
+                    case "Agg1":
+
+                        SetPoint setPoint24 = setPoint1;
+
+                        //====
+                        setPoint24.SaiSoTren_Agg1 = (decimal)objSilo.SaiSoTren;
+                        setPoint24.SaiSoDuoi_Agg1 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint24.RoiTuDo_Agg1 = (decimal)objSilo.KLRoi;
+                        setPoint24.ThoiGianMoCan_Agg1 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint24.ThoiGianDongCan_Agg1 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint24.ThoiGianTinhLuongRoiThem_Agg1 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint24.BuTruKLMT_Agg1 = (bool)objSilo.BuTruKLMT;
+                        setPoint24.TuDongXNCD_Agg1 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Agg2":
+
+                        SetPoint setPoint26 = setPoint1;
+
+                        //====
+                        setPoint26.SaiSoTren_Agg2 = (decimal)objSilo.SaiSoTren;
+                        setPoint26.SaiSoDuoi_Agg2 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint26.RoiTuDo_Agg2 = (decimal)objSilo.KLRoi;
+                        setPoint26.ThoiGianMoCan_Agg2 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint26.ThoiGianDongCan_Agg2 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint26.ThoiGianTinhLuongRoiThem_Agg2 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint26.BuTruKLMT_Agg2 = (bool)objSilo.BuTruKLMT;
+                        setPoint26.TuDongXNCD_Agg2 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Agg3":
+
+                        SetPoint setPoint28 = setPoint1;
+
+                        //====
+                        setPoint28.SaiSoTren_Agg3 = (decimal)objSilo.SaiSoTren;
+                        setPoint28.SaiSoDuoi_Agg3 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint28.RoiTuDo_Agg3 = (decimal)objSilo.KLRoi;
+                        setPoint28.ThoiGianMoCan_Agg3 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint28.ThoiGianDongCan_Agg3 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint28.ThoiGianTinhLuongRoiThem_Agg3 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint28.BuTruKLMT_Agg3 = (bool)objSilo.BuTruKLMT;
+                        setPoint28.TuDongXNCD_Agg3 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Agg4":
+
+                        SetPoint setPoint30 = setPoint1;
+
+                        //====
+                        setPoint30.SaiSoTren_Agg4 = (decimal)objSilo.SaiSoTren;
+                        setPoint30.SaiSoDuoi_Agg4 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint30.RoiTuDo_Agg4 = (decimal)objSilo.KLRoi;
+                        setPoint30.ThoiGianMoCan_Agg4 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint30.ThoiGianDongCan_Agg4 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint30.ThoiGianTinhLuongRoiThem_Agg4 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint30.BuTruKLMT_Agg4 = (bool)objSilo.BuTruKLMT;
+                        setPoint30.TuDongXNCD_Agg4 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Agg5":
+
+                        SetPoint setPoint32 = setPoint1;
+
+                        //====
+                        setPoint32.SaiSoTren_Agg5 = (decimal)objSilo.SaiSoTren;
+                        setPoint32.SaiSoDuoi_Agg5 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint32.RoiTuDo_Agg5 = (decimal)objSilo.KLRoi;
+                        setPoint32.ThoiGianMoCan_Agg5 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint32.ThoiGianDongCan_Agg5 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint32.ThoiGianTinhLuongRoiThem_Agg5 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint32.BuTruKLMT_Agg5 = (bool)objSilo.BuTruKLMT;
+                        setPoint32.TuDongXNCD_Agg5 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Agg6":
+
+                        SetPoint setPoint34 = setPoint1;
+
+                        //====
+                        setPoint34.SaiSoTren_Agg6 = (decimal)objSilo.SaiSoTren;
+                        setPoint34.SaiSoDuoi_Agg6 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint34.RoiTuDo_Agg6 = (decimal)objSilo.KLRoi;
+                        setPoint34.ThoiGianMoCan_Agg6 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint34.ThoiGianDongCan_Agg6 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint34.ThoiGianTinhLuongRoiThem_Agg6 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+
+                        continue;
+                    case "Ce1":
+                        SetPoint setPoint36 = setPoint1;
+                        //====
+                        setPoint36.SaiSoTren_Ce1 = (decimal)objSilo.SaiSoTren;
+                        setPoint36.SaiSoDuoi_Ce1 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint36.RoiTuDo_Ce1 = (decimal)objSilo.KLRoi;
+                        setPoint36.ThoiGianMoCan_Ce1 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint36.ThoiGianDongCan_Ce1 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint36.ThoiGianTinhLuongRoiThem_Ce1 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint36.BuTruKLMT_Ce1 = (bool)objSilo.BuTruKLMT;
+                        setPoint36.TuDongXNCD_Ce1 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Ce2":
+                        SetPoint setPoint37 = setPoint1;
+                        //====
+                        setPoint37.SaiSoTren_Ce2 = (decimal)objSilo.SaiSoTren;
+                        setPoint37.SaiSoDuoi_Ce2 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint37.RoiTuDo_Ce2 = (decimal)objSilo.KLRoi;
+                        setPoint37.ThoiGianMoCan_Ce2 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint37.ThoiGianDongCan_Ce2 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint37.ThoiGianTinhLuongRoiThem_Ce2 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint37.BuTruKLMT_Ce2 = (bool)objSilo.BuTruKLMT;
+                        setPoint37.TuDongXNCD_Ce2 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Ce3":
+                        SetPoint setPoint38 = setPoint1;
+                        //====
+                        setPoint38.SaiSoTren_Ce3 = (decimal)objSilo.SaiSoTren;
+                        setPoint38.SaiSoDuoi_Ce3 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint38.RoiTuDo_Ce3 = (decimal)objSilo.KLRoi;
+                        setPoint38.ThoiGianMoCan_Ce3 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint38.ThoiGianDongCan_Ce3 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint38.ThoiGianTinhLuongRoiThem_Ce3 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint38.BuTruKLMT_Ce3 = (bool)objSilo.BuTruKLMT;
+                        setPoint38.TuDongXNCD_Ce3 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Ce4":
+                        SetPoint setPoint39 = setPoint1;
+                        //====
+                        setPoint39.SaiSoTren_Ce4 = (decimal)objSilo.SaiSoTren;
+                        setPoint39.SaiSoDuoi_Ce4 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint39.RoiTuDo_Ce4 = (decimal)objSilo.KLRoi;
+                        setPoint39.ThoiGianMoCan_Ce4 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint39.ThoiGianDongCan_Ce4 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint39.ThoiGianTinhLuongRoiThem_Ce4 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint39.BuTruKLMT_Ce4 = (bool)objSilo.BuTruKLMT;
+                        setPoint39.TuDongXNCD_Ce4 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Ce5":
+                        SetPoint setPoint40 = setPoint1;
+                        //====
+                        setPoint40.SaiSoTren_Ce5 = (decimal)objSilo.SaiSoTren;
+                        setPoint40.SaiSoDuoi_Ce5 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint40.RoiTuDo_Ce5 = (decimal)objSilo.KLRoi;
+                        setPoint40.ThoiGianMoCan_Ce5 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint40.ThoiGianDongCan_Ce5 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint40.ThoiGianTinhLuongRoiThem_Ce5 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint40.BuTruKLMT_Ce5 = (bool)objSilo.BuTruKLMT;
+                        setPoint40.TuDongXNCD_Ce5 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Wa1":
+                        SetPoint setPoint41 = setPoint1;
+                        //====
+                        setPoint41.SaiSoTren_Wa1 = (decimal)objSilo.SaiSoTren;
+                        setPoint41.SaiSoDuoi_Wa1 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint41.RoiTuDo_Wa1 = (decimal)objSilo.KLRoi;
+                        setPoint41.ThoiGianMoCan_Wa1 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint41.ThoiGianDongCan_Wa1 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint41.ThoiGianTinhLuongRoiThem_Wa1 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint41.BuTruKLMT_Wa1 = (bool)objSilo.BuTruKLMT;
+                        setPoint41.TuDongXNCD_Wa1 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Wa2":
+                        SetPoint setPoint42 = setPoint1;
+                        //====
+                        setPoint42.SaiSoTren_Wa2 = (decimal)objSilo.SaiSoTren;
+                        setPoint42.SaiSoDuoi_Wa2 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint42.RoiTuDo_Wa2 = (decimal)objSilo.KLRoi;
+                        setPoint42.ThoiGianMoCan_Wa2 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint42.ThoiGianDongCan_Wa2 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint42.ThoiGianTinhLuongRoiThem_Wa2 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint42.BuTruKLMT_Wa2 = (bool)objSilo.BuTruKLMT;
+                        setPoint42.TuDongXNCD_Wa2 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Add1":
+                        SetPoint setPoint43 = setPoint1;
+                        //====
+                        setPoint43.SaiSoTren_Add1 = (decimal)objSilo.SaiSoTren;
+                        setPoint43.SaiSoDuoi_Add1 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint43.RoiTuDo_Add1 = (decimal)objSilo.KLRoi;
+                        setPoint43.ThoiGianMoCan_Add1 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint43.ThoiGianDongCan_Add1 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint43.ThoiGianTinhLuongRoiThem_Add1 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint43.BuTruKLMT_Add1 = (bool)objSilo.BuTruKLMT;
+                        setPoint43.TuDongXNCD_Add1 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Add2":
+                        SetPoint setPoint44 = setPoint1;
+                        //====
+                        setPoint44.SaiSoTren_Add2 = (decimal)objSilo.SaiSoTren;
+                        setPoint44.SaiSoDuoi_Add2 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint44.RoiTuDo_Add2 = (decimal)objSilo.KLRoi;
+                        setPoint44.ThoiGianMoCan_Add2 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint44.ThoiGianDongCan_Add2 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint44.ThoiGianTinhLuongRoiThem_Add2 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint44.BuTruKLMT_Add2 = (bool)objSilo.BuTruKLMT;
+                        setPoint44.TuDongXNCD_Add2 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Add3":
+                        SetPoint setPoint45 = setPoint1;
+                        //====
+                        setPoint45.SaiSoTren_Add3 = (decimal)objSilo.SaiSoTren;
+                        setPoint45.SaiSoDuoi_Add3 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint45.RoiTuDo_Add3 = (decimal)objSilo.KLRoi;
+                        setPoint45.ThoiGianMoCan_Add3 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint45.ThoiGianDongCan_Add3 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint45.ThoiGianTinhLuongRoiThem_Add3 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint45.BuTruKLMT_Add3 = (bool)objSilo.BuTruKLMT;
+                        setPoint45.TuDongXNCD_Add3 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Add4":
+                        SetPoint setPoint46 = setPoint1;
+                        //====
+                        setPoint46.SaiSoTren_Add4 = (decimal)objSilo.SaiSoTren;
+                        setPoint46.SaiSoDuoi_Add4 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint46.RoiTuDo_Add4 = (decimal)objSilo.KLRoi;
+                        setPoint46.ThoiGianMoCan_Add4 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint46.ThoiGianDongCan_Add4 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint46.ThoiGianTinhLuongRoiThem_Add4 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint46.BuTruKLMT_Add4 = (bool)objSilo.BuTruKLMT;
+                        setPoint46.TuDongXNCD_Add4 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Add5":
+                        SetPoint setPoint47 = setPoint1;
+                        //====
+                        setPoint47.SaiSoTren_Add5 = (decimal)objSilo.SaiSoTren;
+                        setPoint47.SaiSoDuoi_Add5 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint47.RoiTuDo_Add5 = (decimal)objSilo.KLRoi;
+                        setPoint47.ThoiGianMoCan_Add5 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint47.ThoiGianDongCan_Add5 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint47.ThoiGianTinhLuongRoiThem_Add5 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint47.BuTruKLMT_Add5 = (bool)objSilo.BuTruKLMT;
+                        setPoint47.TuDongXNCD_Add5 = (bool)objSilo.TuDongXNCD;
+                        continue;
+                    case "Add6":
+                        SetPoint setPoint48 = setPoint1;
+                        //====
+                        setPoint48.SaiSoTren_Add6 = (decimal)objSilo.SaiSoTren;
+                        setPoint48.SaiSoDuoi_Add6 = (decimal)objSilo.SaiSoDuoi;
+                        setPoint48.RoiTuDo_Add6 = (decimal)objSilo.KLRoi;
+                        setPoint48.ThoiGianMoCan_Add6 = (decimal)objSilo.TGNhapNhaOn;
+                        setPoint48.ThoiGianDongCan_Add6 = (decimal)objSilo.TGNhapNhaOff;
+                        setPoint48.ThoiGianTinhLuongRoiThem_Add6 = (decimal)objSilo.TGKiemTraVatLieuRoi;
+                        setPoint48.BuTruKLMT_Add6 = (bool)objSilo.BuTruKLMT;
+                        setPoint48.TuDongXNCD_Add6 = (bool)objSilo.TuDongXNCD;
+                        continue;
+
+                    default:
+                        continue;
+                }
+            }
+
+        }
+
+
+        private void SetPointToSendCom(SetPoint _sp, SendingCommand _so)
+        {
+            _so.XNC_AUT_AGG1 = _sp.TuDongXNCD_Agg1;
+            _so.XNC_AUT_AGG2 = _sp.TuDongXNCD_Agg2;
+            _so.XNC_AUT_AGG3 = _sp.TuDongXNCD_Agg3;
+            _so.XNC_AUT_AGG4 = _sp.TuDongXNCD_Agg4;
+            _so.XNC_AUT_AGG5 = _sp.TuDongXNCD_Agg5;
+            _so.XNC_AUT_AGG6 = _sp.TuDongXNCD_Agg6;
+            _so.XNC_AUT_CE1 = _sp.TuDongXNCD_Ce1;
+            _so.XNC_AUT_CE2 = _sp.TuDongXNCD_Ce2;
+            _so.XNC_AUT_CE3 = _sp.TuDongXNCD_Ce3;
+            _so.XNC_AUT_CE4 = _sp.TuDongXNCD_Ce4;
+            _so.XNC_AUT_CE5 = _sp.TuDongXNCD_Ce5;
+            _so.XNC_AUT_WA1 = _sp.TuDongXNCD_Wa1;
+            _so.XNC_AUT_WA2 = _sp.TuDongXNCD_Wa2;
+            _so.XNC_AUT_ADD1 = _sp.TuDongXNCD_Add1;
+            _so.XNC_AUT_ADD2 = _sp.TuDongXNCD_Add2;
+            _so.XNC_AUT_ADD3 = _sp.TuDongXNCD_Add3;
+            _so.XNC_AUT_ADD4 = _sp.TuDongXNCD_Add4;
+            _so.XNC_AUT_ADD5 = _sp.TuDongXNCD_Add5;
+            _so.XNC_AUT_ADD6 = _sp.TuDongXNCD_Add6;
+            _so.GIU_LAI_CAN_AGG1 = _sp.GIU_LAI_CAN_AGG1;
+            _so.GIU_LAI_CAN_AGG2 = _sp.GIU_LAI_CAN_AGG2;
+            _so.GIU_LAI_CAN_AGG3 = _sp.GIU_LAI_CAN_AGG3;
+            _so.GIU_LAI_CAN_AGG4 = _sp.GIU_LAI_CAN_AGG4;
+            _so.GIU_LAI_CAN_AGG5 = _sp.GIU_LAI_CAN_AGG5;
+            _so.GIU_LAI_CAN_AGG6 = _sp.GIU_LAI_CAN_AGG6;
+            _so.GIU_LAI_CAN_CE1 = _sp.GIU_LAI_CAN_CE1;
+            _so.GIU_LAI_CAN_CE2 = _sp.GIU_LAI_CAN_CE2;
+            _so.GIU_LAI_CAN_WA1 = _sp.GIU_LAI_CAN_WA1;
+            _so.GIU_LAI_CAN_WA2 = _sp.GIU_LAI_CAN_WA2;
+            _so.GIU_LAI_CAN_ADD1 = _sp.GIU_LAI_CAN_ADD1;
+            _so.GIU_LAI_CAN_ADD2 = _sp.GIU_LAI_CAN_ADD2;
+            _so.BUTRU_AGG1 = _sp.BuTruKLMT_Agg1;
+            _so.BUTRU_AGG2 = _sp.BuTruKLMT_Agg2;
+            _so.BUTRU_AGG3 = _sp.BuTruKLMT_Agg3;
+            _so.BUTRU_AGG4 = _sp.BuTruKLMT_Agg4;
+            _so.BUTRU_AGG5 = _sp.BuTruKLMT_Agg5;
+            _so.BUTRU_AGG6 = _sp.BuTruKLMT_Agg6;
+            _so.BUTRU_CE1 = _sp.BuTruKLMT_Ce1;
+            _so.BUTRU_CE2 = _sp.BuTruKLMT_Ce2;
+            _so.BUTRU_CE3 = _sp.BuTruKLMT_Ce3;
+            _so.BUTRU_CE4 = _sp.BuTruKLMT_Ce4;
+            _so.BUTRU_CE5 = _sp.BuTruKLMT_Ce5;
+            _so.BUTRU_WA1 = _sp.BuTruKLMT_Wa1;
+            _so.BUTRU_WA2 = _sp.BuTruKLMT_Wa2;
+            _so.BUTRU_ADD1 = _sp.BuTruKLMT_Add1;
+            _so.BUTRU_ADD2 = _sp.BuTruKLMT_Add2;
+            _so.BUTRU_ADD3 = _sp.BuTruKLMT_Add3;
+            _so.BUTRU_ADD4 = _sp.BuTruKLMT_Add4;
+            _so.BUTRU_ADD5 = _sp.BuTruKLMT_Add5;
+            _so.BUTRU_ADD6 = _sp.BuTruKLMT_Add6;
+        }
         private void Send_Data_DB_2_To_PLC() // WRITE DATA TO PLC
         {
             List<byte> list = new List<byte>();
@@ -3281,20 +3822,9 @@ namespace NDPSo.MasterData
             list.Add(this._so.Byte_4);
             list.Add(this._so.Byte_5);
             list.Add(this._so.Byte_6);
-            list.Add(this._so.Byte_7);
-            list.Add(this._so.Byte_8);
-            list.Add(this._so.Byte_9);
-            list.Add(this._so.Byte_10);
-            list.Add(this._so.Byte_11);
-            list.Add(this._so.Byte_12);
-            list.Add(this._so.Byte_13);
-            list.Add(this._so.Byte_14);
-            list.Add(this._so.Byte_15);
-            list.Add(this._so.Byte_16);
-            list.Add(this._so.Byte_17);
-            list.Add(this._so.Byte_18);
             byte[] value = list.ToArray();
-            this._plcController.WriteBytes(DataType.DataBlock, 2, 0, value);
+            this._plcController.WriteBytes(DataType.DataBlock, 21, 0, value);
+
         }
         private void SendData_DB2_NewTread() //BIT
         {
@@ -3314,12 +3844,12 @@ namespace NDPSo.MasterData
             thread.Name = "DB_4";
             thread.Start();
         }
-        private void SendData_DB4_Update_NewTread() //Bu Tru Me Cuoi
-        {
-            Thread thread = new Thread(new ThreadStart(this.Send_Data_DB_4_To_PLC_Update));
-            thread.Name = "DB_4_Update";
-            thread.Start();
-        }
+        //private void SendData_DB4_Update_NewTread() //Bu Tru Me Cuoi
+        //{
+        //    Thread thread = new Thread(new ThreadStart(this.Send_Data_DB_4_To_PLC_Update));
+        //    thread.Name = "DB_4_Update";
+        //    thread.Start();
+        //}
         private void SendData_DB5_NewTread() //TIMER -SIM -GAUTAI -PC -MIXER
         {
             Thread thread = new Thread(new ThreadStart(this.Send_Data_DB_5_To_PLC));
@@ -3334,6 +3864,7 @@ namespace NDPSo.MasterData
         private void ucBtnMoPhong1_ButtonClick(object sender, EventArgs e)
         {
             DoMoPhong();
+            SendData_DB4_NewTread(); 
             TramTronLogger.WriteInfo(sender.ToString());
         }
 
@@ -3458,7 +3989,9 @@ namespace NDPSo.MasterData
                     }
                     this._so.SendingCommand.F2_Pause = true;
                     this.SendData_DB2_NewTread();
-                    StatusConnected.CheckOpenSof(true, false);
+                    Thread.Sleep(50);
+                    this._so.SendingCommand.F2_Pause = false;
+                    this.SendData_DB2_NewTread();
                     this.ShowMessage(GlobalValues.Messages.PAUSE, Enums.MsgType.Info);
                     ChangeStatusSelectedDuLieuTron(2, null);
                 }
@@ -3535,15 +4068,14 @@ namespace NDPSo.MasterData
             if (this._plcController.IsConnected)
             {
 
-                byte[] b = this._plcController.ReadBytes(DataType.DataBlock, 1, 0,14);
+                byte[] b = this._plcController.ReadBytes(DataType.DataBlock, 20, 0, 6);
                 this.ReceiveData_DB1(b);
 
-                byte[] c = this._plcController.ReadBytes(DataType.DataBlock, 6, 0, 50);
-                this.ReceiveData_DB6(c);
+               
 
-                byte[] d = this._plcController.ReadBytes(DataType.DataBlock, 7, 0, 304);
+                byte[] d = this._plcController.ReadBytes(DataType.DataBlock, 25, 0, 116);
                 this.ReceiveData_DB7(d);
-                this.labelControl14.Text = d.Length.ToString();
+                //this.labelControl14.Text = d.Length.ToString();
 
                 //byte[] d = this._plcController.ReadBytes(DataType.DataBlock, 4, 0, 108);
                 //this.ReceiveData_DB4(d);
@@ -3612,6 +4144,15 @@ namespace NDPSo.MasterData
                     this.DoGiamMe(); ;
                     break;
                 case Keys.F7:
+                    ResetMesageNotifi();
+                    this._so.SendingCommand.XAC_NHAN_CAN_DU = true;
+                    this.SendData_DB2_NewTread();
+                    Thread.Sleep(1000);
+                    this._so.SendingCommand.XAC_NHAN_CAN_DU = false;
+                    this.SendData_DB2_NewTread();
+                    ResetPrevousBuTru();
+
+                    TramTronLogger.WriteInfo(e.ToString());
                     break;
                 case Keys.F8:
                     DoShowTimerPara();
@@ -3620,6 +4161,7 @@ namespace NDPSo.MasterData
                     DoXaCanCotLieu();
                     break;
                 case Keys.F10:
+                   
                     break;
                 case Keys.F11:
                     break;
@@ -3658,12 +4200,14 @@ namespace NDPSo.MasterData
                     if (this._ro.Save_Report)
                     {
                         lblSave.Text = "Saved";
+                        //ShowMessage("Saved", Enums.MsgType.Info);
                         _idSavePLC = 1;
 
                     }
                     else if (!this._ro.Save_Report)
                     {
                         lblSave.Text = "NOT Save";
+                        //ShowMessage("Not Saved", Enums.MsgType.Info);
                         this._idSavePLC = 0;
                         this._idSave = 0;
                         if (isTesst)
@@ -3671,7 +4215,15 @@ namespace NDPSo.MasterData
                             lblTest.Text = "Số mê hiệm:" + soMeCanTronTest;
                         }
                     }
-                    SaveData();
+                    if (_ro.Op_RUNNING) // Add Phan loại chạy tu dong va chay tay
+                    {
+                        SaveData();
+                    }
+                    else
+                    {
+                        SaveData_ByHand();
+                    }
+
                 }
             }
             catch (ThreadAbortException ex)
@@ -3722,12 +4274,13 @@ namespace NDPSo.MasterData
                 return;
             try
             {
-                int slMe = (int)this.slMeDaCanNoiTron.SoLuongMeCanTron + 1;
-                this.SetSLMe(slMe);
+                //slMeCanTron = (int)this.slMeDaCanNoiTron.SoLuongMeCanTron + 1;
+                //this.SetSLMe(slMeCanTron);
                 //this._so.SoMeDis = slMe;
-                this._sp.SoMeTron = slMe;
-                SendData_DB4_NewTread();
+                //this._sp.SoMeTron = slMeCanTron;
+
                 UpdateDLT_KLDuTinh_TangMe();
+                SendData_DB4_NewTread();
             }
             catch (System.Exception ex)
             {
@@ -3754,12 +4307,13 @@ namespace NDPSo.MasterData
                 }
                 else
                 {
-                    int slMe = (int)this.slMeDaCanNoiTron.SoLuongMeCanTron - 1;
-                    this.SetSLMe(slMe);
+                    //slMeCanTron = (int)this.slMeDaCanNoiTron.SoLuongMeCanTron - 1;
+                    //this.SetSLMe(slMeCanTron);
                     //this._so.SoMeDis = slMe;
-                    this._sp.SoMeTron = slMe;
-                    SendData_DB4_NewTread();
+                    //this._sp.SoMeTron = slMeCanTron;
+                    
                     UpdateDLT_KLDuTinh_GiamMe();
+                    SendData_DB4_NewTread();
                 }
             }
             catch (System.Exception ex)
@@ -3770,14 +4324,16 @@ namespace NDPSo.MasterData
         }
         private void btnXacNhanLoi_ButtonClick(object sender, EventArgs e)
         {
-            if (btnXacNhanLoi.IsOn)
-            {
-                this.btnXacNhanLoi.IsTrangThai = UcBtnReset.TrangThai.Run;
-                Thread.Sleep(100);
-                this.btnXacNhanLoi.IsTrangThai = UcBtnReset.TrangThai.Stop;
-                TramTronLogger.WriteInfo(sender.ToString());
-            }
-            
+            ResetMesageNotifi();
+            this._so.SendingCommand.XAC_NHAN_CAN_DU = true;
+            this.SendData_DB2_NewTread();
+            Thread.Sleep(1000);
+            this._so.SendingCommand.XAC_NHAN_CAN_DU = false;
+            this.SendData_DB2_NewTread();
+            ResetPrevousBuTru();
+
+            TramTronLogger.WriteInfo(e.ToString());
+
         }
         private void DoShowTimerPara()
         {
@@ -3797,18 +4353,12 @@ namespace NDPSo.MasterData
                     this._so.SendingCommand.SW_XA_COT_LIEU = true;
                     this.SendData_DB2_NewTread();
                     btnXaCanCotLieu.Caption = "GÀU TẢI TỰ ĐỘNG";
-                    this.ucButtonGauUp1.Visible = false;
-                    this.ucButtonGauStop2.Visible = false;
-                    this.ucButtonGauDown1.Visible = false;
                 }
                 else
                 {
                     this._so.SendingCommand.SW_XA_COT_LIEU = false;
                     this.SendData_DB2_NewTread();
                     btnXaCanCotLieu.Caption = "GÀU TẢI TAY";
-                    this.ucButtonGauUp1.Visible = true;
-                    this.ucButtonGauStop2.Visible = true;
-                    this.ucButtonGauDown1.Visible = true;
                 }
             }
             else if(ConfigManager.TramTronConfig.CapPhoiRes == 0)
@@ -3851,7 +4401,7 @@ namespace NDPSo.MasterData
             }
             //this._so.DeNuocTrenCan = Convert.ToInt32(this.spnGiuNuocTrenCan.EditValue);
             _giuNuocTenCan = Convert.ToInt32(this.spnGiuNuocTrenCan.EditValue);
-            this.BuildSetPoint(selectedHD, true);
+            this.BuildSetPoint(_selectedHD_Run, true);
             this.SendData_DB4_NewTread();
             TramTronLogger.WriteInfo(sender.ToString());
         }
@@ -4818,17 +5368,40 @@ namespace NDPSo.MasterData
             SaveNiemChi();
             SaveTaiXe();
             SaveXe();
+            SaveNiemChiPhieuGiaoHang();
+            SaveTaiXePhieuGiaoHang();
+            SaveXePhieuGiaoHang();
             TramTronLogger.WriteInfo(sender.ToString());
         }
         private void SaveTaiXe()
         {
             try
             {
-                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveTaiXeTronOnline((int)this.lueDriver.EditValue))
+                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveTaiXeTronOnline((int)(Convert.ToInt32(this.lueDriver.EditValue))))
                 {
                     return;
 
                 }
+                ConfigManager.TramTronConfig.DriverNum = (int)this.lueDriver.EditValue;
+                this.lblDriver.Text = lueDriver.Text;
+
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+        private void SaveTaiXePhieuGiaoHang()
+        {
+            try
+            {
+                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveTaiXeTronOnlinePhieuGiaoHang(this.lueDriver.Text))
+                {
+                    return;
+
+                }
+                //ConfigManager.TramTronConfig.DriverNum = (int)this.lueDriver.EditValue;
                 this.lblDriver.Text = lueDriver.Text;
 
             }
@@ -4847,6 +5420,26 @@ namespace NDPSo.MasterData
                     return;
 
                 }
+                ConfigManager.TramTronConfig.XeNum = (int)this.lueXe.EditValue;
+                this.lblXe.Text = lueXe.Text;
+
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+        private void SaveXePhieuGiaoHang()
+        {
+            try
+            {
+                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveXeTronOnlinePhieuGiaoHang(this.lueXe.Text))
+                {
+                    return;
+
+                }
+                ConfigManager.TramTronConfig.XeNum = (int)this.lueXe.EditValue;
                 this.lblXe.Text = lueXe.Text;
 
             }
@@ -4865,6 +5458,23 @@ namespace NDPSo.MasterData
                     return;
                 }
                 
+                this.lblNiemChi.Text = txtNiemChi.Text;
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+        private void SaveNiemChiPhieuGiaoHang()
+        {
+            try
+            {
+                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).SaveNiemChiTronOnlinePhieuGiaoHang(txtNiemChi.Text))
+                {
+                    return;
+                }
+
                 this.lblNiemChi.Text = txtNiemChi.Text;
             }
             catch (System.Exception ex)
@@ -4922,10 +5532,11 @@ namespace NDPSo.MasterData
             TramTronLogger.WriteInfo(sender.ToString());
         }
 
-        private void btnInNhanh_ButtonClick(object sender, EventArgs e)
+        private async void btnInNhanh_ButtonClick(object sender, EventArgs e)
         {
-            LoadFormInPT();
-            TramTronLogger.WriteInfo(sender.ToString());
+             LoadFormInPT();
+             TramTronLogger.WriteInfo(sender.ToString());
+             //TramTromMessageBox.ShowMessageDialog(Support.GenerateFakeValueADD(1).ToString());
 
         }
 
@@ -4941,10 +5552,12 @@ namespace NDPSo.MasterData
                 FormPhieuIn formPT = new FormPhieuIn();
                 ViewManager.ShowViewDialog(formPT);
             }*/
-            
 
-            FormPhieuIn formPT = new FormPhieuIn();
-            ViewManager.ShowViewDialog(formPT);
+            //FormPhieuIn formPT = new FormPhieuIn();
+            //ViewManager.ShowViewWindow(formPT, true, false);
+            PhieuIn phieuIn = new PhieuIn();
+            phieuIn.Show();
+
         }
         private void CreateGroupLogicAG(int sl)
         {
@@ -5271,9 +5884,35 @@ namespace NDPSo.MasterData
                         this.SaveMTCT("WeiAdd4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
                         this.SaveMTCT("WeiAdd5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
                         this.SaveMTCT("WeiAdd6", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        if(this._selectedPT_Run != null)
+                        //GH
+                        this.SaveMTCTGiaoHang("WeiAgg1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAgg2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAgg3", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAgg4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAgg5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAgg6", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiCe1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiCe2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiCe3", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiCe4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiCe5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiWa1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiWa2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAdd1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAdd2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAdd3", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAdd4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAdd5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+                        this.SaveMTCTGiaoHang("WeiAdd6", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
+
+                        //ShowMessage("Saved Data", Enums.MsgType.Error);
+                        if (this._selectedPT_Run != null)
                         {
                             UpdateKLDaGiaoDLT_FocusMeTron();
+                            if (!CheckInfoTXBS())
+                            {
+                                TramTromMessageBox.ShowErrorDialog("Vui lòng cập nhật lại 'Tài xế' và 'Biển số' vào thông tin phiếu trộn!");
+                            }
                         }
                         some++;
 
@@ -5290,7 +5929,8 @@ namespace NDPSo.MasterData
                         {
                             DoNextNiemChi();
                             UpdateStateFinishPhieuTron();
-                            
+                            UpdateInfoDataPhieuGiaoHang(this._selectedPGH_Run, DateTime.Now.ToString("HH:mm:ss"));
+
                             UpdateTongPhieuHopDong();
                             this.ChangeStatusSelectedDuLieuTron(4, null);
                             
@@ -5302,12 +5942,13 @@ namespace NDPSo.MasterData
                             {
                                 //UpdateKLDaGiaoDLT(); //Cập nhật lại KLĐã giao, KL Cò lại, Tính Luỹ Kế
                             }
+                            this._selectedHD_Run = null;
                             
                         }
 
-                        if (!checkEdit3.Checked)
-                            isTesst = false;
-                        if (isTesst)
+                        /*if (!checkEdit3.Checked)
+                            isTesst = false;*/
+                        /*if (isTesst)
                         {
                             soMeCanTronTest--;
                             lblTest.Text = "Số mẻ còn: " + soMeCanTronTest; 
@@ -5331,8 +5972,61 @@ namespace NDPSo.MasterData
                                 this.SendData_DB2_NewTread();
                                 lblTest.Text = "Mẻ mới";
                             }
-                        }
+                        }*/
                         //test Auto
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        private void SaveData_ByHand()
+        {
+            try
+            {
+                if (this._idSavePLC == 1)
+                {
+                    if (this._idSave == 0 && this._idSavePLC == 1)
+                    {
+                        this._idSave = -1;
+                        
+                        int numm0 = 0;
+                        if (_isSimulation)  //if (lblSim.Visible)
+                            numm0 = 1;
+                        this.SaveMTCT("WeiAgg1", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAgg2", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAgg3", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAgg4", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAgg5", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAgg6", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiCe1", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiCe2", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiCe3", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiCe4", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiCe5", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiWa1", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiWa2", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAdd1", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAdd2", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAdd3", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAdd4", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAdd5", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+                        this.SaveMTCT("WeiAdd6", some, this.ucHeThongAuto1.IsAuto, numm0, 1);
+
+                        //ShowMessage("Saved Data Hand", Enums.MsgType.Error);
+                        /*if (this._selectedPT_Run != null)
+                        {
+                            UpdateKLDaGiaoDLT_FocusMeTron();
+                            if (!CheckInfoTXBS())
+                            {
+                                TramTromMessageBox.ShowErrorDialog("Vui lòng cập nhật lại 'Tài xế' và 'Biển số' vào thông tin phiếu trộn!");
+                            }
+                        }*/
+                        some++;
                     }
                 }
             }
@@ -5361,6 +6055,19 @@ namespace NDPSo.MasterData
             try
             {
                 if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).UpdatePhieuTron(objPhieuTron, klThuc))
+                    return;
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowMessageDialog(ex.ToString());
+            }
+        }
+        private void UpdateInfoDataPhieuGiaoHang(ObjPhieuGiaoHang objPhieuTron, string klThuc)
+        {
+            try
+            {
+                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).UpdatePhieuGiaoHang(objPhieuTron, klThuc))
                     return;
             }
             catch (System.Exception ex)
@@ -5424,6 +6131,21 @@ namespace NDPSo.MasterData
                 this.BuildNewCurMeTronChiTiet(objWeiSiloSaving.MaSilo, sttMe, isManual, trangThaiAutoManual, 0, valueBat, valueBatAuto, valueBatMan, plcSaveId);
             }
         }
+        private void SaveMTCTGiaoHang(
+            string maCan,
+            int sttMe,
+            bool isManual,
+            int trangThaiAutoManual,
+            int plcSaveId)
+        {
+            foreach (ObjWeiSiloSaving objWeiSiloSaving in this._blstWeiSiloSaving.Where<ObjWeiSiloSaving>((System.Func<ObjWeiSiloSaving, bool>)(o => o.MaCan == maCan)).ToList<ObjWeiSiloSaving>())
+            {
+                double valueBat = this.GetValueBatGiaoHang(objWeiSiloSaving.MaSilo);
+                double valueBatAuto = this.GetValueBatGiaoHang(objWeiSiloSaving.MaSilo);
+                double valueBatMan = 0;
+                this.BuildNewCurMeTronChiTietGiaoHang(objWeiSiloSaving.MaSilo, sttMe, isManual, trangThaiAutoManual, 0, valueBat, valueBatAuto, valueBatMan, plcSaveId);
+            }
+        }
         private bool BuildNewCurMeTronChiTiet(
           string strMaSilo,
           int num_bat_can,
@@ -5441,6 +6163,31 @@ namespace NDPSo.MasterData
                 ObjSilo silo = this.GetSilo(strMaSilo, this._blstSilo);
                 SiloOnline siloOnline = this.GetSiloOnline(strMaSilo);
                 this._presenter.BuildNewMeTronChiTiet(strMaSilo, macSilo, silo, siloOnline, num_bat_can, isManual, trangThaiAutoMan, phieuTronID, valueBat, valueBatAuto, valueBatMan, plcSaveId);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private bool BuildNewCurMeTronChiTietGiaoHang(
+            string strMaSilo,
+            int num_bat_can,
+            bool isManual,
+            int trangThaiAutoMan,
+            int phieuTronID,
+            double valueBat,
+            double valueBatAuto,
+            double valueBatMan,
+            int plcSaveId)
+        {
+            try
+            {
+                ObjMACSilo macSilo = this.GetMacSilo(strMaSilo, this._blstMACSilo_Run);
+                ObjSilo silo = this.GetSilo(strMaSilo, this._blstSilo);
+                SiloOnline siloOnline = this.GetSiloOnline(strMaSilo);
+                this._presenter.BuildNewMeTronChiTietGiaoHang(strMaSilo, macSilo, silo, siloOnline, num_bat_can, isManual, trangThaiAutoMan, phieuTronID, valueBat, valueBatAuto, valueBatMan, plcSaveId);
                 return true;
             }
             catch (System.Exception ex)
@@ -5544,98 +6291,243 @@ namespace NDPSo.MasterData
             }
             return siloOnline;
         }
-        private double GetValueBat(string maSilo)
+        private double GetValueBatGiaoHang(string maSilo)
         {
             switch (maSilo)
             {
                 case "Add1":
-                    return this._ro.RE_PV_PG1;
+                    return Support.GenerateFakeValueN(this.siloAdd1.SiloOnline.KLCanCan, 0.2m);
                 case "Add2":
-                    return this._ro.RE_PV_PG2;
+                    return Support.GenerateFakeValueN(this.siloAdd2.SiloOnline.KLCanCan, 0.2m);
                 case "Add3":
-                    return this._ro.RE_PV_PG3;
+                    return Support.GenerateFakeValueN(this.siloAdd3.SiloOnline.KLCanCan, 0.2m);
                 case "Add4":
-                    return this._ro.RE_PV_PG4;
+                    return Support.GenerateFakeValueN(this.siloAdd4.SiloOnline.KLCanCan, 0.2m);
                 case "Add5":
-                    return this._ro.RE_PV_PG5;
+                    return Support.GenerateFakeValueN(this.siloAdd5.SiloOnline.KLCanCan, 0.2m);
                 case "Add6":
-                    return this._ro.RE_PV_PG6;
+                    return Support.GenerateFakeValueN(this.siloAdd6.SiloOnline.KLCanCan, 0.2m);
                 case "Agg1":
-                    return (int)this._ro.RE_PV_AGG1;
+                    return (int)Support.GenerateFakeValueN(this.siloAgg1.SiloOnline.KLCanCan, 1.5m);
                 case "Agg2":
-                    return (int)this._ro.RE_PV_AGG2;
+                    return (int)Support.GenerateFakeValueN(this.siloAgg2.SiloOnline.KLCanCan, 1.5m);
                 case "Agg3":
-                    return (int)this._ro.RE_PV_AGG3;
+                    return (int)Support.GenerateFakeValueN(this.siloAgg3.SiloOnline.KLCanCan, 1.5m);
                 case "Agg4":
-                    return (int)this._ro.RE_PV_AGG4;
+                    return (int)Support.GenerateFakeValueN(this.siloAgg4.SiloOnline.KLCanCan, 1.5m);
                 case "Agg5":
-                    return (int)this._ro.RE_PV_AGG5;
+                    return (int)Support.GenerateFakeValueN(this.siloAgg5.SiloOnline.KLCanCan, 1.5m);
                 case "Agg6":
-                    return (int)this._ro.RE_PV_AGG6;
+                    return (int)Support.GenerateFakeValueN(this.siloAgg6.SiloOnline.KLCanCan, 1.5m);
                 case "Ce1":
-                    return (int)this._ro.RE_PV_CE1;
+                    return (int)Support.GenerateFakeValueN(this.siloCe1.SiloOnline.KLCanCan, 0.75m);
                 case "Ce2":
-                    return (int)this._ro.RE_PV_CE2;
+                    return (int)Support.GenerateFakeValueN(this.siloCe2.SiloOnline.KLCanCan, 0.75m);
                 case "Ce3":
-                    return (int)this._ro.RE_PV_CE3;
+                    return (int)Support.GenerateFakeValueN(this.siloCe3.SiloOnline.KLCanCan, 0.75m);
                 case "Ce4":
-                    return (int)this._ro.RE_PV_CE4;
+                    return (int)Support.GenerateFakeValueN(this.siloCe4.SiloOnline.KLCanCan, 0.75m);
                 case "Ce5":
-                    return (int)this._ro.RE_PV_CE5;
+                    return (int)Support.GenerateFakeValueN(this.siloCe5.SiloOnline.KLCanCan, 0.75m);
                 case "Wa1":
-                    return (int)this._ro.RE_PV_WA1;
+                    return (int)Support.GenerateFakeValueN(this.siloWa1.SiloOnline.KLCanCan, 0.5m);
                 case "Wa2":
-                    return (int)this._ro.RE_PV_WA2;
+                    return (int)Support.GenerateFakeValueN(this.siloWa2.SiloOnline.KLCanCan, 0.5m);
                 default:
                     return 0;
+            }
+        }
+        private double GetValueBat(string maSilo)
+        {
+            if (ConfigManager.TramTronConfig.PGN)
+            {
+                switch (maSilo)
+                {
+                    case "Add1":
+                        return (double)this.siloAdd1.SiloOnline.KLCanCan;
+                    case "Add2":
+                        return (double)this.siloAdd2.SiloOnline.KLCanCan;
+                    case "Add3":
+                        return (double)this.siloAdd3.SiloOnline.KLCanCan;
+                    case "Add4":
+                        return (double)this.siloAdd4.SiloOnline.KLCanCan;
+                    case "Add5":
+                        return (double)this.siloAdd5.SiloOnline.KLCanCan;
+                    case "Add6":
+                        return (double)this.siloAdd6.SiloOnline.KLCanCan;
+                    case "Agg1":
+                        return (int)this._ro.RE_PV_AGG1;
+                    case "Agg2":
+                        return (int)this._ro.RE_PV_AGG2;
+                    case "Agg3":
+                        return (int)this._ro.RE_PV_AGG3;
+                    case "Agg4":
+                        return (int)this._ro.RE_PV_AGG4;
+                    case "Agg5":
+                        return (int)this._ro.RE_PV_AGG5;
+                    case "Agg6":
+                        return (int)this._ro.RE_PV_AGG6;
+                    case "Ce1":
+                        return (int)this._ro.RE_PV_CE1;
+                    case "Ce2":
+                        return (int)this._ro.RE_PV_CE2;
+                    case "Ce3":
+                        return (int)this._ro.RE_PV_CE3;
+                    case "Ce4":
+                        return (int)this._ro.RE_PV_CE4;
+                    case "Ce5":
+                        return (int)this._ro.RE_PV_CE5;
+                    case "Wa1":
+                        return (int)this._ro.RE_PV_WA1;
+                    case "Wa2":
+                        return (int)this._ro.RE_PV_WA2;
+                    default:
+                        return 0;
+                }
+            }
+            else
+            {
+                switch (maSilo)
+                {
+                    case "Add1":
+                        return this._ro.RE_PV_PG1;
+                    case "Add2":
+                        return this._ro.RE_PV_PG2;
+                    case "Add3":
+                        return this._ro.RE_PV_PG3;
+                    case "Add4":
+                        return this._ro.RE_PV_PG4;
+                    case "Add5":
+                        return this._ro.RE_PV_PG5;
+                    case "Add6":
+                        return this._ro.RE_PV_PG6;
+                    case "Agg1":
+                        return (int)this._ro.RE_PV_AGG1;
+                    case "Agg2":
+                        return (int)this._ro.RE_PV_AGG2;
+                    case "Agg3":
+                        return (int)this._ro.RE_PV_AGG3;
+                    case "Agg4":
+                        return (int)this._ro.RE_PV_AGG4;
+                    case "Agg5":
+                        return (int)this._ro.RE_PV_AGG5;
+                    case "Agg6":
+                        return (int)this._ro.RE_PV_AGG6;
+                    case "Ce1":
+                        return (int)this._ro.RE_PV_CE1;
+                    case "Ce2":
+                        return (int)this._ro.RE_PV_CE2;
+                    case "Ce3":
+                        return (int)this._ro.RE_PV_CE3;
+                    case "Ce4":
+                        return (int)this._ro.RE_PV_CE4;
+                    case "Ce5":
+                        return (int)this._ro.RE_PV_CE5;
+                    case "Wa1":
+                        return (int)this._ro.RE_PV_WA1;
+                    case "Wa2":
+                        return (int)this._ro.RE_PV_WA2;
+                    default:
+                        return 0;
+                }
             }
         }
 
         private double GetValueBatAuto(string maSilo)
         {
-            switch (maSilo)
+            if (ConfigManager.TramTronConfig.PGN)
             {
-                case "Add1":
-                    return this._ro.RE_PV_PG1;
-                case "Add2":
-                    return this._ro.RE_PV_PG2;
-                case "Add3":
-                    return this._ro.RE_PV_PG3;
-                case "Add4":
-                    return this._ro.RE_PV_PG4;
-                case "Add5":
-                    return this._ro.RE_PV_PG5;
-                case "Add6":
-                    return this._ro.RE_PV_PG6;
-                case "Agg1":
-                    return (int)this._ro.RE_PV_AGG1;
-                case "Agg2":
-                    return (int)this._ro.RE_PV_AGG2;
-                case "Agg3":
-                    return (int)this._ro.RE_PV_AGG3;
-                case "Agg4":
-                    return (int)this._ro.RE_PV_AGG4;
-                case "Agg5":
-                    return (int)this._ro.RE_PV_AGG5;
-                case "Agg6":
-                    return (int)this._ro.RE_PV_AGG6;
-                case "Ce1":
-                    return (int)this._ro.RE_PV_CE1;
-                case "Ce2":
-                    return (int)this._ro.RE_PV_CE2;
-                case "Ce3":
-                    return (int)this._ro.RE_PV_CE3;
-                case "Ce4":
-                    return (int)this._ro.RE_PV_CE4;
-                case "Ce5":
-                    return (int)this._ro.RE_PV_CE5;
-                case "Wa1":
-                    return (int)this._ro.RE_PV_WA1;
-                case "Wa2":
-                    return (int)this._ro.RE_PV_WA2;
-                default:
-                    return 0;
+                switch (maSilo)
+                {
+                    case "Add1":
+                        return (double)this.siloAdd1.SiloOnline.KLCanCan;
+                    case "Add2":
+                        return (double)this.siloAdd2.SiloOnline.KLCanCan;
+                    case "Add3":
+                        return (double)this.siloAdd3.SiloOnline.KLCanCan;
+                    case "Add4":
+                        return (double)this.siloAdd4.SiloOnline.KLCanCan;
+                    case "Add5":
+                        return (double)this.siloAdd5.SiloOnline.KLCanCan;
+                    case "Add6":
+                        return (double)this.siloAdd6.SiloOnline.KLCanCan;
+                    case "Agg1":
+                        return (int)this._ro.RE_PV_AGG1;
+                    case "Agg2":
+                        return (int)this._ro.RE_PV_AGG2;
+                    case "Agg3":
+                        return (int)this._ro.RE_PV_AGG3;
+                    case "Agg4":
+                        return (int)this._ro.RE_PV_AGG4;
+                    case "Agg5":
+                        return (int)this._ro.RE_PV_AGG5;
+                    case "Agg6":
+                        return (int)this._ro.RE_PV_AGG6;
+                    case "Ce1":
+                        return (int)this._ro.RE_PV_CE1;
+                    case "Ce2":
+                        return (int)this._ro.RE_PV_CE2;
+                    case "Ce3":
+                        return (int)this._ro.RE_PV_CE3;
+                    case "Ce4":
+                        return (int)this._ro.RE_PV_CE4;
+                    case "Ce5":
+                        return (int)this._ro.RE_PV_CE5;
+                    case "Wa1":
+                        return (int)this._ro.RE_PV_WA1;
+                    case "Wa2":
+                        return (int)this._ro.RE_PV_WA2;
+                    default:
+                        return 0;
+                }
             }
+            else
+            {
+                switch (maSilo)
+                {
+                    case "Add1":
+                        return this._ro.RE_PV_PG1;
+                    case "Add2":
+                        return this._ro.RE_PV_PG2;
+                    case "Add3":
+                        return this._ro.RE_PV_PG3;
+                    case "Add4":
+                        return this._ro.RE_PV_PG4;
+                    case "Add5":
+                        return this._ro.RE_PV_PG5;
+                    case "Add6":
+                        return this._ro.RE_PV_PG6;
+                    case "Agg1":
+                        return (int)this._ro.RE_PV_AGG1;
+                    case "Agg2":
+                        return (int)this._ro.RE_PV_AGG2;
+                    case "Agg3":
+                        return (int)this._ro.RE_PV_AGG3;
+                    case "Agg4":
+                        return (int)this._ro.RE_PV_AGG4;
+                    case "Agg5":
+                        return (int)this._ro.RE_PV_AGG5;
+                    case "Agg6":
+                        return (int)this._ro.RE_PV_AGG6;
+                    case "Ce1":
+                        return (int)this._ro.RE_PV_CE1;
+                    case "Ce2":
+                        return (int)this._ro.RE_PV_CE2;
+                    case "Ce3":
+                        return (int)this._ro.RE_PV_CE3;
+                    case "Ce4":
+                        return (int)this._ro.RE_PV_CE4;
+                    case "Ce5":
+                        return (int)this._ro.RE_PV_CE5;
+                    case "Wa1":
+                        return (int)this._ro.RE_PV_WA1;
+                    case "Wa2":
+                        return (int)this._ro.RE_PV_WA2;
+                    default:
+                        return 0;
+                }
+            }
+
         }
 
         private double GetValueBatMan(string maSilo)
@@ -5714,6 +6606,7 @@ namespace NDPSo.MasterData
 
         private void InitRunning(bool checkIsRunning = true)
         {
+            
             if (!this.CheckConnection())
             {
                 return;
@@ -5759,7 +6652,7 @@ namespace NDPSo.MasterData
                 return;
             }*/
             string str = GlobalValues.Messages.RunningInfos;
-            if (TramTromMessageBox.ShowYesNoDialog(string.Format(str, objDuLieuTron.TenHopDong, (int)objDuLieuTron.DLT_KLDuTinh)) == DialogResult.No)
+            if (TramTromMessageBox.ShowYesNoDialog(string.Format(str, objDuLieuTron.TenHopDong, objDuLieuTron.DLT_KLDuTinh)) == DialogResult.No)
             {
                 return;
             }
@@ -5772,6 +6665,7 @@ namespace NDPSo.MasterData
                 return;
             }
             this._selectedPT_Run = this._presenter.CreateAndSaveNewPhieuTron(this._selectedHD_Run, isManual);
+            //this.slMeCanTron = (int)this._selectedHD_Run.DLT_SLMeDuTinh.Value;
             this.some = 1;
             this.lblMaPhieuTron.Text = this._selectedPT_Run.MaPhieuTron;
             //this.lblDriver.Text = string.Empty;
@@ -5789,16 +6683,26 @@ namespace NDPSo.MasterData
             this.GetSiloNotActive();
             this.BuildSetPoint(this._selectedHD_Run, true);
 
+            SaveTaiXe();
+            SaveXe();
+            SaveNiemChi();
+            
+
+            //Add 0207
+            this._selectedPGH_Run = this._presenter.CreateAndSaveNewPhieuGiaoHang(this._selectedHD_Run, isManual, this.lblTenKhachHang.Text, this.lblTenCongTruong.Text, this.lblMAC.Text,this.lblTenHangMuc.Text, this.lblDiaDiem.Text, this._selectedPT_Run.NPMACCuongDo, this._selectedPT_Run.NPMACDoSut, decimal.Parse(this.lblKhoiLuong.Text));
+            SaveXePhieuGiaoHang();
+            SaveTaiXePhieuGiaoHang();
+            SaveNiemChiPhieuGiaoHang();
             //Thread thread = new Thread(new ThreadStart(this.SendSetPoint_isF1));
             //thread.Start();
             //this._so.SoMeDis = (int)this._sp.SO_ME_TRON;
 
-            if (isTesst)
+            /*if (isTesst)
             {
                 randomNumberTest = this.grvHopDong.FocusedRowHandle + 1;
                 soMeCanTronTest = (int)this.slMeDaCanNoiTron.SoLuongMeCanTron;
 
-            }
+            }*/
             //this.SendData_NewTread();
             this._presenter.ListTimerPara();
 
@@ -5809,16 +6713,29 @@ namespace NDPSo.MasterData
             this.SendData_DB2_NewTread();
 
             Send_Data_DB_3_To_PLC();
-            Send_Data_DB_4_To_PLC();
+            //Send_Data_DB_4_To_PLC();
             Send_Data_DB_5_To_PLC();
             // Send_Data_DB_2_To_PLC();
-            if (checkAutoPrint.Checked)
+
+           
+
+            if (checkAutoPrint.Checked) // check thông tin trước khi trộn
             {
                 AutoPrint_NewTread();
             }
 
         }
-
+        private bool CheckInfoTXBS()
+        {
+            if ((lblXe.Text == "----------" || lblXe.Text == string.Empty) && (lblDriver.Text == "----------" || lblDriver.Text == string.Empty))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private void AutoPrint_NewTread() //PRINTER
         {
             Thread thread = new Thread(new ThreadStart(this.LoadParam));
@@ -5826,7 +6743,7 @@ namespace NDPSo.MasterData
         }
         // Get NiemChi
 
-        private void UpdateRankingDLT(ObjDuLieuTron dulieutron)
+        public void UpdateRankingDLT(ObjDuLieuTron dulieutron) //2906 Xử lý bất đồng bộ
         {
             int j = 1;
             this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(this._blstDuLieuTron.OrderBy(d => d.LnNo).ToList());
@@ -5854,10 +6771,12 @@ namespace NDPSo.MasterData
             for (int i = 0; i < this._blstDuLieuTron.Count; i++)
             {
                 this._blstDuLieuTron[i].LnNo = i + 1;
-                
             }
             this._presenter.SaveDuLieuTron(this._blstDuLieuTron);
             this._presenter.ListDuLieuTron(); // Xây dựng 1 luồng xử lý riêng để tránh việc
+            //this.grvHopDong.Refresh();
+            this.grvHopDong.RefreshData();
+            this.grvHopDong.SortInfo.ClearAndAddRange(new[] { new GridColumnSortInfo(this.grvHopDong.Columns["LnNo"], ColumnSortOrder.Ascending) });
             this.grvHopDong.FocusedRowHandle = 0;
 
         }
@@ -5938,7 +6857,7 @@ namespace NDPSo.MasterData
                 this._selectedHD_Run.DLT_SLMeDuTinh = this._selectedHD_Run.DLT_SLMeDuTinh + 1;
             }
             this._selectedHD_Run = this._presenter.SaveHopDong(this._selectedHD_Run, objDuLieuTron);
-
+            this.BuildSetPoint(this._selectedHD_Run, true);
             this.grvHopDong.RefreshRow(0);
             this.lblKhoiLuong.Text = this._selectedHD_Run.DLT_KLDuTinh.ToString();
 
@@ -5957,7 +6876,7 @@ namespace NDPSo.MasterData
                 this._selectedHD_Run.DLT_SLMeDuTinh = this._selectedHD_Run.DLT_SLMeDuTinh - 1;
             }
             this._selectedHD_Run = this._presenter.SaveHopDong(this._selectedHD_Run, objDuLieuTron);
-
+            this.BuildSetPoint(this._selectedHD_Run, true);
             this.grvHopDong.RefreshRow(0);
             this.lblKhoiLuong.Text = this._selectedHD_Run.DLT_KLDuTinh.ToString();
 
@@ -5985,6 +6904,7 @@ namespace NDPSo.MasterData
             }*/
             //ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(this.grvHopDong.FocusedRowHandle) as ObjDuLieuTron;
             ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
+            //ObjDuLieuTron objDuLieuTron = this._selectedHD_Run as ObjDuLieuTron;
             objDuLieuTron.Status = new int?(status);
             if (lastStatus != null)
             {
@@ -5992,6 +6912,7 @@ namespace NDPSo.MasterData
             }
             objDuLieuTron = this._presenter.UpdateDuLieuTron(objDuLieuTron);
             this.grvHopDong.RefreshRow(0);
+            this.grvHopDong.RefreshData();
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)//test
@@ -6089,7 +7010,7 @@ namespace NDPSo.MasterData
             //ucBTXien1.IsOn = false;
             TramTronLogger.WriteInfo(sender.ToString());
         }
-       
+
 
         private void ShowMessage(string message, Enums.MsgType msgType)
         {
@@ -6105,7 +7026,20 @@ namespace NDPSo.MasterData
                     this.mmoThongBao.ForeColor = Color.Orange;
                     break;
             }
-            this.mmoThongBao.Text = message;
+
+            if (string.IsNullOrEmpty(this.mmoThongBao.Text))
+            {
+                this.mmoThongBao.Text = message;
+            }
+            else
+            {
+                //this.mmoThongBao.Text = message + "\r\n" + this.mmoThongBao.Text;
+                this.mmoThongBao.Text = message + " // " + this.mmoThongBao.Text;
+            }
+        }
+        private void ResetMesageNotifi()
+        {
+            this.mmoThongBao.Text = string.Empty;
         }
 
         private void lueDriver_ButtonPressed(object sender, ButtonPressedEventArgs e)//event
@@ -6211,7 +7145,7 @@ namespace NDPSo.MasterData
 
         private void ucBTCan1_Button_MouseDown(object sender, EventArgs e)
         {
-            if (IsRunBTX || ucTinHieu_GT_Duoi.IsOn)
+            if (IsRunBTX)
             {
                 if (ucHeThongAuto1.CheDoChay == UcHeThongAuto.CheDo.Auto)
                 {
@@ -6276,7 +7210,16 @@ namespace NDPSo.MasterData
                 decimal num1 = siloOnline.DoAm;
                 UpdateDoAm(silo.SiloID, num1);
             }
-            this.BuildSetPoint(selectedHD, true);
+
+            if (_selectedHD_Run != null)
+            {
+                this.BuildSetPoint(_selectedHD_Run, true);
+                SendData_DB4_NewTread();
+            }
+            else
+            {
+                this.BuildSetPoint(selectedHD, true);
+            }
         }
 
         private void ChangeCursor_ButtonMouseHover(object sender, EventArgs e)
@@ -6317,10 +7260,15 @@ namespace NDPSo.MasterData
             this._themBotNuoc = this.spnThemBotNc.Value;
             this.SaveThemBotNuoc1((int)this.spnThemBotNc.Tag, this._themBotNuoc);
 
-            this.BuildSetPoint(selectedHD, true);
-            this.SendData_DB4_NewTread();
-
-
+            if (this._selectedHD_Run != null)
+            {
+                this.BuildSetPoint(_selectedHD_Run, true);
+                this.SendData_DB4_NewTread();
+            }
+            else
+            {
+                this.BuildSetPoint(selectedHD, true);
+            }
         }
         
         private void SaveThemBotNuoc1(int macID, decimal themBotNuoc1)
@@ -7083,8 +8031,8 @@ namespace NDPSo.MasterData
             paras.Add(lblTenKhachHang.Text);
             paras.Add(lblMAC.Text);
             paras.Add(this._selectedPT_Run.NPMACCuongDo);
-            paras.Add(this._selectedPT_Run.NPMACDoSut);
-            paras.Add(lblSoPhieuTron.Text);
+            paras.Add(this.lblSoPhieuTron.Text);
+            paras.Add("200");
             paras.Add(this._selectedPT_Run.NPMACDoSut);
             paras.Add(lblDriver.Text);
             paras.Add(ConfigManager.TramTronConfig.KLChoLonNhat.ToString() + "m³");
@@ -7097,7 +8045,8 @@ namespace NDPSo.MasterData
             paras.Add(lblKhoiLuong.Text);
             paras.Add(lblTenHangMuc.Text);
             paras.Add(lblNiemChi.Text);
-            
+            paras.Add(this.lblNguoiTron.Text);
+            paras.Add(this.lblDiaDiem.Text);
             DateTime originalDateTime = this._selectedPT_Run.NgayPhieuTron.Value;
             DateTime modifiedDateTime = originalDateTime.AddMinutes(5);
             paras.Add(modifiedDateTime.ToString("HH: mm:ss"));
@@ -7113,7 +8062,6 @@ namespace NDPSo.MasterData
                 frm.PrintPhieuTron();*/
             }
             
-
         }
         private void PrintPTFromFile()
         {
@@ -7311,14 +8259,14 @@ namespace NDPSo.MasterData
         }
         private void ucButtonSKCe1_ButtonMouseDown(object sender, EventArgs e)
         {
-            this._so.SendingCommand.SW_SK_SILO1 = true;
+            this._so.SendingCommand.NN_SKSL1 = true;
             SendData_DB2_NewTread();
 
         }
 
         private void ucButtonSKCe1_ButtonMouseUp(object sender, EventArgs e)
         {
-            this._so.SendingCommand.SW_SK_SILO1 = false;
+            this._so.SendingCommand.NN_SKSL1 = false;
             SendData_DB2_NewTread();
         }
 
@@ -7382,6 +8330,28 @@ namespace NDPSo.MasterData
         private void checkAutoPrint_EditValueChanged(object sender, EventArgs e)
         {
             ConfigManager.TramTronConfig.AutoPrint = this.checkAutoPrint.Checked;
+        }
+
+        private void VanHanh_ControlClosing(object sender, FormClosingEventArgs e)
+        {
+            this._so.SendingCommand.SW_XA_COT_LIEU = false;
+            this._so.SendingCommand.SW_NAP_NOI_TRON = false;
+            this._so.SendingCommand.SW_XA_NOI_TRON = false;
+            this._so.SendingCommand.SW_RUA_NOI_TRON = false;
+
+            this.SendData_DB2_NewTread();
+        }
+
+        private void ucXeBonTron1_Click(object sender, EventArgs e)
+        {
+            TramTromMessageBox.ShowMessageDialog(Support.GenerateFakeValueADD(1).ToString());
+            
+        }
+
+        private void ucXeBonTron1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TramTromMessageBox.ShowMessageDialog(Support.GenerateFakeValueADD(1).ToString());
+
         }
     }
 }

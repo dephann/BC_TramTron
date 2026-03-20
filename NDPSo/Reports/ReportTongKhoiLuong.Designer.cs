@@ -133,6 +133,11 @@ namespace NDPSo.Reports
             this.gcNgayLap.Name = "gcNgayLap";
             this.gcNgayLap.OptionsColumn.AllowFocus = false;
             this.gcNgayLap.OptionsColumn.ReadOnly = true;
+            this.gcNgayLap.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[]
+            {
+                new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "NgayPhieuTron", "{0} - phiếu")
+            });
+
             this.gcNgayLap.Visible = true;
             this.gcNgayLap.VisibleIndex = 0;
             // 
@@ -159,24 +164,24 @@ namespace NDPSo.Reports
             // gcTongKhoiLuong
             // 
             this.gcTongKhoiLuong.Caption = "Tổng khối lượng";
-            this.gcTongKhoiLuong.FieldName = "KLDuTinh";
+            this.gcTongKhoiLuong.FieldName = "TongKhoiLuong";
             this.gcTongKhoiLuong.Name = "gcTongKhoiLuong";
             this.gcTongKhoiLuong.OptionsColumn.AllowFocus = false;
             this.gcTongKhoiLuong.OptionsColumn.ReadOnly = true;
             this.gcTongKhoiLuong.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "KLDuTinh", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongKhoiLuong", "{0:0.##}")});
             this.gcTongKhoiLuong.Visible = true;
             this.gcTongKhoiLuong.VisibleIndex = 3;
             // 
             // gcMeTron
             // 
             this.gcMeTron.Caption = "Mẻ trộn";
-            this.gcMeTron.FieldName = "SLMeDuTinh";
+            this.gcMeTron.FieldName = "TongMeTron";
             this.gcMeTron.Name = "gcMeTron";
             this.gcMeTron.OptionsColumn.AllowFocus = false;
             this.gcMeTron.OptionsColumn.ReadOnly = true;
             this.gcMeTron.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SLMeDuTinh", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongMeTron", "{0:0.##}")});
             this.gcMeTron.Visible = true;
             this.gcMeTron.VisibleIndex = 4;
             // 

@@ -91,6 +91,8 @@ namespace NDPSo.MasterData
 
         public BindingList<ObjMeTron> BLstMeTron { set => throw new NotImplementedException(); }
         public BindingList<ObjMeTronChiTiet> BLstMeTronChiTiet { set => throw new NotImplementedException(); }
+        public BindingList<ObjPhieuGiaoHang> BLstPhieuGiaoHang { set => throw new NotImplementedException(); }
+        public BindingList<ObjMeTronChiTietGiaoHang> BLstMeTronChiTietGiaoHang { set => throw new NotImplementedException(); }
 
         protected override void PopulateStaticData()
         {

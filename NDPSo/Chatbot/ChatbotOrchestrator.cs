@@ -8,13 +8,13 @@ namespace NDPSo.Chatbot
 {
     /// <summary>
     /// STEP 5 — Response Generation
-    /// Tích hợp toàn bộ pipeline:
-    ///   Intent Detection → Template/AI SQL → DB Query → Natural Language Response
+    /// Pipeline: Intent Detection → Template/AI SQL → SmartRetryEngine → Natural Language Response
     /// </summary>
     public class ChatbotOrchestrator
     {
         private readonly OpenAIApiService _ai;
         private readonly DatabaseService _db;
+        private readonly SmartRetryEngine _retry; // ← Tự động thử bảng liên quan khi rỗng
 
         private readonly List<ConversationTurn> _history = new List<ConversationTurn>();
         private const int MAX_HISTORY = 6;
@@ -25,9 +25,126 @@ namespace NDPSo.Chatbot
         {
             _ai = new OpenAIApiService(apiKey);
             _db = new DatabaseService(sqlConnectionString);
+            _retry = new SmartRetryEngine(_ai, _db);
+            _retry.OnStatusChanged += s => OnStatusChanged?.Invoke(s);
         }
 
         public void ClearHistory() => _history.Clear();
+
+        // ══════════════════════════════════════════════════════
+        //  CLARIFICATION — câu hỏi mơ hồ cần hỏi lại
+        // ══════════════════════════════════════════════════════
+        private static readonly (string[] Keywords, string ClarifyQuestion)[] AMBIGUOUS_PATTERNS =
+        {
+            (
+                new[] { "tổng khối lượng", "tong khoi luong",
+                        "khối lượng tổng", "tổng kl", "tong kl",
+                        "kiểm tra khối lượng", "kiem tra khoi luong",
+                        "xem khối lượng", "khối lượng là bao nhiêu",
+                        "tìm khối lượng", "tim khoi luong" },
+                "Bạn muốn xem tổng khối lượng của:\n" +
+                "① Mẻ trộn thực tế (hôm nay / tuần / tháng)\n" +
+                "② Phiếu trộn dự tính vs thực tế\n" +
+                "③ Vật liệu tiêu thụ trong silo\n" +
+                "④ Hợp đồng (đã giao / còn lại)\n" +
+                "⑤ Theo xe hoặc tài xế\n\n" +
+                "Bạn chọn số mấy, hoặc nói rõ hơn nhé!"
+            ),
+            (
+                new[] { "tìm tổng", "tim tong", "xem tổng", "tính tổng", "tinh tong" },
+                "Bạn muốn tính tổng của:\n" +
+                "① Sản lượng (m³) theo ngày / tuần / tháng\n" +
+                "② Số mẻ trộn\n③ Số phiếu giao hàng\n" +
+                "④ Khối lượng theo khách hàng\n⑤ Vật liệu tiêu thụ (kg)\n\n" +
+                "Bạn muốn tính tổng của cái nào?"
+            ),
+            (
+                new[] { "kiểm tra vật liệu", "kiem tra vat lieu",
+                        "xem vật liệu", "thông tin vật liệu", "tìm vật liệu" },
+                "Bạn muốn xem thông tin vật liệu theo hướng nào?\n" +
+                "① Tiêu thụ hôm nay / tuần / tháng\n" +
+                "② Tồn kho silo hiện tại\n" +
+                "③ Sai số thiết kế vs thực tế\n" +
+                "④ Độ hút nước cốt liệu\n\nBạn muốn xem cái nào?"
+            ),
+            (
+                new[] { "kiểm tra phiếu", "kiem tra phieu",
+                        "xem phiếu", "thông tin phiếu", "tìm phiếu" },
+                "Bạn muốn xem phiếu nào?\n" +
+                "① Phiếu trộn hôm nay\n② Phiếu đang chờ xử lý\n" +
+                "③ Phiếu của khách hàng cụ thể\n④ Phiếu theo mã số\n\nBạn muốn xem cái nào?"
+            ),
+            (
+                new[] { "kiểm tra xe", "kiem tra xe", "xem xe", "thông tin xe", "tìm xe" },
+                "Bạn muốn kiểm tra xe theo hướng nào?\n" +
+                "① Xe chạy nhiều nhất hôm nay / tháng\n" +
+                "② Danh sách xe đang hoạt động\n" +
+                "③ Thông tin xe theo biển số cụ thể\n\nBạn muốn xem cái nào?"
+            ),
+            (
+                new[] { "kiểm tra tài xế", "kiem tra tai xe",
+                        "xem tài xế", "thông tin tài xế", "tìm tài xế" },
+                "Bạn muốn xem thông tin tài xế theo hướng nào?\n" +
+                "① Tài xế chạy nhiều nhất hôm nay\n" +
+                "② Danh sách tài xế đang hoạt động\n" +
+                "③ Thông tin theo tên cụ thể\n\nBạn muốn xem cái nào?"
+            ),
+            (
+                new[] { "kiểm tra hợp đồng", "kiem tra hop dong",
+                        "xem hợp đồng", "thông tin hợp đồng", "tìm hợp đồng" },
+                "Bạn muốn xem hợp đồng theo hướng nào?\n" +
+                "① Hợp đồng còn khối lượng chưa giao\n" +
+                "② Hợp đồng của khách hàng cụ thể\n" +
+                "③ Hợp đồng theo mã số\n\nBạn muốn xem cái nào?"
+            ),
+            (
+                new[] { "kiểm tra sản lượng", "kiem tra san luong",
+                        "xem sản lượng", "tìm sản lượng" },
+                "Bạn muốn xem sản lượng trong khoảng thời gian nào?\n" +
+                "① Hôm nay\n② Tuần này\n③ Tháng này\n" +
+                "④ So sánh tháng này vs tháng trước\n⑤ 7 ngày gần nhất\n\nBạn chọn?"
+            ),
+            (
+                new[] { "thông tin", "thong tin", "xem thông tin",
+                        "cho tôi biết", "cho toi biet",
+                        "kiểm tra", "kiem tra", "tìm kiếm", "tra cứu" },
+                "Bạn muốn xem thông tin về:\n" +
+                "① Sản lượng / mẻ trộn\n② Phiếu trộn / giao hàng\n" +
+                "③ Khách hàng / hợp đồng\n④ Vật liệu / tồn kho silo\n" +
+                "⑤ Xe / tài xế\n⑥ Cảnh báo / sự kiện\n\nBạn muốn xem mục nào?"
+            ),
+        };
+
+        private string GetClarificationQuestion(string question)
+        {
+            var q = question.ToLower().Trim();
+            var qNorm = RemoveDiacritics(q);
+
+            int wordCount = q.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            if (wordCount > 8) return null;
+
+            if (ContainsAny(qNorm, "hom nay", "tuan nay", "thang nay", "hom qua",
+                                   "7 ngay", "30 ngay", "gan nhat", "moi nhat"))
+                return null;
+
+            if (Regex.IsMatch(question, @"\b[A-Z]{2,}\d+\b") ||
+                Regex.IsMatch(question, @"\b\d{4,}\b"))
+                return null;
+
+            foreach (var (keywords, clarifyQ) in AMBIGUOUS_PATTERNS)
+                foreach (var kw in keywords)
+                    if (q.Contains(kw) || qNorm.Contains(RemoveDiacritics(kw)))
+                        return clarifyQ;
+
+            return null;
+        }
+
+        private bool ContainsAny(string text, params string[] keywords)
+        {
+            foreach (var kw in keywords)
+                if (text.Contains(kw)) return true;
+            return false;
+        }
 
         // ══════════════════════════════════════════════════════
         //  MAIN PIPELINE
@@ -51,18 +168,30 @@ namespace NDPSo.Chatbot
                     return result;
                 }
 
-                // ── STEP 3: Lấy SQL (template hoặc AI sinh) ──
+                // ── CLARIFICATION ─────────────────────────────
+                if (intent == IntentDetector.Intent.CUSTOM_QUERY)
+                {
+                    string clarifyQ = GetClarificationQuestion(question);
+                    if (clarifyQ != null)
+                    {
+                        result.Answer = clarifyQ;
+                        result.IsSuccess = true;
+                        result.NeedsClarification = true;
+                        AddToHistory(question, clarifyQ, null, null);
+                        return result;
+                    }
+                }
+
+                // ── STEP 3: Lấy SQL ───────────────────────────
                 string sql = null;
 
                 if (IntentDetector.HasTemplate(intent))
                 {
-                    // Có template sẵn → dùng ngay, không cần gọi AI
                     sql = QueryFunctions.GetTemplate(IntentDetector.GetTemplateName(intent));
                     OnStatusChanged?.Invoke("⚡ Dùng template SQL...");
                 }
                 else
                 {
-                    // Không có template → AI sinh SQL từ schema + semantic layer
                     OnStatusChanged?.Invoke("🤔 Đang phân tích câu hỏi...");
                     sql = await GenerateSqlWithAI(question);
                 }
@@ -76,14 +205,20 @@ namespace NDPSo.Chatbot
 
                 result.SqlUsed = sql;
 
-                // ── Chạy SQL với retry tự động ────────────────
+                // ── SmartRetryEngine: tự động thử bảng liên quan nếu rỗng ──
                 OnStatusChanged?.Invoke("🔍 Đang truy vấn dữ liệu...");
-                string dbData = await TryExecuteWithRetry(sql, question);
+                var smartResult = await _retry.ExecuteWithRetry(sql, question);
+
+                result.SqlUsed = smartResult.SqlUsed ?? sql;
+                string dbData = smartResult.Data;
+
+                if (smartResult.UsedFallback)
+                    OnStatusChanged?.Invoke($"✅ Tìm thấy sau {smartResult.Attempts} lần thử");
 
                 // ── STEP 5: Response Generation ───────────────
                 OnStatusChanged?.Invoke("💬 Đang tổng hợp kết quả...");
 
-                if (dbData.Length > 2000)
+                if (!string.IsNullOrEmpty(dbData) && dbData.Length > 2000)
                     dbData = dbData.Substring(0, 2000) + "\n...(đã rút gọn)";
 
                 string answer = await GenerateNaturalResponse(question, dbData, intent);
@@ -91,7 +226,7 @@ namespace NDPSo.Chatbot
                 result.Answer = answer;
                 result.RawData = dbData;
                 result.IsSuccess = true;
-                AddToHistory(question, answer, sql, dbData);
+                AddToHistory(question, answer, result.SqlUsed, dbData);
             }
             catch (Exception ex)
             {
@@ -103,24 +238,25 @@ namespace NDPSo.Chatbot
         }
 
         // ══════════════════════════════════════════════════════
-        //  STEP 3: AI SQL GENERATION (khi không có template)
+        //  STEP 3: AI SQL GENERATION — dùng schema 100% từ script.sql
         // ══════════════════════════════════════════════════════
         private async Task<string> GenerateSqlWithAI(string question)
         {
             string context = BuildContextPrompt();
-            string schema = SchemaSelector.GetSchema(question);
 
-            // Kết hợp schema + semantic layer + business rules + FK map
-            string fullPrompt = schema
-                + "\n" + SemanticLayer.NATURAL_TO_TECHNICAL
-                + "\n" + DatabaseSchema.BUSINESS_RULES
-                + "\n" + DatabaseSchema.FK_MAP
-                + "\n" + DatabaseSchema.COLUMN_UNITS;
+            string fullPrompt =
+                SchemaContext.ALL_TABLES + "\n" +
+                SchemaContext.FK_COMPLETE + "\n" +
+                SchemaContext.ALL_VIEWS + "\n" +
+                SchemaContext.JOIN_PATHS + "\n" +
+                SemanticLayer.NATURAL_TO_TECHNICAL + "\n" +
+                DatabaseSchema.BUSINESS_RULES;
 
             string userMsg =
                 (string.IsNullOrEmpty(context) ? "" : context + "\n") +
                 $"Câu hỏi: {question}\n" +
-                $"KHÔNG dùng @tham số. Dùng giá trị cụ thể hoặc GETDATE().\n" +
+                $"KHÔNG dùng @tham số. KHÔNG thêm IsDeleted=0.\n" +
+                $"LUÔN dùng JOIN...ON theo FK, KHÔNG dùng IN(subquery).\n" +
                 $"Trả về: SQL: <câu sql>";
 
             string response = await _ai.ChatAsync(fullPrompt, userMsg);
@@ -133,9 +269,7 @@ namespace NDPSo.Chatbot
         private async Task<string> GenerateNaturalResponse(
             string question, string dbData, IntentDetector.Intent intent)
         {
-            // Chọn format phù hợp theo loại intent
             string formatGuide = GetFormatGuide(intent);
-
             string systemPrompt = SchemaContext.INTERPRET_PROMPT + "\n\n" + formatGuide;
 
             string context = BuildContextPrompt();
@@ -149,30 +283,25 @@ namespace NDPSo.Chatbot
 
         private string GetFormatGuide(IntentDetector.Intent intent)
         {
-            // Tổng hợp số → 1-2 câu ngắn
             if (intent == IntentDetector.Intent.SAN_LUONG_HOM_NAY ||
                 intent == IntentDetector.Intent.SAN_LUONG_TUAN_NAY ||
                 intent == IntentDetector.Intent.SAN_LUONG_THANG_NAY)
                 return "Trả lời trong 1-2 câu. Nêu rõ số mẻ và tổng m³.";
 
-            // So sánh → nêu xu hướng tăng/giảm
             if (intent == IntentDetector.Intent.SO_SANH_THANG)
-                return "Trả lời trong 2-3 câu. So sánh số liệu và nêu xu hướng tăng/giảm bao nhiêu %.";
+                return "Trả lời trong 2-3 câu. So sánh và nêu xu hướng tăng/giảm bao nhiêu %.";
 
-            // Danh sách → tóm tắt tổng + chi tiết nổi bật
             if (intent == IntentDetector.Intent.DANH_SACH_ME_HOM_NAY ||
                 intent == IntentDetector.Intent.PHIEU_HOM_NAY ||
                 intent == IntentDetector.Intent.PHIEU_THANG_NAY)
                 return "Tóm tắt tổng số trước, sau đó nêu vài mục nổi bật. Không liệt kê quá 5 mục.";
 
-            // Top / ranking → nêu top 3-5
             if (intent == IntentDetector.Intent.TOP_KHACH_HANG ||
                 intent == IntentDetector.Intent.TOP_CONG_TRUONG ||
                 intent == IntentDetector.Intent.XE_NHIEU_NHAT ||
                 intent == IntentDetector.Intent.TAI_XE_NHIEU_NHAT)
                 return "Nêu top 3-5 theo thứ tự, mỗi mục 1 câu ngắn với số liệu cụ thể.";
 
-            // Tồn kho → nêu từng silo
             if (intent == IntentDetector.Intent.TON_KHO_SILO)
                 return "Liệt kê từng silo với tên vật liệu và khối lượng hiện tại (kg).";
 
@@ -180,89 +309,7 @@ namespace NDPSo.Chatbot
         }
 
         // ══════════════════════════════════════════════════════
-        //  EXECUTE WITH RETRY
-        // ══════════════════════════════════════════════════════
-        private async Task<string> TryExecuteWithRetry(string sql, string question)
-        {
-            try
-            {
-                return _db.ExecuteQuery(sql);
-            }
-            catch (Exception ex)
-            {
-                string msg = ex.Message;
-
-                if (msg.StartsWith("SQL_PARAM_ERROR") || msg.Contains("Must declare"))
-                {
-                    OnStatusChanged?.Invoke("🔄 Đang sửa SQL...");
-                    string fixedSql = await RegenerateSqlWithoutParams(sql, question, msg);
-                    return _db.ExecuteQuery(fixedSql);
-                }
-
-                if (msg.Contains("Invalid column name") || msg.Contains("Invalid object name"))
-                {
-                    OnStatusChanged?.Invoke("⚠️ Thử dùng view...");
-                    string fallback = BuildFallbackSql(sql, question);
-                    if (!string.IsNullOrEmpty(fallback))
-                        return _db.ExecuteQuery(fallback);
-                }
-
-                throw;
-            }
-        }
-
-        private async Task<string> RegenerateSqlWithoutParams(
-            string badSql, string question, string errorMsg)
-        {
-            string schema = SchemaSelector.GetSchema(question);
-            string context = BuildContextPrompt();
-            string prompt =
-                $"{context}\nSQL bị lỗi:\n{badSql}\n\n" +
-                $"Viết lại SQL:\n- KHÔNG dùng @tham số\n" +
-                $"- Dùng LIKE N'%từkhóa%' nếu tìm theo tên\n" +
-                $"- Dùng giá trị từ context nếu có\n" +
-                $"Câu hỏi: {question}\nTrả về: SQL: <câu sql>";
-
-            string response = await _ai.ChatAsync(
-                schema + "\n" + DatabaseSchema.BUSINESS_RULES, prompt);
-            string newSql = ExtractSql(response);
-
-            if (string.IsNullOrEmpty(newSql))
-                throw new Exception("Không thể sinh lại SQL hợp lệ.");
-            return newSql;
-        }
-
-        private string BuildFallbackSql(string originalSql, string question)
-        {
-            var sqlUp = originalSql.ToUpper();
-            var q = RemoveDiacritics(question.ToLower());
-
-            if (Contains(sqlUp, "XE") || Contains(q, "xe", "bien so"))
-                return q.Contains("hom nay")
-                    ? "SELECT TOP 50 XeID,BienSo,Total_Tranfer,Total_KL,NgayMeTron FROM dbo.vw_PvTranferDetailDay WHERE NgayMeTron=CAST(GETDATE() AS DATE) ORDER BY Total_KL DESC"
-                    : "SELECT TOP 20 XeID,BienSo,Total_Tranfer,Total_KL FROM dbo.vw_PvTotalTranfer ORDER BY Total_KL DESC";
-
-            if (Contains(sqlUp, "TAIXE") || Contains(q, "tai xe", "lai xe"))
-                return q.Contains("hom nay")
-                    ? "SELECT TOP 20 TaiXeID,TenTaiXe,Total_Tranfer,Total_KL FROM dbo.vw_PvDriverDetailDay WHERE NgayMeTron=CAST(GETDATE() AS DATE) ORDER BY Total_KL DESC"
-                    : "SELECT TOP 20 TaiXeID,MaTaiXe,TenTaiXe,Total_Tranfer,Total_KL FROM dbo.vw_PvTotalDriver ORDER BY Total_KL DESC";
-
-            if (Contains(sqlUp, "MATERIAL") || Contains(q, "vat lieu", "xi mang", "cat ", "da "))
-                return q.Contains("hom nay")
-                    ? "SELECT TOP 20 MaterialCode,MaterialName,Sum_ValueCP,Sum_ValueBat,SaiSo,NgayMeTron FROM dbo.vw_PvMaterialDetailDay WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE) ORDER BY Sum_ValueCP DESC"
-                    : "SELECT TOP 20 MaterialCode,MaterialName,Sum_ValueCP,Sum_ValueBat,SaiSo FROM dbo.vw_PvTotalMaterial ORDER BY Sum_ValueCP DESC";
-
-            if (Contains(sqlUp, "METRON") || Contains(q, "me tron", "san luong", "me "))
-                return "SELECT TOP 50 MeTronID,MaPhieuTron,NgayMeTron,KH,CT,Plate,KLMe,TenNV FROM dbo.vw_Infos WHERE CAST(NgayMeTron AS DATE)=CAST(GETDATE() AS DATE) ORDER BY NgayMeTron DESC";
-
-            if (Contains(q, "phieu", "giao hang"))
-                return "SELECT TOP 50 MaPhieuTron,NgayPhieuTron,KH,CT,KLDuTinh,KLThuc,BS,TX FROM dbo.vw_InfoPT WHERE CAST(NgayPhieuTron AS DATE)=CAST(GETDATE() AS DATE) ORDER BY NgayPhieuTron DESC";
-
-            return null;
-        }
-
-        // ══════════════════════════════════════════════════════
-        //  CONVERSATION HISTORY (context)
+        //  CONVERSATION HISTORY
         // ══════════════════════════════════════════════════════
         private string BuildContextPrompt()
         {
@@ -301,14 +348,14 @@ namespace NDPSo.Chatbot
             var sb = new StringBuilder();
             var dates = Regex.Matches(answer, @"\b(\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2})\b");
             foreach (Match m in dates) sb.Append($"Ngày:{m.Value} ");
-            var nums = Regex.Matches(answer, @"\b(\d+(?:[.,]\d+)?)\s*(m³|m3|kg|tấn|chuyến|mẻ|phiếu)\b", RegexOptions.IgnoreCase);
+            var nums = Regex.Matches(answer,
+                @"\b(\d+(?:[.,]\d+)?)\s*(m³|m3|kg|tấn|chuyến|mẻ|phiếu)\b",
+                RegexOptions.IgnoreCase);
             foreach (Match m in nums) sb.Append($"{m.Value} ");
             return sb.Length > 0 ? sb.ToString().Trim() : null;
         }
 
-        // ══════════════════════════════════════════════════════
-        //  HELPERS
-        // ══════════════════════════════════════════════════════
+        // ── Helpers ──────────────────────────────────────────
         private string ExtractSql(string response)
         {
             if (string.IsNullOrWhiteSpace(response)) return null;
@@ -356,6 +403,7 @@ namespace NDPSo.Chatbot
         public string SqlUsed { get; set; }
         public string RawData { get; set; }
         public bool IsSuccess { get; set; }
+        public bool NeedsClarification { get; set; }
         public DateTime Timestamp { get; set; } = DateTime.Now;
     }
 

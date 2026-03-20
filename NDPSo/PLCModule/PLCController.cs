@@ -23,7 +23,7 @@ namespace NDPSo.PLCModule
 
         public void Init()
         {
-            this._plc = new Plc(CpuType.S71200, ConfigManager.TramTronConfig.LANIP, 0, 1);
+            this._plc = new Plc(CpuType.S71500, ConfigManager.TramTronConfig.LANIP, 0, 1);
             try
             {
                 this._plc.Open();
@@ -36,21 +36,10 @@ namespace NDPSo.PLCModule
 
         public async Task ReConnectAsync()
         {
-            /*await Task.Run(() =>
-            {
-                try
-                {
-                    this._plc = new Plc(CpuType.S71200, ConfigManager.TramTronConfig.LANIP, 0, 1);
-                    this._plc.Open();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("An error occurred while trying to reconnect to the PLC: " + ex.Message);
-                }
-            });*/
+           
             await Task.Factory.StartNew(async () =>
             {
-                this._plc = new Plc(CpuType.S71200, ConfigManager.TramTronConfig.LANIP, 0, 1);
+                this._plc = new Plc(CpuType.S71500, ConfigManager.TramTronConfig.LANIP, 0, 1);
                 try
                 {
                     this._plc.OpenAsync();

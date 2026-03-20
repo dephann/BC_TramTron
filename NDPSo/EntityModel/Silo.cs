@@ -59,6 +59,8 @@ namespace NDPSo.EntityModel
         public Nullable<System.DateTime> LatestUpdateDate { get; set; }
         public Nullable<int> LatestUpdatedBy { get; set; }
         public byte[] VersionNo { get; set; }
+        public Nullable<bool> BuTruKLMT { get; set; }
+        public Nullable<bool> TuDongXNCD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MACSilo> MACSiloes { get; set; }

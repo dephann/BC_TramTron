@@ -3,13 +3,20 @@ using NDPSo.Data;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Word;
+using Excel = Microsoft.Office.Interop.Excel;
+using Application = Microsoft.Office.Interop.Word.Application;
 
 namespace NDPSo.Utils
 {
     public class Support
     {
+
+
         public static string GetNextNiemChi(string inputString)
         {
             string resultString = "";
@@ -67,10 +74,10 @@ namespace NDPSo.Utils
                     //continue;
                 }
                 else
-                 _list.Add(siloLogic);
-            } 
+                    _list.Add(siloLogic);
+            }
             _blstSiloLogic.Clear();
-            foreach(ObjSilo silo in _list)
+            foreach (ObjSilo silo in _list)
             {
                 _blstSiloLogic.Add(silo);
             }
@@ -114,7 +121,7 @@ namespace NDPSo.Utils
                 }
                 string a = _numberSiloLogic;
                 numlogic = double.Parse(a);
-                return  numlogic;
+                return numlogic;
             }
         }
         private static bool ValidateData(LookUpEdit lue1, LookUpEdit lue2)
@@ -249,7 +256,7 @@ namespace NDPSo.Utils
 
         public static string SecondToHour(int sec)
         {
-            int hours = sec / 3600; 
+            int hours = sec / 3600;
             int minutes = (sec % 3600) / 60;
             int seconds = sec % 60;
             string timer = "PHẦN MỀM SẼ TỰ ĐỘNG CẬP NHẬT SAU: " + $"{hours} Giờ, {minutes} Phút, {seconds} Giây";
@@ -273,5 +280,259 @@ namespace NDPSo.Utils
                 TramTromMessageBox.ShowErrorDialog(ex.ToString());
             }
         }
+        public static void PrintReportPDF(string path)
+        {
+            try
+            {
+                string printerApp = ConfigManager.TramTronConfig.PdfReaderPath;
+
+                if (!File.Exists(printerApp))
+                {
+                    TramTromMessageBox.ShowErrorDialog("Foxit Reader not found.");
+                    return;
+                }
+
+                ProcessStartInfo printProcessInfo = new ProcessStartInfo
+                {
+                    FileName = printerApp,
+                    Arguments = $"/t \"{path}\"", // /t để in file PDF mà không hiện lên UI
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                };
+
+                using (Process printProcess = new Process { StartInfo = printProcessInfo })
+                {
+                    printProcess.Start();
+                    printProcess.WaitForExit();
+                }
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        public static void PrintReportWord(string path)
+        {
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    TramTromMessageBox.ShowErrorDialog("Word file not found.");
+                    return;
+                }
+
+                Application wordApp = new Application();
+
+                Document wordDoc = wordApp.Documents.Open(path);
+
+                wordDoc.PrintOut();
+
+                wordDoc.Close(false);
+                wordApp.Quit();
+
+                // Giải phóng tài nguyên
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wordDoc);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+
+    public static void CloseWordApplications()
+        {
+            string[] targetProcesses = { "winword", "acrobat", "FoxitReader", "FoxitPhantomPDF" };
+
+            foreach (Process process in Process.GetProcesses())
+            {
+                try
+                {
+                    foreach (string targetProcess in targetProcesses)
+                    {
+                        if (process.ProcessName.ToLower().Contains(targetProcess))
+                        {
+                            process.Kill();
+                            Console.WriteLine($"Đã đóng ứng dụng {targetProcess}.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                }
+            }
+            Process[] processesByName = Process.GetProcessesByName("FoxitPDFReader");
+            if (processesByName.Length != 0)
+            {
+                processesByName[0].Kill();
+            }
+        }
+
+        public static string[] ReadWordFile(string filePath)
+        {
+            Application wordApp = new Application();
+            Document doc = wordApp.Documents.Open(filePath);
+
+            // Đọc toàn bộ nội dung văn bản từ tài liệu Word
+            string text = doc.Content.Text;
+            doc.Close();
+            wordApp.Quit();
+
+            // Trả về nội dung chia thành các dòng
+            return text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        }
+
+        public static void WriteToExcel(string filePath, string[] lines)
+        {
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workbook = excelApp.Workbooks.Add();
+            Excel.Worksheet worksheet = workbook.Worksheets[1];
+
+            // Ghi nội dung vào worksheet
+            for (int i = 0; i < lines.Length; i++)
+            {
+                worksheet.Cells[i + 1, 1].Value = lines[i];
+            }
+
+            // Lưu tệp Excel
+            workbook.SaveAs(filePath);
+            workbook.Close();
+            excelApp.Quit();
+
+            // Giải phóng tài nguyên COM
+            Marshal.ReleaseComObject(worksheet);
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(excelApp);
+        }
+        public static void ReadTableFromWordAndWriteToExcel(string wordFile, string excelFile)
+        {
+            Application wordApp = new Application();
+            Document doc = wordApp.Documents.Open(wordFile);
+
+            // Đọc toàn bộ nội dung văn bản từ tài liệu Word
+            string text = doc.Content.Text;
+            doc.Close();
+            wordApp.Quit();
+
+            // Xử lý nội dung văn bản để phân chia dữ liệu thành các dòng và cột
+            string[] lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+            // Khởi tạo ứng dụng Excel
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workbook = excelApp.Workbooks.Add();
+            Excel.Worksheet worksheet = workbook.Worksheets[1];
+
+            // Ghi dữ liệu vào Excel
+            for (int i = 0; i < lines.Length; i++)
+            {
+                // Giả sử mỗi dòng văn bản được phân tách bởi dấu phân cách (ví dụ: dấu phẩy hoặc tab)
+                string[] columns = lines[i].Split(new[] { '\t', ',' }, StringSplitOptions.None);
+                for (int j = 0; j < columns.Length; j++)
+                {
+                    worksheet.Cells[i + 1, j + 1].Value = columns[j].Trim();
+                }
+            }
+
+            // Lưu tệp Excel
+            workbook.SaveAs(excelFile);
+            workbook.Close();
+            excelApp.Quit();
+
+            // Giải phóng tài nguyên COM
+            Marshal.ReleaseComObject(worksheet);
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(excelApp);
+        }
+        public static void ReadTextFromWordAndWriteToExcel(string wordFile, string excelFile)
+        {
+            Application wordApp = new Application();
+            Document doc = wordApp.Documents.Open(wordFile);
+
+            // Đọc toàn bộ nội dung văn bản từ tài liệu Word
+            string text = doc.Content.Text;
+            doc.Close();
+            wordApp.Quit();
+
+            // Chia văn bản thành các dòng
+            string[] lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+            // Khởi tạo ứng dụng Excel
+            Excel.Application excelApp = new Excel.Application();
+            Excel.Workbook workbook = excelApp.Workbooks.Add();
+            Excel.Worksheet worksheet = workbook.Worksheets[1];
+
+            // Ghi từng dòng văn bản vào ô đầu tiên của từng hàng trong worksheet
+            for (int i = 0; i < lines.Length; i++)
+            {
+                worksheet.Cells[i + 1, 1].Value = lines[i];
+            }
+
+            // Lưu tệp Excel
+            workbook.SaveAs(excelFile);
+            workbook.Close();
+            excelApp.Quit();
+
+            // Giải phóng tài nguyên COM
+            Marshal.ReleaseComObject(worksheet);
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(excelApp);
+        }
+
+        public static double GenerateFakeValue(decimal realValue, decimal lowerError, decimal upperError)
+        {
+            var valueCal = realValue * 0.005m;
+            decimal lowerErrorN = lowerError + valueCal;
+            decimal upperErrorN = upperError - valueCal;
+            Random random = new Random();
+
+            double randomError;
+            if (random.Next(2) == 0)
+            {
+                randomError = (double)lowerErrorN + (double)(random.NextDouble() * (double)(upperErrorN - lowerErrorN) * 0.1);
+            }
+            else
+            {
+                randomError = (double)upperErrorN - (double)(random.NextDouble() * (double)(upperErrorN - lowerErrorN) * 0.1);
+            }
+
+            bool addOrSubtract = random.Next(2) == 0;
+            double fakeValue = addOrSubtract ? (double)realValue + randomError : (double)realValue - randomError;
+
+            return fakeValue;
+        }
+
+
+        public static double GenerateFakeValueADD(decimal realValue)
+        {
+            Random random = new Random();
+            double randomError = (double)random.NextDouble();
+            bool addOrSubtract = random.Next(2) == 0;
+
+            double fakeValue;
+            if (addOrSubtract)
+            {
+                fakeValue = (double)realValue + randomError;
+            }
+            else
+            {
+                fakeValue = (double)realValue - randomError;
+            }
+
+            return fakeValue;
+        }
+        public static double GenerateFakeValueN(decimal realValue, decimal errorPercent)
+        {
+            if (errorPercent < 0)
+                throw new ArgumentException("Phần trăm sai số không thể âm");
+            double errorRange = (double)realValue * (double)errorPercent / 100f;
+            Random random = new Random();
+            double randomError = (double)(random.NextDouble() * (2 * errorRange) - errorRange);
+
+            return (double)realValue + randomError;
+        }
+
     }
 }

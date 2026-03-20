@@ -2,6 +2,7 @@
 using DevExpress.XtraPrinting;
 using NDPSo.ClientSetting;
 using NDPSo.Data;
+using NDPSo.KWS;
 using NDPSo.Utils;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,11 @@ namespace NDPSo.Reports
     {
         private IServices _ser = ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode);
         //private ObjAggregationResult _objAggregation;
-        private BindingList<Objvw_TotalTranfer> _blstTotalTranfer = new BindingList<Objvw_TotalTranfer>();
+        private BindingList<Objvw_TranferDetailDayWithID> _blstTotalTranfer = new BindingList<Objvw_TranferDetailDayWithID>();
+        private BindingList<Objvw_TranferDetailDayWithID> _blstTranferDetailDay = new BindingList<Objvw_TranferDetailDayWithID>();
+        private BindingList<Objvw_TranferDetailDayWithID> _blstTranferDetailDayID = new BindingList<Objvw_TranferDetailDayWithID>();
         private BindingList<ObjXe> _blstXe = new BindingList<ObjXe>();
+        private BindingList<ObjTranferSummary> _blstTranferSummary = new BindingList<ObjTranferSummary>();
        // private BindingList<ObjVatTu> danhSachDuLieu = new BindingList<ObjVatTu>();
 
         public ReportTongChuyenXe()
@@ -43,6 +47,8 @@ namespace NDPSo.Reports
             //this.LoadDataMix();
             //LoadData();
             Task.Run(() => LoadData());
+            Task.Run(() => LoadData_DetailDay());
+
         }
         private void LoadSearchDefaultValues()
         {
@@ -60,15 +66,102 @@ namespace NDPSo.Reports
                 active = new bool?(true);
 
 
-           _blstTotalTranfer = Converter.ConvertToBindingList<Objvw_TotalTranfer>(this._ser.ListTotalTranfer_ByCondition((int?)lueBienSo.EditValue, (bool?)active) as List<Objvw_TotalTranfer>);
+           _blstTotalTranfer = Converter.ConvertToBindingList<Objvw_TranferDetailDayWithID>(this._ser.ListTotalTranfer_ByCondition((int?)lueBienSo.EditValue, (bool?)active) as List<Objvw_TranferDetailDayWithID>);
 
-            this.grcTongChuyenXe.DataSource = (object)this._blstTotalTranfer;
+            //this.grcTongChuyenXe.DataSource = (object)this._blstTotalTranfer;
+        }
+        private void LoadData_DetailDay()
+        {
+            _blstTranferDetailDay.Clear();
+            _blstTranferDetailDayID.Clear();
+            bool? active = new bool?();
+            if (Convert.ToInt32(this.lueCheDo.EditValue) == 1)
+                active = new bool?(false);
+            else if (Convert.ToInt32(this.lueCheDo.EditValue) == 2)
+                active = new bool?(true);
+
+            for (int i = 1; i <= this._blstTotalTranfer.Count; i++)
+            {
+                _blstTranferDetailDay = Converter.ConvertToBindingList<Objvw_TranferDetailDayWithID>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTranferDetailDay_ByCondition(null, null, i, null) as List<Objvw_TranferDetailDayWithID>);
+                _blstTranferDetailDayID.Add(_blstTranferDetailDay[0]);
+            }
+
+            FilterData();
+            BindingList<ObjTranferSummary> list = new BindingList<ObjTranferSummary>();
+            list.Clear();
+            list = Converter.ConvertToBindingList<ObjTranferSummary>(GroupAndSumTranferDetail(_blstTranferDetailDayID));
+            Invoke(new Action(() => UpdateUI_ID(list)));
+
+        }
+        public void FilterData()
+        {
+            bool? active = null;
+            if (Convert.ToInt32(this.lueCheDo.EditValue) == 1)
+                active = new bool?(false);
+            else if (Convert.ToInt32(this.lueCheDo.EditValue) == 2)
+                active = new bool?(true);
+
+            int? xeID = null;
+            if (Convert.ToInt32(this.lueBienSo.EditValue) != 0)
+                xeID = Convert.ToInt32(this.lueBienSo.EditValue);
+
+            var startDate = Searching.Build_StartDateTime(this.datFromDate.DateTime.AddDays(-1));
+            var endDate = Searching.Build_EndDateTime(this.datToDate.DateTime.AddDays(-1));
+
+            var filteredList = _blstTranferDetailDayID
+             .Where(item => item.NgayMeTron >= startDate &&
+             item.NgayMeTron <= endDate &&
+             (active == null || item.IsQueued == active) &&
+              (xeID == null || item.XeID == xeID))
+             .ToList();
+            _blstTranferDetailDayID.Clear();
+            foreach (var item in filteredList)
+            {
+                _blstTranferDetailDayID.Add(item);
+            }
         }
 
+        public List<ObjTranferSummary> GroupAndSumTranferDetail(BindingList<Objvw_TranferDetailDayWithID>tranferDetailDays)
+        {
+            var result = tranferDetailDays
+                .GroupBy(d => d.XeID)
+                .Select(g => new ObjTranferSummary
+                {
+
+                    XeID = g.Key,
+                    BienSo = g.First().BienSo,
+                    Total_Tranfer = g.Sum(x => x.Total_Tranfer),
+                    Total_KL = g.Sum(x => (decimal)x.Total_KL)
+                })
+                .ToList();
+
+            return result;
+        }
+        private void UpdateUI(BindingList<Objvw_TranferDetailDayWithID> result)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateUI(result)));
+                return;
+            }
+
+            this.grcTongChuyenXe.DataSource = result;
+        }
+        private void UpdateUI_ID(BindingList<ObjTranferSummary> result)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => UpdateUI_ID(result)));
+                return;
+            }
+            this.grcTongChuyenXe.DataSource = null;
+            this.grcTongChuyenXe.DataSource = result;
+        }
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             //LoadData();
-            Task.Run(() => LoadData());
+            //Task.Run(() => LoadData());
+            Task.Run(() => LoadData_DetailDay());
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)

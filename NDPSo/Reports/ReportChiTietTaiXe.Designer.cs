@@ -29,14 +29,16 @@ namespace NDPSo.Reports
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridGroupSummaryItem gridGroupSummaryItem3 = new DevExpress.XtraGrid.GridGroupSummaryItem();
+            DevExpress.XtraGrid.GridGroupSummaryItem gridGroupSummaryItem4 = new DevExpress.XtraGrid.GridGroupSummaryItem();
+            this.gcTotal_Tranfer = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTotal_KL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.grcChiTietTaiXe = new DevExpress.XtraGrid.GridControl();
             this.grvChiTietTaiXe = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcMaTaiXe = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcTenTaiXe = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcTotal_Tranfer = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcTotal_KL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lueCheDo = new DevExpress.XtraEditors.LookUpEdit();
@@ -54,24 +56,48 @@ namespace NDPSo.Reports
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcChiTietTaiXe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvChiTietTaiXe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCheDo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueTaiXe.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datToDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties.CalendarTimeProperties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // gcTotal_Tranfer
+            // 
+            this.gcTotal_Tranfer.Caption = "Tổng số chuyến";
+            this.gcTotal_Tranfer.FieldName = "Total_Tranfer";
+            this.gcTotal_Tranfer.GroupFormat.FormatString = "n2";
+            this.gcTotal_Tranfer.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gcTotal_Tranfer.Name = "gcTotal_Tranfer";
+            this.gcTotal_Tranfer.OptionsColumn.AllowFocus = false;
+            this.gcTotal_Tranfer.OptionsColumn.ReadOnly = true;
+            this.gcTotal_Tranfer.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total_Tranfer", "{0:0.##}")});
+            this.gcTotal_Tranfer.Visible = true;
+            this.gcTotal_Tranfer.VisibleIndex = 2;
+            // 
+            // gcTotal_KL
+            // 
+            this.gcTotal_KL.Caption = "Tổng khối lượng";
+            this.gcTotal_KL.FieldName = "Total_KL";
+            this.gcTotal_KL.GroupFormat.FormatString = "n2";
+            this.gcTotal_KL.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gcTotal_KL.Name = "gcTotal_KL";
+            this.gcTotal_KL.OptionsColumn.AllowFocus = false;
+            this.gcTotal_KL.OptionsColumn.ReadOnly = true;
+            this.gcTotal_KL.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total_KL", "{0:0.##}")});
+            this.gcTotal_KL.Visible = true;
+            this.gcTotal_KL.VisibleIndex = 3;
             // 
             // panelControl2
             // 
@@ -113,14 +139,24 @@ namespace NDPSo.Reports
             this.grvChiTietTaiXe.AppearancePrint.HeaderPanel.Options.UseFont = true;
             this.grvChiTietTaiXe.AppearancePrint.HeaderPanel.Options.UseForeColor = true;
             this.grvChiTietTaiXe.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcMaTaiXe,
+            //this.gcMaTaiXe,
             this.gcTenTaiXe,
             this.gcTotal_Tranfer,
             this.gcTotal_KL});
             this.grvChiTietTaiXe.GridControl = this.grcChiTietTaiXe;
+            gridGroupSummaryItem3.DisplayFormat = "Tổng CP:{0:0.##}";
+            gridGroupSummaryItem3.FieldName = "Sum_ValueCP";
+            gridGroupSummaryItem3.ShowInGroupColumnFooter = this.gcTotal_Tranfer;
+            gridGroupSummaryItem3.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridGroupSummaryItem3.Tag = "Sum_ValueCP";
+            gridGroupSummaryItem4.DisplayFormat = "Tổng Thực cân:{0:0.##}";
+            gridGroupSummaryItem4.FieldName = "Sum_ValueBat";
+            gridGroupSummaryItem4.ShowInGroupColumnFooter = this.gcTotal_KL;
+            gridGroupSummaryItem4.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            gridGroupSummaryItem4.Tag = "Sum_ValueBat";
             this.grvChiTietTaiXe.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueCP", this.gcTotal_Tranfer, "Tổng CP:{0:0.##}", "Sum_ValueCP"),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Sum_ValueBat", this.gcTotal_KL, "Tổng Thực cân:{0:0.##}", "Sum_ValueBat")});
+            gridGroupSummaryItem3,
+            gridGroupSummaryItem4});
             this.grvChiTietTaiXe.Name = "grvChiTietTaiXe";
             this.grvChiTietTaiXe.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.True;
             this.grvChiTietTaiXe.OptionsBehavior.AutoExpandAllGroups = true;
@@ -148,34 +184,6 @@ namespace NDPSo.Reports
             this.gcTenTaiXe.OptionsColumn.ReadOnly = true;
             this.gcTenTaiXe.Visible = true;
             this.gcTenTaiXe.VisibleIndex = 1;
-            // 
-            // gcTotal_Tranfer
-            // 
-            this.gcTotal_Tranfer.Caption = "Tổng số chuyến";
-            this.gcTotal_Tranfer.FieldName = "Total_Tranfer";
-            this.gcTotal_Tranfer.GroupFormat.FormatString = "n2";
-            this.gcTotal_Tranfer.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gcTotal_Tranfer.Name = "gcTotal_Tranfer";
-            this.gcTotal_Tranfer.OptionsColumn.AllowFocus = false;
-            this.gcTotal_Tranfer.OptionsColumn.ReadOnly = true;
-            this.gcTotal_Tranfer.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total_Tranfer", "{0:0.##}")});
-            this.gcTotal_Tranfer.Visible = true;
-            this.gcTotal_Tranfer.VisibleIndex = 2;
-            // 
-            // gcTotal_KL
-            // 
-            this.gcTotal_KL.Caption = "Tổng khối lượng";
-            this.gcTotal_KL.FieldName = "Total_KL";
-            this.gcTotal_KL.GroupFormat.FormatString = "n2";
-            this.gcTotal_KL.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.gcTotal_KL.Name = "gcTotal_KL";
-            this.gcTotal_KL.OptionsColumn.AllowFocus = false;
-            this.gcTotal_KL.OptionsColumn.ReadOnly = true;
-            this.gcTotal_KL.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total_KL", "{0:0.##}")});
-            this.gcTotal_KL.Visible = true;
-            this.gcTotal_KL.VisibleIndex = 3;
             // 
             // groupControl1
             // 
@@ -212,6 +220,9 @@ namespace NDPSo.Reports
             // 
             this.lueCheDo.Location = new System.Drawing.Point(112, 120);
             this.lueCheDo.Name = "lueCheDo";
+            // 
+            // 
+            // 
             this.lueCheDo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCheDo.Properties.Appearance.Options.UseFont = true;
             this.lueCheDo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -251,17 +262,19 @@ namespace NDPSo.Reports
             // 
             this.lueTaiXe.Location = new System.Drawing.Point(112, 90);
             this.lueTaiXe.Name = "lueTaiXe";
+            // 
+            // 
+            // 
             this.lueTaiXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueTaiXe.Properties.Appearance.Options.UseFont = true;
             this.lueTaiXe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueTaiXe.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterialID", "MaterialID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterialCode", "Mã Vật tư"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaterialName", "Tên Vật tư")});
-            this.lueTaiXe.Properties.DisplayMember = "MaterialName";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TaiXeID", "TaiXeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenTaiXe", "Tên Tài xế")});
+            this.lueTaiXe.Properties.DisplayMember = "TenTaiXe";
             this.lueTaiXe.Properties.NullText = "";
-            this.lueTaiXe.Properties.ValueMember = "MaterialID";
+            this.lueTaiXe.Properties.ValueMember = "TaiXeID";
             this.lueTaiXe.Size = new System.Drawing.Size(150, 22);
             this.lueTaiXe.TabIndex = 6;
             // 
@@ -287,13 +300,19 @@ namespace NDPSo.Reports
             // 
             // datToDate
             // 
-            this.datToDate.EditValue = null;
+            this.datToDate.EditValue = new System.DateTime(2024, 5, 20, 0, 0, 0, 0);
             this.datToDate.Location = new System.Drawing.Point(112, 60);
             this.datToDate.Name = "datToDate";
+            // 
+            // 
+            // 
             this.datToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datToDate.Properties.Appearance.Options.UseFont = true;
             this.datToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datToDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -306,13 +325,19 @@ namespace NDPSo.Reports
             // 
             // datFromDate
             // 
-            this.datFromDate.EditValue = null;
+            this.datFromDate.EditValue = new System.DateTime(2024, 5, 20, 0, 0, 0, 0);
             this.datFromDate.Location = new System.Drawing.Point(112, 30);
             this.datFromDate.Name = "datFromDate";
+            // 
+            // 
+            // 
             this.datFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datFromDate.Properties.Appearance.Options.UseFont = true;
             this.datFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datFromDate.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -388,7 +413,7 @@ namespace NDPSo.Reports
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.Location = new System.Drawing.Point(10, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(903, 50);
+            this.labelControl4.Size = new System.Drawing.Size(903, 0);
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "BÁO CÁO CHI TIẾT TÀI XẾ";
             // 
@@ -401,13 +426,10 @@ namespace NDPSo.Reports
             this.Name = "ReportChiTietTaiXe";
             this.Size = new System.Drawing.Size(913, 516);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcChiTietTaiXe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvChiTietTaiXe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCheDo.Properties)).EndInit();
@@ -418,7 +440,6 @@ namespace NDPSo.Reports
             ((System.ComponentModel.ISupportInitialize)(this.datFromDate.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

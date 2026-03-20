@@ -41,6 +41,10 @@ namespace NDPSo.EntityModel
             base.SaveChanges();
         }
 
+
+
+
+
         public virtual DbSet<bandwidth> bandwidths { get; set; }
         public virtual DbSet<CongTruong> CongTruongs { get; set; }
         public virtual DbSet<DuLieuTron> DuLieuTrons { get; set; }
@@ -68,7 +72,6 @@ namespace NDPSo.EntityModel
         public virtual DbSet<SEC_UserRole> SEC_UserRole { get; set; }
         public virtual DbSet<Silo> Silos { get; set; }
         public virtual DbSet<SysCodeGen> SysCodeGens { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiXe> TaiXes { get; set; }
         public virtual DbSet<TimerPara> TimerParas { get; set; }
         public virtual DbSet<TinhDoHutNuoc> TinhDoHutNuocs { get; set; }
@@ -79,21 +82,26 @@ namespace NDPSo.EntityModel
         public virtual DbSet<WeiSiloSaving> WeiSiloSavings { get; set; }
         public virtual DbSet<WeiSiloVisible> WeiSiloVisibles { get; set; }
         public virtual DbSet<Xe> Xes { get; set; }
-        public virtual DbSet<vw_Pivot_Ex> vw_Pivot_Ex { get; set; }
         public virtual DbSet<vw_Temp_Removing> vw_Temp_Removing { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<HangMuc> HangMucs { get; set; }
         public virtual DbSet<vw_PvSUMTotal> vw_PvSUMTotal { get; set; }
-        public virtual DbSet<vw_SumWeight> vw_SumWeight { get; set; }
         public virtual DbSet<vw_PvTotalMaterial> vw_PvTotalMaterial { get; set; }
         public virtual DbSet<vw_PvMaterialDetailDay> vw_PvMaterialDetailDay { get; set; }
         public virtual DbSet<vw_PvTranferDetailDay> vw_PvTranferDetailDay { get; set; }
         public virtual DbSet<vw_PvTotalTranfer> vw_PvTotalTranfer { get; set; }
         public virtual DbSet<vw_PvTotalDriver> vw_PvTotalDriver { get; set; }
         public virtual DbSet<vw_Infos> vw_Infos { get; set; }
-        public virtual DbSet<vw_InfoPT> vw_InfoPT { get; set; }
         public virtual DbSet<vw_DataMix> vw_DataMix { get; set; }
         public virtual DbSet<vw_PvtMTCT> vw_PvtMTCT { get; set; }
         public virtual DbSet<vw_PvTotalWeghit> vw_PvTotalWeghit { get; set; }
+        public virtual DbSet<vw_PvMaterialDetailDay_WithID> vw_PvMaterialDetailDay_WithID { get; set; }
+        public virtual DbSet<vw_PvDriverDetailDay_WithID> vw_PvDriverDetailDay_WithID { get; set; }
+        public virtual DbSet<vw_PvTranferDetailDay_WithID> vw_PvTranferDetailDay_WithID { get; set; }
+        public virtual DbSet<vw_InfoPT> vw_InfoPT { get; set; }
+        public virtual DbSet<vw_SumWeight> vw_SumWeight { get; set; }
+        public virtual DbSet<PhieuGiaoHang> PhieuGiaoHangs { get; set; }
+        public virtual DbSet<vw_SumWeighFolPT> vw_SumWeighFolPT { get; set; }
+        public virtual DbSet<MeTronChiTietGiaoHang> MeTronChiTietGiaoHangs { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace NDPSo.MasterData
         }
 
         public void ListPhieuTron() => this._iView.BLstPhieuTron = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.ListPhieuTron();
+        public void ListPhieuGiaoHang() => this._iView.BLstPhieuGiaoHang = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.ListPhieuGiaoHang();
 
         public void ListPhieuTron(
           string maPhieuTron,
@@ -27,13 +28,24 @@ namespace NDPSo.MasterData
         {
             this._iView.BLstPhieuTron = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.ListPhieuTron_ByCondition(maPhieuTron, fromDate, toDate, status, isQueued);
         }
+        public void ListPhieuGiaoHang(
+          string maPhieuTron,
+          DateTime fromDate,
+          DateTime toDate,
+          bool? isQueued)
+        {
+            this._iView.BLstPhieuGiaoHang = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.ListPhieuGiaoHang_ByCondition(maPhieuTron, fromDate, toDate, isQueued);
+        }
 
         public void SavePhieuTron(BindingList<ObjPhieuTron> blstCT) => this._iView.IsSuccessfulSaved = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.SavePhieuTron(blstCT);
+        public void SavePhieuGiaoHang(BindingList<ObjPhieuGiaoHang> blstCT) => this._iView.IsSuccessfulSaved = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.SavePhieuGiaoHang(blstCT);
 
         public void ListPhieuTronStatus() => this._iView.LstPhieuTronStatus = Converter.EnumToListFieldCode<Enums.PhieuTronStatus>(true);
         public void ListHopDong() => this._iView.BLstHopDong = MasterDataPresenter<IPhieuTronMngView>._iMasterDataModel.ListHopDong();
 
         public ObjPhieuTron GetPhieuTronByKey(int ptID) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.GetPhieuTronByKey(ptID);
+        public ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int ptID) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.GetPhieuGiaoHangByKey(ptID);
+        public ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string ptID) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.GetPhieuGiaoHangByCode(ptID);
 
         public ObjKhachHang GetKhachHangByKey(int khID) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.GetKhachHangByKey(khID);
         public ObjCongTruong GetCongTruongByKey(int ctID) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.GetCongTruongByKey(ctID);

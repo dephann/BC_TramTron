@@ -213,10 +213,12 @@ namespace NDPSo.ClientSetting
 		public IList<ObjMeTronChiTiet> ListMeTronChiTiet() => this._services.ListMeTronChiTiet();
 
 		public IList<ObjMeTronChiTiet> ListMeTronChiTietByPhieuTronID(int ptID) => this._services.ListMeTronChiTietByPhieuTronID(ptID);
+		public IList<ObjMeTronChiTietGiaoHang> ListMeTronChiTietGiaoHangByPhieuTronID(int ptID) => this._services.ListMeTronChiTietGiaoHangByPhieuTronID(ptID);
 
 		public bool SaveMeTronChiTiet(IList<ObjMeTronChiTiet> lstMTCT) => this._services.SaveMeTronChiTiet(lstMTCT);
 
 		public ObjMeTronChiTiet SaveMeTronChiTiet(ObjMeTronChiTiet objMTCT, int phieuTronID) => this._services.SaveMeTronChiTiet(objMTCT, phieuTronID);
+		public ObjMeTronChiTietGiaoHang SaveMeTronChiTietGiaoHang(ObjMeTronChiTietGiaoHang objMTCT, int phieuTronID) => this._services.SaveMeTronChiTietGiaoHang(objMTCT, phieuTronID);
 
 		public ObjNhomSilo GetNhomSiloByKey(int nsID) => this._services.GetNhomSiloByKey(nsID);
 
@@ -226,18 +228,22 @@ namespace NDPSo.ClientSetting
 
 
 		public ObjPhieuTron GetPhieuTronByKey(int ptID) => this._services.GetPhieuTronByKey(ptID);
+		public ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int ptID) => this._services.GetPhieuGiaoHangByKey(ptID);
 
 		public ObjPhieuTron GetPhieuTronByCode(string code) => this._services.GetPhieuTronByCode(code);
+		public ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string code) => this._services.GetPhieuGiaoHangByCode(code);
 
 		
 
 		public IList<ObjPhieuTron> ListPhieuTron() => this._services.ListPhieuTron();
+		public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang() => this._services.ListPhieuGiaoHang();
 
 		public IList<ObjPhieuTron> ListPhieuTron_ForTronOnline() => this._services.ListPhieuTron_ForTronOnline();
 
 		public IList<ObjPhieuTron> ListPhieuTron_ByStatus(int status) => this._services.ListPhieuTron_ByStatus(status);
 
 		public IList<ObjPhieuTron> ListPhieuTron_ByIsQueued(bool isQueued) => this._services.ListPhieuTron_ByIsQueued(isQueued);
+		public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByIsQueued(bool isQueued) => this._services.ListPhieuGiaoHang_ByIsQueued(isQueued);
 
 		public IList<ObjPhieuTron> ListPhieuTron_ByCondition(
 		  string maPhieuTron,
@@ -248,16 +254,26 @@ namespace NDPSo.ClientSetting
 		{
 			return this._services.ListPhieuTron_ByCondition(maPhieuTron, fromDate, toDate, status, isQueued);
 		}
+        public IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByCondition(
+          string maPhieuTron,
+          DateTime fromDate,
+          DateTime toDate,
+          bool? isQueued)
+        {
+            return this._services.ListPhieuGiaoHang_ByCondition(maPhieuTron, fromDate, toDate, isQueued);
+        }
 
-		public IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length) => this._services.ListMaPhieuTron_AutoComplete(strInput, length);
+        public IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length) => this._services.ListMaPhieuTron_AutoComplete(strInput, length);
 
 		public IList<ObjPhieuTron> ListPhieuTron_AutoComplete(string strInput, int? length) => this._services.ListPhieuTron_AutoComplete(strInput, length);
 
 		public bool SavePhieuTron(IList<ObjPhieuTron> lstPT) => this._services.SavePhieuTron(lstPT);
+		public bool SavePhieuGiaoHang(IList<ObjPhieuGiaoHang> lstPT) => this._services.SavePhieuGiaoHang(lstPT);
 
 		public bool AddOrAttachPhieuTron(ObjPhieuTron objPT) => this._services.AddOrAttachPhieuTron(objPT);
 
 		public bool UpdatePhieuTron(ObjPhieuTron objPT, decimal klThuc) => this._services.UpdatePhieuTron(objPT, klThuc);
+		public bool UpdatePhieuGiaoHang(ObjPhieuGiaoHang objPT, string klThuc) => this._services.UpdatePhieuGiaoHang(objPT, klThuc);
 
 		public bool ResolveUnfinishPhieuTron() => this._services.ResolveUnfinishPhieuTron();
 
@@ -377,9 +393,12 @@ namespace NDPSo.ClientSetting
 		public bool SaveNhanVienTronOnline(int id) => this._services.SaveNhanVienTronOnline(id);
 
 		public bool SaveTaiXeTronOnline(int id) => this._services.SaveTaiXeTronOnline(id);
+		public bool SaveTaiXeTronOnlinePhieuGiaoHang(string id) => this._services.SaveTaiXeTronOnlinePhieuGiaoHang(id);
 
 		public bool SaveXeTronOnline(int id) => this._services.SaveXeTronOnline(id);
+		public bool SaveXeTronOnlinePhieuGiaoHang(string id) => this._services.SaveXeTronOnlinePhieuGiaoHang(id);
 		public bool SaveNiemChiTronOnline(string niemchi) => this._services.SaveNiemChiTronOnline(niemchi);
+		public bool SaveNiemChiTronOnlinePhieuGiaoHang(string niemchi) => this._services.SaveNiemChiTronOnlinePhieuGiaoHang(niemchi);
 		public bool UpdateDoAmSiloOnlineBySiloID(int siloID, Decimal doAm) => this._services.UpdateDoAmSiloOnlineBySiloID(siloID, doAm);
 		public bool UpdateDoHutNuocSiloOnlineBySiloID(int siloID, Decimal doAm) => this._services.UpdateHutNuocSiloOnlineBySiloID(siloID, doAm);
 		//========================
@@ -443,16 +462,16 @@ namespace NDPSo.ClientSetting
 			return this._services.GetNextCode(strTblName);
 		}
 
-		public IList<Objvw_TotalMaterial> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
+		public IList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual)
 		{
 			return this._services.ListTotalMaterial_ByCondition(materialID, isManual);
 		}
-		public IList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
+		public IList<Objvw_MaterialDetailDayWithID> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual)
 		{
 			return this._services.ListMaterialDetailDay_ByCondition(fromDate, toDate, materialID, isManual);
 		}
 
-		public IList<Objvw_TranferDetailDay> ListTranferDetailDay_ByCondition(
+		public IList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(
 		  DateTime? fromDate,
 		  DateTime? toDate,
 		  int? xeID,
@@ -460,18 +479,28 @@ namespace NDPSo.ClientSetting
 		{
 			return this._services.ListTranferDetailDay_ByCondition(fromDate, toDate, xeID, isQueued);
 		}
-		public IList<Objvw_TotalTranfer> ListTotalTranfer_ByCondition(
+		public IList<Objvw_TranferDetailDayWithID> ListTotalTranfer_ByCondition(
 		  int? xeID,
 		  bool? isManual)
 		{
 			return this._services.ListTotalTranfer_ByCondition(xeID, isManual);
 		}
-		public IList<Objvw_TotalDriver> ListTotalDriver_ByCondition(
+		public IList<Objvw_DriverDetailDayWithID> ListTotalDriver_ByCondition(
 		  int? taixeID,
 		  bool? isManual)
 		{
 			return this._services.ListTotalDriver_ByCondition(taixeID, isManual);
 		}
-		private NDPTramTronServices _services;
+        public IList<Objvw_DriverDetailDayWithID> ListDriverDetailDay_ByCondition(
+          DateTime? fromDate,
+          DateTime? toDate,
+          int? taiXeID,
+          bool? isManual)
+        {
+            return this._services.ListDriverDetailDay_ByCondition(fromDate, toDate, taiXeID, isManual);
+        }
+
+
+        private NDPTramTronServices _services;
 	}
 }

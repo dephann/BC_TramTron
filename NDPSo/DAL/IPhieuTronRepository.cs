@@ -30,6 +30,7 @@ namespace NDPSo.DAL
         IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length);
 
         IList<PhieuTron> ListPhieuTron_AutoComplete(string strInput, int? length);
+    
     }
 }
 

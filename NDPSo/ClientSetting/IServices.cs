@@ -147,34 +147,45 @@ namespace NDPSo.ClientSetting
 
 
 		ObjPhieuTron GetPhieuTronByKey(int ctID);
+		ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int ctID);
 
 		ObjPhieuTron GetPhieuTronByCode(string code);
+		ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string code);
 		
 
 		IList<ObjPhieuTron> ListPhieuTron();
+		IList<ObjPhieuGiaoHang> ListPhieuGiaoHang();
 
 		IList<ObjPhieuTron> ListPhieuTron_ForTronOnline();
 
 		IList<ObjPhieuTron> ListPhieuTron_ByStatus(int status);
 
 		IList<ObjPhieuTron> ListPhieuTron_ByIsQueued(bool isQueued);
+        IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByIsQueued(bool isQueued);
 
-		IList<ObjPhieuTron> ListPhieuTron_ByCondition(
+        IList<ObjPhieuTron> ListPhieuTron_ByCondition(
 		  string maPhieuTron,
 		  DateTime fromDate,
 		  DateTime toDate,
 		  int? status,
 		  bool? isQueued);
+        IList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByCondition(
+          string maPhieuTron,
+          DateTime fromDate,
+          DateTime toDate,
+          bool? isQueued);
 
-		IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length);
+        IList<string> ListMaPhieuTron_AutoComplete(string strInput, int? length);
 
 		IList<ObjPhieuTron> ListPhieuTron_AutoComplete(string strInput, int? length);
 
 		bool SavePhieuTron(IList<ObjPhieuTron> lstPT);
+		bool SavePhieuGiaoHang(IList<ObjPhieuGiaoHang> lstPT);
 
 		bool AddOrAttachPhieuTron(ObjPhieuTron objPT);
 
 		bool UpdatePhieuTron(ObjPhieuTron objPT, decimal klThuc);
+		bool UpdatePhieuGiaoHang(ObjPhieuGiaoHang objPT, string klThuc);
 
 		bool ResolveUnfinishPhieuTron();
 
@@ -192,10 +203,12 @@ namespace NDPSo.ClientSetting
 		IList<ObjMeTronChiTiet> ListMeTronChiTiet();
 
 		IList<ObjMeTronChiTiet> ListMeTronChiTietByPhieuTronID(int ptID);
+		IList<ObjMeTronChiTietGiaoHang> ListMeTronChiTietGiaoHangByPhieuTronID(int ptID);
 
 		bool SaveMeTronChiTiet(IList<ObjMeTronChiTiet> lstCT);
 
 		ObjMeTronChiTiet SaveMeTronChiTiet(ObjMeTronChiTiet objMTCT, int phieuTronID);
+		ObjMeTronChiTietGiaoHang SaveMeTronChiTietGiaoHang(ObjMeTronChiTietGiaoHang objMTCT, int phieuTronID);
 
 		ObjNhomSilo GetNhomSiloByKey(int ctID);
 
@@ -304,10 +317,13 @@ namespace NDPSo.ClientSetting
 		bool SaveNhanVienTronOnline(int id);
 
 		bool SaveTaiXeTronOnline(int id);
+		bool SaveTaiXeTronOnlinePhieuGiaoHang(string id);
 
 		bool SaveXeTronOnline(int id);
+		bool SaveXeTronOnlinePhieuGiaoHang(string id);
 
 		bool SaveNiemChiTronOnline(string niemchi);
+		bool SaveNiemChiTronOnlinePhieuGiaoHang(string niemchi);
 		bool UpdateDoAmSiloOnlineBySiloID(int siloID, Decimal doAm);
 		bool UpdateDoHutNuocSiloOnlineBySiloID(int siloID, Decimal doAm);
 
@@ -324,11 +340,12 @@ namespace NDPSo.ClientSetting
 
 		ObjAggregationResult GetSumForIsQueuedAndTimeRange(DateTime? fromDate, DateTime? toDate, bool? mophong);
 		string GetNextCode(string strTblName);
-		IList<Objvw_TotalMaterial> ListTotalMaterial_ByCondition(int? materialID, bool? isManual);
-		IList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual);
-		IList<Objvw_TranferDetailDay> ListTranferDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? xeID, bool? isQueued);
-		IList<Objvw_TotalTranfer> ListTotalTranfer_ByCondition(int? xeID, bool? isManual);
-		IList<Objvw_TotalDriver> ListTotalDriver_ByCondition(int? taixeID, bool? isManual);
+		IList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual);
+		IList<Objvw_MaterialDetailDayWithID> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual);
+		IList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? xeID, bool? isQueued);
+		IList<Objvw_TranferDetailDayWithID> ListTotalTranfer_ByCondition(int? xeID, bool? isManual);
+		IList<Objvw_DriverDetailDayWithID> ListTotalDriver_ByCondition(int? taixeID, bool? isManual);
+		IList<Objvw_DriverDetailDayWithID> ListDriverDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? taixeID, bool? isManual);
 
 	}
 }

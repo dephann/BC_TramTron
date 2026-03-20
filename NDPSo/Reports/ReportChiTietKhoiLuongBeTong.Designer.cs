@@ -268,13 +268,13 @@ namespace NDPSo.Reports
             // gcTongKhoi
             // 
             this.gcTongKhoi.Caption = "Tổng khối";
-            this.gcTongKhoi.FieldName = "KLDuTinh";
+            this.gcTongKhoi.FieldName = "TongKhoiLuong";
             this.gcTongKhoi.MinWidth = 100;
             this.gcTongKhoi.Name = "gcTongKhoi";
             this.gcTongKhoi.OptionsColumn.AllowFocus = false;
             this.gcTongKhoi.OptionsColumn.ReadOnly = true;
             this.gcTongKhoi.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "KLDuTinh", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongKhoiLuong", "{0:0.##}")});
             this.gcTongKhoi.Visible = true;
             this.gcTongKhoi.VisibleIndex = 9;
             this.gcTongKhoi.Width = 100;
@@ -282,13 +282,13 @@ namespace NDPSo.Reports
             // gcSoMe
             // 
             this.gcSoMe.Caption = "Số mẻ";
-            this.gcSoMe.FieldName = "SLMeDuTinh";
+            this.gcSoMe.FieldName = "TongMeTron";
             this.gcSoMe.MinWidth = 100;
             this.gcSoMe.Name = "gcSoMe";
             this.gcSoMe.OptionsColumn.AllowFocus = false;
             this.gcSoMe.OptionsColumn.ReadOnly = true;
             this.gcSoMe.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SLMeDuTinh", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongMeTron", "{0:0.##}")});
             this.gcSoMe.Visible = true;
             this.gcSoMe.VisibleIndex = 10;
             this.gcSoMe.Width = 100;

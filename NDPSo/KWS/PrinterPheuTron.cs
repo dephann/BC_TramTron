@@ -109,6 +109,9 @@ namespace NDPSo.KWS
             }
         }
 
+        public BindingList<ObjPhieuGiaoHang> BLstPhieuGiaoHang { set => throw new NotImplementedException(); }
+        public BindingList<ObjMeTronChiTietGiaoHang> BLstMeTronChiTietGiaoHang { set => throw new NotImplementedException(); }
+
         private void SuccessfullySave(bool isSuccess)
         {
             if (!isSuccess)

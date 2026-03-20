@@ -25,6 +25,9 @@ namespace NDPSo.MasterData
         private byte _statusIO_12;
         private byte _statusIO_13;
         private byte _statusIO_14;
+        private byte _statusIO_15;
+        private byte _statusIO_16;
+        private byte _statusIO_17;
         private byte _statusIO_SAVE;
 
        //==========================================================================
@@ -227,6 +230,31 @@ namespace NDPSo.MasterData
         private bool _STT_MAN_AUT; //Bit 13.1
         private bool _STT_PAUSE; //Bit 13.2
         private bool _STT_CANCEL; //Bit 13.3
+
+        private bool _CAN_DU_AGG1; //Bit 13.4
+        private bool _CAN_DU_AGG2; //Bit 13.5
+        private bool _CAN_DU_AGG3; //Bit 13.6
+        private bool _CAN_DU_AGG4; //Bit 13.7
+        private bool _CAN_DU_AGG5; //Bit 14.0
+        private bool _CAN_DU_AGG6; //Bit 14.1
+        private bool _CAN_DU_CE1; //Bit 14.2
+        private bool _CAN_DU_CE2; //Bit 14.3
+        private bool _CAN_DU_CE3; //Bit 14.4
+        private bool _CAN_DU_CE4; //Bit 14.5
+        private bool _CAN_DU_CE5; //Bit 14.6
+        private bool _CAN_DU_WA1; //Bit 14.7
+        private bool _CAN_DU_WA2; //Bit 15.0
+        private bool _CAN_DU_ADD1; //Bit 15.1
+        private bool _Op_VanXa_Agg_1; //Bit 15.1
+        private bool _Op_VanXa_NoiTron; //Bit 15.1
+
+
+        private bool _Op_HeThong; //Bit 16.6  //TramLongAnCanDuoc
+        
+        private bool _Op_Gau; //Bit 16.7
+        private bool _Op_CuaNoi; //Bit 17.0
+        private bool _Op_NapLieuNoiTron; //Bit 17.1  //TramPHUOC
+
 
         //================================================================================
         ////======================================Byte 0=====================================
@@ -785,6 +813,8 @@ namespace NDPSo.MasterData
         private Double _ThoiGianThucXa; //296
         //=================================Pheu Cho
         private Double _PheuChoStatus; //300
+        private Double _ThoiGianThucTronUot; //300
+        private Double _KhoiLuongThucNoiTron; //300
 
         //================================================================================DB8 READ DATA REPORT
         //=====================================AGG
@@ -3639,6 +3669,230 @@ namespace NDPSo.MasterData
                 this._STT_CANCEL = value;
             }
         }
+        // NOTIFI CÂN DU
+        public bool CAN_DU_AGG1
+        {
+            get
+            {
+                return this._CAN_DU_AGG1;
+            }
+            set
+            {
+                this._CAN_DU_AGG1 = value;
+            }
+        }
+        public bool CAN_DU_AGG2
+        {
+            get
+            {
+                return this._CAN_DU_AGG2;
+            }
+            set
+            {
+                this._CAN_DU_AGG2 = value;
+            }
+        }
+        public bool CAN_DU_AGG3
+        {
+            get
+            {
+                return this._CAN_DU_AGG3;
+            }
+            set
+            {
+                this._CAN_DU_AGG3 = value;
+            }
+        }
+        public bool CAN_DU_AGG4
+        {
+            get
+            {
+                return this._CAN_DU_AGG4;
+            }
+            set
+            {
+                this._CAN_DU_AGG4 = value;
+            }
+        }
+        public bool CAN_DU_AGG5
+        {
+            get
+            {
+                return this._CAN_DU_AGG5;
+            }
+            set
+            {
+                this._CAN_DU_AGG5 = value;
+            }
+        }
+        public bool CAN_DU_AGG6
+        {
+            get
+            {
+                return this._CAN_DU_AGG6;
+            }
+            set
+            {
+                this._CAN_DU_AGG6 = value;
+            }
+        }
+        public bool CAN_DU_CE1
+        {
+            get
+            {
+                return this._CAN_DU_CE1;
+            }
+            set
+            {
+                this._CAN_DU_CE1 = value;
+            }
+        }
+        public bool CAN_DU_CE2
+        {
+            get
+            {
+                return this._CAN_DU_CE2;
+            }
+            set
+            {
+                this._CAN_DU_CE2 = value;
+            }
+        }
+        public bool CAN_DU_CE3
+        {
+            get
+            {
+                return this._CAN_DU_CE3;
+            }
+            set
+            {
+                this._CAN_DU_CE3 = value;
+            }
+        }
+        public bool CAN_DU_CE4
+        {
+            get
+            {
+                return this._CAN_DU_CE4;
+            }
+            set
+            {
+                this._CAN_DU_CE4 = value;
+            }
+        }
+        public bool CAN_DU_CE5
+        {
+            get
+            {
+                return this._CAN_DU_CE5;
+            }
+            set
+            {
+                this._CAN_DU_CE5 = value;
+            }
+        }
+        public bool CAN_DU_WA1
+        {
+            get
+            {
+                return this._CAN_DU_WA1;
+            }
+            set
+            {
+                this._CAN_DU_WA1 = value;
+            }
+        }
+        public bool CAN_DU_WA2
+        {
+            get
+            {
+                return this._CAN_DU_WA2;
+            }
+            set
+            {
+                this._CAN_DU_WA2 = value;
+            }
+        }
+        public bool CAN_DU_ADD1
+        {
+            get
+            {
+                return this._CAN_DU_ADD1;
+            }
+            set
+            {
+                this._CAN_DU_ADD1 = value;
+            }
+        }
+        public bool Op_VanXa_Agg_1
+        {
+            get
+            {
+                return this._Op_VanXa_Agg_1;
+            }
+            set
+            {
+                this._Op_VanXa_Agg_1 = value;
+            }
+        }
+        public bool Op_VanXa_NoiTron
+        {
+            get
+            {
+                return this._Op_VanXa_NoiTron;
+            }
+            set
+            {
+                this._Op_VanXa_NoiTron = value;
+            }
+        }
+       
+        
+        //Add Tram CanDuoc LongAn
+        public bool Op_HeThong
+        {
+            get
+            {
+                return this._Op_HeThong;
+            }
+            set
+            {
+                this._Op_HeThong = value;
+            }
+        }
+        public bool Op_NapLieuNoiTron
+        {
+            get
+            {
+                return this._Op_NapLieuNoiTron;
+            }
+            set
+            {
+                this._Op_NapLieuNoiTron = value;
+            }
+        }
+        public bool Op_Gau
+        {
+            get
+            {
+                return this._Op_Gau;
+            }
+            set
+            {
+                this._Op_Gau = value;
+            }
+        }
+        public bool Op_CuaNoi
+        {
+            get
+            {
+                return this._Op_CuaNoi;
+            }
+            set
+            {
+                this._Op_CuaNoi = value;
+            }
+        }
 
         //============================================================DB6 READCALIB WEIGHT
 
@@ -5335,6 +5589,28 @@ namespace NDPSo.MasterData
                 this._PheuChoStatus = value;
             }
         }
+        public Double ThoiGianThucTronUot
+        {
+            get
+            {
+                return this._ThoiGianThucTronUot;
+            }
+            set
+            {
+                this._ThoiGianThucTronUot = value;
+            }
+        }
+        public Double KhoiLuongThucNoiTron
+        {
+            get
+            {
+                return this._KhoiLuongThucNoiTron;
+            }
+            set
+            {
+                this._KhoiLuongThucNoiTron = value;
+            }
+        }
 
         //================================================================DB8
 
@@ -5799,11 +6075,11 @@ namespace NDPSo.MasterData
                 Op_TinHieu_NoiTron = bitArray[0];
                 Op_TinHieu_BangTaiXien = bitArray[1];
                 Op_TinHieu_BangTaiCan = bitArray[2];
-                Op_TinHieu_GauLen = bitArray[3];
-                Op_TinHieu_GauXuong = bitArray[4];
-                Op_TinHieu_GauTren = bitArray[5];
-                Op_TinHieu_GauCho = bitArray[6];
-                Op_TinHieu_GauDuoi = bitArray[7];
+                Op_TinHieu_CuaNoiDong = bitArray[3];
+                Op_TinHieu_CuaNoiMo = bitArray[4];
+                Op_TinHieu_PheuChoDong = bitArray[5];
+                Op_TinHieu_PheuChoMo = bitArray[6];
+                Op_Van_MoCuaNoi = bitArray[7];
             }
         }
 
@@ -5814,14 +6090,15 @@ namespace NDPSo.MasterData
             {
                 this._statusIO_01 = value;
                 BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_01);
-                Op_TinHieu_GauAnToan = bitArray[0];
-                Op_TinHieu_CuaNoiDong = bitArray[1];
-                Op_TinHieu_CuaNoi_1p2 = bitArray[2];
-                Op_TinHieu_CuaNoiMo = bitArray[3];
-                Op_TinHieu_PheuChoDong = bitArray[4];
-                Op_TinHieu_PheuChoMo = bitArray[5];
-                Op_Van_MoCuaNoi = bitArray[6];
-                Op_Van_DongCuaNoi = bitArray[7];
+                Op_Van_DongCuaNoi = bitArray[0];
+                Op_Van_XaPheuCho = bitArray[1];
+                Op_VanCan_XiMang_1 = bitArray[2];
+                Op_VanXa_PheuCan_XiMang_1 = bitArray[3];
+                Op_VanCan_Nuoc_1 = bitArray[4];
+                Op_VanXa_PheuCan_Nuoc_1 = bitArray[5];
+                Op_VanCan_PhuGia_1 = bitArray[6];
+                Op_VanXa_PheuCan_PhuGia_1 = bitArray[7];
+
             }
         }
 
@@ -5831,14 +6108,14 @@ namespace NDPSo.MasterData
             {
                 this._statusIO_02 = value;
                 BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_02);
-                Op_Van_XaPheuCho = bitArray[0];
-                Op_VanCan_XiMang_1 = bitArray[1];
-                Op_VanCan_XiMang_2 = bitArray[2];
-                Op_VanCan_XiMang_3 = bitArray[3];
-                Op_VanXa_PheuCan_XiMang_1 = bitArray[4];
-                Op_VanCan_XiMang_4 = bitArray[5];
-                Op_VanCan_XiMang_5 = bitArray[6];
-                Op_VanXa_PheuCan_XiMang_2 = bitArray[7];
+                Op_VanCan_Agg_1_1 = bitArray[0];
+                Op_VanCan_Agg_1_2 = bitArray[1];
+                Op_RungPheuCho = bitArray[2];
+                Op_RungPheuCan_XiMang_1 = bitArray[3];
+                Op_RungPheuCan_CotLieu_1 = bitArray[4];
+                Temple = bitArray[5];
+                Temple = bitArray[6];
+                Temple = bitArray[7];
             }
         }
         public byte StatusIO_03
@@ -5847,14 +6124,15 @@ namespace NDPSo.MasterData
             {
                 this._statusIO_03 = value;
                 BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_03);
-                Op_VanCan_Nuoc_1 = bitArray[0];
-                Op_VanXa_PheuCan_Nuoc_1 = bitArray[1];
-                Op_VanCan_Nuoc_2 = bitArray[2];
-                Op_VanXa_PheuCan_Nuoc_2 = bitArray[3];
-                Op_VanCan_PhuGia_1 = bitArray[4];
-                Op_VanCan_PhuGia_2 = bitArray[5];
-                Op_VanCan_PhuGia_3 = bitArray[6];
-                Op_VanXa_PheuCan_PhuGia_1 = bitArray[7];
+                Op_RUNNING = bitArray[0];
+                Op_SIMULATION = bitArray[1];
+                Op_MIXER_FULL = bitArray[2];
+                Op_TTC_AGG1 = bitArray[3];
+                Op_TTC_SILO1 = bitArray[4];
+                Op_TTC_WA1 = bitArray[5];
+                Op_TTC_ADD1 = bitArray[6];
+                Op_THDC_WAGG1 = bitArray[7];
+
             }
         }
         public byte StatusIO_04
@@ -5863,14 +6141,14 @@ namespace NDPSo.MasterData
             {
                 this._statusIO_04 = value;
                 BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_04);
-                Op_VanCan_PhuGia_4 = bitArray[0];
-                Op_VanCan_PhuGia_5 = bitArray[1];
-                Op_VanCan_PhuGia_6 = bitArray[2];
-                Op_VanXa_PheuCan_PhuGia_2 = bitArray[3];
-                Op_VanCan_Agg_1_1 = bitArray[4];
-                Op_VanCan_Agg_1_2 = bitArray[5];
-                Op_VanXa_PheuCan_Agg_1 = bitArray[6];
-                Op_VanCan_Agg_2_1 = bitArray[7];
+                Op_THDC_WCE1 = bitArray[0];
+                Op_THDC_WWA1 = bitArray[1];
+                Op_THDC_WADD1 = bitArray[2];
+                STT_MAN_AUT = bitArray[3];
+                STT_PAUSE = bitArray[4];
+                STT_CANCEL = bitArray[5];
+                CAN_DU_AGG1 = bitArray[6];
+                CAN_DU_CE1 = bitArray[7];
             }
         }
         public byte StatusIO_05
@@ -5879,162 +6157,17 @@ namespace NDPSo.MasterData
             {
                 this._statusIO_05 = value;
                 BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_05);
-                Op_VanCan_Agg_2_2 = bitArray[0];
-                Op_VanXa_PheuCan_Agg_2 = bitArray[1];
-                Op_VanCan_Agg_3_1 = bitArray[2];
-                Op_VanCan_Agg_3_2 = bitArray[3];
-                Op_VanXa_PheuCan_Agg_3 = bitArray[4];
-                Op_VanCan_Agg_4_1 = bitArray[5];
-                Op_VanCan_Agg_4_2 = bitArray[6];
-                Op_VanXa_PheuCan_Agg_4 = bitArray[7];
-            }
-        }
-        public byte StatusIO_06
-        {
-            set
-            {
-                this._statusIO_06 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_06);
-                Op_VanCan_Agg_5_1 = bitArray[0];
-                Op_VanCan_Agg_5_2 = bitArray[1];
-                _Op_VanXa_PheuCan_Agg_5 = bitArray[2];
-                Op_VanCan_Agg_6_1 = bitArray[3];
-                Op_VanCan_Agg_6_2 = bitArray[4];
-                Op_VanXa_PheuCan_Agg_6 = bitArray[5];
-                Op_RungPheuCho = bitArray[6];
-                Op_RungPheuCan_XiMang_1 = bitArray[7];
-            }
-        }
-        public byte StatusIO_07
-        {
-            set
-            {
-                this._statusIO_07 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_07);
-                Op_RungPheuCan_XiMang_2 = bitArray[0];
-                Op_RungPheuCan_CotLieu_3 = bitArray[1];
-                Op_RungPheuCan_CotLieu_4 = bitArray[2];
-                Op_RungPheuCan_CotLieu_5 = bitArray[3];
-                Op_RungPheuCan_CotLieu_6 = bitArray[4];
-                Op_VanSutKhi_Silo_1 = bitArray[5];
-                Op_VanSutKhi_Silo_2 = bitArray[6];
-                Op_VanSutKhi_Silo_3 = bitArray[7];
-            }
-        }
-        public byte StatusIO_08
-        {
-            set
-            {
-                this._statusIO_08 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_08);
-                Op_VanSutKhi_Silo_4 = bitArray[0];
-                Op_VanSutKhi_Silo_5 = bitArray[1];
-                Op_RungPheuCan_CotLieu_1 = bitArray[2];
-                Op_RungPheuCan_CotLieu_2 = bitArray[3];
-                Temple = bitArray[4];
-                Temple = bitArray[5];
-                Temple = bitArray[6];
-                Op_RUNNING = bitArray[7];
-            }
-        }
-
-        public byte StatusIO_09
-        {
-            set
-            {
-                this._statusIO_09 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_09);
-                Op_SIMULATION = bitArray[0];
-                Op_MIXER_FULL = bitArray[1];
-                Op_TTC_AGG1 = bitArray[2];
-                Op_TTC_AGG2 = bitArray[3];
-                Op_TTC_AGG3 = bitArray[4];
-                Op_TTC_AGG4 = bitArray[5];
-                Op_TTC_AGG5 = bitArray[6];
-                Op_TTC_AGG6 = bitArray[7];
-            }
-        }
-        public byte StatusIO_10
-        {
-            set
-            {
-                this._statusIO_10 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_10);
-                Op_TTC_SILO1 = bitArray[0];
-                Op_TTC_SILO2 = bitArray[1];
-                Op_TTC_SILO3 = bitArray[2];
-                Op_TTC_SILO4 = bitArray[3];
-                Op_TTC_SILO5 = bitArray[4];
-                Op_TTC_WA1 = bitArray[5];
-                Op_TTC_WA2 = bitArray[6];
-                Op_TTC_ADD1 = bitArray[7];
-            }
-        }
-        public byte StatusIO_11
-        {
-            set
-            {
-                this._statusIO_11 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_11);
-                Op_TTC_ADD2 = bitArray[0];
-                Op_TTC_ADD3 = bitArray[1];
-                Op_TTC_ADD4 = bitArray[2];
-                Op_TTC_ADD5 = bitArray[3];
-                Op_TTC_ADD6 = bitArray[4];
-                Op_THDC_WAGG1 = bitArray[5];
-                Op_THDC_WAGG2 = bitArray[6];
-                Op_THDC_WAGG3 = bitArray[7];
-            }
-        }
-
-        public byte StatusIO_12
-        {
-            set
-            {
-                this._statusIO_12 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_12);
-                Op_THDC_WAGG4 = bitArray[0];
-                Op_THDC_WAGG5 = bitArray[1];
-                Op_THDC_WAGG6 = bitArray[2];
-                Op_THDC_WCE1 = bitArray[3];
-                Op_THDC_WCE2 = bitArray[4];
-                Op_THDC_WWA1 = bitArray[5];
-                Op_THDC_WWA2 = bitArray[6];
-                Op_THDC_WADD1 = bitArray[7];
-            }
-        }
-        public byte StatusIO_13
-        {
-            set
-            {
-                this._statusIO_13 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_13);
-                Op_THDC_WADD2 = bitArray[0];
-                STT_MAN_AUT = bitArray[1];
-                STT_PAUSE = bitArray[2];
-                STT_CANCEL = bitArray[3];
-                Temple = bitArray[4];
-                Temple = bitArray[5];
-                Temple = bitArray[6];
-                Temple = bitArray[7];
-            }
-        }
-        public byte StatusIO_14
-        {
-            set
-            {
-                this._statusIO_14 = value;
-                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_14);
-                Temple = bitArray[0];
-                Temple = bitArray[1];
+                CAN_DU_WA1 = bitArray[0];
+                CAN_DU_ADD1 = bitArray[1];
                 Temple = bitArray[2];
                 Temple = bitArray[3];
-                Temple = bitArray[4];
-                Temple = bitArray[5];
+                Op_VanXa_PheuCan_Agg_1 = bitArray[4];
+                Op_VanXa_NoiTron = bitArray[5];
                 Temple = bitArray[6];
                 Temple = bitArray[7];
             }
         }
+
 
         public byte StatusIO_SAVE
         {

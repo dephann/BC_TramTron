@@ -15,7 +15,6 @@ namespace NDPSo.MasterData.TronOnlineView.UserControls
         private Bitmap _color_Click;
         private Bitmap _color_NoClick;
         private bool _isOn;
-        private TrangThai _trangThai;
         public event DelButtonEventHandler ButtonClick;
         public delegate void DelButtonEventHandler(object sender, EventArgs e);
         public bool IsOn
@@ -42,35 +41,8 @@ namespace NDPSo.MasterData.TronOnlineView.UserControls
                 this._color_NoClick = value;
             }
         }
-        public enum TrangThai
-        {
-            Run,
-            Stop
-        }
-        public TrangThai IsTrangThai
-        {
-            get => this._trangThai;
-            set
-            {
-                _trangThai = value;
-                switch (this._trangThai)
-                {
-                    case TrangThai.Run:
-                        {
-                            this.BackgroundImage = Color_Click;
-                            IsOn = false;
-                            break;
-                        }
-
-                    case TrangThai.Stop:
-                        {
-                            this.BackgroundImage = Color_NoClick;
-                            IsOn = true;
-                            break;
-                        }
-                }
-            }
-        }
+        
+        
         public UcBtnReset()
         {
             InitializeComponent();

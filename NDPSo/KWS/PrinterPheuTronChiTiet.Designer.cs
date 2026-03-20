@@ -42,10 +42,6 @@ namespace NDPSo.KWS
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.grcPhieuTron = new DevExpress.XtraGrid.GridControl();
             this.grvPhieuTron = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcMaPhieuTron = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcNgayPhieuTron = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcViewMaHopDong = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.txtGioKTTron = new DevExpress.XtraEditors.TextEdit();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
@@ -89,104 +85,64 @@ namespace NDPSo.KWS
             this.grcPhieuTronChiTiet = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcNL = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTheTich = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Agg1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand9 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand10 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Agg2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand11 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand13 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Agg3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg_3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand15 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg3_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Agg4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand14 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg_4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand16 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg4_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Agg5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand17 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg_5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand18 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg5_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Agg6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand19 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg_6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand20 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Agg6_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Ce1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand23 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand22 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Ce2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand25 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand26 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Ce3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand28 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce_3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand30 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce3_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Ce4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand31 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce_4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand32 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce4_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Ce5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand34 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce_5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand35 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Ce5_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Wa1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand37 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Wa_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand38 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Wa1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Wa2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand40 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Wa_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand41 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Wa2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Add1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand43 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_ADD_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand44 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Add1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Add2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand46 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_ADD_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand47 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Add2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Add3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand49 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_ADD_3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand50 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Add3_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Add4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand52 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_ADD_4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand53 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Add4_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Add5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand55 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_ADD_5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand56 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Add5_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Add6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand58 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_ADD_6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand59 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcPV_Add6_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.spin_numberOfCopies = new DevExpress.XtraEditors.SpinEdit();
             this.label1 = new System.Windows.Forms.Label();
@@ -196,63 +152,104 @@ namespace NDPSo.KWS
             this.grcTotalMaterial = new DevExpress.XtraGrid.GridControl();
             this.bandedGridView2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.Total_Agg1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Agg1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Agg2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Agg2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Agg3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Agg3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Agg4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Agg4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Agg5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Agg5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Agg6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Agg6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Ce1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Ce1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Ce2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Ce2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Ce3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Ce3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Ce4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Ce4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Ce5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Ce5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Wa1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Wa1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Wa2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Wa2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Add1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Add1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Add2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Add2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Add3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Add3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Add4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Add4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Add5 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Add5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.Total_Add6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gcTotal_Add6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand60 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.gcTotal_Agg1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Agg2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Agg3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Agg4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Agg5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Agg6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Ce1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Ce2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Ce3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Ce4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Ce5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Wa1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Wa2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Add1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Add2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Add3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Add4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Add5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTotal_Add6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcNL = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcTheTich = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg_3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg3_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg_4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg4_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg_5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg5_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg_6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Agg6_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce_3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce3_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce_4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce4_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce_5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Ce5_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Wa_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Wa1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Wa_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Wa2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_ADD_1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Add1_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_ADD_2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Add2_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_ADD_3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Add3_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_ADD_4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Add4_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_ADD_5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Add5_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_ADD_6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcPV_Add6_Manual = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gcMaPhieuTron = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcNgayPhieuTron = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcViewMaHopDong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tseFromTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookupEditPrinters.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datDenNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTron)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
-            this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoPhieu.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtXe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaiXe.Properties)).BeginInit();
@@ -270,14 +267,11 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKhachHang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grChiTietMeTron)).BeginInit();
-            this.grChiTietMeTron.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTronChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
-            this.groupControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcTotalMaterial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView2)).BeginInit();
             this.SuspendLayout();
@@ -304,6 +298,9 @@ namespace NDPSo.KWS
             this.tseToTime.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseToTime.Location = new System.Drawing.Point(471, 37);
             this.tseToTime.Name = "tseToTime";
+            // 
+            // 
+            // 
             this.tseToTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseToTime.Properties.Appearance.Options.UseFont = true;
             this.tseToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -316,6 +313,9 @@ namespace NDPSo.KWS
             this.tseFromTime.EditValue = System.TimeSpan.Parse("00:00:00");
             this.tseFromTime.Location = new System.Drawing.Point(216, 37);
             this.tseFromTime.Name = "tseFromTime";
+            // 
+            // 
+            // 
             this.tseFromTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tseFromTime.Properties.Appearance.Options.UseFont = true;
             this.tseFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -338,6 +338,9 @@ namespace NDPSo.KWS
             // 
             this.lookupEditPrinters.Location = new System.Drawing.Point(831, 39);
             this.lookupEditPrinters.Name = "lookupEditPrinters";
+            // 
+            // 
+            // 
             this.lookupEditPrinters.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookupEditPrinters.Properties.NullText = "";
@@ -358,13 +361,18 @@ namespace NDPSo.KWS
             // 
             // datDenNgay
             // 
-            this.datDenNgay.EditValue = null;
             this.datDenNgay.Location = new System.Drawing.Point(365, 37);
             this.datDenNgay.Name = "datDenNgay";
+            // 
+            // 
+            // 
             this.datDenNgay.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datDenNgay.Properties.Appearance.Options.UseFont = true;
             this.datDenNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datDenNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datDenNgay.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -377,13 +385,18 @@ namespace NDPSo.KWS
             // 
             // datTuNgay
             // 
-            this.datTuNgay.EditValue = null;
             this.datTuNgay.Location = new System.Drawing.Point(110, 37);
             this.datTuNgay.Name = "datTuNgay";
+            // 
+            // 
+            // 
             this.datTuNgay.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datTuNgay.Properties.Appearance.Options.UseFont = true;
             this.datTuNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datTuNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datTuNgay.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -450,47 +463,6 @@ namespace NDPSo.KWS
             this.grvPhieuTron.OptionsView.ShowGroupPanel = false;
             this.grvPhieuTron.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grvPhieuTron_FocusedRowChanged);
             // 
-            // gcMaPhieuTron
-            // 
-            this.gcMaPhieuTron.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gcMaPhieuTron.AppearanceCell.Options.UseFont = true;
-            this.gcMaPhieuTron.Caption = "Mã Phiếu";
-            this.gcMaPhieuTron.FieldName = "MaPhieuTron";
-            this.gcMaPhieuTron.Name = "gcMaPhieuTron";
-            this.gcMaPhieuTron.OptionsColumn.AllowEdit = false;
-            this.gcMaPhieuTron.OptionsColumn.AllowFocus = false;
-            this.gcMaPhieuTron.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "MaPhieuTron", "{0}")});
-            this.gcMaPhieuTron.Visible = true;
-            this.gcMaPhieuTron.VisibleIndex = 0;
-            // 
-            // gcNgayPhieuTron
-            // 
-            this.gcNgayPhieuTron.Caption = "Ngày Tạo Phiếu";
-            this.gcNgayPhieuTron.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-            this.gcNgayPhieuTron.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.gcNgayPhieuTron.FieldName = "NgayPhieuTron";
-            this.gcNgayPhieuTron.Name = "gcNgayPhieuTron";
-            this.gcNgayPhieuTron.OptionsColumn.AllowEdit = false;
-            this.gcNgayPhieuTron.OptionsColumn.AllowFocus = false;
-            this.gcNgayPhieuTron.Visible = true;
-            this.gcNgayPhieuTron.VisibleIndex = 1;
-            // 
-            // gcViewMaHopDong
-            // 
-            this.gcViewMaHopDong.Caption = "Mã Hợp Đồng";
-            this.gcViewMaHopDong.FieldName = "HopDongID";
-            this.gcViewMaHopDong.Name = "gcViewMaHopDong";
-            this.gcViewMaHopDong.OptionsColumn.AllowEdit = false;
-            this.gcViewMaHopDong.OptionsColumn.AllowFocus = false;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Tên Khách hàng";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.OptionsColumn.AllowFocus = false;
-            // 
             // groupControl4
             // 
             this.groupControl4.Controls.Add(this.txtGioKTTron);
@@ -541,6 +513,9 @@ namespace NDPSo.KWS
             // 
             this.txtGioKTTron.Location = new System.Drawing.Point(721, 57);
             this.txtGioKTTron.Name = "txtGioKTTron";
+            // 
+            // 
+            // 
             this.txtGioKTTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGioKTTron.Properties.Appearance.Options.UseFont = true;
             this.txtGioKTTron.Size = new System.Drawing.Size(73, 20);
@@ -560,6 +535,9 @@ namespace NDPSo.KWS
             // 
             this.txtSoPhieu.Location = new System.Drawing.Point(577, 111);
             this.txtSoPhieu.Name = "txtSoPhieu";
+            // 
+            // 
+            // 
             this.txtSoPhieu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSoPhieu.Properties.Appearance.Options.UseFont = true;
             this.txtSoPhieu.Size = new System.Drawing.Size(217, 20);
@@ -571,19 +549,23 @@ namespace NDPSo.KWS
             this.labelControl20.Appearance.Options.UseFont = true;
             this.labelControl20.Location = new System.Drawing.Point(496, 114);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(75, 14);
             this.labelControl20.TabIndex = 43;
             this.labelControl20.Text = "Số Phiếu trộn";
             // 
             // datNgayTron
             // 
-            this.datNgayTron.EditValue = null;
             this.datNgayTron.Location = new System.Drawing.Point(577, 30);
             this.datNgayTron.Name = "datNgayTron";
+            // 
+            // 
+            // 
             this.datNgayTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.datNgayTron.Properties.Appearance.Options.UseFont = true;
             this.datNgayTron.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            // 
+            // 
+            // 
             this.datNgayTron.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datNgayTron.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
@@ -598,6 +580,9 @@ namespace NDPSo.KWS
             // 
             this.txtGioTron.Location = new System.Drawing.Point(577, 57);
             this.txtGioTron.Name = "txtGioTron";
+            // 
+            // 
+            // 
             this.txtGioTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGioTron.Properties.Appearance.Options.UseFont = true;
             this.txtGioTron.Size = new System.Drawing.Size(73, 20);
@@ -617,6 +602,9 @@ namespace NDPSo.KWS
             // 
             this.txtXe.Location = new System.Drawing.Point(316, 165);
             this.txtXe.Name = "txtXe";
+            // 
+            // 
+            // 
             this.txtXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtXe.Properties.Appearance.Options.UseFont = true;
             this.txtXe.Size = new System.Drawing.Size(160, 20);
@@ -626,6 +614,9 @@ namespace NDPSo.KWS
             // 
             this.txtTaiXe.Location = new System.Drawing.Point(90, 165);
             this.txtTaiXe.Name = "txtTaiXe";
+            // 
+            // 
+            // 
             this.txtTaiXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTaiXe.Properties.Appearance.Options.UseFont = true;
             this.txtTaiXe.Size = new System.Drawing.Size(160, 20);
@@ -655,6 +646,9 @@ namespace NDPSo.KWS
             // 
             this.txtHangMuc.Location = new System.Drawing.Point(90, 84);
             this.txtHangMuc.Name = "txtHangMuc";
+            // 
+            // 
+            // 
             this.txtHangMuc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHangMuc.Properties.Appearance.Options.UseFont = true;
             this.txtHangMuc.Size = new System.Drawing.Size(386, 20);
@@ -674,6 +668,9 @@ namespace NDPSo.KWS
             // 
             this.txtDiaDiem.Location = new System.Drawing.Point(90, 111);
             this.txtDiaDiem.Name = "txtDiaDiem";
+            // 
+            // 
+            // 
             this.txtDiaDiem.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDiaDiem.Properties.Appearance.Options.UseFont = true;
             this.txtDiaDiem.Size = new System.Drawing.Size(386, 20);
@@ -693,6 +690,9 @@ namespace NDPSo.KWS
             // 
             this.txtLuyKe.Location = new System.Drawing.Point(577, 219);
             this.txtLuyKe.Name = "txtLuyKe";
+            // 
+            // 
+            // 
             this.txtLuyKe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLuyKe.Properties.Appearance.Options.UseFont = true;
             this.txtLuyKe.Size = new System.Drawing.Size(217, 20);
@@ -712,6 +712,9 @@ namespace NDPSo.KWS
             // 
             this.txtKhoiLuongDatHang.Location = new System.Drawing.Point(577, 165);
             this.txtKhoiLuongDatHang.Name = "txtKhoiLuongDatHang";
+            // 
+            // 
+            // 
             this.txtKhoiLuongDatHang.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKhoiLuongDatHang.Properties.Appearance.Options.UseFont = true;
             this.txtKhoiLuongDatHang.Size = new System.Drawing.Size(217, 20);
@@ -731,6 +734,9 @@ namespace NDPSo.KWS
             // 
             this.txtTheTich.Location = new System.Drawing.Point(577, 192);
             this.txtTheTich.Name = "txtTheTich";
+            // 
+            // 
+            // 
             this.txtTheTich.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTheTich.Properties.Appearance.Options.UseFont = true;
             this.txtTheTich.Size = new System.Drawing.Size(217, 20);
@@ -750,6 +756,9 @@ namespace NDPSo.KWS
             // 
             this.txtDoSut.Location = new System.Drawing.Point(316, 219);
             this.txtDoSut.Name = "txtDoSut";
+            // 
+            // 
+            // 
             this.txtDoSut.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDoSut.Properties.Appearance.Options.UseFont = true;
             this.txtDoSut.Size = new System.Drawing.Size(160, 20);
@@ -779,6 +788,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenMAC.Location = new System.Drawing.Point(90, 192);
             this.txtTenMAC.Name = "txtTenMAC";
+            // 
+            // 
+            // 
             this.txtTenMAC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenMAC.Properties.Appearance.Options.UseFont = true;
             this.txtTenMAC.Size = new System.Drawing.Size(386, 20);
@@ -798,6 +810,9 @@ namespace NDPSo.KWS
             // 
             this.txtNguoiTron.Location = new System.Drawing.Point(90, 138);
             this.txtNguoiTron.Name = "txtNguoiTron";
+            // 
+            // 
+            // 
             this.txtNguoiTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNguoiTron.Properties.Appearance.Options.UseFont = true;
             this.txtNguoiTron.Size = new System.Drawing.Size(386, 20);
@@ -807,6 +822,9 @@ namespace NDPSo.KWS
             // 
             this.txtNiemChi.Location = new System.Drawing.Point(577, 138);
             this.txtNiemChi.Name = "txtNiemChi";
+            // 
+            // 
+            // 
             this.txtNiemChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNiemChi.Properties.Appearance.Options.UseFont = true;
             this.txtNiemChi.Size = new System.Drawing.Size(217, 20);
@@ -816,6 +834,9 @@ namespace NDPSo.KWS
             // 
             this.txtCuongDo.Location = new System.Drawing.Point(90, 219);
             this.txtCuongDo.Name = "txtCuongDo";
+            // 
+            // 
+            // 
             this.txtCuongDo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCuongDo.Properties.Appearance.Options.UseFont = true;
             this.txtCuongDo.Size = new System.Drawing.Size(160, 20);
@@ -825,6 +846,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenCongTruong.Location = new System.Drawing.Point(90, 57);
             this.txtTenCongTruong.Name = "txtTenCongTruong";
+            // 
+            // 
+            // 
             this.txtTenCongTruong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenCongTruong.Properties.Appearance.Options.UseFont = true;
             this.txtTenCongTruong.Size = new System.Drawing.Size(386, 20);
@@ -834,6 +858,9 @@ namespace NDPSo.KWS
             // 
             this.txtTenKhachHang.Location = new System.Drawing.Point(90, 30);
             this.txtTenKhachHang.Name = "txtTenKhachHang";
+            // 
+            // 
+            // 
             this.txtTenKhachHang.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenKhachHang.Properties.Appearance.Options.UseFont = true;
             this.txtTenKhachHang.Size = new System.Drawing.Size(386, 20);
@@ -843,6 +870,9 @@ namespace NDPSo.KWS
             // 
             this.txtMaPhieuTron.Location = new System.Drawing.Point(577, 84);
             this.txtMaPhieuTron.Name = "txtMaPhieuTron";
+            // 
+            // 
+            // 
             this.txtMaPhieuTron.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaPhieuTron.Properties.Appearance.Options.UseFont = true;
             this.txtMaPhieuTron.Size = new System.Drawing.Size(217, 20);
@@ -1011,17 +1041,6 @@ namespace NDPSo.KWS
             this.gridBand1.Name = "gridBand1";
             this.gridBand1.VisibleIndex = 0;
             // 
-            // gcNL
-            // 
-            this.gcNL.Caption = "N.L";
-            this.gcNL.FieldName = "LnNo";
-            this.gcNL.MinWidth = 40;
-            this.gcNL.Name = "gcNL";
-            this.gcNL.OptionsColumn.AllowFocus = false;
-            this.gcNL.OptionsColumn.ReadOnly = true;
-            this.gcNL.Visible = true;
-            this.gcNL.Width = 70;
-            // 
             // gridBand2
             // 
             this.gridBand2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -1030,17 +1049,6 @@ namespace NDPSo.KWS
             this.gridBand2.Columns.Add(this.gcTheTich);
             this.gridBand2.Name = "gridBand2";
             this.gridBand2.VisibleIndex = 1;
-            // 
-            // gcTheTich
-            // 
-            this.gcTheTich.Caption = "Thể tích";
-            this.gcTheTich.FieldName = "KLTungMe";
-            this.gcTheTich.MinWidth = 40;
-            this.gcTheTich.Name = "gcTheTich";
-            this.gcTheTich.OptionsColumn.AllowFocus = false;
-            this.gcTheTich.OptionsColumn.ReadOnly = true;
-            this.gcTheTich.Visible = true;
-            this.gcTheTich.Width = 70;
             // 
             // Agg1
             // 
@@ -1064,16 +1072,6 @@ namespace NDPSo.KWS
             this.gridBand9.VisibleIndex = 0;
             this.gridBand9.Width = 75;
             // 
-            // gcPV_Agg_1
-            // 
-            this.gcPV_Agg_1.Caption = "PV_Agg1";
-            this.gcPV_Agg_1.FieldName = "PV_Agg1";
-            this.gcPV_Agg_1.MinWidth = 50;
-            this.gcPV_Agg_1.Name = "gcPV_Agg_1";
-            this.gcPV_Agg_1.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg_1.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg_1.Visible = true;
-            // 
             // gridBand10
             // 
             this.gridBand10.Caption = "Thực cân tay";
@@ -1081,16 +1079,6 @@ namespace NDPSo.KWS
             this.gridBand10.Name = "gridBand10";
             this.gridBand10.VisibleIndex = 1;
             this.gridBand10.Width = 75;
-            // 
-            // gcPV_Agg1_Manual
-            // 
-            this.gcPV_Agg1_Manual.Caption = "PV_Agg1_Manual";
-            this.gcPV_Agg1_Manual.FieldName = "PV_Agg1_Manual";
-            this.gcPV_Agg1_Manual.MinWidth = 50;
-            this.gcPV_Agg1_Manual.Name = "gcPV_Agg1_Manual";
-            this.gcPV_Agg1_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg1_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg1_Manual.Visible = true;
             // 
             // Agg2
             // 
@@ -1114,16 +1102,6 @@ namespace NDPSo.KWS
             this.gridBand11.VisibleIndex = 0;
             this.gridBand11.Width = 75;
             // 
-            // gcPV_Agg_2
-            // 
-            this.gcPV_Agg_2.Caption = "PV_Agg2";
-            this.gcPV_Agg_2.FieldName = "PV_Agg2";
-            this.gcPV_Agg_2.MinWidth = 50;
-            this.gcPV_Agg_2.Name = "gcPV_Agg_2";
-            this.gcPV_Agg_2.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg_2.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg_2.Visible = true;
-            // 
             // gridBand13
             // 
             this.gridBand13.Caption = "Thực cân tay";
@@ -1131,16 +1109,6 @@ namespace NDPSo.KWS
             this.gridBand13.Name = "gridBand13";
             this.gridBand13.VisibleIndex = 1;
             this.gridBand13.Width = 75;
-            // 
-            // gcPV_Agg2_Manual
-            // 
-            this.gcPV_Agg2_Manual.Caption = "PV_Agg2_Manual";
-            this.gcPV_Agg2_Manual.FieldName = "PV_Agg2_Manual";
-            this.gcPV_Agg2_Manual.MinWidth = 50;
-            this.gcPV_Agg2_Manual.Name = "gcPV_Agg2_Manual";
-            this.gcPV_Agg2_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg2_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg2_Manual.Visible = true;
             // 
             // Agg3
             // 
@@ -1164,16 +1132,6 @@ namespace NDPSo.KWS
             this.gridBand12.VisibleIndex = 0;
             this.gridBand12.Width = 75;
             // 
-            // gcPV_Agg_3
-            // 
-            this.gcPV_Agg_3.Caption = "PV_Agg3";
-            this.gcPV_Agg_3.FieldName = "PV_Agg3";
-            this.gcPV_Agg_3.MinWidth = 50;
-            this.gcPV_Agg_3.Name = "gcPV_Agg_3";
-            this.gcPV_Agg_3.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg_3.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg_3.Visible = true;
-            // 
             // gridBand15
             // 
             this.gridBand15.Caption = "Thực cân tay";
@@ -1181,16 +1139,6 @@ namespace NDPSo.KWS
             this.gridBand15.Name = "gridBand15";
             this.gridBand15.VisibleIndex = 1;
             this.gridBand15.Width = 75;
-            // 
-            // gcPV_Agg3_Manual
-            // 
-            this.gcPV_Agg3_Manual.Caption = "PV_Agg3_Manual";
-            this.gcPV_Agg3_Manual.FieldName = "PV_Agg3_Manual";
-            this.gcPV_Agg3_Manual.MinWidth = 50;
-            this.gcPV_Agg3_Manual.Name = "gcPV_Agg3_Manual";
-            this.gcPV_Agg3_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg3_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg3_Manual.Visible = true;
             // 
             // Agg4
             // 
@@ -1214,16 +1162,6 @@ namespace NDPSo.KWS
             this.gridBand14.VisibleIndex = 0;
             this.gridBand14.Width = 75;
             // 
-            // gcPV_Agg_4
-            // 
-            this.gcPV_Agg_4.Caption = "PV_Agg4";
-            this.gcPV_Agg_4.FieldName = "PV_Agg4";
-            this.gcPV_Agg_4.MinWidth = 50;
-            this.gcPV_Agg_4.Name = "gcPV_Agg_4";
-            this.gcPV_Agg_4.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg_4.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg_4.Visible = true;
-            // 
             // gridBand16
             // 
             this.gridBand16.Caption = "Thực cân tay";
@@ -1231,16 +1169,6 @@ namespace NDPSo.KWS
             this.gridBand16.Name = "gridBand16";
             this.gridBand16.VisibleIndex = 1;
             this.gridBand16.Width = 75;
-            // 
-            // gcPV_Agg4_Manual
-            // 
-            this.gcPV_Agg4_Manual.Caption = "PV_Agg4_Manual";
-            this.gcPV_Agg4_Manual.FieldName = "PV_Agg4_Manual";
-            this.gcPV_Agg4_Manual.MinWidth = 50;
-            this.gcPV_Agg4_Manual.Name = "gcPV_Agg4_Manual";
-            this.gcPV_Agg4_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg4_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg4_Manual.Visible = true;
             // 
             // Agg5
             // 
@@ -1264,16 +1192,6 @@ namespace NDPSo.KWS
             this.gridBand17.VisibleIndex = 0;
             this.gridBand17.Width = 75;
             // 
-            // gcPV_Agg_5
-            // 
-            this.gcPV_Agg_5.Caption = "PV_Agg5";
-            this.gcPV_Agg_5.FieldName = "PV_Agg5";
-            this.gcPV_Agg_5.MinWidth = 50;
-            this.gcPV_Agg_5.Name = "gcPV_Agg_5";
-            this.gcPV_Agg_5.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg_5.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg_5.Visible = true;
-            // 
             // gridBand18
             // 
             this.gridBand18.Caption = "Thực cân tay";
@@ -1281,16 +1199,6 @@ namespace NDPSo.KWS
             this.gridBand18.Name = "gridBand18";
             this.gridBand18.VisibleIndex = 1;
             this.gridBand18.Width = 75;
-            // 
-            // gcPV_Agg5_Manual
-            // 
-            this.gcPV_Agg5_Manual.Caption = "PV_Agg5_Manual";
-            this.gcPV_Agg5_Manual.FieldName = "PV_Agg5_Manual";
-            this.gcPV_Agg5_Manual.MinWidth = 50;
-            this.gcPV_Agg5_Manual.Name = "gcPV_Agg5_Manual";
-            this.gcPV_Agg5_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg5_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg5_Manual.Visible = true;
             // 
             // Agg6
             // 
@@ -1314,16 +1222,6 @@ namespace NDPSo.KWS
             this.gridBand19.VisibleIndex = 0;
             this.gridBand19.Width = 75;
             // 
-            // gcPV_Agg_6
-            // 
-            this.gcPV_Agg_6.Caption = "PV_Agg6";
-            this.gcPV_Agg_6.FieldName = "PV_Agg6";
-            this.gcPV_Agg_6.MinWidth = 50;
-            this.gcPV_Agg_6.Name = "gcPV_Agg_6";
-            this.gcPV_Agg_6.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg_6.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg_6.Visible = true;
-            // 
             // gridBand20
             // 
             this.gridBand20.Caption = "Thực cân tay";
@@ -1331,16 +1229,6 @@ namespace NDPSo.KWS
             this.gridBand20.Name = "gridBand20";
             this.gridBand20.VisibleIndex = 1;
             this.gridBand20.Width = 75;
-            // 
-            // gcPV_Agg6_Manual
-            // 
-            this.gcPV_Agg6_Manual.Caption = "PV_Agg6_Manual";
-            this.gcPV_Agg6_Manual.FieldName = "PV_Agg6_Manual";
-            this.gcPV_Agg6_Manual.MinWidth = 50;
-            this.gcPV_Agg6_Manual.Name = "gcPV_Agg6_Manual";
-            this.gcPV_Agg6_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Agg6_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Agg6_Manual.Visible = true;
             // 
             // Ce1
             // 
@@ -1364,16 +1252,6 @@ namespace NDPSo.KWS
             this.gridBand23.VisibleIndex = 0;
             this.gridBand23.Width = 75;
             // 
-            // gcPV_Ce_1
-            // 
-            this.gcPV_Ce_1.Caption = "PV_Ce1";
-            this.gcPV_Ce_1.FieldName = "PV_Ce1";
-            this.gcPV_Ce_1.MinWidth = 50;
-            this.gcPV_Ce_1.Name = "gcPV_Ce_1";
-            this.gcPV_Ce_1.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce_1.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce_1.Visible = true;
-            // 
             // gridBand22
             // 
             this.gridBand22.Caption = "Thực cân tay";
@@ -1381,16 +1259,6 @@ namespace NDPSo.KWS
             this.gridBand22.Name = "gridBand22";
             this.gridBand22.VisibleIndex = 1;
             this.gridBand22.Width = 75;
-            // 
-            // gcPV_Ce1_Manual
-            // 
-            this.gcPV_Ce1_Manual.Caption = "PV_Ce1_Manual";
-            this.gcPV_Ce1_Manual.FieldName = "PV_Ce1_Manual";
-            this.gcPV_Ce1_Manual.MinWidth = 50;
-            this.gcPV_Ce1_Manual.Name = "gcPV_Ce1_Manual";
-            this.gcPV_Ce1_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce1_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce1_Manual.Visible = true;
             // 
             // Ce2
             // 
@@ -1414,16 +1282,6 @@ namespace NDPSo.KWS
             this.gridBand25.VisibleIndex = 0;
             this.gridBand25.Width = 75;
             // 
-            // gcPV_Ce_2
-            // 
-            this.gcPV_Ce_2.Caption = "PV_Ce2";
-            this.gcPV_Ce_2.FieldName = "PV_Ce2";
-            this.gcPV_Ce_2.MinWidth = 50;
-            this.gcPV_Ce_2.Name = "gcPV_Ce_2";
-            this.gcPV_Ce_2.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce_2.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce_2.Visible = true;
-            // 
             // gridBand26
             // 
             this.gridBand26.Caption = "Thực cân tay";
@@ -1431,16 +1289,6 @@ namespace NDPSo.KWS
             this.gridBand26.Name = "gridBand26";
             this.gridBand26.VisibleIndex = 1;
             this.gridBand26.Width = 75;
-            // 
-            // gcPV_Ce2_Manual
-            // 
-            this.gcPV_Ce2_Manual.Caption = "PV_Ce2_Manual";
-            this.gcPV_Ce2_Manual.FieldName = "PV_Ce2_Manual";
-            this.gcPV_Ce2_Manual.MinWidth = 50;
-            this.gcPV_Ce2_Manual.Name = "gcPV_Ce2_Manual";
-            this.gcPV_Ce2_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce2_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce2_Manual.Visible = true;
             // 
             // Ce3
             // 
@@ -1464,16 +1312,6 @@ namespace NDPSo.KWS
             this.gridBand28.VisibleIndex = 0;
             this.gridBand28.Width = 75;
             // 
-            // gcPV_Ce_3
-            // 
-            this.gcPV_Ce_3.Caption = "PV_Ce3";
-            this.gcPV_Ce_3.FieldName = "PV_Ce3";
-            this.gcPV_Ce_3.MinWidth = 50;
-            this.gcPV_Ce_3.Name = "gcPV_Ce_3";
-            this.gcPV_Ce_3.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce_3.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce_3.Visible = true;
-            // 
             // gridBand30
             // 
             this.gridBand30.Caption = "Thực cân tay";
@@ -1481,16 +1319,6 @@ namespace NDPSo.KWS
             this.gridBand30.Name = "gridBand30";
             this.gridBand30.VisibleIndex = 1;
             this.gridBand30.Width = 75;
-            // 
-            // gcPV_Ce3_Manual
-            // 
-            this.gcPV_Ce3_Manual.Caption = "PV_Ce3_Manual";
-            this.gcPV_Ce3_Manual.FieldName = "PV_Ce3_Manual";
-            this.gcPV_Ce3_Manual.MinWidth = 50;
-            this.gcPV_Ce3_Manual.Name = "gcPV_Ce3_Manual";
-            this.gcPV_Ce3_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce3_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce3_Manual.Visible = true;
             // 
             // Ce4
             // 
@@ -1514,16 +1342,6 @@ namespace NDPSo.KWS
             this.gridBand31.VisibleIndex = 0;
             this.gridBand31.Width = 75;
             // 
-            // gcPV_Ce_4
-            // 
-            this.gcPV_Ce_4.Caption = "PV_Ce4";
-            this.gcPV_Ce_4.FieldName = "PV_Ce4";
-            this.gcPV_Ce_4.MinWidth = 50;
-            this.gcPV_Ce_4.Name = "gcPV_Ce_4";
-            this.gcPV_Ce_4.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce_4.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce_4.Visible = true;
-            // 
             // gridBand32
             // 
             this.gridBand32.Caption = "Thực cân tay";
@@ -1531,16 +1349,6 @@ namespace NDPSo.KWS
             this.gridBand32.Name = "gridBand32";
             this.gridBand32.VisibleIndex = 1;
             this.gridBand32.Width = 75;
-            // 
-            // gcPV_Ce4_Manual
-            // 
-            this.gcPV_Ce4_Manual.Caption = "PV_Ce4_Manual";
-            this.gcPV_Ce4_Manual.FieldName = "PV_Ce4_Manual";
-            this.gcPV_Ce4_Manual.MinWidth = 50;
-            this.gcPV_Ce4_Manual.Name = "gcPV_Ce4_Manual";
-            this.gcPV_Ce4_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce4_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce4_Manual.Visible = true;
             // 
             // Ce5
             // 
@@ -1564,16 +1372,6 @@ namespace NDPSo.KWS
             this.gridBand34.VisibleIndex = 0;
             this.gridBand34.Width = 75;
             // 
-            // gcPV_Ce_5
-            // 
-            this.gcPV_Ce_5.Caption = "PV_Ce5";
-            this.gcPV_Ce_5.FieldName = "PV_Ce5";
-            this.gcPV_Ce_5.MinWidth = 50;
-            this.gcPV_Ce_5.Name = "gcPV_Ce_5";
-            this.gcPV_Ce_5.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce_5.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce_5.Visible = true;
-            // 
             // gridBand35
             // 
             this.gridBand35.Caption = "Thực cân tay";
@@ -1581,16 +1379,6 @@ namespace NDPSo.KWS
             this.gridBand35.Name = "gridBand35";
             this.gridBand35.VisibleIndex = 1;
             this.gridBand35.Width = 75;
-            // 
-            // gcPV_Ce5_Manual
-            // 
-            this.gcPV_Ce5_Manual.Caption = "PV_Ce5_Manual";
-            this.gcPV_Ce5_Manual.FieldName = "PV_Ce5_Manual";
-            this.gcPV_Ce5_Manual.MinWidth = 50;
-            this.gcPV_Ce5_Manual.Name = "gcPV_Ce5_Manual";
-            this.gcPV_Ce5_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Ce5_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Ce5_Manual.Visible = true;
             // 
             // Wa1
             // 
@@ -1614,16 +1402,6 @@ namespace NDPSo.KWS
             this.gridBand37.VisibleIndex = 0;
             this.gridBand37.Width = 75;
             // 
-            // gcPV_Wa_1
-            // 
-            this.gcPV_Wa_1.Caption = "PV_Wa1";
-            this.gcPV_Wa_1.FieldName = "PV_Wa1";
-            this.gcPV_Wa_1.MinWidth = 50;
-            this.gcPV_Wa_1.Name = "gcPV_Wa_1";
-            this.gcPV_Wa_1.OptionsColumn.AllowFocus = false;
-            this.gcPV_Wa_1.OptionsColumn.ReadOnly = true;
-            this.gcPV_Wa_1.Visible = true;
-            // 
             // gridBand38
             // 
             this.gridBand38.Caption = "Thực cân tay";
@@ -1631,16 +1409,6 @@ namespace NDPSo.KWS
             this.gridBand38.Name = "gridBand38";
             this.gridBand38.VisibleIndex = 1;
             this.gridBand38.Width = 75;
-            // 
-            // gcPV_Wa1_Manual
-            // 
-            this.gcPV_Wa1_Manual.Caption = "PV_Wa1_Manual";
-            this.gcPV_Wa1_Manual.FieldName = "PV_Wa1_Manual";
-            this.gcPV_Wa1_Manual.MinWidth = 50;
-            this.gcPV_Wa1_Manual.Name = "gcPV_Wa1_Manual";
-            this.gcPV_Wa1_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Wa1_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Wa1_Manual.Visible = true;
             // 
             // Wa2
             // 
@@ -1664,16 +1432,6 @@ namespace NDPSo.KWS
             this.gridBand40.VisibleIndex = 0;
             this.gridBand40.Width = 75;
             // 
-            // gcPV_Wa_2
-            // 
-            this.gcPV_Wa_2.Caption = "PV_Wa2";
-            this.gcPV_Wa_2.FieldName = "PV_Wa2";
-            this.gcPV_Wa_2.MinWidth = 50;
-            this.gcPV_Wa_2.Name = "gcPV_Wa_2";
-            this.gcPV_Wa_2.OptionsColumn.AllowFocus = false;
-            this.gcPV_Wa_2.OptionsColumn.ReadOnly = true;
-            this.gcPV_Wa_2.Visible = true;
-            // 
             // gridBand41
             // 
             this.gridBand41.Caption = "Thực cân tay";
@@ -1681,16 +1439,6 @@ namespace NDPSo.KWS
             this.gridBand41.Name = "gridBand41";
             this.gridBand41.VisibleIndex = 1;
             this.gridBand41.Width = 75;
-            // 
-            // gcPV_Wa2_Manual
-            // 
-            this.gcPV_Wa2_Manual.Caption = "PV_Wa2_Manual";
-            this.gcPV_Wa2_Manual.FieldName = "PV_Wa2_Manual";
-            this.gcPV_Wa2_Manual.MinWidth = 50;
-            this.gcPV_Wa2_Manual.Name = "gcPV_Wa2_Manual";
-            this.gcPV_Wa2_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Wa2_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Wa2_Manual.Visible = true;
             // 
             // Add1
             // 
@@ -1714,16 +1462,6 @@ namespace NDPSo.KWS
             this.gridBand43.VisibleIndex = 0;
             this.gridBand43.Width = 75;
             // 
-            // gcPV_ADD_1
-            // 
-            this.gcPV_ADD_1.Caption = "PV_Add1";
-            this.gcPV_ADD_1.FieldName = "PV_Add1";
-            this.gcPV_ADD_1.MinWidth = 50;
-            this.gcPV_ADD_1.Name = "gcPV_ADD_1";
-            this.gcPV_ADD_1.OptionsColumn.AllowFocus = false;
-            this.gcPV_ADD_1.OptionsColumn.ReadOnly = true;
-            this.gcPV_ADD_1.Visible = true;
-            // 
             // gridBand44
             // 
             this.gridBand44.Caption = "Thực cân tay";
@@ -1731,16 +1469,6 @@ namespace NDPSo.KWS
             this.gridBand44.Name = "gridBand44";
             this.gridBand44.VisibleIndex = 1;
             this.gridBand44.Width = 75;
-            // 
-            // gcPV_Add1_Manual
-            // 
-            this.gcPV_Add1_Manual.Caption = "PV_Add1_Manual";
-            this.gcPV_Add1_Manual.FieldName = "PV_Add1_Manual";
-            this.gcPV_Add1_Manual.MinWidth = 50;
-            this.gcPV_Add1_Manual.Name = "gcPV_Add1_Manual";
-            this.gcPV_Add1_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Add1_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Add1_Manual.Visible = true;
             // 
             // Add2
             // 
@@ -1764,16 +1492,6 @@ namespace NDPSo.KWS
             this.gridBand46.VisibleIndex = 0;
             this.gridBand46.Width = 75;
             // 
-            // gcPV_ADD_2
-            // 
-            this.gcPV_ADD_2.Caption = "PV_Add2";
-            this.gcPV_ADD_2.FieldName = "PV_Add2";
-            this.gcPV_ADD_2.MinWidth = 50;
-            this.gcPV_ADD_2.Name = "gcPV_ADD_2";
-            this.gcPV_ADD_2.OptionsColumn.AllowFocus = false;
-            this.gcPV_ADD_2.OptionsColumn.ReadOnly = true;
-            this.gcPV_ADD_2.Visible = true;
-            // 
             // gridBand47
             // 
             this.gridBand47.Caption = "Thực cân tay";
@@ -1781,16 +1499,6 @@ namespace NDPSo.KWS
             this.gridBand47.Name = "gridBand47";
             this.gridBand47.VisibleIndex = 1;
             this.gridBand47.Width = 75;
-            // 
-            // gcPV_Add2_Manual
-            // 
-            this.gcPV_Add2_Manual.Caption = "PV_Add2_Manual";
-            this.gcPV_Add2_Manual.FieldName = "PV_Add2_Manual";
-            this.gcPV_Add2_Manual.MinWidth = 50;
-            this.gcPV_Add2_Manual.Name = "gcPV_Add2_Manual";
-            this.gcPV_Add2_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Add2_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Add2_Manual.Visible = true;
             // 
             // Add3
             // 
@@ -1814,16 +1522,6 @@ namespace NDPSo.KWS
             this.gridBand49.VisibleIndex = 0;
             this.gridBand49.Width = 75;
             // 
-            // gcPV_ADD_3
-            // 
-            this.gcPV_ADD_3.Caption = "PV_Add3";
-            this.gcPV_ADD_3.FieldName = "PV_Add3";
-            this.gcPV_ADD_3.MinWidth = 50;
-            this.gcPV_ADD_3.Name = "gcPV_ADD_3";
-            this.gcPV_ADD_3.OptionsColumn.AllowFocus = false;
-            this.gcPV_ADD_3.OptionsColumn.ReadOnly = true;
-            this.gcPV_ADD_3.Visible = true;
-            // 
             // gridBand50
             // 
             this.gridBand50.Caption = "Thực cân tay";
@@ -1831,16 +1529,6 @@ namespace NDPSo.KWS
             this.gridBand50.Name = "gridBand50";
             this.gridBand50.VisibleIndex = 1;
             this.gridBand50.Width = 75;
-            // 
-            // gcPV_Add3_Manual
-            // 
-            this.gcPV_Add3_Manual.Caption = "PV_Add3_Manual";
-            this.gcPV_Add3_Manual.FieldName = "PV_Add3_Manual";
-            this.gcPV_Add3_Manual.MinWidth = 50;
-            this.gcPV_Add3_Manual.Name = "gcPV_Add3_Manual";
-            this.gcPV_Add3_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Add3_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Add3_Manual.Visible = true;
             // 
             // Add4
             // 
@@ -1864,16 +1552,6 @@ namespace NDPSo.KWS
             this.gridBand52.VisibleIndex = 0;
             this.gridBand52.Width = 75;
             // 
-            // gcPV_ADD_4
-            // 
-            this.gcPV_ADD_4.Caption = "PV_Add4";
-            this.gcPV_ADD_4.FieldName = "PV_Add4";
-            this.gcPV_ADD_4.MinWidth = 50;
-            this.gcPV_ADD_4.Name = "gcPV_ADD_4";
-            this.gcPV_ADD_4.OptionsColumn.AllowFocus = false;
-            this.gcPV_ADD_4.OptionsColumn.ReadOnly = true;
-            this.gcPV_ADD_4.Visible = true;
-            // 
             // gridBand53
             // 
             this.gridBand53.Caption = "Thực cân tay";
@@ -1881,16 +1559,6 @@ namespace NDPSo.KWS
             this.gridBand53.Name = "gridBand53";
             this.gridBand53.VisibleIndex = 1;
             this.gridBand53.Width = 75;
-            // 
-            // gcPV_Add4_Manual
-            // 
-            this.gcPV_Add4_Manual.Caption = "PV_Add4_Manual";
-            this.gcPV_Add4_Manual.FieldName = "PV_Add4_Manual";
-            this.gcPV_Add4_Manual.MinWidth = 50;
-            this.gcPV_Add4_Manual.Name = "gcPV_Add4_Manual";
-            this.gcPV_Add4_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Add4_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Add4_Manual.Visible = true;
             // 
             // Add5
             // 
@@ -1914,16 +1582,6 @@ namespace NDPSo.KWS
             this.gridBand55.VisibleIndex = 0;
             this.gridBand55.Width = 75;
             // 
-            // gcPV_ADD_5
-            // 
-            this.gcPV_ADD_5.Caption = "PV_Add5";
-            this.gcPV_ADD_5.FieldName = "PV_Add5";
-            this.gcPV_ADD_5.MinWidth = 50;
-            this.gcPV_ADD_5.Name = "gcPV_ADD_5";
-            this.gcPV_ADD_5.OptionsColumn.AllowFocus = false;
-            this.gcPV_ADD_5.OptionsColumn.ReadOnly = true;
-            this.gcPV_ADD_5.Visible = true;
-            // 
             // gridBand56
             // 
             this.gridBand56.Caption = "Thực cân tay";
@@ -1931,16 +1589,6 @@ namespace NDPSo.KWS
             this.gridBand56.Name = "gridBand56";
             this.gridBand56.VisibleIndex = 1;
             this.gridBand56.Width = 75;
-            // 
-            // gcPV_Add5_Manual
-            // 
-            this.gcPV_Add5_Manual.Caption = "PV_Add5_Manual";
-            this.gcPV_Add5_Manual.FieldName = "PV_Add5_Manual";
-            this.gcPV_Add5_Manual.MinWidth = 50;
-            this.gcPV_Add5_Manual.Name = "gcPV_Add5_Manual";
-            this.gcPV_Add5_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Add5_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Add5_Manual.Visible = true;
             // 
             // Add6
             // 
@@ -1964,16 +1612,6 @@ namespace NDPSo.KWS
             this.gridBand58.VisibleIndex = 0;
             this.gridBand58.Width = 75;
             // 
-            // gcPV_ADD_6
-            // 
-            this.gcPV_ADD_6.Caption = "PV_Add6";
-            this.gcPV_ADD_6.FieldName = "PV_Add6";
-            this.gcPV_ADD_6.MinWidth = 50;
-            this.gcPV_ADD_6.Name = "gcPV_ADD_6";
-            this.gcPV_ADD_6.OptionsColumn.AllowFocus = false;
-            this.gcPV_ADD_6.OptionsColumn.ReadOnly = true;
-            this.gcPV_ADD_6.Visible = true;
-            // 
             // gridBand59
             // 
             this.gridBand59.Caption = "Thực cân tay";
@@ -1981,16 +1619,6 @@ namespace NDPSo.KWS
             this.gridBand59.Name = "gridBand59";
             this.gridBand59.VisibleIndex = 1;
             this.gridBand59.Width = 75;
-            // 
-            // gcPV_Add6_Manual
-            // 
-            this.gcPV_Add6_Manual.Caption = "PV_Add6_Manual";
-            this.gcPV_Add6_Manual.FieldName = "PV_Add6_Manual";
-            this.gcPV_Add6_Manual.MinWidth = 50;
-            this.gcPV_Add6_Manual.Name = "gcPV_Add6_Manual";
-            this.gcPV_Add6_Manual.OptionsColumn.AllowFocus = false;
-            this.gcPV_Add6_Manual.OptionsColumn.ReadOnly = true;
-            this.gcPV_Add6_Manual.Visible = true;
             // 
             // groupControl3
             // 
@@ -2013,6 +1641,9 @@ namespace NDPSo.KWS
             0});
             this.spin_numberOfCopies.Location = new System.Drawing.Point(114, 38);
             this.spin_numberOfCopies.Name = "spin_numberOfCopies";
+            // 
+            // 
+            // 
             this.spin_numberOfCopies.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spin_numberOfCopies.Properties.Appearance.Options.UseFont = true;
             this.spin_numberOfCopies.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2042,7 +1673,7 @@ namespace NDPSo.KWS
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(31, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 16);
+            this.label1.Size = new System.Drawing.Size(66, 16);
             this.label1.TabIndex = 80;
             this.label1.Text = "Số bản in:";
             // 
@@ -2163,6 +1794,175 @@ namespace NDPSo.KWS
             this.Total_Agg1.VisibleIndex = 0;
             this.Total_Agg1.Width = 80;
             // 
+            // Total_Agg2
+            // 
+            this.Total_Agg2.Caption = "AGG2";
+            this.Total_Agg2.Columns.Add(this.gcTotal_Agg2);
+            this.Total_Agg2.MinWidth = 80;
+            this.Total_Agg2.Name = "Total_Agg2";
+            this.Total_Agg2.VisibleIndex = 1;
+            this.Total_Agg2.Width = 80;
+            // 
+            // Total_Agg3
+            // 
+            this.Total_Agg3.Caption = "AGG3";
+            this.Total_Agg3.Columns.Add(this.gcTotal_Agg3);
+            this.Total_Agg3.MinWidth = 80;
+            this.Total_Agg3.Name = "Total_Agg3";
+            this.Total_Agg3.VisibleIndex = 2;
+            this.Total_Agg3.Width = 80;
+            // 
+            // Total_Agg4
+            // 
+            this.Total_Agg4.Caption = "AGG4";
+            this.Total_Agg4.Columns.Add(this.gcTotal_Agg4);
+            this.Total_Agg4.MinWidth = 80;
+            this.Total_Agg4.Name = "Total_Agg4";
+            this.Total_Agg4.VisibleIndex = 3;
+            this.Total_Agg4.Width = 80;
+            // 
+            // Total_Agg5
+            // 
+            this.Total_Agg5.Caption = "AGG5";
+            this.Total_Agg5.Columns.Add(this.gcTotal_Agg5);
+            this.Total_Agg5.MinWidth = 80;
+            this.Total_Agg5.Name = "Total_Agg5";
+            this.Total_Agg5.VisibleIndex = 4;
+            this.Total_Agg5.Width = 80;
+            // 
+            // Total_Agg6
+            // 
+            this.Total_Agg6.Caption = "AGG6";
+            this.Total_Agg6.Columns.Add(this.gcTotal_Agg6);
+            this.Total_Agg6.MinWidth = 80;
+            this.Total_Agg6.Name = "Total_Agg6";
+            this.Total_Agg6.VisibleIndex = 5;
+            this.Total_Agg6.Width = 80;
+            // 
+            // Total_Ce1
+            // 
+            this.Total_Ce1.Caption = "CE1";
+            this.Total_Ce1.Columns.Add(this.gcTotal_Ce1);
+            this.Total_Ce1.MinWidth = 80;
+            this.Total_Ce1.Name = "Total_Ce1";
+            this.Total_Ce1.VisibleIndex = 6;
+            this.Total_Ce1.Width = 80;
+            // 
+            // Total_Ce2
+            // 
+            this.Total_Ce2.Caption = "CE2";
+            this.Total_Ce2.Columns.Add(this.gcTotal_Ce2);
+            this.Total_Ce2.MinWidth = 80;
+            this.Total_Ce2.Name = "Total_Ce2";
+            this.Total_Ce2.VisibleIndex = 7;
+            this.Total_Ce2.Width = 80;
+            // 
+            // Total_Ce3
+            // 
+            this.Total_Ce3.Caption = "CE3";
+            this.Total_Ce3.Columns.Add(this.gcTotal_Ce3);
+            this.Total_Ce3.MinWidth = 80;
+            this.Total_Ce3.Name = "Total_Ce3";
+            this.Total_Ce3.VisibleIndex = 8;
+            this.Total_Ce3.Width = 80;
+            // 
+            // Total_Ce4
+            // 
+            this.Total_Ce4.Caption = "CE4";
+            this.Total_Ce4.Columns.Add(this.gcTotal_Ce4);
+            this.Total_Ce4.MinWidth = 80;
+            this.Total_Ce4.Name = "Total_Ce4";
+            this.Total_Ce4.VisibleIndex = 9;
+            this.Total_Ce4.Width = 80;
+            // 
+            // Total_Ce5
+            // 
+            this.Total_Ce5.Caption = "CE5";
+            this.Total_Ce5.Columns.Add(this.gcTotal_Ce5);
+            this.Total_Ce5.MinWidth = 80;
+            this.Total_Ce5.Name = "Total_Ce5";
+            this.Total_Ce5.VisibleIndex = 10;
+            this.Total_Ce5.Width = 80;
+            // 
+            // Total_Wa1
+            // 
+            this.Total_Wa1.Caption = "WA1";
+            this.Total_Wa1.Columns.Add(this.gcTotal_Wa1);
+            this.Total_Wa1.MinWidth = 80;
+            this.Total_Wa1.Name = "Total_Wa1";
+            this.Total_Wa1.VisibleIndex = 11;
+            this.Total_Wa1.Width = 80;
+            // 
+            // Total_Wa2
+            // 
+            this.Total_Wa2.Caption = "WA2";
+            this.Total_Wa2.Columns.Add(this.gcTotal_Wa2);
+            this.Total_Wa2.MinWidth = 80;
+            this.Total_Wa2.Name = "Total_Wa2";
+            this.Total_Wa2.VisibleIndex = 12;
+            this.Total_Wa2.Width = 80;
+            // 
+            // Total_Add1
+            // 
+            this.Total_Add1.Caption = "ADD1";
+            this.Total_Add1.Columns.Add(this.gcTotal_Add1);
+            this.Total_Add1.MinWidth = 80;
+            this.Total_Add1.Name = "Total_Add1";
+            this.Total_Add1.VisibleIndex = 13;
+            this.Total_Add1.Width = 80;
+            // 
+            // Total_Add2
+            // 
+            this.Total_Add2.Caption = "ADD2";
+            this.Total_Add2.Columns.Add(this.gcTotal_Add2);
+            this.Total_Add2.MinWidth = 80;
+            this.Total_Add2.Name = "Total_Add2";
+            this.Total_Add2.VisibleIndex = 14;
+            this.Total_Add2.Width = 80;
+            // 
+            // Total_Add3
+            // 
+            this.Total_Add3.Caption = "ADD3";
+            this.Total_Add3.Columns.Add(this.gcTotal_Add3);
+            this.Total_Add3.MinWidth = 80;
+            this.Total_Add3.Name = "Total_Add3";
+            this.Total_Add3.VisibleIndex = 15;
+            this.Total_Add3.Width = 80;
+            // 
+            // Total_Add4
+            // 
+            this.Total_Add4.Caption = "ADD4";
+            this.Total_Add4.Columns.Add(this.gcTotal_Add4);
+            this.Total_Add4.MinWidth = 80;
+            this.Total_Add4.Name = "Total_Add4";
+            this.Total_Add4.VisibleIndex = 16;
+            this.Total_Add4.Width = 80;
+            // 
+            // Total_Add5
+            // 
+            this.Total_Add5.Caption = "ADD5";
+            this.Total_Add5.Columns.Add(this.gcTotal_Add5);
+            this.Total_Add5.MinWidth = 80;
+            this.Total_Add5.Name = "Total_Add5";
+            this.Total_Add5.VisibleIndex = 17;
+            this.Total_Add5.Width = 80;
+            // 
+            // Total_Add6
+            // 
+            this.Total_Add6.Caption = "ADD6";
+            this.Total_Add6.Columns.Add(this.gcTotal_Add6);
+            this.Total_Add6.MinWidth = 80;
+            this.Total_Add6.Name = "Total_Add6";
+            this.Total_Add6.VisibleIndex = 18;
+            this.Total_Add6.Width = 80;
+            // 
+            // gridBand60
+            // 
+            this.gridBand60.Caption = "gridBand60";
+            this.gridBand60.Name = "gridBand60";
+            this.gridBand60.Visible = false;
+            this.gridBand60.VisibleIndex = -1;
+            // 
             // gcTotal_Agg1
             // 
             this.gcTotal_Agg1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2178,15 +1978,6 @@ namespace NDPSo.KWS
             this.gcTotal_Agg1.OptionsColumn.ReadOnly = true;
             this.gcTotal_Agg1.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Agg1.Visible = true;
-            // 
-            // Total_Agg2
-            // 
-            this.Total_Agg2.Caption = "AGG2";
-            this.Total_Agg2.Columns.Add(this.gcTotal_Agg2);
-            this.Total_Agg2.MinWidth = 80;
-            this.Total_Agg2.Name = "Total_Agg2";
-            this.Total_Agg2.VisibleIndex = 1;
-            this.Total_Agg2.Width = 80;
             // 
             // gcTotal_Agg2
             // 
@@ -2204,15 +1995,6 @@ namespace NDPSo.KWS
             this.gcTotal_Agg2.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Agg2.Visible = true;
             // 
-            // Total_Agg3
-            // 
-            this.Total_Agg3.Caption = "AGG3";
-            this.Total_Agg3.Columns.Add(this.gcTotal_Agg3);
-            this.Total_Agg3.MinWidth = 80;
-            this.Total_Agg3.Name = "Total_Agg3";
-            this.Total_Agg3.VisibleIndex = 2;
-            this.Total_Agg3.Width = 80;
-            // 
             // gcTotal_Agg3
             // 
             this.gcTotal_Agg3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2228,15 +2010,6 @@ namespace NDPSo.KWS
             this.gcTotal_Agg3.OptionsColumn.ReadOnly = true;
             this.gcTotal_Agg3.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Agg3.Visible = true;
-            // 
-            // Total_Agg4
-            // 
-            this.Total_Agg4.Caption = "AGG4";
-            this.Total_Agg4.Columns.Add(this.gcTotal_Agg4);
-            this.Total_Agg4.MinWidth = 80;
-            this.Total_Agg4.Name = "Total_Agg4";
-            this.Total_Agg4.VisibleIndex = 3;
-            this.Total_Agg4.Width = 80;
             // 
             // gcTotal_Agg4
             // 
@@ -2254,15 +2027,6 @@ namespace NDPSo.KWS
             this.gcTotal_Agg4.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Agg4.Visible = true;
             // 
-            // Total_Agg5
-            // 
-            this.Total_Agg5.Caption = "AGG5";
-            this.Total_Agg5.Columns.Add(this.gcTotal_Agg5);
-            this.Total_Agg5.MinWidth = 80;
-            this.Total_Agg5.Name = "Total_Agg5";
-            this.Total_Agg5.VisibleIndex = 4;
-            this.Total_Agg5.Width = 80;
-            // 
             // gcTotal_Agg5
             // 
             this.gcTotal_Agg5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2278,15 +2042,6 @@ namespace NDPSo.KWS
             this.gcTotal_Agg5.OptionsColumn.ReadOnly = true;
             this.gcTotal_Agg5.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Agg5.Visible = true;
-            // 
-            // Total_Agg6
-            // 
-            this.Total_Agg6.Caption = "AGG6";
-            this.Total_Agg6.Columns.Add(this.gcTotal_Agg6);
-            this.Total_Agg6.MinWidth = 80;
-            this.Total_Agg6.Name = "Total_Agg6";
-            this.Total_Agg6.VisibleIndex = 5;
-            this.Total_Agg6.Width = 80;
             // 
             // gcTotal_Agg6
             // 
@@ -2304,15 +2059,6 @@ namespace NDPSo.KWS
             this.gcTotal_Agg6.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Agg6.Visible = true;
             // 
-            // Total_Ce1
-            // 
-            this.Total_Ce1.Caption = "CE1";
-            this.Total_Ce1.Columns.Add(this.gcTotal_Ce1);
-            this.Total_Ce1.MinWidth = 80;
-            this.Total_Ce1.Name = "Total_Ce1";
-            this.Total_Ce1.VisibleIndex = 6;
-            this.Total_Ce1.Width = 80;
-            // 
             // gcTotal_Ce1
             // 
             this.gcTotal_Ce1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2328,15 +2074,6 @@ namespace NDPSo.KWS
             this.gcTotal_Ce1.OptionsColumn.ReadOnly = true;
             this.gcTotal_Ce1.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Ce1.Visible = true;
-            // 
-            // Total_Ce2
-            // 
-            this.Total_Ce2.Caption = "CE2";
-            this.Total_Ce2.Columns.Add(this.gcTotal_Ce2);
-            this.Total_Ce2.MinWidth = 80;
-            this.Total_Ce2.Name = "Total_Ce2";
-            this.Total_Ce2.VisibleIndex = 7;
-            this.Total_Ce2.Width = 80;
             // 
             // gcTotal_Ce2
             // 
@@ -2354,15 +2091,6 @@ namespace NDPSo.KWS
             this.gcTotal_Ce2.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Ce2.Visible = true;
             // 
-            // Total_Ce3
-            // 
-            this.Total_Ce3.Caption = "CE3";
-            this.Total_Ce3.Columns.Add(this.gcTotal_Ce3);
-            this.Total_Ce3.MinWidth = 80;
-            this.Total_Ce3.Name = "Total_Ce3";
-            this.Total_Ce3.VisibleIndex = 8;
-            this.Total_Ce3.Width = 80;
-            // 
             // gcTotal_Ce3
             // 
             this.gcTotal_Ce3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2378,15 +2106,6 @@ namespace NDPSo.KWS
             this.gcTotal_Ce3.OptionsColumn.ReadOnly = true;
             this.gcTotal_Ce3.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Ce3.Visible = true;
-            // 
-            // Total_Ce4
-            // 
-            this.Total_Ce4.Caption = "CE4";
-            this.Total_Ce4.Columns.Add(this.gcTotal_Ce4);
-            this.Total_Ce4.MinWidth = 80;
-            this.Total_Ce4.Name = "Total_Ce4";
-            this.Total_Ce4.VisibleIndex = 9;
-            this.Total_Ce4.Width = 80;
             // 
             // gcTotal_Ce4
             // 
@@ -2404,15 +2123,6 @@ namespace NDPSo.KWS
             this.gcTotal_Ce4.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Ce4.Visible = true;
             // 
-            // Total_Ce5
-            // 
-            this.Total_Ce5.Caption = "CE5";
-            this.Total_Ce5.Columns.Add(this.gcTotal_Ce5);
-            this.Total_Ce5.MinWidth = 80;
-            this.Total_Ce5.Name = "Total_Ce5";
-            this.Total_Ce5.VisibleIndex = 10;
-            this.Total_Ce5.Width = 80;
-            // 
             // gcTotal_Ce5
             // 
             this.gcTotal_Ce5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2428,15 +2138,6 @@ namespace NDPSo.KWS
             this.gcTotal_Ce5.OptionsColumn.ReadOnly = true;
             this.gcTotal_Ce5.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Ce5.Visible = true;
-            // 
-            // Total_Wa1
-            // 
-            this.Total_Wa1.Caption = "WA1";
-            this.Total_Wa1.Columns.Add(this.gcTotal_Wa1);
-            this.Total_Wa1.MinWidth = 80;
-            this.Total_Wa1.Name = "Total_Wa1";
-            this.Total_Wa1.VisibleIndex = 11;
-            this.Total_Wa1.Width = 80;
             // 
             // gcTotal_Wa1
             // 
@@ -2454,15 +2155,6 @@ namespace NDPSo.KWS
             this.gcTotal_Wa1.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Wa1.Visible = true;
             // 
-            // Total_Wa2
-            // 
-            this.Total_Wa2.Caption = "WA2";
-            this.Total_Wa2.Columns.Add(this.gcTotal_Wa2);
-            this.Total_Wa2.MinWidth = 80;
-            this.Total_Wa2.Name = "Total_Wa2";
-            this.Total_Wa2.VisibleIndex = 12;
-            this.Total_Wa2.Width = 80;
-            // 
             // gcTotal_Wa2
             // 
             this.gcTotal_Wa2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2478,15 +2170,6 @@ namespace NDPSo.KWS
             this.gcTotal_Wa2.OptionsColumn.ReadOnly = true;
             this.gcTotal_Wa2.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Wa2.Visible = true;
-            // 
-            // Total_Add1
-            // 
-            this.Total_Add1.Caption = "ADD1";
-            this.Total_Add1.Columns.Add(this.gcTotal_Add1);
-            this.Total_Add1.MinWidth = 80;
-            this.Total_Add1.Name = "Total_Add1";
-            this.Total_Add1.VisibleIndex = 13;
-            this.Total_Add1.Width = 80;
             // 
             // gcTotal_Add1
             // 
@@ -2504,15 +2187,6 @@ namespace NDPSo.KWS
             this.gcTotal_Add1.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Add1.Visible = true;
             // 
-            // Total_Add2
-            // 
-            this.Total_Add2.Caption = "ADD2";
-            this.Total_Add2.Columns.Add(this.gcTotal_Add2);
-            this.Total_Add2.MinWidth = 80;
-            this.Total_Add2.Name = "Total_Add2";
-            this.Total_Add2.VisibleIndex = 14;
-            this.Total_Add2.Width = 80;
-            // 
             // gcTotal_Add2
             // 
             this.gcTotal_Add2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2528,15 +2202,6 @@ namespace NDPSo.KWS
             this.gcTotal_Add2.OptionsColumn.ReadOnly = true;
             this.gcTotal_Add2.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Add2.Visible = true;
-            // 
-            // Total_Add3
-            // 
-            this.Total_Add3.Caption = "ADD3";
-            this.Total_Add3.Columns.Add(this.gcTotal_Add3);
-            this.Total_Add3.MinWidth = 80;
-            this.Total_Add3.Name = "Total_Add3";
-            this.Total_Add3.VisibleIndex = 15;
-            this.Total_Add3.Width = 80;
             // 
             // gcTotal_Add3
             // 
@@ -2554,15 +2219,6 @@ namespace NDPSo.KWS
             this.gcTotal_Add3.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Add3.Visible = true;
             // 
-            // Total_Add4
-            // 
-            this.Total_Add4.Caption = "ADD4";
-            this.Total_Add4.Columns.Add(this.gcTotal_Add4);
-            this.Total_Add4.MinWidth = 80;
-            this.Total_Add4.Name = "Total_Add4";
-            this.Total_Add4.VisibleIndex = 16;
-            this.Total_Add4.Width = 80;
-            // 
             // gcTotal_Add4
             // 
             this.gcTotal_Add4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2578,15 +2234,6 @@ namespace NDPSo.KWS
             this.gcTotal_Add4.OptionsColumn.ReadOnly = true;
             this.gcTotal_Add4.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Add4.Visible = true;
-            // 
-            // Total_Add5
-            // 
-            this.Total_Add5.Caption = "ADD5";
-            this.Total_Add5.Columns.Add(this.gcTotal_Add5);
-            this.Total_Add5.MinWidth = 80;
-            this.Total_Add5.Name = "Total_Add5";
-            this.Total_Add5.VisibleIndex = 17;
-            this.Total_Add5.Width = 80;
             // 
             // gcTotal_Add5
             // 
@@ -2604,15 +2251,6 @@ namespace NDPSo.KWS
             this.gcTotal_Add5.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Add5.Visible = true;
             // 
-            // Total_Add6
-            // 
-            this.Total_Add6.Caption = "ADD6";
-            this.Total_Add6.Columns.Add(this.gcTotal_Add6);
-            this.Total_Add6.MinWidth = 80;
-            this.Total_Add6.Name = "Total_Add6";
-            this.Total_Add6.VisibleIndex = 18;
-            this.Total_Add6.Width = 80;
-            // 
             // gcTotal_Add6
             // 
             this.gcTotal_Add6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2629,12 +2267,448 @@ namespace NDPSo.KWS
             this.gcTotal_Add6.OptionsFilter.AllowAutoFilter = false;
             this.gcTotal_Add6.Visible = true;
             // 
-            // gridBand60
+            // gcNL
             // 
-            this.gridBand60.Caption = "gridBand60";
-            this.gridBand60.Name = "gridBand60";
-            this.gridBand60.Visible = false;
-            this.gridBand60.VisibleIndex = -1;
+            this.gcNL.Caption = "N.L";
+            this.gcNL.FieldName = "LnNo";
+            this.gcNL.MinWidth = 40;
+            this.gcNL.Name = "gcNL";
+            this.gcNL.OptionsColumn.AllowFocus = false;
+            this.gcNL.OptionsColumn.ReadOnly = true;
+            this.gcNL.Visible = true;
+            this.gcNL.Width = 70;
+            // 
+            // gcTheTich
+            // 
+            this.gcTheTich.Caption = "Thể tích";
+            this.gcTheTich.FieldName = "KLTungMe";
+            this.gcTheTich.MinWidth = 40;
+            this.gcTheTich.Name = "gcTheTich";
+            this.gcTheTich.OptionsColumn.AllowFocus = false;
+            this.gcTheTich.OptionsColumn.ReadOnly = true;
+            this.gcTheTich.Visible = true;
+            this.gcTheTich.Width = 70;
+            // 
+            // gcPV_Agg_1
+            // 
+            this.gcPV_Agg_1.Caption = "PV_Agg1";
+            this.gcPV_Agg_1.FieldName = "PV_Agg1";
+            this.gcPV_Agg_1.MinWidth = 50;
+            this.gcPV_Agg_1.Name = "gcPV_Agg_1";
+            this.gcPV_Agg_1.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg_1.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg_1.Visible = true;
+            // 
+            // gcPV_Agg1_Manual
+            // 
+            this.gcPV_Agg1_Manual.Caption = "PV_Agg1_Manual";
+            this.gcPV_Agg1_Manual.FieldName = "PV_Agg1_Manual";
+            this.gcPV_Agg1_Manual.MinWidth = 50;
+            this.gcPV_Agg1_Manual.Name = "gcPV_Agg1_Manual";
+            this.gcPV_Agg1_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg1_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg1_Manual.Visible = true;
+            // 
+            // gcPV_Agg_2
+            // 
+            this.gcPV_Agg_2.Caption = "PV_Agg2";
+            this.gcPV_Agg_2.FieldName = "PV_Agg2";
+            this.gcPV_Agg_2.MinWidth = 50;
+            this.gcPV_Agg_2.Name = "gcPV_Agg_2";
+            this.gcPV_Agg_2.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg_2.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg_2.Visible = true;
+            // 
+            // gcPV_Agg2_Manual
+            // 
+            this.gcPV_Agg2_Manual.Caption = "PV_Agg2_Manual";
+            this.gcPV_Agg2_Manual.FieldName = "PV_Agg2_Manual";
+            this.gcPV_Agg2_Manual.MinWidth = 50;
+            this.gcPV_Agg2_Manual.Name = "gcPV_Agg2_Manual";
+            this.gcPV_Agg2_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg2_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg2_Manual.Visible = true;
+            // 
+            // gcPV_Agg_3
+            // 
+            this.gcPV_Agg_3.Caption = "PV_Agg3";
+            this.gcPV_Agg_3.FieldName = "PV_Agg3";
+            this.gcPV_Agg_3.MinWidth = 50;
+            this.gcPV_Agg_3.Name = "gcPV_Agg_3";
+            this.gcPV_Agg_3.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg_3.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg_3.Visible = true;
+            // 
+            // gcPV_Agg3_Manual
+            // 
+            this.gcPV_Agg3_Manual.Caption = "PV_Agg3_Manual";
+            this.gcPV_Agg3_Manual.FieldName = "PV_Agg3_Manual";
+            this.gcPV_Agg3_Manual.MinWidth = 50;
+            this.gcPV_Agg3_Manual.Name = "gcPV_Agg3_Manual";
+            this.gcPV_Agg3_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg3_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg3_Manual.Visible = true;
+            // 
+            // gcPV_Agg_4
+            // 
+            this.gcPV_Agg_4.Caption = "PV_Agg4";
+            this.gcPV_Agg_4.FieldName = "PV_Agg4";
+            this.gcPV_Agg_4.MinWidth = 50;
+            this.gcPV_Agg_4.Name = "gcPV_Agg_4";
+            this.gcPV_Agg_4.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg_4.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg_4.Visible = true;
+            // 
+            // gcPV_Agg4_Manual
+            // 
+            this.gcPV_Agg4_Manual.Caption = "PV_Agg4_Manual";
+            this.gcPV_Agg4_Manual.FieldName = "PV_Agg4_Manual";
+            this.gcPV_Agg4_Manual.MinWidth = 50;
+            this.gcPV_Agg4_Manual.Name = "gcPV_Agg4_Manual";
+            this.gcPV_Agg4_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg4_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg4_Manual.Visible = true;
+            // 
+            // gcPV_Agg_5
+            // 
+            this.gcPV_Agg_5.Caption = "PV_Agg5";
+            this.gcPV_Agg_5.FieldName = "PV_Agg5";
+            this.gcPV_Agg_5.MinWidth = 50;
+            this.gcPV_Agg_5.Name = "gcPV_Agg_5";
+            this.gcPV_Agg_5.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg_5.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg_5.Visible = true;
+            // 
+            // gcPV_Agg5_Manual
+            // 
+            this.gcPV_Agg5_Manual.Caption = "PV_Agg5_Manual";
+            this.gcPV_Agg5_Manual.FieldName = "PV_Agg5_Manual";
+            this.gcPV_Agg5_Manual.MinWidth = 50;
+            this.gcPV_Agg5_Manual.Name = "gcPV_Agg5_Manual";
+            this.gcPV_Agg5_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg5_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg5_Manual.Visible = true;
+            // 
+            // gcPV_Agg_6
+            // 
+            this.gcPV_Agg_6.Caption = "PV_Agg6";
+            this.gcPV_Agg_6.FieldName = "PV_Agg6";
+            this.gcPV_Agg_6.MinWidth = 50;
+            this.gcPV_Agg_6.Name = "gcPV_Agg_6";
+            this.gcPV_Agg_6.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg_6.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg_6.Visible = true;
+            // 
+            // gcPV_Agg6_Manual
+            // 
+            this.gcPV_Agg6_Manual.Caption = "PV_Agg6_Manual";
+            this.gcPV_Agg6_Manual.FieldName = "PV_Agg6_Manual";
+            this.gcPV_Agg6_Manual.MinWidth = 50;
+            this.gcPV_Agg6_Manual.Name = "gcPV_Agg6_Manual";
+            this.gcPV_Agg6_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Agg6_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Agg6_Manual.Visible = true;
+            // 
+            // gcPV_Ce_1
+            // 
+            this.gcPV_Ce_1.Caption = "PV_Ce1";
+            this.gcPV_Ce_1.FieldName = "PV_Ce1";
+            this.gcPV_Ce_1.MinWidth = 50;
+            this.gcPV_Ce_1.Name = "gcPV_Ce_1";
+            this.gcPV_Ce_1.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce_1.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce_1.Visible = true;
+            // 
+            // gcPV_Ce1_Manual
+            // 
+            this.gcPV_Ce1_Manual.Caption = "PV_Ce1_Manual";
+            this.gcPV_Ce1_Manual.FieldName = "PV_Ce1_Manual";
+            this.gcPV_Ce1_Manual.MinWidth = 50;
+            this.gcPV_Ce1_Manual.Name = "gcPV_Ce1_Manual";
+            this.gcPV_Ce1_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce1_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce1_Manual.Visible = true;
+            // 
+            // gcPV_Ce_2
+            // 
+            this.gcPV_Ce_2.Caption = "PV_Ce2";
+            this.gcPV_Ce_2.FieldName = "PV_Ce2";
+            this.gcPV_Ce_2.MinWidth = 50;
+            this.gcPV_Ce_2.Name = "gcPV_Ce_2";
+            this.gcPV_Ce_2.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce_2.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce_2.Visible = true;
+            // 
+            // gcPV_Ce2_Manual
+            // 
+            this.gcPV_Ce2_Manual.Caption = "PV_Ce2_Manual";
+            this.gcPV_Ce2_Manual.FieldName = "PV_Ce2_Manual";
+            this.gcPV_Ce2_Manual.MinWidth = 50;
+            this.gcPV_Ce2_Manual.Name = "gcPV_Ce2_Manual";
+            this.gcPV_Ce2_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce2_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce2_Manual.Visible = true;
+            // 
+            // gcPV_Ce_3
+            // 
+            this.gcPV_Ce_3.Caption = "PV_Ce3";
+            this.gcPV_Ce_3.FieldName = "PV_Ce3";
+            this.gcPV_Ce_3.MinWidth = 50;
+            this.gcPV_Ce_3.Name = "gcPV_Ce_3";
+            this.gcPV_Ce_3.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce_3.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce_3.Visible = true;
+            // 
+            // gcPV_Ce3_Manual
+            // 
+            this.gcPV_Ce3_Manual.Caption = "PV_Ce3_Manual";
+            this.gcPV_Ce3_Manual.FieldName = "PV_Ce3_Manual";
+            this.gcPV_Ce3_Manual.MinWidth = 50;
+            this.gcPV_Ce3_Manual.Name = "gcPV_Ce3_Manual";
+            this.gcPV_Ce3_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce3_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce3_Manual.Visible = true;
+            // 
+            // gcPV_Ce_4
+            // 
+            this.gcPV_Ce_4.Caption = "PV_Ce4";
+            this.gcPV_Ce_4.FieldName = "PV_Ce4";
+            this.gcPV_Ce_4.MinWidth = 50;
+            this.gcPV_Ce_4.Name = "gcPV_Ce_4";
+            this.gcPV_Ce_4.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce_4.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce_4.Visible = true;
+            // 
+            // gcPV_Ce4_Manual
+            // 
+            this.gcPV_Ce4_Manual.Caption = "PV_Ce4_Manual";
+            this.gcPV_Ce4_Manual.FieldName = "PV_Ce4_Manual";
+            this.gcPV_Ce4_Manual.MinWidth = 50;
+            this.gcPV_Ce4_Manual.Name = "gcPV_Ce4_Manual";
+            this.gcPV_Ce4_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce4_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce4_Manual.Visible = true;
+            // 
+            // gcPV_Ce_5
+            // 
+            this.gcPV_Ce_5.Caption = "PV_Ce5";
+            this.gcPV_Ce_5.FieldName = "PV_Ce5";
+            this.gcPV_Ce_5.MinWidth = 50;
+            this.gcPV_Ce_5.Name = "gcPV_Ce_5";
+            this.gcPV_Ce_5.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce_5.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce_5.Visible = true;
+            // 
+            // gcPV_Ce5_Manual
+            // 
+            this.gcPV_Ce5_Manual.Caption = "PV_Ce5_Manual";
+            this.gcPV_Ce5_Manual.FieldName = "PV_Ce5_Manual";
+            this.gcPV_Ce5_Manual.MinWidth = 50;
+            this.gcPV_Ce5_Manual.Name = "gcPV_Ce5_Manual";
+            this.gcPV_Ce5_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Ce5_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Ce5_Manual.Visible = true;
+            // 
+            // gcPV_Wa_1
+            // 
+            this.gcPV_Wa_1.Caption = "PV_Wa1";
+            this.gcPV_Wa_1.FieldName = "PV_Wa1";
+            this.gcPV_Wa_1.MinWidth = 50;
+            this.gcPV_Wa_1.Name = "gcPV_Wa_1";
+            this.gcPV_Wa_1.OptionsColumn.AllowFocus = false;
+            this.gcPV_Wa_1.OptionsColumn.ReadOnly = true;
+            this.gcPV_Wa_1.Visible = true;
+            // 
+            // gcPV_Wa1_Manual
+            // 
+            this.gcPV_Wa1_Manual.Caption = "PV_Wa1_Manual";
+            this.gcPV_Wa1_Manual.FieldName = "PV_Wa1_Manual";
+            this.gcPV_Wa1_Manual.MinWidth = 50;
+            this.gcPV_Wa1_Manual.Name = "gcPV_Wa1_Manual";
+            this.gcPV_Wa1_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Wa1_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Wa1_Manual.Visible = true;
+            // 
+            // gcPV_Wa_2
+            // 
+            this.gcPV_Wa_2.Caption = "PV_Wa2";
+            this.gcPV_Wa_2.FieldName = "PV_Wa2";
+            this.gcPV_Wa_2.MinWidth = 50;
+            this.gcPV_Wa_2.Name = "gcPV_Wa_2";
+            this.gcPV_Wa_2.OptionsColumn.AllowFocus = false;
+            this.gcPV_Wa_2.OptionsColumn.ReadOnly = true;
+            this.gcPV_Wa_2.Visible = true;
+            // 
+            // gcPV_Wa2_Manual
+            // 
+            this.gcPV_Wa2_Manual.Caption = "PV_Wa2_Manual";
+            this.gcPV_Wa2_Manual.FieldName = "PV_Wa2_Manual";
+            this.gcPV_Wa2_Manual.MinWidth = 50;
+            this.gcPV_Wa2_Manual.Name = "gcPV_Wa2_Manual";
+            this.gcPV_Wa2_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Wa2_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Wa2_Manual.Visible = true;
+            // 
+            // gcPV_ADD_1
+            // 
+            this.gcPV_ADD_1.Caption = "PV_Add1";
+            this.gcPV_ADD_1.FieldName = "PV_Add1";
+            this.gcPV_ADD_1.MinWidth = 50;
+            this.gcPV_ADD_1.Name = "gcPV_ADD_1";
+            this.gcPV_ADD_1.OptionsColumn.AllowFocus = false;
+            this.gcPV_ADD_1.OptionsColumn.ReadOnly = true;
+            this.gcPV_ADD_1.Visible = true;
+            // 
+            // gcPV_Add1_Manual
+            // 
+            this.gcPV_Add1_Manual.Caption = "PV_Add1_Manual";
+            this.gcPV_Add1_Manual.FieldName = "PV_Add1_Manual";
+            this.gcPV_Add1_Manual.MinWidth = 50;
+            this.gcPV_Add1_Manual.Name = "gcPV_Add1_Manual";
+            this.gcPV_Add1_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Add1_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Add1_Manual.Visible = true;
+            // 
+            // gcPV_ADD_2
+            // 
+            this.gcPV_ADD_2.Caption = "PV_Add2";
+            this.gcPV_ADD_2.FieldName = "PV_Add2";
+            this.gcPV_ADD_2.MinWidth = 50;
+            this.gcPV_ADD_2.Name = "gcPV_ADD_2";
+            this.gcPV_ADD_2.OptionsColumn.AllowFocus = false;
+            this.gcPV_ADD_2.OptionsColumn.ReadOnly = true;
+            this.gcPV_ADD_2.Visible = true;
+            // 
+            // gcPV_Add2_Manual
+            // 
+            this.gcPV_Add2_Manual.Caption = "PV_Add2_Manual";
+            this.gcPV_Add2_Manual.FieldName = "PV_Add2_Manual";
+            this.gcPV_Add2_Manual.MinWidth = 50;
+            this.gcPV_Add2_Manual.Name = "gcPV_Add2_Manual";
+            this.gcPV_Add2_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Add2_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Add2_Manual.Visible = true;
+            // 
+            // gcPV_ADD_3
+            // 
+            this.gcPV_ADD_3.Caption = "PV_Add3";
+            this.gcPV_ADD_3.FieldName = "PV_Add3";
+            this.gcPV_ADD_3.MinWidth = 50;
+            this.gcPV_ADD_3.Name = "gcPV_ADD_3";
+            this.gcPV_ADD_3.OptionsColumn.AllowFocus = false;
+            this.gcPV_ADD_3.OptionsColumn.ReadOnly = true;
+            this.gcPV_ADD_3.Visible = true;
+            // 
+            // gcPV_Add3_Manual
+            // 
+            this.gcPV_Add3_Manual.Caption = "PV_Add3_Manual";
+            this.gcPV_Add3_Manual.FieldName = "PV_Add3_Manual";
+            this.gcPV_Add3_Manual.MinWidth = 50;
+            this.gcPV_Add3_Manual.Name = "gcPV_Add3_Manual";
+            this.gcPV_Add3_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Add3_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Add3_Manual.Visible = true;
+            // 
+            // gcPV_ADD_4
+            // 
+            this.gcPV_ADD_4.Caption = "PV_Add4";
+            this.gcPV_ADD_4.FieldName = "PV_Add4";
+            this.gcPV_ADD_4.MinWidth = 50;
+            this.gcPV_ADD_4.Name = "gcPV_ADD_4";
+            this.gcPV_ADD_4.OptionsColumn.AllowFocus = false;
+            this.gcPV_ADD_4.OptionsColumn.ReadOnly = true;
+            this.gcPV_ADD_4.Visible = true;
+            // 
+            // gcPV_Add4_Manual
+            // 
+            this.gcPV_Add4_Manual.Caption = "PV_Add4_Manual";
+            this.gcPV_Add4_Manual.FieldName = "PV_Add4_Manual";
+            this.gcPV_Add4_Manual.MinWidth = 50;
+            this.gcPV_Add4_Manual.Name = "gcPV_Add4_Manual";
+            this.gcPV_Add4_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Add4_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Add4_Manual.Visible = true;
+            // 
+            // gcPV_ADD_5
+            // 
+            this.gcPV_ADD_5.Caption = "PV_Add5";
+            this.gcPV_ADD_5.FieldName = "PV_Add5";
+            this.gcPV_ADD_5.MinWidth = 50;
+            this.gcPV_ADD_5.Name = "gcPV_ADD_5";
+            this.gcPV_ADD_5.OptionsColumn.AllowFocus = false;
+            this.gcPV_ADD_5.OptionsColumn.ReadOnly = true;
+            this.gcPV_ADD_5.Visible = true;
+            // 
+            // gcPV_Add5_Manual
+            // 
+            this.gcPV_Add5_Manual.Caption = "PV_Add5_Manual";
+            this.gcPV_Add5_Manual.FieldName = "PV_Add5_Manual";
+            this.gcPV_Add5_Manual.MinWidth = 50;
+            this.gcPV_Add5_Manual.Name = "gcPV_Add5_Manual";
+            this.gcPV_Add5_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Add5_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Add5_Manual.Visible = true;
+            // 
+            // gcPV_ADD_6
+            // 
+            this.gcPV_ADD_6.Caption = "PV_Add6";
+            this.gcPV_ADD_6.FieldName = "PV_Add6";
+            this.gcPV_ADD_6.MinWidth = 50;
+            this.gcPV_ADD_6.Name = "gcPV_ADD_6";
+            this.gcPV_ADD_6.OptionsColumn.AllowFocus = false;
+            this.gcPV_ADD_6.OptionsColumn.ReadOnly = true;
+            this.gcPV_ADD_6.Visible = true;
+            // 
+            // gcPV_Add6_Manual
+            // 
+            this.gcPV_Add6_Manual.Caption = "PV_Add6_Manual";
+            this.gcPV_Add6_Manual.FieldName = "PV_Add6_Manual";
+            this.gcPV_Add6_Manual.MinWidth = 50;
+            this.gcPV_Add6_Manual.Name = "gcPV_Add6_Manual";
+            this.gcPV_Add6_Manual.OptionsColumn.AllowFocus = false;
+            this.gcPV_Add6_Manual.OptionsColumn.ReadOnly = true;
+            this.gcPV_Add6_Manual.Visible = true;
+            // 
+            // gcMaPhieuTron
+            // 
+            this.gcMaPhieuTron.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gcMaPhieuTron.AppearanceCell.Options.UseFont = true;
+            this.gcMaPhieuTron.Caption = "Mã Phiếu";
+            this.gcMaPhieuTron.FieldName = "MaPhieuTron";
+            this.gcMaPhieuTron.Name = "gcMaPhieuTron";
+            this.gcMaPhieuTron.OptionsColumn.AllowEdit = false;
+            this.gcMaPhieuTron.OptionsColumn.AllowFocus = false;
+            this.gcMaPhieuTron.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "MaPhieuTron", "{0}")});
+            this.gcMaPhieuTron.Visible = true;
+            this.gcMaPhieuTron.VisibleIndex = 0;
+            // 
+            // gcNgayPhieuTron
+            // 
+            this.gcNgayPhieuTron.Caption = "Ngày Tạo Phiếu";
+            this.gcNgayPhieuTron.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.gcNgayPhieuTron.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gcNgayPhieuTron.FieldName = "NgayPhieuTron";
+            this.gcNgayPhieuTron.Name = "gcNgayPhieuTron";
+            this.gcNgayPhieuTron.OptionsColumn.AllowEdit = false;
+            this.gcNgayPhieuTron.OptionsColumn.AllowFocus = false;
+            this.gcNgayPhieuTron.Visible = true;
+            this.gcNgayPhieuTron.VisibleIndex = 1;
+            // 
+            // gcViewMaHopDong
+            // 
+            this.gcViewMaHopDong.Caption = "Mã Hợp Đồng";
+            this.gcViewMaHopDong.FieldName = "HopDongID";
+            this.gcViewMaHopDong.Name = "gcViewMaHopDong";
+            this.gcViewMaHopDong.OptionsColumn.AllowEdit = false;
+            this.gcViewMaHopDong.OptionsColumn.AllowFocus = false;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Tên Khách hàng";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.OptionsColumn.AllowFocus = false;
             // 
             // PrinterPheuTronChiTiet
             // 
@@ -2649,8 +2723,6 @@ namespace NDPSo.KWS
             this.Name = "PrinterPheuTronChiTiet";
             this.Size = new System.Drawing.Size(1144, 720);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tseToTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tseFromTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookupEditPrinters.Properties)).EndInit();
@@ -2659,12 +2731,9 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datTuNgay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTron)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPhieuTron)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
-            this.groupControl4.ResumeLayout(false);
-            this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioKTTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoPhieu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayTron.Properties.CalendarTimeProperties)).EndInit();
@@ -2686,15 +2755,11 @@ namespace NDPSo.KWS
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKhachHang.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grChiTietMeTron)).EndInit();
-            this.grChiTietMeTron.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcPhieuTronChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            this.groupControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spin_numberOfCopies.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
-            this.groupControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcTotalMaterial)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView2)).EndInit();
             this.ResumeLayout(false);

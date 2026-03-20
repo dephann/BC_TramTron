@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraRichEdit.Layout.Export;
 using NDPSo.PLCMapping;
 using NDPSo.PLCModule;
 using NDPSo.Utils;
@@ -39,6 +40,8 @@ namespace NDPSo
                      new RadioGroupItem((object) Enums.LanguageRes.English, "English"),
                      new RadioGroupItem((object) Enums.LanguageRes.Vietnamese, "Việt Nam")
                 });*/
+
+                string macs = Validation.GetPhysicalMacsConcatenated();
                 this.lueRunningMode.Properties.DataSource = (object)Converter.EnumToListFieldCode<Enums.RunningMode>(false);
                 this.lueRunningMode.EditValue = (object)ConfigManager.TramTronConfig.RunningMode;
                 this.txtServerIP.Text = ConfigManager.TramTronConfig.ServerIP;
@@ -61,6 +64,7 @@ namespace NDPSo
                 this.bteExportPath.Text = ConfigManager.TramTronConfig.ReportPath;
                 this.bteImportPath_GH.Text = ConfigManager.TramTronConfig.PIPath;
                 this.bteImportPath_CT.Text = ConfigManager.TramTronConfig.PICTPath;
+                this.btePdfReaderPath.Text = ConfigManager.TramTronConfig.PdfReaderPath;
                 this.rdgLanguageRes.SelectedIndex = ConfigManager.TramTronConfig.LanguageRes;
                 this.lueLanguages.EditValue = (object)ConfigManager.TramTronConfig.LanguageRes;
                 this.lueLanguages.Properties.DataSource = (object)Converter.EnumToListFieldCode<Enums.LanguageRes>(false);
@@ -69,6 +73,7 @@ namespace NDPSo
                 this.txtLANPort.Text = ConfigManager.TramTronConfig.LANPort.ToString();
                 this.bteLogoPath.Text = ConfigManager.TramTronConfig.LogoCty.ToString();
                 this.chkDev.Checked = ConfigManager.TramTronConfig.DevEnv;
+                ConfigManager.ServiceConfig.ServerName = "localhost";
             }
             catch (System.Exception ex)
             {
@@ -189,29 +194,7 @@ namespace NDPSo
                 {
                     ConfigManager.TramTronConfig.RunningMode = 0;
                     string macAddress = Environment.MachineName;
-
-
-                    ConfigManager.ServiceConfig.ServerName = "ndp-server";
-
-                    switch (macAddress)
-                    {
-                        case "LAPTOP-BDV7JS0S": //me
-                            ConfigManager.ServiceConfig.ServerName = "LAPTOP-BDV7JS0S\\PHAM";
-                            break;
-                        case "DESKTOP-SRUH8A8": //vp test
-                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-SRUH8A8\\SQLPHAM";
-                            break;
-                        case "DESKTOP-E4UEIUC": //thanhtuan-longan
-                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-E4UEIUC";
-                            break;
-                        case "B2A7B96A2868": //binh dinh
-                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-R4OQ2QU";
-                            break;
-                        case "DESKTOP-9S8AT23": //MQ
-                            ConfigManager.ServiceConfig.ServerName = "DESKTOP-9S8AT23";
-                            break;
-                    }
-
+                    ConfigManager.ServiceConfig.ServerName = this.txtServer.Text; 
                     ConfigManager.ServiceConfig.DatabaseName = this.txtDatabase.Text;
                     ConfigManager.ServiceConfig.UserID = this.txtUsername.Text;
                     ConfigManager.ServiceConfig.Password = this.txtPassword.Text;
@@ -234,6 +217,7 @@ namespace NDPSo
                     ConfigManager.TramTronConfig.ReportPath = this.bteExportPath.Text;
                     ConfigManager.TramTronConfig.PIPath = this.bteImportPath_GH.Text;
                     ConfigManager.TramTronConfig.PICTPath = this.bteImportPath_CT.Text;
+                    ConfigManager.TramTronConfig.PdfReaderPath = this.btePdfReaderPath.Text;
 
                     this.Close();
                 }
@@ -505,5 +489,28 @@ namespace NDPSo
                 }
             }
         }
+
+        private void btePdfReaderPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Executable Files|*.exe";
+            openFileDialog1.Title = "Chọn Chương Trình Mở File PDF";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    string filePath = openFileDialog1.FileName;
+                    btePdfReaderPath.Text = filePath;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message);
+                }
+            }
+        }
+        
     }
 }

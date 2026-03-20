@@ -50,10 +50,12 @@ namespace NDPSo.MasterData
         ObjMeTron CurMeTron { set; }
 
         ObjMeTronChiTiet CurMeTronChiTiet { set; }
+        ObjMeTronChiTietGiaoHang CurMeTronChiTietGiaoHang { set; }
 
         InitOnline IO { set; }
 
         SetPoint SP { set; }
+        SetPoint SP_NotHD { set; }
 
         SendingToPLC SO { set; }
 

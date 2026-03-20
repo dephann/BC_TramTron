@@ -165,6 +165,60 @@ namespace NDPSo.MasterData
         public bool NN_GAU_LEN { get; set; } //18.0
         public bool NN_DUNG_GAU { get; set; } //18.1
         public bool NN_GAU_XUONG { get; set; } //18.2
+        public bool SW_BAT_PG_NGOAI { get; set; } //18.3
+        //Add 0208 Bu Tru KL, XAC NhanCan Du
+        public bool XAC_NHAN_CAN_DU { get; set; } //18.4
+        public bool XNC_AUT_AGG1 { get; set; } //18.5
+        public bool XNC_AUT_AGG2 { get; set; } //18.6
+        public bool XNC_AUT_AGG3 { get; set; } //18.7
+        public bool XNC_AUT_AGG4 { get; set; } //19.0
+        public bool XNC_AUT_AGG5 { get; set; } //19.1
+        public bool XNC_AUT_AGG6 { get; set; } //19.2
+        public bool XNC_AUT_CE1 { get; set; } //19.3
+        public bool XNC_AUT_CE2 { get; set; } //19.4
+        public bool XNC_AUT_CE3 { get; set; } //19.5
+        public bool XNC_AUT_CE4 { get; set; } //19.6
+        public bool XNC_AUT_CE5 { get; set; } //19.7
+        public bool XNC_AUT_WA1 { get; set; } //20.0
+        public bool XNC_AUT_WA2 { get; set; } //20.1
+        public bool XNC_AUT_ADD1 { get; set; } //20.2
+        public bool XNC_AUT_ADD2 { get; set; } //20.3
+        public bool XNC_AUT_ADD3 { get; set; } //20.4
+        public bool XNC_AUT_ADD4 { get; set; } //20.5
+        public bool XNC_AUT_ADD5 { get; set; } //20.6
+        public bool XNC_AUT_ADD6 { get; set; } //20.7
+        public bool GIU_LAI_CAN_AGG1 { get; set; } //21.0  //GIU LAI CAN
+        public bool GIU_LAI_CAN_AGG2 { get; set; } //21.1
+        public bool GIU_LAI_CAN_AGG3 { get; set; } //21.2
+        public bool GIU_LAI_CAN_AGG4 { get; set; } //21.3
+        public bool GIU_LAI_CAN_AGG5 { get; set; } //21.4
+        public bool GIU_LAI_CAN_AGG6 { get; set; } //21.5
+        public bool GIU_LAI_CAN_CE1 { get; set; } //21.6
+        public bool GIU_LAI_CAN_CE2 { get; set; } //21.7
+        public bool GIU_LAI_CAN_WA1 { get; set; } //22.0
+        public bool GIU_LAI_CAN_WA2 { get; set; } //22.1
+        public bool GIU_LAI_CAN_ADD1 { get; set; } //22.2
+        public bool GIU_LAI_CAN_ADD2 { get; set; } //22.3
+        public bool BUTRU_AGG1 { get; set; } //22.4
+        public bool BUTRU_AGG2 { get; set; } //22.5
+        public bool BUTRU_AGG3 { get; set; } //22.6
+        public bool BUTRU_AGG4 { get; set; } //22.7
+        public bool BUTRU_AGG5 { get; set; } //23.0
+        public bool BUTRU_AGG6 { get; set; } //23.1
+        public bool BUTRU_CE1 { get; set; } //23.2
+        public bool BUTRU_CE2 { get; set; } //23.3
+        public bool BUTRU_CE3 { get; set; } //23.4
+        public bool BUTRU_CE4 { get; set; } //23.5
+        public bool BUTRU_CE5 { get; set; } //23.6
+        public bool BUTRU_WA1 { get; set; } //23.7
+        public bool BUTRU_WA2 { get; set; } //24.0
+        public bool BUTRU_ADD1 { get; set; } //24.1
+        public bool BUTRU_ADD2 { get; set; } //24.2
+        public bool BUTRU_ADD3 { get; set; } //24.3
+        public bool BUTRU_ADD4 { get; set; } //24.4
+        public bool BUTRU_ADD5 { get; set; } //24.5
+        public bool BUTRU_ADD6 { get; set; } //24.6
+
 
         //==============================================================
         //==============================================================DB8 WRITE BIT REPORT

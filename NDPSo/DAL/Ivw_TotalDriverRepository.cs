@@ -5,8 +5,8 @@ using NDPSo.EntityModel;
 
 namespace NDPSo.DAL
 {
-    interface Ivw_TotalDriverRepository : IEFRepository<vw_PvTotalDriver>
+    interface Ivw_TotalDriverRepository : IEFRepository<vw_PvDriverDetailDay_WithID>
     {
-        IList<vw_PvTotalDriver> ListvwTotalDriver_ByCondition(int? taixeID, bool? isManual);
+        IList<vw_PvDriverDetailDay_WithID> ListvwTotalDriver_ByCondition(int? taixeID, bool? isManual);
     }
 }

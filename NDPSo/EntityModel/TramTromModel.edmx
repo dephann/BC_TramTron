@@ -59,10 +59,10 @@
           <Property Name="CongTruongID" Type="int" />
           <Property Name="MACID" Type="int" />
           <Property Name="DoSut" Type="varchar(max)" />
-          <Property Name="KLDatHang" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="KLDaGiao" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="KLConLai" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="KLTaoPhieuTron" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="KLDatHang" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDaGiao" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLConLai" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLTaoPhieuTron" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Status" Type="int" />
           <Property Name="LastStatus" Type="int" />
           <Property Name="LnNo" Type="int" Nullable="false" />
@@ -327,6 +327,53 @@
           <Property Name="ValueTol" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ValuePerTol" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="MeTronChiTietGiaoHang">
+          <Key>
+            <PropertyRef Name="MeTronChiTietID" />
+          </Key>
+          <Property Name="MeTronChiTietID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MeTronID" Type="int" Nullable="false" />
+          <Property Name="MACSiloID" Type="int" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValueBat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SiloValue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SaiSoDuoi" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SaiSoTren" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLCanNhoNhat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="KLCanLonNhat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TGNhapNhaOn" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TGNhapNhaOff" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TGKiemTraVatLieuRoi" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLRoi" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Tu1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Tu2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Tu3" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Den1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Den2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Den3" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TinhDoHutNuocID" Type="int" />
+          <Property Name="DoAm_NhomSlioAgg" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DoHutNuoc_NhomSiloAgg" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SoiTrongCat_SiloId_NhomSiloAgg" Type="int" />
+          <Property Name="SoiTrongCat_Percent_NhomSiloAgg" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MaterialID" Type="int" />
+          <Property Name="MaterialCode" Type="varchar(max)" />
+          <Property Name="MaterialName" Type="nvarchar(max)" />
+          <Property Name="MaSilo" Type="varchar" MaxLength="30" />
+          <Property Name="STTSiloPLC" Type="int" />
+          <Property Name="IsManual" Type="bit" />
+          <Property Name="NgayMTCT" Type="datetime" />
+          <Property Name="PLCSaveId" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="LatestUpdateDate" Type="datetime" />
+          <Property Name="LatestUpdatedBy" Type="int" />
+          <Property Name="VersionNo" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ValueBatAuto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValueBatMan" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValueTol" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValuePerTol" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="NhanVien">
           <Key>
             <PropertyRef Name="NhanVienID" />
@@ -375,6 +422,54 @@
           <Property Name="Code" Type="varchar(max)" Nullable="false" />
           <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PhieuGiaoHang">
+          <Key>
+            <PropertyRef Name="PhieuTronID" />
+          </Key>
+          <Property Name="PhieuTronID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaPhieuTron" Type="varchar" MaxLength="20" />
+          <Property Name="NgayPhieuTron" Type="datetime" />
+          <Property Name="KLDuTinh" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLThuc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLTronNhoNhat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLTronLonNhat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLDuTinhCuaTungMe" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KLBuTruMeCuoi" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeDuTinh" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeHieuChinh" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeDaTron" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HopDongID" Type="int" />
+          <Property Name="KhachHangID" Type="int" />
+          <Property Name="TenKhachHang" Type="nvarchar(max)" />
+          <Property Name="CongTruongID" Type="int" />
+          <Property Name="TenCongTruong" Type="nvarchar(max)" />
+          <Property Name="HangMucID" Type="int" />
+          <Property Name="TenHangMuc" Type="nvarchar(max)" />
+          <Property Name="DiaDiem" Type="nvarchar(max)" />
+          <Property Name="MACID" Type="int" />
+          <Property Name="TenMAC" Type="nvarchar(max)" />
+          <Property Name="CuongDo" Type="nvarchar(max)" />
+          <Property Name="DoSut" Type="nvarchar(max)" />
+          <Property Name="TheTich" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LuyKe" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TaiXeID" Type="int" />
+          <Property Name="TenTaiXe" Type="nvarchar(max)" />
+          <Property Name="XeID" Type="int" />
+          <Property Name="BienSo" Type="nvarchar(max)" />
+          <Property Name="NiemChi" Type="nvarchar(max)" />
+          <Property Name="NguoiTron" Type="nvarchar(max)" />
+          <Property Name="Temp1" Type="nvarchar(max)" />
+          <Property Name="Temp2" Type="nvarchar(max)" />
+          <Property Name="Activated" Type="bit" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="LatestUpdateDate" Type="datetime" />
+          <Property Name="LatestUpdatedBy" Type="int" />
+          <Property Name="MaHopDong" Type="nvarchar(max)" />
+          <Property Name="NoPhieu" Type="int" />
+          <Property Name="GioKT" Type="nvarchar" MaxLength="50" />
+          <Property Name="GioBD" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PhieuTron">
           <Key>
@@ -624,7 +719,7 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -691,6 +786,8 @@
           <Property Name="LatestUpdateDate" Type="datetime" />
           <Property Name="LatestUpdatedBy" Type="int" />
           <Property Name="VersionNo" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="BuTruKLMT" Type="bit" />
+          <Property Name="TuDongXNCD" Type="bit" />
         </EntityType>
         <EntityType Name="SysCodeGen">
           <Key>
@@ -701,16 +798,6 @@
           <Property Name="Prefix" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Length" Type="int" Nullable="false" />
           <Property Name="CurrentNumber" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TaiXe">
           <Key>
@@ -817,6 +904,7 @@
           <Property Name="TON" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TOFF" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Spare" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="GiuKLTC" Type="bit" />
         </EntityType>
         <EntityType Name="WeiSiloSaving">
           <Key>
@@ -1049,13 +1137,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_InfoPT' does not have a primary ke
           <Key>
             <PropertyRef Name="PhieuTronID" />
             <PropertyRef Name="MaPhieuTron" />
-            <PropertyRef Name="KhachHangID" />
-            <PropertyRef Name="CongTruongID" />
-            <PropertyRef Name="MACID" />
-            <PropertyRef Name="XeID" />
-            <PropertyRef Name="TaiXeID" />
-            <PropertyRef Name="NhanVienID" />
-            <PropertyRef Name="HangMucID" />
+            <PropertyRef Name="KH_int" />
           </Key>
           <Property Name="PhieuTronID" Type="int" Nullable="false" />
           <Property Name="MaPhieuTron" Type="varchar" MaxLength="20" Nullable="false" />
@@ -1066,23 +1148,22 @@ warning 6002: The table/view 'TramTron.dbo.vw_InfoPT' does not have a primary ke
           <Property Name="KLThuc" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SLMeDuTinh" Type="decimal" Precision="18" Scale="2" />
           <Property Name="KLDuTinhCuaTungMe" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="KhachHangID" Type="int" Nullable="false" />
-          <Property Name="TenKhachHang" Type="nvarchar(max)" />
-          <Property Name="CongTruongID" Type="int" Nullable="false" />
-          <Property Name="TenCongTruong" Type="nvarchar(max)" />
-          <Property Name="MACID" Type="int" Nullable="false" />
-          <Property Name="TenMAC" Type="nvarchar(max)" />
-          <Property Name="XeID" Type="int" Nullable="false" />
-          <Property Name="BienSo" Type="varchar" MaxLength="50" />
-          <Property Name="TaiXeID" Type="int" Nullable="false" />
-          <Property Name="TenTaiXe" Type="nvarchar(max)" />
-          <Property Name="TenNhanVien" Type="nvarchar(max)" />
-          <Property Name="NhanVienID" Type="int" Nullable="false" />
-          <Property Name="TenHangMuc" Type="nvarchar(max)" />
-          <Property Name="HangMucID" Type="int" Nullable="false" />
+          <Property Name="KH_int" Type="int" Nullable="false" />
+          <Property Name="KH" Type="nvarchar(max)" />
+          <Property Name="CT_int" Type="int" />
+          <Property Name="CT" Type="nvarchar(max)" />
+          <Property Name="MAC_int" Type="int" />
+          <Property Name="MAC" Type="nvarchar(max)" />
+          <Property Name="Xe_int" Type="int" />
+          <Property Name="BS" Type="varchar" MaxLength="50" />
+          <Property Name="TX_int" Type="int" />
+          <Property Name="TX" Type="nvarchar(max)" />
+          <Property Name="HM" Type="nvarchar(max)" />
+          <Property Name="HM_int" Type="int" />
           <Property Name="IsQueued" Type="bit" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TramTron.dbo.vw_Infos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1141,29 +1222,18 @@ warning 6002: The table/view 'TramTron.dbo.vw_Infos' does not have a primary key
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'TramTron.dbo.vw_Pivot_Ex' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_Pivot_Ex">
+warning 6002: The table/view 'TramTron.dbo.vw_PvDriverDetailDay_WithID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_PvDriverDetailDay_WithID">
           <Key>
-            <PropertyRef Name="MeTronID" />
+            <PropertyRef Name="TaiXeID" />
           </Key>
-          <Property Name="MeTronID" Type="int" Nullable="false" />
-          <Property Name="Agg1" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Agg2" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Agg3" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Agg4" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Agg5" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Agg6" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Ce1" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Ce2" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Ce3" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Ce4" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Wa" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Add1" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Add2" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Add3" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Add4" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Add5" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Add6" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="ID" Type="bigint" />
+          <Property Name="NgayMeTron" Type="date" />
+          <Property Name="TaiXeID" Type="int" Nullable="false" />
+          <Property Name="TenTaiXe" Type="nvarchar(max)" />
+          <Property Name="Total_Tranfer" Type="int" />
+          <Property Name="Total_KL" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="IsManual" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TramTron.dbo.vw_PvMaterialDetailDay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1173,6 +1243,26 @@ warning 6002: The table/view 'TramTron.dbo.vw_PvMaterialDetailDay' does not have
             <PropertyRef Name="MaterialCode" />
             <PropertyRef Name="MaterialName" />
           </Key>
+          <Property Name="MaterialID" Type="int" Nullable="false" />
+          <Property Name="MaterialCode" Type="varchar(max)" Nullable="false" />
+          <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sum_ValueCP" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Sum_ValueBat" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Sum_ValueBatMan" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="SaiSo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PerSaiSo" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NgayMeTron" Type="datetime" />
+          <Property Name="IsManual" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TramTron.dbo.vw_PvMaterialDetailDay_WithID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_PvMaterialDetailDay_WithID">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+            <PropertyRef Name="MaterialCode" />
+            <PropertyRef Name="MaterialName" />
+          </Key>
+          <Property Name="ID" Type="bigint" />
           <Property Name="MaterialID" Type="int" Nullable="false" />
           <Property Name="MaterialCode" Type="varchar(max)" Nullable="false" />
           <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
@@ -1458,18 +1548,38 @@ warning 6002: The table/view 'TramTron.dbo.vw_PvTranferDetailDay' does not have 
           <Property Name="NgayMeTron_BienSo" Type="nvarchar" MaxLength="80" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'TramTron.dbo.vw_PvTranferDetailDay_WithID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_PvTranferDetailDay_WithID">
+          <Key>
+            <PropertyRef Name="XeID" />
+          </Key>
+          <Property Name="ID" Type="bigint" />
+          <Property Name="XeID" Type="int" Nullable="false" />
+          <Property Name="BienSo" Type="varchar" MaxLength="50" />
+          <Property Name="Total_Tranfer" Type="int" />
+          <Property Name="Total_KL" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="NgayMeTron" Type="datetime" />
+          <Property Name="IsQueued" Type="bit" />
+          <Property Name="NgayMeTron_BienSo" Type="nvarchar" MaxLength="80" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TramTron.dbo.vw_SumWeighFolPT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_SumWeighFolPT">
+          <Key>
+            <PropertyRef Name="PhieuTronID" />
+          </Key>
+          <Property Name="PhieuTronID" Type="int" Nullable="false" />
+          <Property Name="NgayPhieuTron" Type="datetime" />
+          <Property Name="TongKhoiLuong" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="TongMeTron" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'TramTron.dbo.vw_SumWeight' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_SumWeight">
           <Key>
             <PropertyRef Name="PhieuTronID" />
             <PropertyRef Name="MaPhieuTron" />
-            <PropertyRef Name="KhachHangID" />
-            <PropertyRef Name="CongTruongID" />
-            <PropertyRef Name="HangMucID" />
-            <PropertyRef Name="MACID" />
-            <PropertyRef Name="NhanVienID" />
-            <PropertyRef Name="XeID" />
-            <PropertyRef Name="TaiXeID" />
+            <PropertyRef Name="KH_int" />
           </Key>
           <Property Name="PhieuTronID" Type="int" Nullable="false" />
           <Property Name="MaPhieuTron" Type="varchar" MaxLength="20" Nullable="false" />
@@ -1480,26 +1590,26 @@ warning 6002: The table/view 'TramTron.dbo.vw_SumWeight' does not have a primary
           <Property Name="KLThuc" Type="decimal" Precision="18" Scale="2" />
           <Property Name="SLMeDuTinh" Type="decimal" Precision="18" Scale="2" />
           <Property Name="KLDuTinhCuaTungMe" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="KhachHangID" Type="int" Nullable="false" />
-          <Property Name="TenKhachHang" Type="nvarchar(max)" />
-          <Property Name="CongTruongID" Type="int" Nullable="false" />
-          <Property Name="TenCongTruong" Type="nvarchar(max)" />
-          <Property Name="HangMucID" Type="int" Nullable="false" />
-          <Property Name="TenHangMuc" Type="nvarchar(max)" />
-          <Property Name="MACID" Type="int" Nullable="false" />
-          <Property Name="TenMAC" Type="nvarchar(max)" />
-          <Property Name="NhanVienID" Type="int" Nullable="false" />
-          <Property Name="TenNhanVien" Type="nvarchar(max)" />
-          <Property Name="XeID" Type="int" Nullable="false" />
-          <Property Name="BienSo" Type="varchar" MaxLength="50" />
-          <Property Name="TaiXeID" Type="int" Nullable="false" />
-          <Property Name="TenTaiXe" Type="nvarchar(max)" />
+          <Property Name="KH_int" Type="int" Nullable="false" />
+          <Property Name="CT_int" Type="int" />
+          <Property Name="HM_int" Type="int" />
+          <Property Name="MAC_int" Type="int" />
+          <Property Name="Xe_int" Type="int" />
+          <Property Name="TX_int" Type="int" />
           <Property Name="SUM_Total_Value" Type="decimal" Precision="38" Scale="2" />
           <Property Name="SUM_Total_ValueBat" Type="decimal" Precision="38" Scale="2" />
           <Property Name="SUM_Total_ValueBatMan" Type="decimal" Precision="38" Scale="2" />
           <Property Name="IsQueued" Type="bit" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="KH" Type="nvarchar(max)" />
+          <Property Name="CT" Type="nvarchar(max)" />
+          <Property Name="BS" Type="varchar" MaxLength="50" />
+          <Property Name="MAC" Type="nvarchar(max)" />
+          <Property Name="TX" Type="nvarchar(max)" />
+          <Property Name="HM" Type="nvarchar(max)" />
+          <Property Name="TongKhoiLuong" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="TongMeTron" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1507,6 +1617,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Key>
             <PropertyRef Name="MeTronChiTietID" />
             <PropertyRef Name="MeTronID" />
+            <PropertyRef Name="VersionNo" />
           </Key>
           <Property Name="MeTronChiTietID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MeTronID" Type="int" Nullable="false" />
@@ -1528,9 +1639,28 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="KLDT_Den1" Type="decimal" Precision="18" Scale="2" />
           <Property Name="KLDT_Den2" Type="decimal" Precision="18" Scale="2" />
           <Property Name="KLDT_Den3" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TinhDoHutNuocID" Type="int" />
           <Property Name="DoAm_NhomSlioAgg" Type="decimal" Precision="18" Scale="2" />
           <Property Name="DoHutNuoc_NhomSiloAgg" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SoiTrongCat_SiloId_NhomSiloAgg" Type="int" />
+          <Property Name="SoiTrongCat_Percent_NhomSiloAgg" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="MaterialID" Type="int" />
+          <Property Name="MaterialCode" Type="varchar(max)" />
+          <Property Name="MaterialName" Type="nvarchar(max)" />
           <Property Name="MaSilo" Type="varchar" MaxLength="30" />
+          <Property Name="STTSiloPLC" Type="int" />
+          <Property Name="IsManual" Type="bit" />
+          <Property Name="NgayMTCT" Type="datetime" />
+          <Property Name="PLCSaveId" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="LatestUpdateDate" Type="datetime" />
+          <Property Name="LatestUpdatedBy" Type="int" />
+          <Property Name="VersionNo" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ValueBatAuto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValueBatMan" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValueTol" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ValuePerTol" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_DuLieuTron_HopDong">
           <End Role="HopDong" Type="Self.HopDong" Multiplicity="0..1" />
@@ -1660,6 +1790,30 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
               <PropertyRef Name="MeTronID" />
             </Principal>
             <Dependent Role="MeTronChiTiet">
+              <PropertyRef Name="MeTronID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeTronChiTietGiaoHang_MACSilo">
+          <End Role="MACSilo" Type="Self.MACSilo" Multiplicity="0..1" />
+          <End Role="MeTronChiTietGiaoHang" Type="Self.MeTronChiTietGiaoHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MACSilo">
+              <PropertyRef Name="MACSiloID" />
+            </Principal>
+            <Dependent Role="MeTronChiTietGiaoHang">
+              <PropertyRef Name="MACSiloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeTronChiTietGiaoHang_MeTron">
+          <End Role="MeTron" Type="Self.MeTron" Multiplicity="1" />
+          <End Role="MeTronChiTietGiaoHang" Type="Self.MeTronChiTietGiaoHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeTron">
+              <PropertyRef Name="MeTronID" />
+            </Principal>
+            <Dependent Role="MeTronChiTietGiaoHang">
               <PropertyRef Name="MeTronID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1924,10 +2078,12 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeTron" EntityType="Self.MeTron" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeTronChiTiet" EntityType="Self.MeTronChiTiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeTronChiTietGiaoHang" EntityType="Self.MeTronChiTietGiaoHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhomSilo" EntityType="Self.NhomSilo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCInput" EntityType="Self.PCInput" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PCOutput" EntityType="Self.PCOutput" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhieuGiaoHang" EntityType="Self.PhieuGiaoHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuTron" EntityType="Self.PhieuTron" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RptTongTungXe" EntityType="Self.RptTongTungXe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RptViewDataMix" EntityType="Self.RptViewDataMix" Schema="dbo" store:Type="Tables" />
@@ -1940,7 +2096,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <EntitySet Name="SEC_UserRole" EntityType="Self.SEC_UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Silo" EntityType="Self.Silo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysCodeGen" EntityType="Self.SysCodeGen" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiXe" EntityType="Self.TaiXe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimerPara" EntityType="Self.TimerPara" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinhDoHutNuoc" EntityType="Self.TinhDoHutNuoc" Schema="dbo" store:Type="Tables" />
@@ -2138,23 +2293,22 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
     [vw_InfoPT].[KLThuc] AS [KLThuc], 
     [vw_InfoPT].[SLMeDuTinh] AS [SLMeDuTinh], 
     [vw_InfoPT].[KLDuTinhCuaTungMe] AS [KLDuTinhCuaTungMe], 
-    [vw_InfoPT].[KhachHangID] AS [KhachHangID], 
-    [vw_InfoPT].[TenKhachHang] AS [TenKhachHang], 
-    [vw_InfoPT].[CongTruongID] AS [CongTruongID], 
-    [vw_InfoPT].[TenCongTruong] AS [TenCongTruong], 
-    [vw_InfoPT].[MACID] AS [MACID], 
-    [vw_InfoPT].[TenMAC] AS [TenMAC], 
-    [vw_InfoPT].[XeID] AS [XeID], 
-    [vw_InfoPT].[BienSo] AS [BienSo], 
-    [vw_InfoPT].[TaiXeID] AS [TaiXeID], 
-    [vw_InfoPT].[TenTaiXe] AS [TenTaiXe], 
-    [vw_InfoPT].[TenNhanVien] AS [TenNhanVien], 
-    [vw_InfoPT].[NhanVienID] AS [NhanVienID], 
-    [vw_InfoPT].[TenHangMuc] AS [TenHangMuc], 
-    [vw_InfoPT].[HangMucID] AS [HangMucID], 
+    [vw_InfoPT].[KH_int] AS [KH_int], 
+    [vw_InfoPT].[KH] AS [KH], 
+    [vw_InfoPT].[CT_int] AS [CT_int], 
+    [vw_InfoPT].[CT] AS [CT], 
+    [vw_InfoPT].[MAC_int] AS [MAC_int], 
+    [vw_InfoPT].[MAC] AS [MAC], 
+    [vw_InfoPT].[Xe_int] AS [Xe_int], 
+    [vw_InfoPT].[BS] AS [BS], 
+    [vw_InfoPT].[TX_int] AS [TX_int], 
+    [vw_InfoPT].[TX] AS [TX], 
+    [vw_InfoPT].[HM] AS [HM], 
+    [vw_InfoPT].[HM_int] AS [HM_int], 
     [vw_InfoPT].[IsQueued] AS [IsQueued], 
     [vw_InfoPT].[CreatedBy] AS [CreatedBy], 
-    [vw_InfoPT].[FullName] AS [FullName]
+    [vw_InfoPT].[FullName] AS [FullName], 
+    [vw_InfoPT].[UserID] AS [UserID]
     FROM [dbo].[vw_InfoPT] AS [vw_InfoPT]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_Infos" EntityType="Self.vw_Infos" store:Type="Views" store:Schema="dbo">
@@ -2201,27 +2355,16 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
     [vw_Infos].[FullName] AS [FullName]
     FROM [dbo].[vw_Infos] AS [vw_Infos]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_Pivot_Ex" EntityType="Self.vw_Pivot_Ex" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="vw_PvDriverDetailDay_WithID" EntityType="Self.vw_PvDriverDetailDay_WithID" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vw_Pivot_Ex].[MeTronID] AS [MeTronID], 
-    [vw_Pivot_Ex].[Agg1] AS [Agg1], 
-    [vw_Pivot_Ex].[Agg2] AS [Agg2], 
-    [vw_Pivot_Ex].[Agg3] AS [Agg3], 
-    [vw_Pivot_Ex].[Agg4] AS [Agg4], 
-    [vw_Pivot_Ex].[Agg5] AS [Agg5], 
-    [vw_Pivot_Ex].[Agg6] AS [Agg6], 
-    [vw_Pivot_Ex].[Ce1] AS [Ce1], 
-    [vw_Pivot_Ex].[Ce2] AS [Ce2], 
-    [vw_Pivot_Ex].[Ce3] AS [Ce3], 
-    [vw_Pivot_Ex].[Ce4] AS [Ce4], 
-    [vw_Pivot_Ex].[Wa] AS [Wa], 
-    [vw_Pivot_Ex].[Add1] AS [Add1], 
-    [vw_Pivot_Ex].[Add2] AS [Add2], 
-    [vw_Pivot_Ex].[Add3] AS [Add3], 
-    [vw_Pivot_Ex].[Add4] AS [Add4], 
-    [vw_Pivot_Ex].[Add5] AS [Add5], 
-    [vw_Pivot_Ex].[Add6] AS [Add6]
-    FROM [dbo].[vw_Pivot_Ex] AS [vw_Pivot_Ex]</DefiningQuery>
+    [vw_PvDriverDetailDay_WithID].[ID] AS [ID], 
+    [vw_PvDriverDetailDay_WithID].[NgayMeTron] AS [NgayMeTron], 
+    [vw_PvDriverDetailDay_WithID].[TaiXeID] AS [TaiXeID], 
+    [vw_PvDriverDetailDay_WithID].[TenTaiXe] AS [TenTaiXe], 
+    [vw_PvDriverDetailDay_WithID].[Total_Tranfer] AS [Total_Tranfer], 
+    [vw_PvDriverDetailDay_WithID].[Total_KL] AS [Total_KL], 
+    [vw_PvDriverDetailDay_WithID].[IsManual] AS [IsManual]
+    FROM [dbo].[vw_PvDriverDetailDay_WithID] AS [vw_PvDriverDetailDay_WithID]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_PvMaterialDetailDay" EntityType="Self.vw_PvMaterialDetailDay" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2236,6 +2379,21 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
     [vw_PvMaterialDetailDay].[NgayMeTron] AS [NgayMeTron], 
     [vw_PvMaterialDetailDay].[IsManual] AS [IsManual]
     FROM [dbo].[vw_PvMaterialDetailDay] AS [vw_PvMaterialDetailDay]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_PvMaterialDetailDay_WithID" EntityType="Self.vw_PvMaterialDetailDay_WithID" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_PvMaterialDetailDay_WithID].[ID] AS [ID], 
+    [vw_PvMaterialDetailDay_WithID].[MaterialID] AS [MaterialID], 
+    [vw_PvMaterialDetailDay_WithID].[MaterialCode] AS [MaterialCode], 
+    [vw_PvMaterialDetailDay_WithID].[MaterialName] AS [MaterialName], 
+    [vw_PvMaterialDetailDay_WithID].[Sum_ValueCP] AS [Sum_ValueCP], 
+    [vw_PvMaterialDetailDay_WithID].[Sum_ValueBat] AS [Sum_ValueBat], 
+    [vw_PvMaterialDetailDay_WithID].[Sum_ValueBatMan] AS [Sum_ValueBatMan], 
+    [vw_PvMaterialDetailDay_WithID].[SaiSo] AS [SaiSo], 
+    [vw_PvMaterialDetailDay_WithID].[PerSaiSo] AS [PerSaiSo], 
+    [vw_PvMaterialDetailDay_WithID].[NgayMeTron] AS [NgayMeTron], 
+    [vw_PvMaterialDetailDay_WithID].[IsManual] AS [IsManual]
+    FROM [dbo].[vw_PvMaterialDetailDay_WithID] AS [vw_PvMaterialDetailDay_WithID]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_PvSUMTotal" EntityType="Self.vw_PvSUMTotal" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2487,6 +2645,26 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
     [vw_PvTranferDetailDay].[NgayMeTron_BienSo] AS [NgayMeTron_BienSo]
     FROM [dbo].[vw_PvTranferDetailDay] AS [vw_PvTranferDetailDay]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vw_PvTranferDetailDay_WithID" EntityType="Self.vw_PvTranferDetailDay_WithID" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_PvTranferDetailDay_WithID].[ID] AS [ID], 
+    [vw_PvTranferDetailDay_WithID].[XeID] AS [XeID], 
+    [vw_PvTranferDetailDay_WithID].[BienSo] AS [BienSo], 
+    [vw_PvTranferDetailDay_WithID].[Total_Tranfer] AS [Total_Tranfer], 
+    [vw_PvTranferDetailDay_WithID].[Total_KL] AS [Total_KL], 
+    [vw_PvTranferDetailDay_WithID].[NgayMeTron] AS [NgayMeTron], 
+    [vw_PvTranferDetailDay_WithID].[IsQueued] AS [IsQueued], 
+    [vw_PvTranferDetailDay_WithID].[NgayMeTron_BienSo] AS [NgayMeTron_BienSo]
+    FROM [dbo].[vw_PvTranferDetailDay_WithID] AS [vw_PvTranferDetailDay_WithID]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_SumWeighFolPT" EntityType="Self.vw_SumWeighFolPT" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_SumWeighFolPT].[PhieuTronID] AS [PhieuTronID], 
+    [vw_SumWeighFolPT].[NgayPhieuTron] AS [NgayPhieuTron], 
+    [vw_SumWeighFolPT].[TongKhoiLuong] AS [TongKhoiLuong], 
+    [vw_SumWeighFolPT].[TongMeTron] AS [TongMeTron]
+    FROM [dbo].[vw_SumWeighFolPT] AS [vw_SumWeighFolPT]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_SumWeight" EntityType="Self.vw_SumWeight" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_SumWeight].[PhieuTronID] AS [PhieuTronID], 
@@ -2498,26 +2676,26 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
     [vw_SumWeight].[KLThuc] AS [KLThuc], 
     [vw_SumWeight].[SLMeDuTinh] AS [SLMeDuTinh], 
     [vw_SumWeight].[KLDuTinhCuaTungMe] AS [KLDuTinhCuaTungMe], 
-    [vw_SumWeight].[KhachHangID] AS [KhachHangID], 
-    [vw_SumWeight].[TenKhachHang] AS [TenKhachHang], 
-    [vw_SumWeight].[CongTruongID] AS [CongTruongID], 
-    [vw_SumWeight].[TenCongTruong] AS [TenCongTruong], 
-    [vw_SumWeight].[HangMucID] AS [HangMucID], 
-    [vw_SumWeight].[TenHangMuc] AS [TenHangMuc], 
-    [vw_SumWeight].[MACID] AS [MACID], 
-    [vw_SumWeight].[TenMAC] AS [TenMAC], 
-    [vw_SumWeight].[NhanVienID] AS [NhanVienID], 
-    [vw_SumWeight].[TenNhanVien] AS [TenNhanVien], 
-    [vw_SumWeight].[XeID] AS [XeID], 
-    [vw_SumWeight].[BienSo] AS [BienSo], 
-    [vw_SumWeight].[TaiXeID] AS [TaiXeID], 
-    [vw_SumWeight].[TenTaiXe] AS [TenTaiXe], 
+    [vw_SumWeight].[KH_int] AS [KH_int], 
+    [vw_SumWeight].[CT_int] AS [CT_int], 
+    [vw_SumWeight].[HM_int] AS [HM_int], 
+    [vw_SumWeight].[MAC_int] AS [MAC_int], 
+    [vw_SumWeight].[Xe_int] AS [Xe_int], 
+    [vw_SumWeight].[TX_int] AS [TX_int], 
     [vw_SumWeight].[SUM_Total_Value] AS [SUM_Total_Value], 
     [vw_SumWeight].[SUM_Total_ValueBat] AS [SUM_Total_ValueBat], 
     [vw_SumWeight].[SUM_Total_ValueBatMan] AS [SUM_Total_ValueBatMan], 
     [vw_SumWeight].[IsQueued] AS [IsQueued], 
     [vw_SumWeight].[CreatedBy] AS [CreatedBy], 
-    [vw_SumWeight].[FullName] AS [FullName]
+    [vw_SumWeight].[FullName] AS [FullName], 
+    [vw_SumWeight].[KH] AS [KH], 
+    [vw_SumWeight].[CT] AS [CT], 
+    [vw_SumWeight].[BS] AS [BS], 
+    [vw_SumWeight].[MAC] AS [MAC], 
+    [vw_SumWeight].[TX] AS [TX], 
+    [vw_SumWeight].[HM] AS [HM], 
+    [vw_SumWeight].[TongKhoiLuong] AS [TongKhoiLuong], 
+    [vw_SumWeight].[TongMeTron] AS [TongMeTron]
     FROM [dbo].[vw_SumWeight] AS [vw_SumWeight]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_Temp_Removing" EntityType="Self.vw_Temp_Removing" store:Type="Views" store:Schema="dbo">
@@ -2542,9 +2720,28 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
     [vw_Temp_Removing].[KLDT_Den1] AS [KLDT_Den1], 
     [vw_Temp_Removing].[KLDT_Den2] AS [KLDT_Den2], 
     [vw_Temp_Removing].[KLDT_Den3] AS [KLDT_Den3], 
+    [vw_Temp_Removing].[TinhDoHutNuocID] AS [TinhDoHutNuocID], 
     [vw_Temp_Removing].[DoAm_NhomSlioAgg] AS [DoAm_NhomSlioAgg], 
     [vw_Temp_Removing].[DoHutNuoc_NhomSiloAgg] AS [DoHutNuoc_NhomSiloAgg], 
-    [vw_Temp_Removing].[MaSilo] AS [MaSilo]
+    [vw_Temp_Removing].[SoiTrongCat_SiloId_NhomSiloAgg] AS [SoiTrongCat_SiloId_NhomSiloAgg], 
+    [vw_Temp_Removing].[SoiTrongCat_Percent_NhomSiloAgg] AS [SoiTrongCat_Percent_NhomSiloAgg], 
+    [vw_Temp_Removing].[MaterialID] AS [MaterialID], 
+    [vw_Temp_Removing].[MaterialCode] AS [MaterialCode], 
+    [vw_Temp_Removing].[MaterialName] AS [MaterialName], 
+    [vw_Temp_Removing].[MaSilo] AS [MaSilo], 
+    [vw_Temp_Removing].[STTSiloPLC] AS [STTSiloPLC], 
+    [vw_Temp_Removing].[IsManual] AS [IsManual], 
+    [vw_Temp_Removing].[NgayMTCT] AS [NgayMTCT], 
+    [vw_Temp_Removing].[PLCSaveId] AS [PLCSaveId], 
+    [vw_Temp_Removing].[CreationDate] AS [CreationDate], 
+    [vw_Temp_Removing].[CreatedBy] AS [CreatedBy], 
+    [vw_Temp_Removing].[LatestUpdateDate] AS [LatestUpdateDate], 
+    [vw_Temp_Removing].[LatestUpdatedBy] AS [LatestUpdatedBy], 
+    [vw_Temp_Removing].[VersionNo] AS [VersionNo], 
+    [vw_Temp_Removing].[ValueBatAuto] AS [ValueBatAuto], 
+    [vw_Temp_Removing].[ValueBatMan] AS [ValueBatMan], 
+    [vw_Temp_Removing].[ValueTol] AS [ValueTol], 
+    [vw_Temp_Removing].[ValuePerTol] AS [ValuePerTol]
     FROM [dbo].[vw_Temp_Removing] AS [vw_Temp_Removing]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_DuLieuTron_HopDong" Association="Self.FK_DuLieuTron_HopDong">
@@ -2590,6 +2787,14 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <AssociationSet Name="FK_MeTronChiTiet_MeTron" Association="Self.FK_MeTronChiTiet_MeTron">
             <End Role="MeTron" EntitySet="MeTron" />
             <End Role="MeTronChiTiet" EntitySet="MeTronChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MeTronChiTietGiaoHang_MACSilo" Association="Self.FK_MeTronChiTietGiaoHang_MACSilo">
+            <End Role="MACSilo" EntitySet="MACSilo" />
+            <End Role="MeTronChiTietGiaoHang" EntitySet="MeTronChiTietGiaoHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MeTronChiTietGiaoHang_MeTron" Association="Self.FK_MeTronChiTietGiaoHang_MeTron">
+            <End Role="MeTron" EntitySet="MeTron" />
+            <End Role="MeTronChiTietGiaoHang" EntitySet="MeTronChiTietGiaoHang" />
           </AssociationSet>
           <AssociationSet Name="FK_PhieuTron_CongTruong" Association="Self.FK_PhieuTron_CongTruong">
             <End Role="CongTruong" EntitySet="CongTruong" />
@@ -2732,10 +2937,10 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="CongTruongID" Type="Int32" />
           <Property Name="MACID" Type="Int32" />
           <Property Name="DoSut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="KLDatHang" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="KLDaGiao" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="KLConLai" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="KLTaoPhieuTron" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="KLDatHang" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDaGiao" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLConLai" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLTaoPhieuTron" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Status" Type="Int32" />
           <Property Name="LastStatus" Type="Int32" />
           <Property Name="LnNo" Type="Int32" Nullable="false" />
@@ -2916,6 +3121,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <NavigationProperty Name="MAC" Relationship="Self.FK_MACSilo_MAC" FromRole="MACSilo" ToRole="MAC" />
           <NavigationProperty Name="Silo" Relationship="Self.FK_MACSilo_Silo" FromRole="MACSilo" ToRole="Silo" />
           <NavigationProperty Name="MeTronChiTiets" Relationship="Self.FK_MeTronChiTiet_MACSilo" FromRole="MACSilo" ToRole="MeTronChiTiet" />
+          <NavigationProperty Name="MeTronChiTietGiaoHangs" Relationship="TramTronModel.FK_MeTronChiTietGiaoHang_MACSilo" FromRole="MACSilo" ToRole="MeTronChiTietGiaoHang" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -2957,6 +3163,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="LatestUpdatedBy" Type="Int32" />
           <NavigationProperty Name="PhieuTron" Relationship="Self.FK_MeTron_PhieuTron" FromRole="MeTron" ToRole="PhieuTron" />
           <NavigationProperty Name="MeTronChiTiets" Relationship="Self.FK_MeTronChiTiet_MeTron" FromRole="MeTron" ToRole="MeTronChiTiet" />
+          <NavigationProperty Name="MeTronChiTietGiaoHangs" Relationship="TramTronModel.FK_MeTronChiTietGiaoHang_MeTron" FromRole="MeTron" ToRole="MeTronChiTietGiaoHang" />
         </EntityType>
         <EntityType Name="MeTronChiTiet">
           <Key>
@@ -3306,7 +3513,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -3382,6 +3589,8 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <NavigationProperty Name="Silo1" Relationship="Self.FK_Silo_Silo1" FromRole="Silo" ToRole="Silo1" />
           <NavigationProperty Name="Silo2" Relationship="Self.FK_Silo_Silo1" FromRole="Silo1" ToRole="Silo" />
           <NavigationProperty Name="TinhDoHutNuoc" Relationship="Self.FK_Silo_TinhDoHutNuoc" FromRole="Silo" ToRole="TinhDoHutNuoc" />
+          <Property Name="BuTruKLMT" Type="Boolean" />
+          <Property Name="TuDongXNCD" Type="Boolean" />
         </EntityType>
         <EntityType Name="SysCodeGen">
           <Key>
@@ -3392,16 +3601,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="Prefix" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Length" Type="Int32" Nullable="false" />
           <Property Name="CurrentNumber" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TaiXe">
           <Key>
@@ -3513,6 +3712,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="TON" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TOFF" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Spare" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="GiuKLTC" Type="Boolean" />
         </EntityType>
         <EntityType Name="WeiSiloSaving">
           <Key>
@@ -3552,33 +3752,11 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="VersionNo" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="PhieuTrons" Relationship="Self.FK_PhieuTron_Xe" FromRole="Xe" ToRole="PhieuTron" />
         </EntityType>
-        <EntityType Name="vw_Pivot_Ex">
-          <Key>
-            <PropertyRef Name="MeTronID" />
-          </Key>
-          <Property Name="MeTronID" Type="Int32" Nullable="false" />
-          <Property Name="Agg1" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Agg2" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Agg3" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Agg4" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Agg5" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Agg6" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Ce1" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Ce2" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Ce3" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Ce4" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Wa" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Add1" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Add2" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Add3" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Add4" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Add5" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="Add6" Type="Decimal" Precision="38" Scale="2" />
-        </EntityType>
         <EntityType Name="vw_Temp_Removing">
           <Key>
             <PropertyRef Name="MeTronChiTietID" />
             <PropertyRef Name="MeTronID" />
+            <PropertyRef Name="VersionNo" />
           </Key>
           <Property Name="MeTronChiTietID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MeTronID" Type="Int32" Nullable="false" />
@@ -3603,6 +3781,25 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="DoAm_NhomSlioAgg" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="DoHutNuoc_NhomSiloAgg" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="MaSilo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TinhDoHutNuocID" Type="Int32" />
+          <Property Name="SoiTrongCat_SiloId_NhomSiloAgg" Type="Int32" />
+          <Property Name="SoiTrongCat_Percent_NhomSiloAgg" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MaterialID" Type="Int32" />
+          <Property Name="MaterialCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="STTSiloPLC" Type="Int32" />
+          <Property Name="IsManual" Type="Boolean" />
+          <Property Name="NgayMTCT" Type="DateTime" Precision="3" />
+          <Property Name="PLCSaveId" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="LatestUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="LatestUpdatedBy" Type="Int32" />
+          <Property Name="VersionNo" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ValueBatAuto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValueBatMan" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValueTol" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValuePerTol" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_HopDong_CongTruong">
           <End Role="CongTruong" Type="Self.CongTruong" Multiplicity="0..1" />
@@ -3974,7 +4171,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <EntitySet Name="SEC_UserRole" EntityType="Self.SEC_UserRole" />
           <EntitySet Name="Silos" EntityType="Self.Silo" />
           <EntitySet Name="SysCodeGens" EntityType="Self.SysCodeGen" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiXes" EntityType="Self.TaiXe" />
           <EntitySet Name="TimerParas" EntityType="Self.TimerPara" />
           <EntitySet Name="TinhDoHutNuocs" EntityType="Self.TinhDoHutNuoc" />
@@ -3985,7 +4181,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <EntitySet Name="WeiSiloSavings" EntityType="Self.WeiSiloSaving" />
           <EntitySet Name="WeiSiloVisibles" EntityType="Self.WeiSiloVisible" />
           <EntitySet Name="Xes" EntityType="Self.Xe" />
-          <EntitySet Name="vw_Pivot_Ex" EntityType="Self.vw_Pivot_Ex" />
           <EntitySet Name="vw_Temp_Removing" EntityType="Self.vw_Temp_Removing" />
           <AssociationSet Name="FK_HopDong_CongTruong" Association="Self.FK_HopDong_CongTruong">
             <End Role="CongTruong" EntitySet="CongTruongs" />
@@ -4114,17 +4309,31 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
             <End Role="PhieuTron" EntitySet="PhieuTrons" />
           </AssociationSet>
           <EntitySet Name="vw_PvSUMTotal" EntityType="TramTronModel.vw_PvSUMTotal" />
-          <EntitySet Name="vw_SumWeight" EntityType="TramTronModel.vw_SumWeight" />
           <EntitySet Name="vw_PvTotalMaterial" EntityType="TramTronModel.vw_PvTotalMaterial" />
           <EntitySet Name="vw_PvMaterialDetailDay" EntityType="TramTronModel.vw_PvMaterialDetailDay" />
           <EntitySet Name="vw_PvTranferDetailDay" EntityType="TramTronModel.vw_PvTranferDetailDay" />
           <EntitySet Name="vw_PvTotalTranfer" EntityType="TramTronModel.vw_PvTotalTranfer" />
           <EntitySet Name="vw_PvTotalDriver" EntityType="TramTronModel.vw_PvTotalDriver" />
           <EntitySet Name="vw_Infos" EntityType="TramTronModel.vw_Infos" />
-          <EntitySet Name="vw_InfoPT" EntityType="TramTronModel.vw_InfoPT" />
           <EntitySet Name="vw_DataMix" EntityType="TramTronModel.vw_DataMix" />
           <EntitySet Name="vw_PvtMTCT" EntityType="TramTronModel.vw_PvtMTCT" />
           <EntitySet Name="vw_PvTotalWeghit" EntityType="TramTronModel.vw_PvTotalWeghit" />
+          <EntitySet Name="vw_PvMaterialDetailDay_WithID" EntityType="TramTronModel.vw_PvMaterialDetailDay_WithID" />
+          <EntitySet Name="vw_PvDriverDetailDay_WithID" EntityType="TramTronModel.vw_PvDriverDetailDay_WithID" />
+          <EntitySet Name="vw_PvTranferDetailDay_WithID" EntityType="TramTronModel.vw_PvTranferDetailDay_WithID" />
+          <EntitySet Name="vw_InfoPT" EntityType="TramTronModel.vw_InfoPT" />
+          <EntitySet Name="vw_SumWeight" EntityType="TramTronModel.vw_SumWeight" />
+          <EntitySet Name="PhieuGiaoHangs" EntityType="TramTronModel.PhieuGiaoHang" />
+          <EntitySet Name="vw_SumWeighFolPT" EntityType="TramTronModel.vw_SumWeighFolPT" />
+          <EntitySet Name="MeTronChiTietGiaoHangs" EntityType="TramTronModel.MeTronChiTietGiaoHang" />
+          <AssociationSet Name="FK_MeTronChiTietGiaoHang_MACSilo" Association="TramTronModel.FK_MeTronChiTietGiaoHang_MACSilo">
+            <End Role="MACSilo" EntitySet="MACSiloes" />
+            <End Role="MeTronChiTietGiaoHang" EntitySet="MeTronChiTietGiaoHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MeTronChiTietGiaoHang_MeTron" Association="TramTronModel.FK_MeTronChiTietGiaoHang_MeTron">
+            <End Role="MeTron" EntitySet="MeTrons" />
+            <End Role="MeTronChiTietGiaoHang" EntitySet="MeTronChiTietGiaoHangs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="NhanVien">
           <Key>
@@ -4206,48 +4415,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="SUM_Total_Value" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="SUM_Total_ValueBat" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="SUM_Total_ValueBatMan" Type="Decimal" Precision="38" Scale="2" />
-        </EntityType>
-        <EntityType Name="vw_SumWeight">
-          <Key>
-            <PropertyRef Name="PhieuTronID" />
-            <PropertyRef Name="MaPhieuTron" />
-            <PropertyRef Name="KhachHangID" />
-            <PropertyRef Name="CongTruongID" />
-            <PropertyRef Name="HangMucID" />
-            <PropertyRef Name="MACID" />
-            <PropertyRef Name="NhanVienID" />
-            <PropertyRef Name="XeID" />
-            <PropertyRef Name="TaiXeID" />
-          </Key>
-          <Property Name="PhieuTronID" Type="Int32" Nullable="false" />
-          <Property Name="MaPhieuTron" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Ngay" Type="DateTime" Precision="0" />
-          <Property Name="Gio" Type="Time" Precision="7" />
-          <Property Name="KLDuTinh" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KLThuc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SLMeDuTinh" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KLDuTinhCuaTungMe" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KhachHangID" Type="Int32" Nullable="false" />
-          <Property Name="TenKhachHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CongTruongID" Type="Int32" Nullable="false" />
-          <Property Name="TenCongTruong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HangMucID" Type="Int32" Nullable="false" />
-          <Property Name="TenHangMuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MACID" Type="Int32" Nullable="false" />
-          <Property Name="TenMAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NhanVienID" Type="Int32" Nullable="false" />
-          <Property Name="TenNhanVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="XeID" Type="Int32" Nullable="false" />
-          <Property Name="BienSo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TaiXeID" Type="Int32" Nullable="false" />
-          <Property Name="TenTaiXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SUM_Total_Value" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="SUM_Total_ValueBat" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="SUM_Total_ValueBatMan" Type="Decimal" Precision="38" Scale="2" />
-          <Property Name="IsQueued" Type="Boolean" />
-          <Property Name="NgayPhieuTron" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vw_PvTotalMaterial">
           <Key>
@@ -4366,45 +4533,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="MAC_int" Type="Int32" />
           <Property Name="CT_int" Type="Int32" />
           <Property Name="KH_int" Type="Int32" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="vw_InfoPT">
-          <Key>
-            <PropertyRef Name="PhieuTronID" />
-            <PropertyRef Name="MaPhieuTron" />
-            <PropertyRef Name="KhachHangID" />
-            <PropertyRef Name="CongTruongID" />
-            <PropertyRef Name="MACID" />
-            <PropertyRef Name="XeID" />
-            <PropertyRef Name="TaiXeID" />
-            <PropertyRef Name="NhanVienID" />
-            <PropertyRef Name="HangMucID" />
-          </Key>
-          <Property Name="PhieuTronID" Type="Int32" Nullable="false" />
-          <Property Name="MaPhieuTron" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NgayPhieuTron" Type="DateTime" Precision="3" />
-          <Property Name="Ngay" Type="DateTime" Precision="0" />
-          <Property Name="Gio" Type="Time" Precision="7" />
-          <Property Name="KLDuTinh" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KLThuc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SLMeDuTinh" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KLDuTinhCuaTungMe" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="KhachHangID" Type="Int32" Nullable="false" />
-          <Property Name="TenKhachHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CongTruongID" Type="Int32" Nullable="false" />
-          <Property Name="TenCongTruong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MACID" Type="Int32" Nullable="false" />
-          <Property Name="TenMAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="XeID" Type="Int32" Nullable="false" />
-          <Property Name="BienSo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TaiXeID" Type="Int32" Nullable="false" />
-          <Property Name="TenTaiXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TenNhanVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NhanVienID" Type="Int32" Nullable="false" />
-          <Property Name="TenHangMuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HangMucID" Type="Int32" Nullable="false" />
-          <Property Name="IsQueued" Type="Boolean" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -4795,6 +4923,247 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="Total_ValueBatMan_Add5" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="Total_ValueBatMan_Add6" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>
+        <EntityType Name="vw_PvMaterialDetailDay_WithID">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+            <PropertyRef Name="MaterialCode" />
+            <PropertyRef Name="MaterialName" />
+          </Key>
+          <Property Name="ID" Type="Int64" />
+          <Property Name="MaterialID" Type="Int32" Nullable="false" />
+          <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MaterialName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sum_ValueCP" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Sum_ValueBat" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Sum_ValueBatMan" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="SaiSo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PerSaiSo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NgayMeTron" Type="DateTime" Precision="3" />
+          <Property Name="IsManual" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_PvDriverDetailDay_WithID">
+          <Key>
+            <PropertyRef Name="TaiXeID" />
+          </Key>
+          <Property Name="ID" Type="Int64" />
+          <Property Name="NgayMeTron" Type="DateTime" Precision="0" />
+          <Property Name="TaiXeID" Type="Int32" Nullable="false" />
+          <Property Name="TenTaiXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Tranfer" Type="Int32" />
+          <Property Name="Total_KL" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="IsManual" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_PvTranferDetailDay_WithID">
+          <Key>
+            <PropertyRef Name="XeID" />
+          </Key>
+          <Property Name="ID" Type="Int64" />
+          <Property Name="XeID" Type="Int32" Nullable="false" />
+          <Property Name="BienSo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total_Tranfer" Type="Int32" />
+          <Property Name="Total_KL" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="NgayMeTron" Type="DateTime" Precision="3" />
+          <Property Name="IsQueued" Type="Boolean" />
+          <Property Name="NgayMeTron_BienSo" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_InfoPT">
+          <Key>
+            <PropertyRef Name="PhieuTronID" />
+            <PropertyRef Name="MaPhieuTron" />
+            <PropertyRef Name="KH_int" />
+          </Key>
+          <Property Name="PhieuTronID" Type="Int32" Nullable="false" />
+          <Property Name="MaPhieuTron" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NgayPhieuTron" Type="DateTime" Precision="3" />
+          <Property Name="Ngay" Type="DateTime" Precision="0" />
+          <Property Name="Gio" Type="Time" Precision="7" />
+          <Property Name="KLDuTinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLThuc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeDuTinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDuTinhCuaTungMe" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KH_int" Type="Int32" Nullable="false" />
+          <Property Name="KH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CT_int" Type="Int32" />
+          <Property Name="CT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MAC_int" Type="Int32" />
+          <Property Name="MAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Xe_int" Type="Int32" />
+          <Property Name="BS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TX_int" Type="Int32" />
+          <Property Name="TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HM_int" Type="Int32" />
+          <Property Name="IsQueued" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_SumWeight">
+          <Key>
+            <PropertyRef Name="PhieuTronID" />
+            <PropertyRef Name="MaPhieuTron" />
+            <PropertyRef Name="KH_int" />
+          </Key>
+          <Property Name="PhieuTronID" Type="Int32" Nullable="false" />
+          <Property Name="MaPhieuTron" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NgayPhieuTron" Type="DateTime" Precision="3" />
+          <Property Name="Ngay" Type="DateTime" Precision="0" />
+          <Property Name="Gio" Type="Time" Precision="7" />
+          <Property Name="KLDuTinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLThuc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeDuTinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDuTinhCuaTungMe" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KH_int" Type="Int32" Nullable="false" />
+          <Property Name="CT_int" Type="Int32" />
+          <Property Name="HM_int" Type="Int32" />
+          <Property Name="MAC_int" Type="Int32" />
+          <Property Name="Xe_int" Type="Int32" />
+          <Property Name="TX_int" Type="Int32" />
+          <Property Name="SUM_Total_Value" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="SUM_Total_ValueBat" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="SUM_Total_ValueBatMan" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="IsQueued" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TX" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TongKhoiLuong" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TongMeTron" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PhieuGiaoHang">
+          <Key>
+            <PropertyRef Name="PhieuTronID" />
+          </Key>
+          <Property Name="PhieuTronID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaPhieuTron" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NgayPhieuTron" Type="DateTime" Precision="3" />
+          <Property Name="KLDuTinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLThuc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLTronNhoNhat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLTronLonNhat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDuTinhCuaTungMe" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLBuTruMeCuoi" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeDuTinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeHieuChinh" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SLMeDaTron" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HopDongID" Type="Int32" />
+          <Property Name="KhachHangID" Type="Int32" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CongTruongID" Type="Int32" />
+          <Property Name="TenCongTruong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HangMucID" Type="Int32" />
+          <Property Name="TenHangMuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaDiem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MACID" Type="Int32" />
+          <Property Name="TenMAC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CuongDo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoSut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TheTich" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LuyKe" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TaiXeID" Type="Int32" />
+          <Property Name="TenTaiXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="XeID" Type="Int32" />
+          <Property Name="BienSo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NiemChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiTron" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Temp1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Temp2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activated" Type="Boolean" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="LatestUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="LatestUpdatedBy" Type="Int32" />
+          <Property Name="MaHopDong" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoPhieu" Type="Int32" />
+          <Property Name="GioKT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GioBD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_SumWeighFolPT">
+          <Key>
+            <PropertyRef Name="PhieuTronID" />
+          </Key>
+          <Property Name="PhieuTronID" Type="Int32" Nullable="false" />
+          <Property Name="NgayPhieuTron" Type="DateTime" Precision="3" />
+          <Property Name="TongKhoiLuong" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TongMeTron" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MeTronChiTietGiaoHang">
+          <Key>
+            <PropertyRef Name="MeTronChiTietID" />
+          </Key>
+          <Property Name="MeTronChiTietID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeTronID" Type="Int32" Nullable="false" />
+          <Property Name="MACSiloID" Type="Int32" />
+          <Property Name="Value" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValueBat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SiloValue" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SaiSoDuoi" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SaiSoTren" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLCanNhoNhat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="KLCanLonNhat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TGNhapNhaOn" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TGNhapNhaOff" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TGKiemTraVatLieuRoi" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLRoi" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Tu1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Tu2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Tu3" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Den1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Den2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KLDT_Den3" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TinhDoHutNuocID" Type="Int32" />
+          <Property Name="DoAm_NhomSlioAgg" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DoHutNuoc_NhomSiloAgg" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SoiTrongCat_SiloId_NhomSiloAgg" Type="Int32" />
+          <Property Name="SoiTrongCat_Percent_NhomSiloAgg" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="MaterialID" Type="Int32" />
+          <Property Name="MaterialCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaSilo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="STTSiloPLC" Type="Int32" />
+          <Property Name="IsManual" Type="Boolean" />
+          <Property Name="NgayMTCT" Type="DateTime" Precision="3" />
+          <Property Name="PLCSaveId" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="LatestUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="LatestUpdatedBy" Type="Int32" />
+          <Property Name="VersionNo" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ValueBatAuto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValueBatMan" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValueTol" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ValuePerTol" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="MACSilo" Relationship="TramTronModel.FK_MeTronChiTietGiaoHang_MACSilo" FromRole="MeTronChiTietGiaoHang" ToRole="MACSilo" />
+          <NavigationProperty Name="MeTron" Relationship="TramTronModel.FK_MeTronChiTietGiaoHang_MeTron" FromRole="MeTronChiTietGiaoHang" ToRole="MeTron" />
+        </EntityType>
+        <Association Name="FK_MeTronChiTietGiaoHang_MACSilo">
+          <End Type="TramTronModel.MACSilo" Role="MACSilo" Multiplicity="0..1" />
+          <End Type="TramTronModel.MeTronChiTietGiaoHang" Role="MeTronChiTietGiaoHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MACSilo">
+              <PropertyRef Name="MACSiloID" />
+            </Principal>
+            <Dependent Role="MeTronChiTietGiaoHang">
+              <PropertyRef Name="MACSiloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeTronChiTietGiaoHang_MeTron">
+          <End Type="TramTronModel.MeTron" Role="MeTron" Multiplicity="1" />
+          <End Type="TramTronModel.MeTronChiTietGiaoHang" Role="MeTronChiTietGiaoHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MeTron">
+              <PropertyRef Name="MeTronID" />
+            </Principal>
+            <Dependent Role="MeTronChiTietGiaoHang">
+              <PropertyRef Name="MeTronID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5440,6 +5809,8 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <EntitySetMapping Name="Silos">
             <EntityTypeMapping TypeName="TramTronModel.Silo">
               <MappingFragment StoreEntitySet="Silo">
+                <ScalarProperty Name="TuDongXNCD" ColumnName="TuDongXNCD" />
+                <ScalarProperty Name="BuTruKLMT" ColumnName="BuTruKLMT" />
                 <ScalarProperty Name="SiloID" ColumnName="SiloID" />
                 <ScalarProperty Name="MaSilo" ColumnName="MaSilo" />
                 <ScalarProperty Name="TenSilo" ColumnName="TenSilo" />
@@ -5489,17 +5860,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
                 <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="Length" ColumnName="Length" />
                 <ScalarProperty Name="CurrentNumber" ColumnName="CurrentNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TramTronModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5598,6 +5958,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <EntitySetMapping Name="Weighs">
             <EntityTypeMapping TypeName="TramTronModel.Weigh">
               <MappingFragment StoreEntitySet="Weigh">
+                <ScalarProperty Name="GiuKLTC" ColumnName="GiuKLTC" />
                 <ScalarProperty Name="WeighID" ColumnName="WeighID" />
                 <ScalarProperty Name="WeighCode" ColumnName="WeighCode" />
                 <ScalarProperty Name="WeighName" ColumnName="WeighName" />
@@ -5656,33 +6017,28 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_Pivot_Ex">
-            <EntityTypeMapping TypeName="TramTronModel.vw_Pivot_Ex">
-              <MappingFragment StoreEntitySet="vw_Pivot_Ex">
-                <ScalarProperty Name="MeTronID" ColumnName="MeTronID" />
-                <ScalarProperty Name="Agg1" ColumnName="Agg1" />
-                <ScalarProperty Name="Agg2" ColumnName="Agg2" />
-                <ScalarProperty Name="Agg3" ColumnName="Agg3" />
-                <ScalarProperty Name="Agg4" ColumnName="Agg4" />
-                <ScalarProperty Name="Agg5" ColumnName="Agg5" />
-                <ScalarProperty Name="Agg6" ColumnName="Agg6" />
-                <ScalarProperty Name="Ce1" ColumnName="Ce1" />
-                <ScalarProperty Name="Ce2" ColumnName="Ce2" />
-                <ScalarProperty Name="Ce3" ColumnName="Ce3" />
-                <ScalarProperty Name="Ce4" ColumnName="Ce4" />
-                <ScalarProperty Name="Wa" ColumnName="Wa" />
-                <ScalarProperty Name="Add1" ColumnName="Add1" />
-                <ScalarProperty Name="Add2" ColumnName="Add2" />
-                <ScalarProperty Name="Add3" ColumnName="Add3" />
-                <ScalarProperty Name="Add4" ColumnName="Add4" />
-                <ScalarProperty Name="Add5" ColumnName="Add5" />
-                <ScalarProperty Name="Add6" ColumnName="Add6" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vw_Temp_Removing">
             <EntityTypeMapping TypeName="TramTronModel.vw_Temp_Removing">
               <MappingFragment StoreEntitySet="vw_Temp_Removing">
+                <ScalarProperty Name="ValuePerTol" ColumnName="ValuePerTol" />
+                <ScalarProperty Name="ValueTol" ColumnName="ValueTol" />
+                <ScalarProperty Name="ValueBatMan" ColumnName="ValueBatMan" />
+                <ScalarProperty Name="ValueBatAuto" ColumnName="ValueBatAuto" />
+                <ScalarProperty Name="VersionNo" ColumnName="VersionNo" />
+                <ScalarProperty Name="LatestUpdatedBy" ColumnName="LatestUpdatedBy" />
+                <ScalarProperty Name="LatestUpdateDate" ColumnName="LatestUpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="PLCSaveId" ColumnName="PLCSaveId" />
+                <ScalarProperty Name="NgayMTCT" ColumnName="NgayMTCT" />
+                <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+                <ScalarProperty Name="STTSiloPLC" ColumnName="STTSiloPLC" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="SoiTrongCat_Percent_NhomSiloAgg" ColumnName="SoiTrongCat_Percent_NhomSiloAgg" />
+                <ScalarProperty Name="SoiTrongCat_SiloId_NhomSiloAgg" ColumnName="SoiTrongCat_SiloId_NhomSiloAgg" />
+                <ScalarProperty Name="TinhDoHutNuocID" ColumnName="TinhDoHutNuocID" />
                 <ScalarProperty Name="MeTronChiTietID" ColumnName="MeTronChiTietID" />
                 <ScalarProperty Name="MeTronID" ColumnName="MeTronID" />
                 <ScalarProperty Name="MACSiloID" ColumnName="MACSiloID" />
@@ -5750,41 +6106,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
                 <ScalarProperty Name="SUM_Total_ValueBatMan" ColumnName="SUM_Total_ValueBatMan" />
                 <ScalarProperty Name="SUM_Total_ValueBat" ColumnName="SUM_Total_ValueBat" />
                 <ScalarProperty Name="SUM_Total_Value" ColumnName="SUM_Total_Value" />
-                <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_SumWeight">
-            <EntityTypeMapping TypeName="TramTronModel.vw_SumWeight">
-              <MappingFragment StoreEntitySet="vw_SumWeight">
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
-                <ScalarProperty Name="IsQueued" ColumnName="IsQueued" />
-                <ScalarProperty Name="SUM_Total_ValueBatMan" ColumnName="SUM_Total_ValueBatMan" />
-                <ScalarProperty Name="SUM_Total_ValueBat" ColumnName="SUM_Total_ValueBat" />
-                <ScalarProperty Name="SUM_Total_Value" ColumnName="SUM_Total_Value" />
-                <ScalarProperty Name="TenTaiXe" ColumnName="TenTaiXe" />
-                <ScalarProperty Name="TaiXeID" ColumnName="TaiXeID" />
-                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
-                <ScalarProperty Name="XeID" ColumnName="XeID" />
-                <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
-                <ScalarProperty Name="NhanVienID" ColumnName="NhanVienID" />
-                <ScalarProperty Name="TenMAC" ColumnName="TenMAC" />
-                <ScalarProperty Name="MACID" ColumnName="MACID" />
-                <ScalarProperty Name="TenHangMuc" ColumnName="TenHangMuc" />
-                <ScalarProperty Name="HangMucID" ColumnName="HangMucID" />
-                <ScalarProperty Name="TenCongTruong" ColumnName="TenCongTruong" />
-                <ScalarProperty Name="CongTruongID" ColumnName="CongTruongID" />
-                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
-                <ScalarProperty Name="KhachHangID" ColumnName="KhachHangID" />
-                <ScalarProperty Name="KLDuTinhCuaTungMe" ColumnName="KLDuTinhCuaTungMe" />
-                <ScalarProperty Name="SLMeDuTinh" ColumnName="SLMeDuTinh" />
-                <ScalarProperty Name="KLThuc" ColumnName="KLThuc" />
-                <ScalarProperty Name="KLDuTinh" ColumnName="KLDuTinh" />
-                <ScalarProperty Name="Gio" ColumnName="Gio" />
-                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
-                <ScalarProperty Name="MaPhieuTron" ColumnName="MaPhieuTron" />
                 <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -5899,38 +6220,6 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
                 <ScalarProperty Name="Ngay" ColumnName="Ngay" />
                 <ScalarProperty Name="NgayMeTron" ColumnName="NgayMeTron" />
                 <ScalarProperty Name="MeTronID" ColumnName="MeTronID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_InfoPT">
-            <EntityTypeMapping TypeName="TramTronModel.vw_InfoPT">
-              <MappingFragment StoreEntitySet="vw_InfoPT">
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsQueued" ColumnName="IsQueued" />
-                <ScalarProperty Name="HangMucID" ColumnName="HangMucID" />
-                <ScalarProperty Name="TenHangMuc" ColumnName="TenHangMuc" />
-                <ScalarProperty Name="NhanVienID" ColumnName="NhanVienID" />
-                <ScalarProperty Name="TenNhanVien" ColumnName="TenNhanVien" />
-                <ScalarProperty Name="TenTaiXe" ColumnName="TenTaiXe" />
-                <ScalarProperty Name="TaiXeID" ColumnName="TaiXeID" />
-                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
-                <ScalarProperty Name="XeID" ColumnName="XeID" />
-                <ScalarProperty Name="TenMAC" ColumnName="TenMAC" />
-                <ScalarProperty Name="MACID" ColumnName="MACID" />
-                <ScalarProperty Name="TenCongTruong" ColumnName="TenCongTruong" />
-                <ScalarProperty Name="CongTruongID" ColumnName="CongTruongID" />
-                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
-                <ScalarProperty Name="KhachHangID" ColumnName="KhachHangID" />
-                <ScalarProperty Name="KLDuTinhCuaTungMe" ColumnName="KLDuTinhCuaTungMe" />
-                <ScalarProperty Name="SLMeDuTinh" ColumnName="SLMeDuTinh" />
-                <ScalarProperty Name="KLThuc" ColumnName="KLThuc" />
-                <ScalarProperty Name="KLDuTinh" ColumnName="KLDuTinh" />
-                <ScalarProperty Name="Gio" ColumnName="Gio" />
-                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
-                <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
-                <ScalarProperty Name="MaPhieuTron" ColumnName="MaPhieuTron" />
-                <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6312,6 +6601,223 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
                 <ScalarProperty Name="Total_Value_Agg1" ColumnName="Total_Value_Agg1" />
                 <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
                 <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_PvMaterialDetailDay_WithID">
+            <EntityTypeMapping TypeName="TramTronModel.vw_PvMaterialDetailDay_WithID">
+              <MappingFragment StoreEntitySet="vw_PvMaterialDetailDay_WithID">
+                <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+                <ScalarProperty Name="NgayMeTron" ColumnName="NgayMeTron" />
+                <ScalarProperty Name="PerSaiSo" ColumnName="PerSaiSo" />
+                <ScalarProperty Name="SaiSo" ColumnName="SaiSo" />
+                <ScalarProperty Name="Sum_ValueBatMan" ColumnName="Sum_ValueBatMan" />
+                <ScalarProperty Name="Sum_ValueBat" ColumnName="Sum_ValueBat" />
+                <ScalarProperty Name="Sum_ValueCP" ColumnName="Sum_ValueCP" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_PvDriverDetailDay_WithID">
+            <EntityTypeMapping TypeName="TramTronModel.vw_PvDriverDetailDay_WithID">
+              <MappingFragment StoreEntitySet="vw_PvDriverDetailDay_WithID">
+                <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+                <ScalarProperty Name="Total_KL" ColumnName="Total_KL" />
+                <ScalarProperty Name="Total_Tranfer" ColumnName="Total_Tranfer" />
+                <ScalarProperty Name="TenTaiXe" ColumnName="TenTaiXe" />
+                <ScalarProperty Name="TaiXeID" ColumnName="TaiXeID" />
+                <ScalarProperty Name="NgayMeTron" ColumnName="NgayMeTron" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_PvTranferDetailDay_WithID">
+            <EntityTypeMapping TypeName="TramTronModel.vw_PvTranferDetailDay_WithID">
+              <MappingFragment StoreEntitySet="vw_PvTranferDetailDay_WithID">
+                <ScalarProperty Name="NgayMeTron_BienSo" ColumnName="NgayMeTron_BienSo" />
+                <ScalarProperty Name="IsQueued" ColumnName="IsQueued" />
+                <ScalarProperty Name="NgayMeTron" ColumnName="NgayMeTron" />
+                <ScalarProperty Name="Total_KL" ColumnName="Total_KL" />
+                <ScalarProperty Name="Total_Tranfer" ColumnName="Total_Tranfer" />
+                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
+                <ScalarProperty Name="XeID" ColumnName="XeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_InfoPT">
+            <EntityTypeMapping TypeName="TramTronModel.vw_InfoPT">
+              <MappingFragment StoreEntitySet="vw_InfoPT">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsQueued" ColumnName="IsQueued" />
+                <ScalarProperty Name="HM_int" ColumnName="HM_int" />
+                <ScalarProperty Name="HM" ColumnName="HM" />
+                <ScalarProperty Name="TX" ColumnName="TX" />
+                <ScalarProperty Name="TX_int" ColumnName="TX_int" />
+                <ScalarProperty Name="BS" ColumnName="BS" />
+                <ScalarProperty Name="Xe_int" ColumnName="Xe_int" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="MAC_int" ColumnName="MAC_int" />
+                <ScalarProperty Name="CT" ColumnName="CT" />
+                <ScalarProperty Name="CT_int" ColumnName="CT_int" />
+                <ScalarProperty Name="KH" ColumnName="KH" />
+                <ScalarProperty Name="KH_int" ColumnName="KH_int" />
+                <ScalarProperty Name="KLDuTinhCuaTungMe" ColumnName="KLDuTinhCuaTungMe" />
+                <ScalarProperty Name="SLMeDuTinh" ColumnName="SLMeDuTinh" />
+                <ScalarProperty Name="KLThuc" ColumnName="KLThuc" />
+                <ScalarProperty Name="KLDuTinh" ColumnName="KLDuTinh" />
+                <ScalarProperty Name="Gio" ColumnName="Gio" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
+                <ScalarProperty Name="MaPhieuTron" ColumnName="MaPhieuTron" />
+                <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_SumWeight">
+            <EntityTypeMapping TypeName="TramTronModel.vw_SumWeight">
+              <MappingFragment StoreEntitySet="vw_SumWeight">
+                <ScalarProperty Name="TongMeTron" ColumnName="TongMeTron" />
+                <ScalarProperty Name="TongKhoiLuong" ColumnName="TongKhoiLuong" />
+                <ScalarProperty Name="HM" ColumnName="HM" />
+                <ScalarProperty Name="TX" ColumnName="TX" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="BS" ColumnName="BS" />
+                <ScalarProperty Name="CT" ColumnName="CT" />
+                <ScalarProperty Name="KH" ColumnName="KH" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsQueued" ColumnName="IsQueued" />
+                <ScalarProperty Name="SUM_Total_ValueBatMan" ColumnName="SUM_Total_ValueBatMan" />
+                <ScalarProperty Name="SUM_Total_ValueBat" ColumnName="SUM_Total_ValueBat" />
+                <ScalarProperty Name="SUM_Total_Value" ColumnName="SUM_Total_Value" />
+                <ScalarProperty Name="TX_int" ColumnName="TX_int" />
+                <ScalarProperty Name="Xe_int" ColumnName="Xe_int" />
+                <ScalarProperty Name="MAC_int" ColumnName="MAC_int" />
+                <ScalarProperty Name="HM_int" ColumnName="HM_int" />
+                <ScalarProperty Name="CT_int" ColumnName="CT_int" />
+                <ScalarProperty Name="KH_int" ColumnName="KH_int" />
+                <ScalarProperty Name="KLDuTinhCuaTungMe" ColumnName="KLDuTinhCuaTungMe" />
+                <ScalarProperty Name="SLMeDuTinh" ColumnName="SLMeDuTinh" />
+                <ScalarProperty Name="KLThuc" ColumnName="KLThuc" />
+                <ScalarProperty Name="KLDuTinh" ColumnName="KLDuTinh" />
+                <ScalarProperty Name="Gio" ColumnName="Gio" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
+                <ScalarProperty Name="MaPhieuTron" ColumnName="MaPhieuTron" />
+                <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuGiaoHangs">
+            <EntityTypeMapping TypeName="TramTronModel.PhieuGiaoHang">
+              <MappingFragment StoreEntitySet="PhieuGiaoHang">
+                <ScalarProperty Name="GioBD" ColumnName="GioBD" />
+                <ScalarProperty Name="GioKT" ColumnName="GioKT" />
+                <ScalarProperty Name="NoPhieu" ColumnName="NoPhieu" />
+                <ScalarProperty Name="MaHopDong" ColumnName="MaHopDong" />
+                <ScalarProperty Name="LatestUpdatedBy" ColumnName="LatestUpdatedBy" />
+                <ScalarProperty Name="LatestUpdateDate" ColumnName="LatestUpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="Temp2" ColumnName="Temp2" />
+                <ScalarProperty Name="Temp1" ColumnName="Temp1" />
+                <ScalarProperty Name="NguoiTron" ColumnName="NguoiTron" />
+                <ScalarProperty Name="NiemChi" ColumnName="NiemChi" />
+                <ScalarProperty Name="BienSo" ColumnName="BienSo" />
+                <ScalarProperty Name="XeID" ColumnName="XeID" />
+                <ScalarProperty Name="TenTaiXe" ColumnName="TenTaiXe" />
+                <ScalarProperty Name="TaiXeID" ColumnName="TaiXeID" />
+                <ScalarProperty Name="LuyKe" ColumnName="LuyKe" />
+                <ScalarProperty Name="TheTich" ColumnName="TheTich" />
+                <ScalarProperty Name="DoSut" ColumnName="DoSut" />
+                <ScalarProperty Name="CuongDo" ColumnName="CuongDo" />
+                <ScalarProperty Name="TenMAC" ColumnName="TenMAC" />
+                <ScalarProperty Name="MACID" ColumnName="MACID" />
+                <ScalarProperty Name="DiaDiem" ColumnName="DiaDiem" />
+                <ScalarProperty Name="TenHangMuc" ColumnName="TenHangMuc" />
+                <ScalarProperty Name="HangMucID" ColumnName="HangMucID" />
+                <ScalarProperty Name="TenCongTruong" ColumnName="TenCongTruong" />
+                <ScalarProperty Name="CongTruongID" ColumnName="CongTruongID" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="KhachHangID" ColumnName="KhachHangID" />
+                <ScalarProperty Name="HopDongID" ColumnName="HopDongID" />
+                <ScalarProperty Name="SLMeDaTron" ColumnName="SLMeDaTron" />
+                <ScalarProperty Name="SLMeHieuChinh" ColumnName="SLMeHieuChinh" />
+                <ScalarProperty Name="SLMeDuTinh" ColumnName="SLMeDuTinh" />
+                <ScalarProperty Name="KLBuTruMeCuoi" ColumnName="KLBuTruMeCuoi" />
+                <ScalarProperty Name="KLDuTinhCuaTungMe" ColumnName="KLDuTinhCuaTungMe" />
+                <ScalarProperty Name="KLTronLonNhat" ColumnName="KLTronLonNhat" />
+                <ScalarProperty Name="KLTronNhoNhat" ColumnName="KLTronNhoNhat" />
+                <ScalarProperty Name="KLThuc" ColumnName="KLThuc" />
+                <ScalarProperty Name="KLDuTinh" ColumnName="KLDuTinh" />
+                <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
+                <ScalarProperty Name="MaPhieuTron" ColumnName="MaPhieuTron" />
+                <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_SumWeighFolPT">
+            <EntityTypeMapping TypeName="TramTronModel.vw_SumWeighFolPT">
+              <MappingFragment StoreEntitySet="vw_SumWeighFolPT">
+                <ScalarProperty Name="TongMeTron" ColumnName="TongMeTron" />
+                <ScalarProperty Name="TongKhoiLuong" ColumnName="TongKhoiLuong" />
+                <ScalarProperty Name="NgayPhieuTron" ColumnName="NgayPhieuTron" />
+                <ScalarProperty Name="PhieuTronID" ColumnName="PhieuTronID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeTronChiTietGiaoHangs">
+            <EntityTypeMapping TypeName="TramTronModel.MeTronChiTietGiaoHang">
+              <MappingFragment StoreEntitySet="MeTronChiTietGiaoHang">
+                <ScalarProperty Name="ValuePerTol" ColumnName="ValuePerTol" />
+                <ScalarProperty Name="ValueTol" ColumnName="ValueTol" />
+                <ScalarProperty Name="ValueBatMan" ColumnName="ValueBatMan" />
+                <ScalarProperty Name="ValueBatAuto" ColumnName="ValueBatAuto" />
+                <ScalarProperty Name="VersionNo" ColumnName="VersionNo" />
+                <ScalarProperty Name="LatestUpdatedBy" ColumnName="LatestUpdatedBy" />
+                <ScalarProperty Name="LatestUpdateDate" ColumnName="LatestUpdateDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="PLCSaveId" ColumnName="PLCSaveId" />
+                <ScalarProperty Name="NgayMTCT" ColumnName="NgayMTCT" />
+                <ScalarProperty Name="IsManual" ColumnName="IsManual" />
+                <ScalarProperty Name="STTSiloPLC" ColumnName="STTSiloPLC" />
+                <ScalarProperty Name="MaSilo" ColumnName="MaSilo" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="SoiTrongCat_Percent_NhomSiloAgg" ColumnName="SoiTrongCat_Percent_NhomSiloAgg" />
+                <ScalarProperty Name="SoiTrongCat_SiloId_NhomSiloAgg" ColumnName="SoiTrongCat_SiloId_NhomSiloAgg" />
+                <ScalarProperty Name="DoHutNuoc_NhomSiloAgg" ColumnName="DoHutNuoc_NhomSiloAgg" />
+                <ScalarProperty Name="DoAm_NhomSlioAgg" ColumnName="DoAm_NhomSlioAgg" />
+                <ScalarProperty Name="TinhDoHutNuocID" ColumnName="TinhDoHutNuocID" />
+                <ScalarProperty Name="KLDT_Den3" ColumnName="KLDT_Den3" />
+                <ScalarProperty Name="KLDT_Den2" ColumnName="KLDT_Den2" />
+                <ScalarProperty Name="KLDT_Den1" ColumnName="KLDT_Den1" />
+                <ScalarProperty Name="KLDT_Tu3" ColumnName="KLDT_Tu3" />
+                <ScalarProperty Name="KLDT_Tu2" ColumnName="KLDT_Tu2" />
+                <ScalarProperty Name="KLDT_Tu1" ColumnName="KLDT_Tu1" />
+                <ScalarProperty Name="KLRoi" ColumnName="KLRoi" />
+                <ScalarProperty Name="TGKiemTraVatLieuRoi" ColumnName="TGKiemTraVatLieuRoi" />
+                <ScalarProperty Name="TGNhapNhaOff" ColumnName="TGNhapNhaOff" />
+                <ScalarProperty Name="TGNhapNhaOn" ColumnName="TGNhapNhaOn" />
+                <ScalarProperty Name="KLCanLonNhat" ColumnName="KLCanLonNhat" />
+                <ScalarProperty Name="KLCanNhoNhat" ColumnName="KLCanNhoNhat" />
+                <ScalarProperty Name="SaiSoTren" ColumnName="SaiSoTren" />
+                <ScalarProperty Name="SaiSoDuoi" ColumnName="SaiSoDuoi" />
+                <ScalarProperty Name="SiloValue" ColumnName="SiloValue" />
+                <ScalarProperty Name="ValueBat" ColumnName="ValueBat" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MACSiloID" ColumnName="MACSiloID" />
+                <ScalarProperty Name="MeTronID" ColumnName="MeTronID" />
+                <ScalarProperty Name="MeTronChiTietID" ColumnName="MeTronChiTietID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

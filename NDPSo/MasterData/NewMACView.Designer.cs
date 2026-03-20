@@ -61,7 +61,6 @@ namespace NDPSo.MasterData
             this.gcMaterialName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imemGhiChu = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).BeginInit();
-            this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCuongDo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memGhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnThemBotNuoc2.Properties)).BeginInit();
@@ -71,9 +70,7 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.txtTenMAC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaMAC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCommand)).BeginInit();
-            this.pnlCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpSiloValue)).BeginInit();
-            this.grpSiloValue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcMACSilo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvMACSilo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnSiloValue)).BeginInit();
@@ -124,6 +121,9 @@ namespace NDPSo.MasterData
             this.txtCuongDo.Location = new System.Drawing.Point(663, 26);
             this.txtCuongDo.Margin = new System.Windows.Forms.Padding(2);
             this.txtCuongDo.Name = "txtCuongDo";
+            // 
+            // 
+            // 
             this.txtCuongDo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtCuongDo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCuongDo.Properties.Appearance.Options.UseBackColor = true;
@@ -171,6 +171,9 @@ namespace NDPSo.MasterData
             this.spnThemBotNuoc2.Location = new System.Drawing.Point(389, 77);
             this.spnThemBotNuoc2.Margin = new System.Windows.Forms.Padding(2);
             this.spnThemBotNuoc2.Name = "spnThemBotNuoc2";
+            // 
+            // 
+            // 
             this.spnThemBotNuoc2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spnThemBotNuoc2.Size = new System.Drawing.Size(107, 20);
@@ -187,6 +190,9 @@ namespace NDPSo.MasterData
             this.spnThemBotNuoc1.Location = new System.Drawing.Point(389, 52);
             this.spnThemBotNuoc1.Margin = new System.Windows.Forms.Padding(2);
             this.spnThemBotNuoc1.Name = "spnThemBotNuoc1";
+            // 
+            // 
+            // 
             this.spnThemBotNuoc1.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnThemBotNuoc1.Properties.Appearance.Options.UseFont = true;
             this.spnThemBotNuoc1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -212,6 +218,9 @@ namespace NDPSo.MasterData
             this.txtDoSut.Location = new System.Drawing.Point(389, 26);
             this.txtDoSut.Margin = new System.Windows.Forms.Padding(2);
             this.txtDoSut.Name = "txtDoSut";
+            // 
+            // 
+            // 
             this.txtDoSut.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtDoSut.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDoSut.Properties.Appearance.Options.UseBackColor = true;
@@ -247,6 +256,9 @@ namespace NDPSo.MasterData
             this.chkActive.Location = new System.Drawing.Point(106, 81);
             this.chkActive.Margin = new System.Windows.Forms.Padding(2);
             this.chkActive.Name = "chkActive";
+            // 
+            // 
+            // 
             this.chkActive.Properties.Caption = "";
             this.chkActive.Size = new System.Drawing.Size(92, 20);
             this.chkActive.TabIndex = 14;
@@ -257,6 +269,9 @@ namespace NDPSo.MasterData
             this.txtTenMAC.Location = new System.Drawing.Point(106, 56);
             this.txtTenMAC.Margin = new System.Windows.Forms.Padding(2);
             this.txtTenMAC.Name = "txtTenMAC";
+            // 
+            // 
+            // 
             this.txtTenMAC.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtTenMAC.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenMAC.Properties.Appearance.Options.UseBackColor = true;
@@ -280,6 +295,9 @@ namespace NDPSo.MasterData
             this.txtMaMAC.Location = new System.Drawing.Point(106, 26);
             this.txtMaMAC.Margin = new System.Windows.Forms.Padding(2);
             this.txtMaMAC.Name = "txtMaMAC";
+            // 
+            // 
+            // 
             this.txtMaMAC.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtMaMAC.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaMAC.Properties.Appearance.Options.UseBackColor = true;
@@ -364,6 +382,9 @@ namespace NDPSo.MasterData
             // grcMACSilo
             // 
             this.grcMACSilo.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // 
+            // 
             this.grcMACSilo.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.grcMACSilo.Location = new System.Drawing.Point(2, 23);
             this.grcMACSilo.MainView = this.grvMACSilo;
@@ -490,8 +511,6 @@ namespace NDPSo.MasterData
             this.Name = "NewMACView";
             this.Size = new System.Drawing.Size(840, 528);
             ((System.ComponentModel.ISupportInitialize)(this.pnlTop)).EndInit();
-            this.pnlTop.ResumeLayout(false);
-            this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCuongDo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memGhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnThemBotNuoc2.Properties)).EndInit();
@@ -501,9 +520,7 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.txtTenMAC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaMAC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCommand)).EndInit();
-            this.pnlCommand.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpSiloValue)).EndInit();
-            this.grpSiloValue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcMACSilo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvMACSilo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnSiloValue)).EndInit();

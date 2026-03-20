@@ -5,8 +5,8 @@ using NDPSo.EntityModel;
 
 namespace NDPSo.DAL
 {
-    interface Ivw_TotalTranferRepository : IEFRepository<vw_PvTotalTranfer>
+    interface Ivw_TotalTranferRepository : IEFRepository<vw_PvTranferDetailDay_WithID>
     {
-        IList<vw_PvTotalTranfer> ListvwTotalTranfer_ByCondition(int? xeID, bool? isManual);
+        IList<vw_PvTranferDetailDay_WithID> ListvwTotalTranfer_ByCondition(int? xeID, bool? isManual);
     }
 }

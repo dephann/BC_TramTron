@@ -132,7 +132,26 @@ namespace NDPSo.Utils
             get => this[nameof(SecuritySealNum)];
             set => this[nameof(SecuritySealNum)] = value;
         }
-
+        public int DriverNum
+        {
+            get => Convert.ToInt32(this[nameof(DriverNum)]);
+            set => this[nameof(DriverNum)] = value.ToString();
+        }
+        public int XeNum
+        {
+            get => Convert.ToInt32(this[nameof(XeNum)]);
+            set => this[nameof(XeNum)] = value.ToString();
+        }
+        public int HangMucNumNA
+        {
+            get => Convert.ToInt32(this[nameof(HangMucNumNA)]);
+            set => this[nameof(HangMucNumNA)] = value.ToString();
+        }
+        public int AddMinuteGioKT
+        {
+            get => Convert.ToInt32(this[nameof(AddMinuteGioKT)]);
+            set => this[nameof(AddMinuteGioKT)] = value.ToString();
+        }
         public string ReceivingService
         {
             get => this[nameof(ReceivingService)];
@@ -390,6 +409,11 @@ namespace NDPSo.Utils
         {
             get => Convert.ToBoolean(this[nameof(Show_BTC)]);
             set => this[nameof(Show_BTC)] = value ? "true" : "false";
+        }
+        public bool PGN
+        {
+            get => Convert.ToBoolean(this[nameof(PGN)]);
+            set => this[nameof(PGN)] = value ? "true" : "false";
         }
         public int Width_BTC
         {
@@ -794,6 +818,11 @@ namespace NDPSo.Utils
             get => this[nameof(PICTPath)];
             set => this[nameof(PICTPath)] = value;
         }
+        public string PdfReaderPath
+        {
+            get => this[nameof(PdfReaderPath)];
+            set => this[nameof(PdfReaderPath)] = value;
+        }
         public string MayInPI
         {
             get => this[nameof(MayInPI)];
@@ -804,6 +833,19 @@ namespace NDPSo.Utils
             get => this[nameof(MayInPICT)];
             set => this[nameof(MayInPICT)] = value;
         }
+        public bool IsCanFixPGH
+        {
+            get => Convert.ToBoolean(this[nameof(IsCanFixPGH)]);
+            set => this[nameof(IsCanFixPGH)] = value ? "true" : "false";
+        }
+        public bool IsCanFixPCT
+        {
+            get => Convert.ToBoolean(this[nameof(IsCanFixPCT)]);
+            set => this[nameof(IsCanFixPCT)] = value ? "true" : "false";
+        }
+        /// <summary>
+        /// //////////////////////
+        /// </summary>
         public string Para01
         {
             get => this[nameof(Para01)];
@@ -1225,9 +1267,9 @@ namespace NDPSo.Utils
             get => Convert.ToInt32(this["NhanVien_Y"]);
             set => this["NhanVien_Y"] = value.ToString();
         }
-        public Decimal TimeLife
+        public DateTime TimeLife
         {
-            get => Decimal.Parse(this[nameof(TimeLife)]);
+            get => DateTime.Parse(this[nameof(TimeLife)]);
             set => this[nameof(TimeLife)] = value.ToString();
         }
         public Decimal Trial 

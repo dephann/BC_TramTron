@@ -54,8 +54,8 @@ namespace NDPSo.MasterData
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.chkGiuKL = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
-            this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnTGTreDong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnTGTreXa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnTGTreCan.Properties)).BeginInit();
@@ -65,11 +65,9 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.spnTOFF.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnTON.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenWei.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaWei.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -95,7 +93,7 @@ namespace NDPSo.MasterData
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(686, 366);
+            this.pnlMain.Size = new System.Drawing.Size(800, 401);
             this.pnlMain.TabIndex = 0;
             // 
             // lblTGTreDong
@@ -116,14 +114,17 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnTGTreDong.Location = new System.Drawing.Point(340, 190);
+            this.spnTGTreDong.Location = new System.Drawing.Point(397, 190);
             this.spnTGTreDong.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGTreDong.Name = "spnTGTreDong";
+            // 
+            // 
+            // 
             this.spnTGTreDong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTGTreDong.Properties.Appearance.Options.UseFont = true;
             this.spnTGTreDong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnTGTreDong.Size = new System.Drawing.Size(107, 22);
+            this.spnTGTreDong.Size = new System.Drawing.Size(125, 22);
             this.spnTGTreDong.TabIndex = 7;
             this.spnTGTreDong.EditValueChanged += new System.EventHandler(this.spnTGTreDong_EditValueChanged);
             // 
@@ -145,14 +146,17 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnTGTreXa.Location = new System.Drawing.Point(340, 160);
+            this.spnTGTreXa.Location = new System.Drawing.Point(397, 160);
             this.spnTGTreXa.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGTreXa.Name = "spnTGTreXa";
+            // 
+            // 
+            // 
             this.spnTGTreXa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTGTreXa.Properties.Appearance.Options.UseFont = true;
             this.spnTGTreXa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnTGTreXa.Size = new System.Drawing.Size(107, 22);
+            this.spnTGTreXa.Size = new System.Drawing.Size(125, 22);
             this.spnTGTreXa.TabIndex = 6;
             this.spnTGTreXa.EditValueChanged += new System.EventHandler(this.spnTGTreXa_EditValueChanged);
             // 
@@ -163,12 +167,15 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnTGTreCan.Location = new System.Drawing.Point(22, 178);
+            this.spnTGTreCan.Location = new System.Drawing.Point(26, 178);
             this.spnTGTreCan.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGTreCan.Name = "spnTGTreCan";
+            // 
+            // 
+            // 
             this.spnTGTreCan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnTGTreCan.Size = new System.Drawing.Size(107, 20);
+            this.spnTGTreCan.Size = new System.Drawing.Size(125, 20);
             this.spnTGTreCan.TabIndex = 13;
             this.spnTGTreCan.Visible = false;
             this.spnTGTreCan.EditValueChanged += new System.EventHandler(this.spnTGTreCan_EditValueChanged);
@@ -180,15 +187,19 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnTGOnDinhCan.Location = new System.Drawing.Point(340, 130);
+            this.spnTGOnDinhCan.Location = new System.Drawing.Point(397, 130);
             this.spnTGOnDinhCan.Margin = new System.Windows.Forms.Padding(2);
             this.spnTGOnDinhCan.Name = "spnTGOnDinhCan";
+            // 
+            // 
+            // 
             this.spnTGOnDinhCan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTGOnDinhCan.Properties.Appearance.Options.UseFont = true;
             this.spnTGOnDinhCan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnTGOnDinhCan.Size = new System.Drawing.Size(107, 22);
+            this.spnTGOnDinhCan.Size = new System.Drawing.Size(125, 22);
             this.spnTGOnDinhCan.TabIndex = 5;
+            this.spnTGOnDinhCan.Visible = true;
             this.spnTGOnDinhCan.EditValueChanged += new System.EventHandler(this.spnTGOnDinhCan_EditValueChanged);
             // 
             // spnKLRungCan
@@ -198,14 +209,17 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnKLRungCan.Location = new System.Drawing.Point(340, 220);
+            this.spnKLRungCan.Location = new System.Drawing.Point(397, 220);
             this.spnKLRungCan.Margin = new System.Windows.Forms.Padding(2);
             this.spnKLRungCan.Name = "spnKLRungCan";
+            // 
+            // 
+            // 
             this.spnKLRungCan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLRungCan.Properties.Appearance.Options.UseFont = true;
             this.spnKLRungCan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnKLRungCan.Size = new System.Drawing.Size(107, 22);
+            this.spnKLRungCan.Size = new System.Drawing.Size(125, 22);
             this.spnKLRungCan.TabIndex = 8;
             this.spnKLRungCan.EditValueChanged += new System.EventHandler(this.spnKLRungCan_EditValueChanged);
             // 
@@ -216,14 +230,17 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnKLBaoCanRong.Location = new System.Drawing.Point(340, 100);
+            this.spnKLBaoCanRong.Location = new System.Drawing.Point(397, 100);
             this.spnKLBaoCanRong.Margin = new System.Windows.Forms.Padding(2);
             this.spnKLBaoCanRong.Name = "spnKLBaoCanRong";
+            // 
+            // 
+            // 
             this.spnKLBaoCanRong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnKLBaoCanRong.Properties.Appearance.Options.UseFont = true;
             this.spnKLBaoCanRong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnKLBaoCanRong.Size = new System.Drawing.Size(107, 22);
+            this.spnKLBaoCanRong.Size = new System.Drawing.Size(125, 22);
             this.spnKLBaoCanRong.TabIndex = 4;
             this.spnKLBaoCanRong.EditValueChanged += new System.EventHandler(this.spnKLBaoCanRong_EditValueChanged);
             // 
@@ -234,14 +251,17 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnTOFF.Location = new System.Drawing.Point(340, 280);
+            this.spnTOFF.Location = new System.Drawing.Point(397, 280);
             this.spnTOFF.Margin = new System.Windows.Forms.Padding(2);
             this.spnTOFF.Name = "spnTOFF";
+            // 
+            // 
+            // 
             this.spnTOFF.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTOFF.Properties.Appearance.Options.UseFont = true;
             this.spnTOFF.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spnTOFF.Size = new System.Drawing.Size(107, 22);
+            this.spnTOFF.Size = new System.Drawing.Size(125, 22);
             this.spnTOFF.TabIndex = 10;
             this.spnTOFF.EditValueChanged += new System.EventHandler(this.spnTOFF_EditValueChanged);
             // 
@@ -252,15 +272,18 @@ namespace NDPSo.MasterData
             0,
             0,
             0});
-            this.spnTON.Location = new System.Drawing.Point(340, 250);
+            this.spnTON.Location = new System.Drawing.Point(397, 250);
             this.spnTON.Margin = new System.Windows.Forms.Padding(2);
             this.spnTON.Name = "spnTON";
+            // 
+            // 
+            // 
             this.spnTON.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnTON.Properties.Appearance.Options.UseFont = true;
             this.spnTON.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spnTON.Properties.EditValueChangedDelay = 1;
-            this.spnTON.Size = new System.Drawing.Size(107, 22);
+            this.spnTON.Size = new System.Drawing.Size(125, 22);
             this.spnTON.TabIndex = 9;
             this.spnTON.EditValueChanged += new System.EventHandler(this.spnTON_EditValueChanged);
             // 
@@ -339,32 +362,38 @@ namespace NDPSo.MasterData
             this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(682, 80);
+            this.panelControl2.Size = new System.Drawing.Size(796, 80);
             this.panelControl2.TabIndex = 0;
             // 
             // txtTenWei
             // 
-            this.txtTenWei.Location = new System.Drawing.Point(385, 29);
+            this.txtTenWei.Location = new System.Drawing.Point(449, 29);
             this.txtTenWei.Margin = new System.Windows.Forms.Padding(2);
             this.txtTenWei.Name = "txtTenWei";
+            // 
+            // 
+            // 
             this.txtTenWei.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtTenWei.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTenWei.Properties.Appearance.Options.UseBackColor = true;
             this.txtTenWei.Properties.Appearance.Options.UseFont = true;
-            this.txtTenWei.Size = new System.Drawing.Size(150, 22);
+            this.txtTenWei.Size = new System.Drawing.Size(175, 22);
             this.txtTenWei.TabIndex = 3;
             // 
             // txtMaWei
             // 
-            this.txtMaWei.Location = new System.Drawing.Point(122, 29);
+            this.txtMaWei.Location = new System.Drawing.Point(142, 29);
             this.txtMaWei.Margin = new System.Windows.Forms.Padding(2);
             this.txtMaWei.Name = "txtMaWei";
+            // 
+            // 
+            // 
             this.txtMaWei.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtMaWei.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaWei.Properties.Appearance.Options.UseBackColor = true;
             this.txtMaWei.Properties.Appearance.Options.UseFont = true;
             this.txtMaWei.Properties.ReadOnly = true;
-            this.txtMaWei.Size = new System.Drawing.Size(150, 22);
+            this.txtMaWei.Size = new System.Drawing.Size(175, 22);
             this.txtMaWei.TabIndex = 2;
             // 
             // lblTenWei
@@ -394,10 +423,10 @@ namespace NDPSo.MasterData
             this.panelControl1.Controls.Add(this.btnClose);
             this.panelControl1.Controls.Add(this.btnSave);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 319);
+            this.panelControl1.Location = new System.Drawing.Point(0, 354);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(686, 47);
+            this.panelControl1.Size = new System.Drawing.Size(800, 47);
             this.panelControl1.TabIndex = 1;
             // 
             // btnClose
@@ -424,17 +453,31 @@ namespace NDPSo.MasterData
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // chkGiuKL
+            // 
+            this.chkGiuKL.AutoSize = true;
+            this.chkGiuKL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkGiuKL.Location = new System.Drawing.Point(289, 318);
+            this.chkGiuKL.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.chkGiuKL.Name = "chkGiuKL";
+            this.chkGiuKL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkGiuKL.Size = new System.Drawing.Size(235, 20);
+            this.chkGiuKL.TabIndex = 2;
+            this.chkGiuKL.Text = "Cho Phép Giữ Khối Lượng Trên Cân";
+            this.chkGiuKL.UseVisualStyleBackColor = true;
+            this.chkGiuKL.CheckedChanged += new System.EventHandler(this.chkGiuKL_CheckedChanged);
+            // 
             // NewWeightView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkGiuKL);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.pnlMain);
+            this.Font = new System.Drawing.Font("Symbol", 8.25F);
             this.Name = "NewWeightView";
-            this.Size = new System.Drawing.Size(686, 366);
+            this.Size = new System.Drawing.Size(800, 401);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
-            this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnTGTreDong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnTGTreXa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnTGTreCan.Properties)).EndInit();
@@ -444,13 +487,11 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.spnTOFF.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnTON.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenWei.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaWei.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -481,5 +522,6 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.LabelControl lblTGTreXa;
         private DevExpress.XtraEditors.TextEdit txtMaWei;
         private DevExpress.XtraEditors.TextEdit txtTenWei;
+        private System.Windows.Forms.CheckBox chkGiuKL;
     }
 }

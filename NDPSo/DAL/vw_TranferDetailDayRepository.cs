@@ -8,14 +8,14 @@ using NDPSo.Utils;
 
 namespace NDPSo.DAL
 {
-    public class vw_TranferDetailDayRepository : EFRepository<vw_PvTranferDetailDay>, Ivw_TranferDetailDayRepository, IEFRepository<vw_PvTranferDetailDay>
+    public class vw_TranferDetailDayRepository : EFRepository<vw_PvTranferDetailDay_WithID>, Ivw_TranferDetailDayRepository, IEFRepository<vw_PvTranferDetailDay_WithID>
     {
         public vw_TranferDetailDayRepository(IDbContextManager dbCtxMng) : base(dbCtxMng)
         {
             //base.KeyProperty = base.GetKeyColumnName(new vw_PvTranferDetailDay(), new DEPTramTronEntities(ConfigManager.ServiceConfig.ConnectionString));
             base.KeyProperty = "NgayMeTron_BienSo";
         }
-        public IList<vw_PvTranferDetailDay> ListTranferDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? xeID, bool? isQueued)
+        public IList<vw_PvTranferDetailDay_WithID> ListTranferDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? xeID, bool? isQueued)
         {
              /*Specification<vw_PvTranferDetailDay> spec = new Specification<vw_PvTranferDetailDay>((vw_PvTranferDetailDay o) =>
              (o.XeID == xeID || xeID == null) &&
@@ -52,6 +52,11 @@ namespace NDPSo.DAL
             return query.ToList();
 
 
+        }
+        public IList<vw_PvTranferDetailDay_WithID> ListTranferDetailDay_ByCondition_Update(DateTime? fromDate, DateTime? toDate, int? xeID, bool? isQueued)
+        {
+            Specification<vw_PvTranferDetailDay_WithID> spec = new Specification<vw_PvTranferDetailDay_WithID>((vw_PvTranferDetailDay_WithID o) => (o.ID == xeID || xeID == null));
+            return base.SelectAll(spec);
         }
     }
 }

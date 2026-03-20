@@ -72,6 +72,7 @@ namespace NDPSo.MasterData
                 case Enums.FormAction.New:
                     this._presenter.BuildNewMAC();
                     this._presenter.ListSilo_ByActivated(true);
+                    //this._presenter.ListMACSilo_ByMACID(1);
                     break;
                 case Enums.FormAction.Edit:
                     this._presenter.GetMACByKey(this._mac.MACID);
@@ -147,7 +148,7 @@ namespace NDPSo.MasterData
                         }
                         if (objSilo.MaSilo == "Add1" || objSilo.MaSilo == "Add2" || objSilo.MaSilo == "Add3" || objSilo.MaSilo == "Add4" || objSilo.MaSilo == "Add5" || objSilo.MaSilo == "Add6")
                         {
-                            if (objMacSilo.SiloValue > 5)
+                            if (objMacSilo.SiloValue > objSilo.KLCanLonNhat)
                             {
                                 TramTromMessageBox.ShowWarningDialog(string.Format("Giá trị silo {0} vượt quá giới hạn cho phép!", objMacSilo.NPSiloTenSilo));
                                 flag = false;
@@ -166,6 +167,9 @@ namespace NDPSo.MasterData
         {
             switch (this.FormAction)
             {
+                case Enums.FormAction.New:
+                    this.btnSaveNew.Visible = true;
+                    break;
                 case Enums.FormAction.Edit:
                     this.btnSaveNew.Visible = false;
                     break;
@@ -192,6 +196,7 @@ namespace NDPSo.MasterData
                     SiloID = objSilo.SiloID,
                     NPSiloMaSilo = objSilo.MaSilo,
                     NPSiloTenSilo = objSilo.TenSilo,
+                    NPSiloMaterialName = objSilo.MaterialName,
                     SiloValue = new Decimal?(0M),
                     GhiChu = string.Empty
                 };

@@ -49,7 +49,6 @@ namespace NDPSo.MasterData
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveNew = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).BeginInit();
-            this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnDonGia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDonVi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNhaCungCap.Properties)).BeginInit();
@@ -58,7 +57,6 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaterialCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCommand)).BeginInit();
-            this.pnlCommand.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -93,6 +91,9 @@ namespace NDPSo.MasterData
             0});
             this.spnDonGia.Location = new System.Drawing.Point(200, 160);
             this.spnDonGia.Name = "spnDonGia";
+            // 
+            // 
+            // 
             this.spnDonGia.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnDonGia.Properties.Appearance.Options.UseFont = true;
             this.spnDonGia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -105,6 +106,9 @@ namespace NDPSo.MasterData
             // 
             this.lueDonVi.Location = new System.Drawing.Point(200, 130);
             this.lueDonVi.Name = "lueDonVi";
+            // 
+            // 
+            // 
             this.lueDonVi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDonVi.Properties.Appearance.Options.UseFont = true;
             this.lueDonVi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -146,6 +150,9 @@ namespace NDPSo.MasterData
             this.txtNhaCungCap.Location = new System.Drawing.Point(200, 100);
             this.txtNhaCungCap.Margin = new System.Windows.Forms.Padding(2);
             this.txtNhaCungCap.Name = "txtNhaCungCap";
+            // 
+            // 
+            // 
             this.txtNhaCungCap.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNhaCungCap.Properties.Appearance.Options.UseFont = true;
             this.txtNhaCungCap.Size = new System.Drawing.Size(200, 22);
@@ -167,6 +174,9 @@ namespace NDPSo.MasterData
             this.txtMaterialName.Location = new System.Drawing.Point(200, 70);
             this.txtMaterialName.Margin = new System.Windows.Forms.Padding(2);
             this.txtMaterialName.Name = "txtMaterialName";
+            // 
+            // 
+            // 
             this.txtMaterialName.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtMaterialName.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaterialName.Properties.Appearance.Options.UseBackColor = true;
@@ -202,6 +212,9 @@ namespace NDPSo.MasterData
             this.chkActive.Location = new System.Drawing.Point(76, 68);
             this.chkActive.Margin = new System.Windows.Forms.Padding(2);
             this.chkActive.Name = "chkActive";
+            // 
+            // 
+            // 
             this.chkActive.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkActive.Properties.Appearance.Options.UseFont = true;
             this.chkActive.Properties.Caption = "";
@@ -214,6 +227,9 @@ namespace NDPSo.MasterData
             this.txtDescription.Location = new System.Drawing.Point(50, 38);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
             this.txtDescription.Name = "txtDescription";
+            // 
+            // 
+            // 
             this.txtDescription.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.Properties.Appearance.Options.UseFont = true;
             this.txtDescription.Size = new System.Drawing.Size(41, 22);
@@ -225,6 +241,9 @@ namespace NDPSo.MasterData
             this.txtMaterialCode.Location = new System.Drawing.Point(200, 40);
             this.txtMaterialCode.Margin = new System.Windows.Forms.Padding(2);
             this.txtMaterialCode.Name = "txtMaterialCode";
+            // 
+            // 
+            // 
             this.txtMaterialCode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(233)))), ((int)(((byte)(252)))));
             this.txtMaterialCode.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaterialCode.Properties.Appearance.Options.UseBackColor = true;
@@ -307,8 +326,6 @@ namespace NDPSo.MasterData
             this.Name = "NewMaterialView";
             this.Size = new System.Drawing.Size(495, 245);
             ((System.ComponentModel.ISupportInitialize)(this.pnlMain)).EndInit();
-            this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnDonGia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDonVi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNhaCungCap.Properties)).EndInit();
@@ -317,7 +334,6 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaterialCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCommand)).EndInit();
-            this.pnlCommand.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

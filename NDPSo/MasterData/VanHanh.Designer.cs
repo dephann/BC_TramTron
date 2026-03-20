@@ -153,7 +153,9 @@ namespace NDPSo.MasterData
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.lblLuyKe = new DevExpress.XtraEditors.LabelControl();
             this.lblNguoiTron = new DevExpress.XtraEditors.LabelControl();
+            this.lblDiaDiem = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControlDiaDiem = new DevExpress.XtraEditors.LabelControl();
             this.lblTenHangMuc = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.lblNiemChi = new DevExpress.XtraEditors.LabelControl();
@@ -178,8 +180,15 @@ namespace NDPSo.MasterData
             this.txtNiemChi = new DevExpress.XtraEditors.TextEdit();
             this.btnLamMoiThongTinPhieuTron = new NDPSo.MasterData.TronOnlineView.UserControls.UcButton2();
             this.btnCapNhatThongTinPhieuTron = new NDPSo.MasterData.TronOnlineView.UserControls.UcButton2();
-            this.lueXe = new DevExpress.XtraEditors.LookUpEdit();
-            this.lueDriver = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueXe = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcXeID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBieSo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lueDriver = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcTaiXeID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcMaTaiXe = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTenTaiXe = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
@@ -236,14 +245,14 @@ namespace NDPSo.MasterData
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton5 = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.ucAmpeCoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcThoiGianNoiTron();
+            this.ucThoiGianThucTronUot = new NDPSo.MasterData.TronOnlineView.UserControls.UcThoiGianNoiTron();
             this.uc_TinHieu_CuaNoi1per2 = new NDPSo.MasterData.TronOnlineView.UserControls.UcOnOff_BaoRungCan();
             this.lblSim = new System.Windows.Forms.Label();
             this.ucPrpel1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcPrpel();
             this.uc_TinHieu_CuaNoiMo = new NDPSo.MasterData.TronOnlineView.UserControls.UcOnOff_BaoRungCan();
             this.uc_TinHieu_CuaNoiDong = new NDPSo.MasterData.TronOnlineView.UserControls.UcOnOff_BaoRungCan();
             this.ucPrpelSe1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcPrpelSe();
-            this.ucThoiGianThucXa = new NDPSo.MasterData.TronOnlineView.UserControls.UcThoiGianNoiTron();
+            this.ucKLThucNoiTron = new NDPSo.MasterData.TronOnlineView.UserControls.UcThoiGianNoiTron();
             this.ucThoiGianThucTron = new NDPSo.MasterData.TronOnlineView.UserControls.UcThoiGianNoiTron();
             this.slMeDaCanNoiTron = new NDPSo.MasterData.TronOnlineView.UserControls.UcMeTronNoiTron();
             this.ucSoKhoiTrenMe = new NDPSo.MasterData.TronOnlineView.UserControls.UcKhoiLuongNoiTron();
@@ -251,10 +260,7 @@ namespace NDPSo.MasterData
             this.uc_TinHIeu_VanMoCuaNoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcXaCan();
             this.uc_TinHIeu_VanDongCuaNoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcXaCanUp();
             this.btnMoCuaNoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron();
-            this.btnMoKep = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron();
             this.btnDongCuaNoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron();
-            this.btnDongKep = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron();
-            this.btnRungMiengKep = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron();
             this.lblSoMe = new System.Windows.Forms.Label();
             this.lblPV6 = new System.Windows.Forms.Label();
             this.lblPV5 = new System.Windows.Forms.Label();
@@ -270,18 +276,6 @@ namespace NDPSo.MasterData
             this.simpleButton10 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton9 = new DevExpress.XtraEditors.SimpleButton();
             this.pnlGauTai = new DevExpress.XtraEditors.PanelControl();
-            this.ucTinHieuGauXuong1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieuGauXuong();
-            this.ucTinHieuGauLen1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieuGauLen();
-            this.ucTinHieu_GT_AnToan = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai();
-            this.ucTinHieu_GT_Tren = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai();
-            this.ucTinHieu_GT_Cho = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai();
-            this.ucTinHieu_GT_Duoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai();
-            this.ucTinHieuGauXuong = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieuGauXuong();
-            this.ucTinHieuGauLen = new NDPSo.MasterData.TronOnlineView.UserControls.UcTinHieuGauLen();
-            this.ucButtonGauUp1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauUp();
-            this.ucButtonGauDown1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauDown();
-            this.ucButtonGauStop2 = new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauStop();
-            this.ucGauTai1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcGauTai();
             this.ucBTCan1 = new NDPSo.MasterData.TronOnlineView.UserControls.UcBTCan();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -503,145 +497,98 @@ namespace NDPSo.MasterData
             this.dockThucThi.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
-            this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabDuLieuTron)).BeginInit();
             this.tabDuLieuTron.SuspendLayout();
-            this.tpgDLTron.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grcHopDong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvHopDong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iicbStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ispnMACSUMSiloValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ilueHDStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
-            this.xtraTabPage1.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicADD_02)).BeginInit();
-            this.pnlLogicADD_02.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_02_Co.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicADD_01)).BeginInit();
-            this.pnlLogicADD_01.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_01.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_01_Co.Properties)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicCE_02)).BeginInit();
-            this.pnlLogicCE_02.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_02_Co.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicCE_01)).BeginInit();
-            this.pnlLogicCE_01.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_01.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_01_Co.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicAG_02)).BeginInit();
-            this.pnlLogicAG_02.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_02.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_02_Co.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicAG_03)).BeginInit();
-            this.pnlLogicAG_03.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_03.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_03_Co.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicAG_01)).BeginInit();
-            this.pnlLogicAG_01.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_01.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_01_Co.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).BeginInit();
-            this.panelControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl7)).BeginInit();
-            this.panelControl7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mmoThongBao.Properties)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spnGiuNuocTrenCan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnThemBotNc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
-            this.panelControl5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkAutoPrint.Properties)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNiemChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueXe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDriver.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlOperation)).BeginInit();
-            this.pnlOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteLogoPath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGauTai)).BeginInit();
-            this.pnlGauTai.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Funnel)).BeginInit();
-            this.pnl_Funnel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_BTC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Add2)).BeginInit();
-            this.pnl_Wei_Add2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Add1)).BeginInit();
-            this.pnl_Wei_Add1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Wa2)).BeginInit();
-            this.pnl_Wei_Wa2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Wa1)).BeginInit();
-            this.pnl_Wei_Wa1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add6)).BeginInit();
-            this.pnl_Silo_Add6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add5)).BeginInit();
-            this.pnl_Silo_Add5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add4)).BeginInit();
-            this.pnl_Silo_Add4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add3)).BeginInit();
-            this.pnl_Silo_Add3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add2)).BeginInit();
-            this.pnl_Silo_Add2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add1)).BeginInit();
-            this.pnl_Silo_Add1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Wa2)).BeginInit();
-            this.pnl_Silo_Wa2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Wa1)).BeginInit();
-            this.pnl_Silo_Wa1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Ce2)).BeginInit();
-            this.pnl_Wei_Ce2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Ce1)).BeginInit();
-            this.pnl_Wei_Ce1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce5)).BeginInit();
-            this.pnl_Silo_Ce5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce4)).BeginInit();
-            this.pnl_Silo_Ce4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce3)).BeginInit();
-            this.pnl_Silo_Ce3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce2)).BeginInit();
-            this.pnl_Silo_Ce2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce1)).BeginInit();
-            this.pnl_Silo_Ce1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg6)).BeginInit();
-            this.pnl_Wei_Agg6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg5)).BeginInit();
-            this.pnl_Wei_Agg5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg4)).BeginInit();
-            this.pnl_Wei_Agg4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg3)).BeginInit();
-            this.pnl_Wei_Agg3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg2)).BeginInit();
-            this.pnl_Wei_Agg2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg1)).BeginInit();
-            this.pnl_Wei_Agg1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg6)).BeginInit();
-            this.pnl_Silo_Agg6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg5)).BeginInit();
-            this.pnl_Silo_Agg5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg4)).BeginInit();
-            this.pnl_Silo_Agg4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg3)).BeginInit();
-            this.pnl_Silo_Agg3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg2)).BeginInit();
-            this.pnl_Silo_Agg2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg1)).BeginInit();
-            this.pnl_Silo_Agg1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -761,6 +708,7 @@ namespace NDPSo.MasterData
             // tpgDLTron
             // 
             this.tpgDLTron.Controls.Add(this.grcHopDong);
+            this.tpgDLTron.Enabled = true;
             this.tpgDLTron.Margin = new System.Windows.Forms.Padding(2);
             this.tpgDLTron.Name = "tpgDLTron";
             this.tpgDLTron.Size = new System.Drawing.Size(1884, 145);
@@ -769,6 +717,9 @@ namespace NDPSo.MasterData
             // grcHopDong
             // 
             this.grcHopDong.Dock = System.Windows.Forms.DockStyle.Fill;
+            // 
+            // 
+            // 
             this.grcHopDong.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.grcHopDong.Location = new System.Drawing.Point(0, 0);
             this.grcHopDong.MainView = this.grvHopDong;
@@ -1061,6 +1012,7 @@ namespace NDPSo.MasterData
             this.xtraTabPage1.Controls.Add(this.groupBox8);
             this.xtraTabPage1.Controls.Add(this.groupBox7);
             this.xtraTabPage1.Controls.Add(this.groupBox2);
+            this.xtraTabPage1.Enabled = true;
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(1884, 145);
             this.xtraTabPage1.Text = "LOGIC CÂN";
@@ -1097,6 +1049,9 @@ namespace NDPSo.MasterData
             this.lueBlstADD_02.Location = new System.Drawing.Point(60, 5);
             this.lueBlstADD_02.MenuManager = this.barManager1;
             this.lueBlstADD_02.Name = "lueBlstADD_02";
+            // 
+            // 
+            // 
             this.lueBlstADD_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstADD_02.Properties.Appearance.Options.UseFont = true;
             this.lueBlstADD_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1118,6 +1073,9 @@ namespace NDPSo.MasterData
             this.lueBlstADD_02_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstADD_02_Co.MenuManager = this.barManager1;
             this.lueBlstADD_02_Co.Name = "lueBlstADD_02_Co";
+            // 
+            // 
+            // 
             this.lueBlstADD_02_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstADD_02_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstADD_02_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1206,6 +1164,9 @@ namespace NDPSo.MasterData
             this.lueBlstADD_01.Location = new System.Drawing.Point(60, 5);
             this.lueBlstADD_01.MenuManager = this.barManager1;
             this.lueBlstADD_01.Name = "lueBlstADD_01";
+            // 
+            // 
+            // 
             this.lueBlstADD_01.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstADD_01.Properties.Appearance.Options.UseFont = true;
             this.lueBlstADD_01.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1227,6 +1188,9 @@ namespace NDPSo.MasterData
             this.lueBlstADD_01_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstADD_01_Co.MenuManager = this.barManager1;
             this.lueBlstADD_01_Co.Name = "lueBlstADD_01_Co";
+            // 
+            // 
+            // 
             this.lueBlstADD_01_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstADD_01_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstADD_01_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1305,6 +1269,9 @@ namespace NDPSo.MasterData
             this.lueBlstCE_02.Location = new System.Drawing.Point(60, 5);
             this.lueBlstCE_02.MenuManager = this.barManager1;
             this.lueBlstCE_02.Name = "lueBlstCE_02";
+            // 
+            // 
+            // 
             this.lueBlstCE_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstCE_02.Properties.Appearance.Options.UseFont = true;
             this.lueBlstCE_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1326,6 +1293,9 @@ namespace NDPSo.MasterData
             this.lueBlstCE_02_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstCE_02_Co.MenuManager = this.barManager1;
             this.lueBlstCE_02_Co.Name = "lueBlstCE_02_Co";
+            // 
+            // 
+            // 
             this.lueBlstCE_02_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstCE_02_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstCE_02_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1414,6 +1384,9 @@ namespace NDPSo.MasterData
             this.lueBlstCE_01.Location = new System.Drawing.Point(60, 5);
             this.lueBlstCE_01.MenuManager = this.barManager1;
             this.lueBlstCE_01.Name = "lueBlstCE_01";
+            // 
+            // 
+            // 
             this.lueBlstCE_01.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstCE_01.Properties.Appearance.Options.UseFont = true;
             this.lueBlstCE_01.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1435,6 +1408,9 @@ namespace NDPSo.MasterData
             this.lueBlstCE_01_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstCE_01_Co.MenuManager = this.barManager1;
             this.lueBlstCE_01_Co.Name = "lueBlstCE_01_Co";
+            // 
+            // 
+            // 
             this.lueBlstCE_01_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstCE_01_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstCE_01_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1514,6 +1490,9 @@ namespace NDPSo.MasterData
             this.lueBlstAG_02.Location = new System.Drawing.Point(60, 5);
             this.lueBlstAG_02.MenuManager = this.barManager1;
             this.lueBlstAG_02.Name = "lueBlstAG_02";
+            // 
+            // 
+            // 
             this.lueBlstAG_02.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstAG_02.Properties.Appearance.Options.UseFont = true;
             this.lueBlstAG_02.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1535,6 +1514,9 @@ namespace NDPSo.MasterData
             this.lueBlstAG_02_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstAG_02_Co.MenuManager = this.barManager1;
             this.lueBlstAG_02_Co.Name = "lueBlstAG_02_Co";
+            // 
+            // 
+            // 
             this.lueBlstAG_02_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstAG_02_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstAG_02_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1623,6 +1605,9 @@ namespace NDPSo.MasterData
             this.lueBlstAG_03.Location = new System.Drawing.Point(60, 5);
             this.lueBlstAG_03.MenuManager = this.barManager1;
             this.lueBlstAG_03.Name = "lueBlstAG_03";
+            // 
+            // 
+            // 
             this.lueBlstAG_03.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstAG_03.Properties.Appearance.Options.UseFont = true;
             this.lueBlstAG_03.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1644,6 +1629,9 @@ namespace NDPSo.MasterData
             this.lueBlstAG_03_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstAG_03_Co.MenuManager = this.barManager1;
             this.lueBlstAG_03_Co.Name = "lueBlstAG_03_Co";
+            // 
+            // 
+            // 
             this.lueBlstAG_03_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstAG_03_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstAG_03_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1721,6 +1709,9 @@ namespace NDPSo.MasterData
             this.lueBlstAG_01.Location = new System.Drawing.Point(60, 5);
             this.lueBlstAG_01.MenuManager = this.barManager1;
             this.lueBlstAG_01.Name = "lueBlstAG_01";
+            // 
+            // 
+            // 
             this.lueBlstAG_01.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstAG_01.Properties.Appearance.Options.UseFont = true;
             this.lueBlstAG_01.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1742,6 +1733,9 @@ namespace NDPSo.MasterData
             this.lueBlstAG_01_Co.Location = new System.Drawing.Point(223, 5);
             this.lueBlstAG_01_Co.MenuManager = this.barManager1;
             this.lueBlstAG_01_Co.Name = "lueBlstAG_01_Co";
+            // 
+            // 
+            // 
             this.lueBlstAG_01_Co.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBlstAG_01_Co.Properties.Appearance.Options.UseFont = true;
             this.lueBlstAG_01_Co.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -1827,6 +1821,9 @@ namespace NDPSo.MasterData
             this.mmoThongBao.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.mmoThongBao.MenuManager = this.barManager1;
             this.mmoThongBao.Name = "mmoThongBao";
+            // 
+            // 
+            // 
             this.mmoThongBao.Properties.Appearance.BackColor = System.Drawing.Color.WhiteSmoke;
             this.mmoThongBao.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mmoThongBao.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
@@ -1896,6 +1893,7 @@ namespace NDPSo.MasterData
             this.btnXaCanCotLieu.Name = "btnXaCanCotLieu";
             this.btnXaCanCotLieu.Size = new System.Drawing.Size(178, 34);
             this.btnXaCanCotLieu.TabIndex = 1;
+            this.btnXaCanCotLieu.Visible = false;
             this.btnXaCanCotLieu.ButtonClick += new NDPSo.MasterData.UcButton.DelButtonEventHandler(this.btnXaCanCotLieu_ButtonClick);
             // 
             // btnRuaNoiTron
@@ -1911,6 +1909,7 @@ namespace NDPSo.MasterData
             this.btnRuaNoiTron.Name = "btnRuaNoiTron";
             this.btnRuaNoiTron.Size = new System.Drawing.Size(178, 34);
             this.btnRuaNoiTron.TabIndex = 4;
+            this.btnRuaNoiTron.Visible = false;
             this.btnRuaNoiTron.ButtonClick += new NDPSo.MasterData.UcButton.DelButtonEventHandler(this.btnRuaNoiTron_ButtonClick);
             // 
             // btnNapLieuNoiTron
@@ -1926,6 +1925,7 @@ namespace NDPSo.MasterData
             this.btnNapLieuNoiTron.Name = "btnNapLieuNoiTron";
             this.btnNapLieuNoiTron.Size = new System.Drawing.Size(178, 34);
             this.btnNapLieuNoiTron.TabIndex = 2;
+            this.btnNapLieuNoiTron.Visible = false;
             this.btnNapLieuNoiTron.ButtonClick += new NDPSo.MasterData.UcButton.DelButtonEventHandler(this.btnNapLieuNoiTron_ButtonClick);
             // 
             // btnXaNoiTron
@@ -1941,6 +1941,7 @@ namespace NDPSo.MasterData
             this.btnXaNoiTron.Name = "btnXaNoiTron";
             this.btnXaNoiTron.Size = new System.Drawing.Size(178, 34);
             this.btnXaNoiTron.TabIndex = 3;
+            this.btnXaNoiTron.Visible = false;
             this.btnXaNoiTron.ButtonClick += new NDPSo.MasterData.UcButton.DelButtonEventHandler(this.btnXaNoiTron_ButtonClick);
             // 
             // ucHeThongAuto1
@@ -2018,6 +2019,9 @@ namespace NDPSo.MasterData
             this.spnGiuNuocTrenCan.Margin = new System.Windows.Forms.Padding(2);
             this.spnGiuNuocTrenCan.MenuManager = this.barManager1;
             this.spnGiuNuocTrenCan.Name = "spnGiuNuocTrenCan";
+            // 
+            // 
+            // 
             this.spnGiuNuocTrenCan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnGiuNuocTrenCan.Properties.Appearance.Options.UseFont = true;
             this.spnGiuNuocTrenCan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2037,6 +2041,9 @@ namespace NDPSo.MasterData
             this.spnThemBotNc.Margin = new System.Windows.Forms.Padding(2);
             this.spnThemBotNc.MenuManager = this.barManager1;
             this.spnThemBotNc.Name = "spnThemBotNc";
+            // 
+            // 
+            // 
             this.spnThemBotNc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spnThemBotNc.Properties.Appearance.Options.UseFont = true;
             this.spnThemBotNc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -2089,13 +2096,13 @@ namespace NDPSo.MasterData
             this.btnXacNhanLoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnXacNhanLoi.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnXacNhanLoi.Color_Click")));
             this.btnXacNhanLoi.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnXacNhanLoi.Color_NoClick")));
-            this.btnXacNhanLoi.IsOn = true;
-            this.btnXacNhanLoi.IsTrangThai = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset.TrangThai.Stop;
+            this.btnXacNhanLoi.IsOn = false;
             this.btnXacNhanLoi.Location = new System.Drawing.Point(406, 4);
             this.btnXacNhanLoi.Margin = new System.Windows.Forms.Padding(2);
             this.btnXacNhanLoi.Name = "btnXacNhanLoi";
             this.btnXacNhanLoi.Size = new System.Drawing.Size(60, 40);
             this.btnXacNhanLoi.TabIndex = 367;
+            this.btnXacNhanLoi.Visible = false;
             this.btnXacNhanLoi.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset.DelButtonEventHandler(this.btnXacNhanLoi_ButtonClick);
             // 
             // btnHuy
@@ -2171,6 +2178,7 @@ namespace NDPSo.MasterData
             this.btnGiamMe.Name = "btnGiamMe";
             this.btnGiamMe.Size = new System.Drawing.Size(60, 40);
             this.btnGiamMe.TabIndex = 6;
+            this.btnGiamMe.Visible = false;
             this.btnGiamMe.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnTru.DelButtonEventHandler(this.btnGiamMe_ButtonClick);
             // 
             // btnThemMe
@@ -2185,6 +2193,7 @@ namespace NDPSo.MasterData
             this.btnThemMe.Name = "btnThemMe";
             this.btnThemMe.Size = new System.Drawing.Size(60, 40);
             this.btnThemMe.TabIndex = 5;
+            this.btnThemMe.Visible = false;
             this.btnThemMe.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnThem.DelButtonEventHandler(this.btnThemMe_ButtonClick);
             // 
             // btnInNhanh
@@ -2194,10 +2203,10 @@ namespace NDPSo.MasterData
             this.btnInNhanh.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnInNhanh.Color_Click")));
             this.btnInNhanh.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnInNhanh.Color_NoClick")));
             this.btnInNhanh.IsOn = false;
-            this.btnInNhanh.Location = new System.Drawing.Point(430, 56);
-            this.btnInNhanh.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInNhanh.Location = new System.Drawing.Point(430, 35);
+            this.btnInNhanh.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnInNhanh.Name = "btnInNhanh";
-            this.btnInNhanh.Size = new System.Drawing.Size(60, 40);
+            this.btnInNhanh.Size = new System.Drawing.Size(60, 41);
             this.btnInNhanh.TabIndex = 7;
             this.btnInNhanh.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnTru.DelButtonEventHandler(this.btnInNhanh_ButtonClick);
             // 
@@ -2207,7 +2216,9 @@ namespace NDPSo.MasterData
             this.groupBox4.Controls.Add(this.labelControl15);
             this.groupBox4.Controls.Add(this.lblLuyKe);
             this.groupBox4.Controls.Add(this.lblNguoiTron);
+            this.groupBox4.Controls.Add(this.lblDiaDiem);
             this.groupBox4.Controls.Add(this.labelControl8);
+            this.groupBox4.Controls.Add(this.labelControlDiaDiem);
             this.groupBox4.Controls.Add(this.lblTenHangMuc);
             this.groupBox4.Controls.Add(this.labelControl7);
             this.groupBox4.Controls.Add(this.lblNiemChi);
@@ -2234,7 +2245,7 @@ namespace NDPSo.MasterData
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(524, 228);
+            this.groupBox4.Size = new System.Drawing.Size(524, 252);
             this.groupBox4.TabIndex = 34;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "THÔNG TIN PHIẾU TRỘN";
@@ -2291,6 +2302,19 @@ namespace NDPSo.MasterData
             this.lblNguoiTron.TabIndex = 338;
             this.lblNguoiTron.Text = "----------";
             // 
+            // lblDiaDiem
+            // 
+            this.lblDiaDiem.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiaDiem.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.lblDiaDiem.Appearance.Options.UseFont = true;
+            this.lblDiaDiem.Appearance.Options.UseForeColor = true;
+            this.lblDiaDiem.Location = new System.Drawing.Point(110, 230);
+            this.lblDiaDiem.Margin = new System.Windows.Forms.Padding(2);
+            this.lblDiaDiem.Name = "lblDiaDiem";
+            this.lblDiaDiem.Size = new System.Drawing.Size(60, 17);
+            this.lblDiaDiem.TabIndex = 338;
+            this.lblDiaDiem.Text = "----------";
+            // 
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2303,6 +2327,19 @@ namespace NDPSo.MasterData
             this.labelControl8.Size = new System.Drawing.Size(71, 17);
             this.labelControl8.TabIndex = 337;
             this.labelControl8.Text = "Người trộn:";
+            // 
+            // labelControlDiaDiem
+            // 
+            this.labelControlDiaDiem.Appearance.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControlDiaDiem.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labelControlDiaDiem.Appearance.Options.UseFont = true;
+            this.labelControlDiaDiem.Appearance.Options.UseForeColor = true;
+            this.labelControlDiaDiem.Location = new System.Drawing.Point(25, 230);
+            this.labelControlDiaDiem.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControlDiaDiem.Name = "labelControlDiaDiem";
+            this.labelControlDiaDiem.Size = new System.Drawing.Size(57, 17);
+            this.labelControlDiaDiem.TabIndex = 337;
+            this.labelControlDiaDiem.Text = "Địa điểm:";
             // 
             // lblTenHangMuc
             // 
@@ -2375,6 +2412,9 @@ namespace NDPSo.MasterData
             this.checkAutoPrint.Location = new System.Drawing.Point(423, 25);
             this.checkAutoPrint.MenuManager = this.barManager1;
             this.checkAutoPrint.Name = "checkAutoPrint";
+            // 
+            // 
+            // 
             this.checkAutoPrint.Properties.AllowFocused = false;
             this.checkAutoPrint.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkAutoPrint.Properties.Appearance.Options.UseFont = true;
@@ -2578,11 +2618,11 @@ namespace NDPSo.MasterData
             this.groupBox3.Controls.Add(this.labelControl23);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(1310, 620);
+            this.groupBox3.Location = new System.Drawing.Point(1310, 644);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(524, 123);
+            this.groupBox3.Size = new System.Drawing.Size(524, 99);
             this.groupBox3.TabIndex = 35;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "THAY ĐỔI THÔNG TIN PHIẾU TRỘN";
@@ -2590,17 +2630,20 @@ namespace NDPSo.MasterData
             // txtNiemChi
             // 
             this.txtNiemChi.EditValue = "";
-            this.txtNiemChi.Location = new System.Drawing.Point(93, 93);
+            this.txtNiemChi.Location = new System.Drawing.Point(93, 73);
             this.txtNiemChi.Margin = new System.Windows.Forms.Padding(2);
             this.txtNiemChi.MenuManager = this.barManager1;
             this.txtNiemChi.Name = "txtNiemChi";
+            // 
+            // 
+            // 
             this.txtNiemChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNiemChi.Properties.Appearance.Options.UseFont = true;
             this.txtNiemChi.Properties.DisplayFormat.FormatString = "n0";
             this.txtNiemChi.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtNiemChi.Properties.EditFormat.FormatString = "n0";
             this.txtNiemChi.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtNiemChi.Size = new System.Drawing.Size(176, 22);
+            this.txtNiemChi.Size = new System.Drawing.Size(180, 22);
             this.txtNiemChi.TabIndex = 11;
             this.txtNiemChi.EditValueChanged += new System.EventHandler(this.txtNiemChi_EditValueChanged);
             this.txtNiemChi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNiemChi_KeyPress);
@@ -2611,7 +2654,7 @@ namespace NDPSo.MasterData
             this.btnLamMoiThongTinPhieuTron.Color_Click = System.Drawing.Color.Gray;
             this.btnLamMoiThongTinPhieuTron.Color_NoClick = System.Drawing.Color.DarkGray;
             this.btnLamMoiThongTinPhieuTron.IsOn = false;
-            this.btnLamMoiThongTinPhieuTron.Location = new System.Drawing.Point(296, 83);
+            this.btnLamMoiThongTinPhieuTron.Location = new System.Drawing.Point(296, 62);
             this.btnLamMoiThongTinPhieuTron.Name = "btnLamMoiThongTinPhieuTron";
             this.btnLamMoiThongTinPhieuTron.Size = new System.Drawing.Size(98, 32);
             this.btnLamMoiThongTinPhieuTron.TabIndex = 330;
@@ -2623,7 +2666,7 @@ namespace NDPSo.MasterData
             this.btnCapNhatThongTinPhieuTron.Color_Click = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnCapNhatThongTinPhieuTron.Color_NoClick = System.Drawing.Color.Green;
             this.btnCapNhatThongTinPhieuTron.IsOn = false;
-            this.btnCapNhatThongTinPhieuTron.Location = new System.Drawing.Point(296, 35);
+            this.btnCapNhatThongTinPhieuTron.Location = new System.Drawing.Point(296, 14);
             this.btnCapNhatThongTinPhieuTron.Name = "btnCapNhatThongTinPhieuTron";
             this.btnCapNhatThongTinPhieuTron.Size = new System.Drawing.Size(98, 32);
             this.btnCapNhatThongTinPhieuTron.TabIndex = 329;
@@ -2631,50 +2674,124 @@ namespace NDPSo.MasterData
             // 
             // lueXe
             // 
-            this.lueXe.Location = new System.Drawing.Point(93, 63);
+            this.lueXe.Location = new System.Drawing.Point(93, 48);
             this.lueXe.Margin = new System.Windows.Forms.Padding(2);
             this.lueXe.MenuManager = this.barManager1;
             this.lueXe.Name = "lueXe";
+            // 
+            // 
+            // 
             this.lueXe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueXe.Properties.Appearance.Options.UseFont = true;
             this.lueXe.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
-            this.lueXe.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("XeID", "XeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BienSo", "Biển số")});
+            this.lueXe.Properties.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.lueXe.Properties.DisplayMember = "BienSo";
-            this.lueXe.Properties.NullText = "";
+            this.lueXe.Properties.ImmediatePopup = true;
+            this.lueXe.Properties.NullText = " ";
+            this.lueXe.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueXe.Properties.PopupView = this.gridView4;
             this.lueXe.Properties.ShowFooter = false;
-            this.lueXe.Properties.ShowHeader = false;
+            this.lueXe.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lueXe.Properties.ValueMember = "XeID";
-            this.lueXe.Size = new System.Drawing.Size(176, 22);
-            this.lueXe.TabIndex = 10;
+            this.lueXe.Size = new System.Drawing.Size(180, 22);
+            this.lueXe.TabIndex = 29;
             this.lueXe.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.lueXe_ButtonPressed);
+            // 
+            // gridView4
+            // 
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcXeID,
+            this.gcBieSo});
+            this.gridView4.DetailHeight = 154;
+            this.gridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            // 
+            // gcXeID
+            // 
+            this.gcXeID.Caption = "XeID";
+            this.gcXeID.FieldName = "XeID";
+            this.gcXeID.MinWidth = 15;
+            this.gcXeID.Name = "gcXeID";
+            this.gcXeID.Width = 46;
+            // 
+            // gcBieSo
+            // 
+            this.gcBieSo.Caption = "Biển số";
+            this.gcBieSo.FieldName = "BienSo";
+            this.gcBieSo.MinWidth = 15;
+            this.gcBieSo.Name = "gcBieSo";
+            this.gcBieSo.Visible = true;
+            this.gcBieSo.VisibleIndex = 0;
+            this.gcBieSo.Width = 56;
             // 
             // lueDriver
             // 
-            this.lueDriver.Location = new System.Drawing.Point(93, 33);
+            this.lueDriver.Location = new System.Drawing.Point(93, 23);
             this.lueDriver.Margin = new System.Windows.Forms.Padding(2);
             this.lueDriver.MenuManager = this.barManager1;
             this.lueDriver.Name = "lueDriver";
+            // 
+            // 
+            // 
             this.lueDriver.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDriver.Properties.Appearance.Options.UseFont = true;
             this.lueDriver.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
-            this.lueDriver.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TaiXeID", "TaiXeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MaTaiXe", "Mã Tài xế", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenTaiXe", "Tên Tài xế")});
+            this.lueDriver.Properties.ButtonsStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.lueDriver.Properties.DisplayMember = "TenTaiXe";
-            this.lueDriver.Properties.NullText = "";
+            this.lueDriver.Properties.ImmediatePopup = true;
+            this.lueDriver.Properties.NullText = " ";
+            this.lueDriver.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.lueDriver.Properties.PopupView = this.gridView3;
             this.lueDriver.Properties.ShowFooter = false;
-            this.lueDriver.Properties.ShowHeader = false;
+            this.lueDriver.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lueDriver.Properties.ValueMember = "TaiXeID";
-            this.lueDriver.Size = new System.Drawing.Size(176, 22);
-            this.lueDriver.TabIndex = 9;
+            this.lueDriver.Size = new System.Drawing.Size(180, 22);
+            this.lueDriver.TabIndex = 29;
             this.lueDriver.ButtonPressed += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.lueDriver_ButtonPressed);
+            // 
+            // gridView3
+            // 
+            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcTaiXeID,
+            this.gcMaTaiXe,
+            this.gcTenTaiXe});
+            this.gridView3.DetailHeight = 154;
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            // 
+            // gcTaiXeID
+            // 
+            this.gcTaiXeID.Caption = "TaiXeID";
+            this.gcTaiXeID.FieldName = "TaiXeID";
+            this.gcTaiXeID.MinWidth = 15;
+            this.gcTaiXeID.Name = "gcTaiXeID";
+            this.gcTaiXeID.Width = 46;
+            // 
+            // gcMaTaiXe
+            // 
+            this.gcMaTaiXe.Caption = "Mã Tài xế";
+            this.gcMaTaiXe.FieldName = "MaTaiXe";
+            this.gcMaTaiXe.MinWidth = 15;
+            this.gcMaTaiXe.Name = "gcMaTaiXe";
+            this.gcMaTaiXe.Width = 56;
+            // 
+            // gcTenTaiXe
+            // 
+            this.gcTenTaiXe.Caption = "Tên Tài xế";
+            this.gcTenTaiXe.FieldName = "TenTaiXe";
+            this.gcTenTaiXe.MinWidth = 15;
+            this.gcTenTaiXe.Name = "gcTenTaiXe";
+            this.gcTenTaiXe.Visible = true;
+            this.gcTenTaiXe.VisibleIndex = 0;
+            this.gcTenTaiXe.Width = 56;
             // 
             // labelControl21
             // 
@@ -2682,7 +2799,7 @@ namespace NDPSo.MasterData
             this.labelControl21.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl21.Appearance.Options.UseFont = true;
             this.labelControl21.Appearance.Options.UseForeColor = true;
-            this.labelControl21.Location = new System.Drawing.Point(25, 95);
+            this.labelControl21.Location = new System.Drawing.Point(25, 75);
             this.labelControl21.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(52, 17);
@@ -2695,7 +2812,7 @@ namespace NDPSo.MasterData
             this.labelControl22.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl22.Appearance.Options.UseFont = true;
             this.labelControl22.Appearance.Options.UseForeColor = true;
-            this.labelControl22.Location = new System.Drawing.Point(25, 35);
+            this.labelControl22.Location = new System.Drawing.Point(25, 25);
             this.labelControl22.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl22.Name = "labelControl22";
             this.labelControl22.Size = new System.Drawing.Size(36, 17);
@@ -2708,7 +2825,7 @@ namespace NDPSo.MasterData
             this.labelControl23.Appearance.ForeColor = System.Drawing.Color.Black;
             this.labelControl23.Appearance.Options.UseFont = true;
             this.labelControl23.Appearance.Options.UseForeColor = true;
-            this.labelControl23.Location = new System.Drawing.Point(25, 66);
+            this.labelControl23.Location = new System.Drawing.Point(25, 50);
             this.labelControl23.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl23.Name = "labelControl23";
             this.labelControl23.Size = new System.Drawing.Size(43, 17);
@@ -3683,7 +3800,7 @@ namespace NDPSo.MasterData
             this.pnlOperation.Location = new System.Drawing.Point(0, 0);
             this.pnlOperation.Margin = new System.Windows.Forms.Padding(2);
             this.pnlOperation.Name = "pnlOperation";
-            this.pnlOperation.Size = new System.Drawing.Size(1920, 900);
+            this.pnlOperation.Size = new System.Drawing.Size(1920, 1080);
             this.pnlOperation.TabIndex = 88;
             // 
             // textEdit2
@@ -3710,14 +3827,13 @@ namespace NDPSo.MasterData
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(18, 13);
             this.labelControl14.TabIndex = 601;
-            this.labelControl14.Text = "BTX";
+            this.labelControl14.Text = "#";
             this.labelControl14.Visible = false;
             // 
             // simpleButton5
             // 
             this.simpleButton5.Location = new System.Drawing.Point(582, 758);
             this.simpleButton5.Name = "simpleButton5";
-            this.simpleButton5.Size = new System.Drawing.Size(75, 23);
             this.simpleButton5.TabIndex = 600;
             this.simpleButton5.Text = "simpleButton5";
             this.simpleButton5.Visible = false;
@@ -3726,14 +3842,14 @@ namespace NDPSo.MasterData
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.ucAmpeCoi);
+            this.panelControl1.Controls.Add(this.ucThoiGianThucTronUot);
             this.panelControl1.Controls.Add(this.uc_TinHieu_CuaNoi1per2);
             this.panelControl1.Controls.Add(this.lblSim);
             this.panelControl1.Controls.Add(this.ucPrpel1);
             this.panelControl1.Controls.Add(this.uc_TinHieu_CuaNoiMo);
             this.panelControl1.Controls.Add(this.uc_TinHieu_CuaNoiDong);
             this.panelControl1.Controls.Add(this.ucPrpelSe1);
-            this.panelControl1.Controls.Add(this.ucThoiGianThucXa);
+            this.panelControl1.Controls.Add(this.ucKLThucNoiTron);
             this.panelControl1.Controls.Add(this.ucThoiGianThucTron);
             this.panelControl1.Controls.Add(this.slMeDaCanNoiTron);
             this.panelControl1.Controls.Add(this.ucSoKhoiTrenMe);
@@ -3741,29 +3857,25 @@ namespace NDPSo.MasterData
             this.panelControl1.Controls.Add(this.uc_TinHIeu_VanMoCuaNoi);
             this.panelControl1.Controls.Add(this.uc_TinHIeu_VanDongCuaNoi);
             this.panelControl1.Controls.Add(this.btnMoCuaNoi);
-            this.panelControl1.Controls.Add(this.btnMoKep);
             this.panelControl1.Controls.Add(this.btnDongCuaNoi);
-            this.panelControl1.Controls.Add(this.btnDongKep);
-            this.panelControl1.Controls.Add(this.btnRungMiengKep);
             this.panelControl1.Location = new System.Drawing.Point(845, 487);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(268, 268);
             this.panelControl1.TabIndex = 599;
             // 
-            // ucAmpeCoi
+            // ucThoiGianThucTronUot
             // 
-            this.ucAmpeCoi.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucAmpeCoi.Appearance.Options.UseBackColor = true;
-            this.ucAmpeCoi.GiaTri = new decimal(new int[] {
+            this.ucThoiGianThucTronUot.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.ucThoiGianThucTronUot.Appearance.Options.UseBackColor = true;
+            this.ucThoiGianThucTronUot.GiaTri = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.ucAmpeCoi.Location = new System.Drawing.Point(111, 118);
-            this.ucAmpeCoi.Name = "ucAmpeCoi";
-            this.ucAmpeCoi.Size = new System.Drawing.Size(48, 26);
-            this.ucAmpeCoi.TabIndex = 367;
-            this.ucAmpeCoi.Visible = false;
+            this.ucThoiGianThucTronUot.Location = new System.Drawing.Point(111, 82);
+            this.ucThoiGianThucTronUot.Name = "ucThoiGianThucTronUot";
+            this.ucThoiGianThucTronUot.Size = new System.Drawing.Size(48, 26);
+            this.ucThoiGianThucTronUot.TabIndex = 367;
             // 
             // uc_TinHieu_CuaNoi1per2
             // 
@@ -3842,17 +3954,17 @@ namespace NDPSo.MasterData
             this.ucPrpelSe1.Button_NoiTronClick_MouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcPrpelSe.DelButtonEventHandler(this.ucPrpelSe1_Button_NoiTronClick_MouseUp);
             this.ucPrpelSe1.Button_NoiTronClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcPrpelSe.DelButtonEventHandler(this.ucPrpelSe1_Button_NoiTronClick);
             // 
-            // ucThoiGianThucXa
+            // ucKLThucNoiTron
             // 
-            this.ucThoiGianThucXa.GiaTri = new decimal(new int[] {
+            this.ucKLThucNoiTron.GiaTri = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.ucThoiGianThucXa.Location = new System.Drawing.Point(209, 147);
-            this.ucThoiGianThucXa.Name = "ucThoiGianThucXa";
-            this.ucThoiGianThucXa.Size = new System.Drawing.Size(48, 26);
-            this.ucThoiGianThucXa.TabIndex = 324;
+            this.ucKLThucNoiTron.Location = new System.Drawing.Point(85, 118);
+            this.ucKLThucNoiTron.Name = "ucKLThucNoiTron";
+            this.ucKLThucNoiTron.Size = new System.Drawing.Size(99, 26);
+            this.ucKLThucNoiTron.TabIndex = 324;
             // 
             // ucThoiGianThucTron
             // 
@@ -3865,7 +3977,6 @@ namespace NDPSo.MasterData
             this.ucThoiGianThucTron.Name = "ucThoiGianThucTron";
             this.ucThoiGianThucTron.Size = new System.Drawing.Size(50, 26);
             this.ucThoiGianThucTron.TabIndex = 323;
-            this.ucThoiGianThucTron.Visible = false;
             // 
             // slMeDaCanNoiTron
             // 
@@ -3955,23 +4066,6 @@ namespace NDPSo.MasterData
             this.btnMoCuaNoi.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnMoCuaNoi_ButtonMouseDown);
             this.btnMoCuaNoi.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnMoCuaNoi_ButtonMouseUp);
             // 
-            // btnMoKep
-            // 
-            this.btnMoKep.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMoKep.BackgroundImage")));
-            this.btnMoKep.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMoKep.BGColor = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.BGColorEnum.NoClick;
-            this.btnMoKep.Caption = "M. KẸP";
-            this.btnMoKep.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnMoKep.Color_Click")));
-            this.btnMoKep.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnMoKep.Color_NoClick")));
-            this.btnMoKep.IsOn = false;
-            this.btnMoKep.Location = new System.Drawing.Point(6, 221);
-            this.btnMoKep.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMoKep.Name = "btnMoKep";
-            this.btnMoKep.Size = new System.Drawing.Size(72, 32);
-            this.btnMoKep.TabIndex = 117;
-            this.btnMoKep.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnMoKep_ButtonMouseDown);
-            this.btnMoKep.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnMoKep_ButtonMouseUp);
-            // 
             // btnDongCuaNoi
             // 
             this.btnDongCuaNoi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDongCuaNoi.BackgroundImage")));
@@ -3989,40 +4083,6 @@ namespace NDPSo.MasterData
             this.btnDongCuaNoi.TabIndex = 116;
             this.btnDongCuaNoi.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnDongCuaNoi_ButtonMouseDown);
             this.btnDongCuaNoi.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnDongCuaNoi_ButtonMouseUp);
-            // 
-            // btnDongKep
-            // 
-            this.btnDongKep.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDongKep.BackgroundImage")));
-            this.btnDongKep.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDongKep.BGColor = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.BGColorEnum.NoClick;
-            this.btnDongKep.Caption = "Đ. KẸP";
-            this.btnDongKep.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnDongKep.Color_Click")));
-            this.btnDongKep.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnDongKep.Color_NoClick")));
-            this.btnDongKep.IsOn = false;
-            this.btnDongKep.Location = new System.Drawing.Point(191, 221);
-            this.btnDongKep.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDongKep.Name = "btnDongKep";
-            this.btnDongKep.Size = new System.Drawing.Size(72, 32);
-            this.btnDongKep.TabIndex = 119;
-            this.btnDongKep.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnDongKep_ButtonMouseDown);
-            this.btnDongKep.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnDongKep_ButtonMouseUp);
-            // 
-            // btnRungMiengKep
-            // 
-            this.btnRungMiengKep.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRungMiengKep.BackgroundImage")));
-            this.btnRungMiengKep.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRungMiengKep.BGColor = NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.BGColorEnum.NoClick;
-            this.btnRungMiengKep.Caption = "RUNG";
-            this.btnRungMiengKep.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnRungMiengKep.Color_Click")));
-            this.btnRungMiengKep.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnRungMiengKep.Color_NoClick")));
-            this.btnRungMiengKep.IsOn = false;
-            this.btnRungMiengKep.Location = new System.Drawing.Point(96, 221);
-            this.btnRungMiengKep.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRungMiengKep.Name = "btnRungMiengKep";
-            this.btnRungMiengKep.Size = new System.Drawing.Size(72, 32);
-            this.btnRungMiengKep.TabIndex = 118;
-            this.btnRungMiengKep.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnRungMiengKep_ButtonMouseDown);
-            this.btnRungMiengKep.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnNoiTron.DelButtonEventHandler(this.btnRungMiengKep_ButtonMouseUp);
             // 
             // lblSoMe
             // 
@@ -4109,6 +4169,9 @@ namespace NDPSo.MasterData
             // 
             this.bteLogoPath.Location = new System.Drawing.Point(58, 540);
             this.bteLogoPath.Name = "bteLogoPath";
+            // 
+            // 
+            // 
             this.bteLogoPath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.bteLogoPath.Size = new System.Drawing.Size(93, 20);
@@ -4120,7 +4183,6 @@ namespace NDPSo.MasterData
             // 
             this.simpleButton4.Location = new System.Drawing.Point(517, 537);
             this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(75, 23);
             this.simpleButton4.TabIndex = 587;
             this.simpleButton4.Text = "b";
             this.simpleButton4.Visible = false;
@@ -4130,7 +4192,6 @@ namespace NDPSo.MasterData
             // 
             this.simpleButton3.Location = new System.Drawing.Point(291, 537);
             this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(75, 23);
             this.simpleButton3.TabIndex = 585;
             this.simpleButton3.Text = "a";
             this.simpleButton3.Visible = false;
@@ -4141,6 +4202,9 @@ namespace NDPSo.MasterData
             this.checkEdit1.Location = new System.Drawing.Point(32, 561);
             this.checkEdit1.MenuManager = this.barManager1;
             this.checkEdit1.Name = "checkEdit1";
+            // 
+            // 
+            // 
             this.checkEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkEdit1.Properties.Appearance.Options.UseFont = true;
             this.checkEdit1.Properties.Caption = "RUNNING";
@@ -4175,166 +4239,10 @@ namespace NDPSo.MasterData
             // pnlGauTai
             // 
             this.pnlGauTai.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlGauTai.Controls.Add(this.ucTinHieuGauXuong1);
-            this.pnlGauTai.Controls.Add(this.ucTinHieuGauLen1);
-            this.pnlGauTai.Controls.Add(this.ucTinHieu_GT_AnToan);
-            this.pnlGauTai.Controls.Add(this.ucTinHieu_GT_Tren);
-            this.pnlGauTai.Controls.Add(this.ucTinHieu_GT_Cho);
-            this.pnlGauTai.Controls.Add(this.ucTinHieu_GT_Duoi);
-            this.pnlGauTai.Controls.Add(this.ucTinHieuGauXuong);
-            this.pnlGauTai.Controls.Add(this.ucTinHieuGauLen);
-            this.pnlGauTai.Controls.Add(this.ucButtonGauUp1);
-            this.pnlGauTai.Controls.Add(this.ucButtonGauDown1);
-            this.pnlGauTai.Controls.Add(this.ucButtonGauStop2);
-            this.pnlGauTai.Controls.Add(this.ucGauTai1);
             this.pnlGauTai.Location = new System.Drawing.Point(615, 384);
             this.pnlGauTai.Name = "pnlGauTai";
             this.pnlGauTai.Size = new System.Drawing.Size(246, 266);
             this.pnlGauTai.TabIndex = 581;
-            // 
-            // ucTinHieuGauXuong1
-            // 
-            this.ucTinHieuGauXuong1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucTinHieuGauXuong1.Appearance.Options.UseBackColor = true;
-            this.ucTinHieuGauXuong1.Location = new System.Drawing.Point(151, 118);
-            this.ucTinHieuGauXuong1.Name = "ucTinHieuGauXuong1";
-            this.ucTinHieuGauXuong1.Size = new System.Drawing.Size(25, 20);
-            this.ucTinHieuGauXuong1.TabIndex = 589;
-            this.ucTinHieuGauXuong1.Visible = false;
-            // 
-            // ucTinHieuGauLen1
-            // 
-            this.ucTinHieuGauLen1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucTinHieuGauLen1.Appearance.Options.UseBackColor = true;
-            this.ucTinHieuGauLen1.Location = new System.Drawing.Point(79, 174);
-            this.ucTinHieuGauLen1.Name = "ucTinHieuGauLen1";
-            this.ucTinHieuGauLen1.Size = new System.Drawing.Size(25, 20);
-            this.ucTinHieuGauLen1.TabIndex = 588;
-            this.ucTinHieuGauLen1.Visible = false;
-            // 
-            // ucTinHieu_GT_AnToan
-            // 
-            this.ucTinHieu_GT_AnToan.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.ucTinHieu_GT_AnToan.Appearance.Options.UseBackColor = true;
-            this.ucTinHieu_GT_AnToan.IsOn = false;
-            this.ucTinHieu_GT_AnToan.Location = new System.Drawing.Point(214, 71);
-            this.ucTinHieu_GT_AnToan.Name = "ucTinHieu_GT_AnToan";
-            this.ucTinHieu_GT_AnToan.Size = new System.Drawing.Size(20, 20);
-            this.ucTinHieu_GT_AnToan.TabIndex = 587;
-            // 
-            // ucTinHieu_GT_Tren
-            // 
-            this.ucTinHieu_GT_Tren.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.ucTinHieu_GT_Tren.Appearance.Options.UseBackColor = true;
-            this.ucTinHieu_GT_Tren.IsOn = false;
-            this.ucTinHieu_GT_Tren.Location = new System.Drawing.Point(190, 89);
-            this.ucTinHieu_GT_Tren.Name = "ucTinHieu_GT_Tren";
-            this.ucTinHieu_GT_Tren.Size = new System.Drawing.Size(20, 20);
-            this.ucTinHieu_GT_Tren.TabIndex = 586;
-            // 
-            // ucTinHieu_GT_Cho
-            // 
-            this.ucTinHieu_GT_Cho.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.ucTinHieu_GT_Cho.Appearance.Options.UseBackColor = true;
-            this.ucTinHieu_GT_Cho.IsOn = false;
-            this.ucTinHieu_GT_Cho.Location = new System.Drawing.Point(113, 149);
-            this.ucTinHieu_GT_Cho.Name = "ucTinHieu_GT_Cho";
-            this.ucTinHieu_GT_Cho.Size = new System.Drawing.Size(20, 20);
-            this.ucTinHieu_GT_Cho.TabIndex = 585;
-            // 
-            // ucTinHieu_GT_Duoi
-            // 
-            this.ucTinHieu_GT_Duoi.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.ucTinHieu_GT_Duoi.Appearance.Options.UseBackColor = true;
-            this.ucTinHieu_GT_Duoi.IsOn = true;
-            this.ucTinHieu_GT_Duoi.Location = new System.Drawing.Point(34, 212);
-            this.ucTinHieu_GT_Duoi.Name = "ucTinHieu_GT_Duoi";
-            this.ucTinHieu_GT_Duoi.Size = new System.Drawing.Size(20, 20);
-            this.ucTinHieu_GT_Duoi.TabIndex = 584;
-            // 
-            // ucTinHieuGauXuong
-            // 
-            this.ucTinHieuGauXuong.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucTinHieuGauXuong.Appearance.Options.UseBackColor = true;
-            this.ucTinHieuGauXuong.Location = new System.Drawing.Point(78, 175);
-            this.ucTinHieuGauXuong.Name = "ucTinHieuGauXuong";
-            this.ucTinHieuGauXuong.Size = new System.Drawing.Size(25, 20);
-            this.ucTinHieuGauXuong.TabIndex = 583;
-            this.ucTinHieuGauXuong.Visible = false;
-            // 
-            // ucTinHieuGauLen
-            // 
-            this.ucTinHieuGauLen.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucTinHieuGauLen.Appearance.Options.UseBackColor = true;
-            this.ucTinHieuGauLen.Location = new System.Drawing.Point(150, 119);
-            this.ucTinHieuGauLen.Name = "ucTinHieuGauLen";
-            this.ucTinHieuGauLen.Size = new System.Drawing.Size(25, 20);
-            this.ucTinHieuGauLen.TabIndex = 582;
-            this.ucTinHieuGauLen.Visible = false;
-            // 
-            // ucButtonGauUp1
-            // 
-            this.ucButtonGauUp1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucButtonGauUp1.Appearance.Options.UseBackColor = true;
-            this.ucButtonGauUp1.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("ucButtonGauUp1.Color_Click")));
-            this.ucButtonGauUp1.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("ucButtonGauUp1.Color_NoClick")));
-            this.ucButtonGauUp1.IsOn = false;
-            this.ucButtonGauUp1.Location = new System.Drawing.Point(182, 134);
-            this.ucButtonGauUp1.Name = "ucButtonGauUp1";
-            this.ucButtonGauUp1.Size = new System.Drawing.Size(45, 38);
-            this.ucButtonGauUp1.TabIndex = 576;
-            this.ucButtonGauUp1.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauUp.DelButtonEventHandler(this.ucButtonGauUp1_ButtonMouseDown_1);
-            this.ucButtonGauUp1.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauUp.DelButtonEventHandler(this.ucButtonGauUp1_ButtonMouseUp_1);
-            // 
-            // ucButtonGauDown1
-            // 
-            this.ucButtonGauDown1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucButtonGauDown1.Appearance.Options.UseBackColor = true;
-            this.ucButtonGauDown1.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("ucButtonGauDown1.Color_Click")));
-            this.ucButtonGauDown1.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("ucButtonGauDown1.Color_NoClick")));
-            this.ucButtonGauDown1.IsOn = false;
-            this.ucButtonGauDown1.Location = new System.Drawing.Point(90, 206);
-            this.ucButtonGauDown1.Name = "ucButtonGauDown1";
-            this.ucButtonGauDown1.Size = new System.Drawing.Size(45, 38);
-            this.ucButtonGauDown1.TabIndex = 575;
-            this.ucButtonGauDown1.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauDown.DelButtonEventHandler(this.ucButtonGauDown1_ButtonMouseDown_1);
-            this.ucButtonGauDown1.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauDown.DelButtonEventHandler(this.ucButtonGauDown1_ButtonMouseUp_1);
-            // 
-            // ucButtonGauStop2
-            // 
-            this.ucButtonGauStop2.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucButtonGauStop2.Appearance.Options.UseBackColor = true;
-            this.ucButtonGauStop2.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("ucButtonGauStop2.Color_Click")));
-            this.ucButtonGauStop2.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("ucButtonGauStop2.Color_NoClick")));
-            this.ucButtonGauStop2.IsOn = false;
-            this.ucButtonGauStop2.Location = new System.Drawing.Point(142, 172);
-            this.ucButtonGauStop2.Name = "ucButtonGauStop2";
-            this.ucButtonGauStop2.Size = new System.Drawing.Size(35, 35);
-            this.ucButtonGauStop2.TabIndex = 574;
-            this.ucButtonGauStop2.ButtonMouseDown += new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauStop.DelButtonEventHandler(this.ucButtonGauStop2_ButtonMouseDown);
-            this.ucButtonGauStop2.ButtonMouseUp += new NDPSo.MasterData.TronOnlineView.UserControls.UcButtonGauStop.DelButtonEventHandler(this.ucButtonGauStop2_ButtonMouseUp);
-            // 
-            // ucGauTai1
-            // 
-            this.ucGauTai1.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.ucGauTai1.Appearance.Options.UseBackColor = true;
-            this.ucGauTai1.IsGauTaiStatus = NDPSo.MasterData.TronOnlineView.UserControls.UcGauTai.GauTaiStatus.Empty;
-            this.ucGauTai1.IsTrangThai = NDPSo.MasterData.TronOnlineView.UserControls.UcGauTai.TrangThai.GauDuoi;
-            this.ucGauTai1.Location = new System.Drawing.Point(2, 3);
-            this.ucGauTai1.Name = "ucGauTai1";
-            this.ucGauTai1.Size = new System.Drawing.Size(244, 262);
-            this.ucGauTai1.SoLuongMeCanTron = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ucGauTai1.SoMeDaTron = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ucGauTai1.TabIndex = 568;
-            this.ucGauTai1.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcGauTai.DelButtonEventHandler(this.ucGauTai1_ButtonClick);
             // 
             // ucBTCan1
             // 
@@ -4372,6 +4280,9 @@ namespace NDPSo.MasterData
             this.checkEdit3.Location = new System.Drawing.Point(15, 13);
             this.checkEdit3.MenuManager = this.barManager1;
             this.checkEdit3.Name = "checkEdit3";
+            // 
+            // 
+            // 
             this.checkEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkEdit3.Properties.Appearance.Options.UseFont = true;
             this.checkEdit3.Properties.Caption = "AUTO";
@@ -4415,6 +4326,9 @@ namespace NDPSo.MasterData
             this.checkEdit2.Location = new System.Drawing.Point(49, 784);
             this.checkEdit2.MenuManager = this.barManager1;
             this.checkEdit2.Name = "checkEdit2";
+            // 
+            // 
+            // 
             this.checkEdit2.Properties.Caption = "checkEdit2";
             this.checkEdit2.Size = new System.Drawing.Size(75, 20);
             this.checkEdit2.TabIndex = 574;
@@ -7870,6 +7784,8 @@ namespace NDPSo.MasterData
             this.ucXeBonTron1.Name = "ucXeBonTron1";
             this.ucXeBonTron1.Size = new System.Drawing.Size(281, 160);
             this.ucXeBonTron1.TabIndex = 346;
+            this.ucXeBonTron1.Click += new System.EventHandler(this.ucXeBonTron1_Click);
+            this.ucXeBonTron1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ucXeBonTron1_MouseDown);
             // 
             // timer2
             // 
@@ -7893,66 +7809,47 @@ namespace NDPSo.MasterData
             this.Controls.Add(this.barDockControlTop);
             this.Name = "VanHanh";
             this.Size = new System.Drawing.Size(1920, 1080);
+            this.ControlClosing += new NDPSo.ControlViewBase.DelFormClosingEventHandler(this.VanHanh_ControlClosing);
             this.Load += new System.EventHandler(this.VanHanh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.dockThucThi.ResumeLayout(false);
             this.dockPanel1_Container.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
-            this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabDuLieuTron)).EndInit();
             this.tabDuLieuTron.ResumeLayout(false);
-            this.tpgDLTron.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grcHopDong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvHopDong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iicbStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ispnMACSUMSiloValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ilueHDStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
-            this.xtraTabPage1.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicADD_02)).EndInit();
-            this.pnlLogicADD_02.ResumeLayout(false);
-            this.pnlLogicADD_02.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_02_Co.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicADD_01)).EndInit();
-            this.pnlLogicADD_01.ResumeLayout(false);
-            this.pnlLogicADD_01.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_01.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstADD_01_Co.Properties)).EndInit();
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicCE_02)).EndInit();
-            this.pnlLogicCE_02.ResumeLayout(false);
-            this.pnlLogicCE_02.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_02_Co.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicCE_01)).EndInit();
-            this.pnlLogicCE_01.ResumeLayout(false);
-            this.pnlLogicCE_01.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_01.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstCE_01_Co.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicAG_02)).EndInit();
-            this.pnlLogicAG_02.ResumeLayout(false);
-            this.pnlLogicAG_02.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_02.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_02_Co.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicAG_03)).EndInit();
-            this.pnlLogicAG_03.ResumeLayout(false);
-            this.pnlLogicAG_03.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_03.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_03_Co.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlLogicAG_01)).EndInit();
-            this.pnlLogicAG_01.ResumeLayout(false);
-            this.pnlLogicAG_01.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_01.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBlstAG_01_Co.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl6)).EndInit();
-            this.panelControl6.ResumeLayout(false);
-            this.panelControl6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl7)).EndInit();
-            this.panelControl7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mmoThongBao.Properties)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -7961,7 +7858,6 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.spnGiuNuocTrenCan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spnThemBotNc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
-            this.panelControl5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkAutoPrint.Properties)).EndInit();
@@ -7969,90 +7865,54 @@ namespace NDPSo.MasterData
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNiemChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueXe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueDriver.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlOperation)).EndInit();
-            this.pnlOperation.ResumeLayout(false);
-            this.pnlOperation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bteLogoPath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlGauTai)).EndInit();
-            this.pnlGauTai.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Funnel)).EndInit();
-            this.pnl_Funnel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_BTC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Add2)).EndInit();
-            this.pnl_Wei_Add2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Add1)).EndInit();
-            this.pnl_Wei_Add1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Wa2)).EndInit();
-            this.pnl_Wei_Wa2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Wa1)).EndInit();
-            this.pnl_Wei_Wa1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add6)).EndInit();
-            this.pnl_Silo_Add6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add5)).EndInit();
-            this.pnl_Silo_Add5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add4)).EndInit();
-            this.pnl_Silo_Add4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add3)).EndInit();
-            this.pnl_Silo_Add3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add2)).EndInit();
-            this.pnl_Silo_Add2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Add1)).EndInit();
-            this.pnl_Silo_Add1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Wa2)).EndInit();
-            this.pnl_Silo_Wa2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Wa1)).EndInit();
-            this.pnl_Silo_Wa1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Ce2)).EndInit();
-            this.pnl_Wei_Ce2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Ce1)).EndInit();
-            this.pnl_Wei_Ce1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce5)).EndInit();
-            this.pnl_Silo_Ce5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce4)).EndInit();
-            this.pnl_Silo_Ce4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce3)).EndInit();
-            this.pnl_Silo_Ce3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce2)).EndInit();
-            this.pnl_Silo_Ce2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Ce1)).EndInit();
-            this.pnl_Silo_Ce1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg6)).EndInit();
-            this.pnl_Wei_Agg6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg5)).EndInit();
-            this.pnl_Wei_Agg5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg4)).EndInit();
-            this.pnl_Wei_Agg4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg3)).EndInit();
-            this.pnl_Wei_Agg3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg2)).EndInit();
-            this.pnl_Wei_Agg2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Wei_Agg1)).EndInit();
-            this.pnl_Wei_Agg1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg6)).EndInit();
-            this.pnl_Silo_Agg6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg5)).EndInit();
-            this.pnl_Silo_Agg5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg4)).EndInit();
-            this.pnl_Silo_Agg4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg3)).EndInit();
-            this.pnl_Silo_Agg3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg2)).EndInit();
-            this.pnl_Silo_Agg2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pnl_Silo_Agg1)).EndInit();
-            this.pnl_Silo_Agg1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -8142,8 +8002,8 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.TextEdit txtNiemChi;
         private TronOnlineView.UserControls.UcButton2 btnLamMoiThongTinPhieuTron;
         private TronOnlineView.UserControls.UcButton2 btnCapNhatThongTinPhieuTron;
-        private DevExpress.XtraEditors.LookUpEdit lueXe;
-        private DevExpress.XtraEditors.LookUpEdit lueDriver;
+        private DevExpress.XtraEditors.GridLookUpEdit lueXe;
+        private DevExpress.XtraEditors.GridLookUpEdit lueDriver;
         private DevExpress.XtraEditors.LabelControl labelControl21;
         private DevExpress.XtraEditors.LabelControl labelControl22;
         private DevExpress.XtraEditors.LabelControl labelControl23;
@@ -8378,7 +8238,9 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.CheckEdit checkEdit3;
         private DevExpress.XtraEditors.LabelControl lblWa1;
         private DevExpress.XtraEditors.LabelControl lblNguoiTron;
+        private DevExpress.XtraEditors.LabelControl lblDiaDiem;
         private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl labelControlDiaDiem;
         private DevExpress.XtraEditors.LabelControl lblTenHangMuc;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -8393,7 +8255,6 @@ namespace NDPSo.MasterData
         private TronOnlineView.UserControls.UcBTCan ucBTCan1;
         private DevExpress.XtraEditors.LabelControl lblStatusPC;
         private DevExpress.XtraEditors.PanelControl pnlGauTai;
-        private TronOnlineView.UserControls.UcGauTai ucGauTai1;
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonRungCanAgg1;
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonRungCanAgg2;
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonRungCanAgg6;
@@ -8423,9 +8284,6 @@ namespace NDPSo.MasterData
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonSKCe3;
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonSKCe2;
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonSKCe1;
-        private TronOnlineView.UserControls.UcButtonGauStop ucButtonGauStop2;
-        private TronOnlineView.UserControls.UcButtonGauUp ucButtonGauUp1;
-        private TronOnlineView.UserControls.UcButtonGauDown ucButtonGauDown1;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private TronOnlineView.UserControls.UcBtnReset btnXacNhanLoi;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
@@ -8491,20 +8349,18 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.LabelControl labelControl16;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.SimpleButton btnThietLapCE_01;
-        private TronOnlineView.UserControls.UcTinHieuGauLen ucTinHieuGauLen;
-        private TronOnlineView.UserControls.UcTinHieuGauXuong ucTinHieuGauXuong;
         private DevExpress.XtraEditors.LabelControl lblSoPhieuTron;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraGrid.Columns.GridColumn gcTongPhieuTron;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private TronOnlineView.UserControls.UcThoiGianNoiTron ucAmpeCoi;
+        private TronOnlineView.UserControls.UcThoiGianNoiTron ucThoiGianThucTronUot;
         private TronOnlineView.UserControls.UcOnOff_BaoRungCan uc_TinHieu_CuaNoi1per2;
         private System.Windows.Forms.Label lblSim;
         private TronOnlineView.UserControls.UcPrpel ucPrpel1;
         private TronOnlineView.UserControls.UcOnOff_BaoRungCan uc_TinHieu_CuaNoiMo;
         private TronOnlineView.UserControls.UcOnOff_BaoRungCan uc_TinHieu_CuaNoiDong;
         private TronOnlineView.UserControls.UcPrpelSe ucPrpelSe1;
-        private TronOnlineView.UserControls.UcThoiGianNoiTron ucThoiGianThucXa;
+        private TronOnlineView.UserControls.UcThoiGianNoiTron ucKLThucNoiTron;
         private TronOnlineView.UserControls.UcThoiGianNoiTron ucThoiGianThucTron;
         private TronOnlineView.UserControls.UcMeTronNoiTron slMeDaCanNoiTron;
         private TronOnlineView.UserControls.UcKhoiLuongNoiTron ucSoKhoiTrenMe;
@@ -8512,19 +8368,20 @@ namespace NDPSo.MasterData
         private TronOnlineView.UserControls.UcXaCan uc_TinHIeu_VanMoCuaNoi;
         private TronOnlineView.UserControls.UcXaCanUp uc_TinHIeu_VanDongCuaNoi;
         private TronOnlineView.UserControls.UcBtnNoiTron btnMoCuaNoi;
-        private TronOnlineView.UserControls.UcBtnNoiTron btnMoKep;
         private TronOnlineView.UserControls.UcBtnNoiTron btnDongCuaNoi;
-        private TronOnlineView.UserControls.UcBtnNoiTron btnDongKep;
-        private TronOnlineView.UserControls.UcBtnNoiTron btnRungMiengKep;
-        private TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai ucTinHieu_GT_AnToan;
-        private TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai ucTinHieu_GT_Tren;
-        private TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai ucTinHieu_GT_Cho;
-        private TronOnlineView.UserControls.UcTinHieu_ONOFF_GauTai ucTinHieu_GT_Duoi;
-        private TronOnlineView.UserControls.UcTinHieuGauXuong ucTinHieuGauXuong1;
-        private TronOnlineView.UserControls.UcTinHieuGauLen ucTinHieuGauLen1;
         private DevExpress.XtraEditors.SimpleButton simpleButton5;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.TextEdit textEdit2;
         private DevExpress.XtraEditors.TextEdit textEdit1;
+        //add new
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraGrid.Columns.GridColumn gcMaTaiXe;
+        private DevExpress.XtraGrid.Columns.GridColumn gcTenTaiXe;
+        private DevExpress.XtraGrid.Columns.GridColumn gcTaiXeID;
+
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBienSo;
+        private DevExpress.XtraGrid.Columns.GridColumn gcXeID;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBieSo;
     }
 }

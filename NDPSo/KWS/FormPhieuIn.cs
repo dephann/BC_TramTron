@@ -19,8 +19,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Word.Application;
+using Excel = Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 using Task = System.Threading.Tasks.Task;
+using DocumentFormat.OpenXml.ExtendedProperties;
 
 namespace NDPSo.KWS
 {
@@ -35,14 +37,17 @@ namespace NDPSo.KWS
         private List<string> listPrinter_CT = new List<string>();
         private int numberOfCopies_GH;
         private int numberOfCopies_CT;
+        private DateTime TGBatDauTron;
+        private DateTime TGKetThutTron;
 
         string sourceFileName = ConfigManager.TramTronConfig.PIPath;
         string fileName = "";
         string filePathMau = ConfigManager.TramTronConfig.PIPath;
+        string filePathMau_CT = ConfigManager.TramTronConfig.PICTPath;
         string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
 
         private bool _error;
-
+        private bool isGiaoHang = true;
         private int userID;
         private Thread thread_GH;
         private Thread thread_CT;
@@ -104,11 +109,17 @@ namespace NDPSo.KWS
         private decimal sum_KL;
         private decimal sum_CP;
 
+        private ObjPhieuGiaoHang _pgh;
         private BindingList<ObjPhieuTron> _blstPhieuTron = new BindingList<ObjPhieuTron>();
         private BindingList<ObjHopDong> _blstHopDong = new BindingList<ObjHopDong>();
         private BindingList<ObjMeTron> _blstMeTron = new BindingList<ObjMeTron>();
         private BindingList<ObjMeTron> _blstMeTron_02 = new BindingList<ObjMeTron>();
         private BindingList<ObjMeTronChiTiet> _blstMeTronChiTiet = new BindingList<ObjMeTronChiTiet>();
+        private BindingList<ObjMeTronChiTietGiaoHang> _blstMeTronChiTietGiaoHang = new BindingList<ObjMeTronChiTietGiaoHang>();
+        public ObjPhieuGiaoHang PhieuGiaoHang
+        {
+            set => this._pgh = value;
+        }
         public BindingList<ObjPhieuTron> BLstPhieuTron 
         {
             set
@@ -142,6 +153,13 @@ namespace NDPSo.KWS
         }
         public bool IsSuccessfulSaved { set => this.SuccessfullySave(value); }
         public List<FieldCode> LstPhieuTronStatus { set => throw new NotImplementedException(); }
+        public BindingList<ObjPhieuGiaoHang> BLstPhieuGiaoHang { set => throw new NotImplementedException(); }
+        public BindingList<ObjMeTronChiTietGiaoHang> BLstMeTronChiTietGiaoHang {
+            set
+            {
+                this._blstMeTronChiTietGiaoHang = value;
+            }
+        }
 
         private void SuccessfullySave(bool isSuccess)
         {
@@ -155,6 +173,8 @@ namespace NDPSo.KWS
             this._presenter = new PhieuTronMngDataPresenter((IPhieuTronMngView)this);
             SetCaption();
             LoadValuePrinter();
+            
+
         }
         private void SetCaption()
         {
@@ -184,12 +204,14 @@ namespace NDPSo.KWS
             num_silo_Add = ConfigManager.TramTronConfig.SL_Silo_ADD;
             if (num_silo_Add == 0)
                 num_silo_Add = 0;
+            this.lblLoaaded.Visible = ConfigManager.TramTronConfig.IsCanFixPGH;
         }
         protected override void PopulateData()
         {
             this.LoadPhieuTron();
             this.LoadPhieuTron_02();
         }
+
 
         private void LoadSearchDefaultValues()
         {
@@ -282,6 +304,7 @@ namespace NDPSo.KWS
                 int num = 0;
                 if (!(phieuTronID.GetValueOrDefault() == num & phieuTronID != null))
                 {
+                    ObjHopDong hopdong = this._presenter.GetHopDongByKey((int)objPhieuTron.HopDongID);
                     ObjPhieuTron phieuTronByKey = this._presenter.GetPhieuTronByKey(objPhieuTron.PhieuTronID);
                     if (phieuTronByKey == null)
                     {
@@ -313,12 +336,157 @@ namespace NDPSo.KWS
                     txtXe.Text = phieuTronByKey.NPXeBienSo;
                     txtNiemChi.Text = phieuTronByKey.MoTa;
                     txtTheTich.Text = phieuTronByKey.KLDuTinh.ToString();
-                    txtLuyKe.Text = phieuTronByKey.KLThuc.ToString();
+                    if(!phieuTronByKey.KLThuc.HasValue)
+                    {
+                        txtLuyKe.Text = (hopdong.KLDaGiao + phieuTronByKey.KLDuTinh).ToString();
+                    }
+                    else
+                    {
+                        txtLuyKe.Text = phieuTronByKey.SLMeHieuChinh.ToString();
+                    }
                     txtKhoiLuongDatHang.Text = phieuTronByKey.NPHopDongKLDatHang.ToString();
                 }
+
+                /*GetParam();
+
+                lblLoaaded.Visible = false;
+                Task myTask = Task.Run(() =>
+                {
+                    PrintPTFromFile_SA();
+                });
+
+                //Task.WaitAny(myTask);
+
+                if (myTask.IsCompleted)
+                {
+                    lblLoaaded.Visible = true;
+                }*/
             }
         }
 
+        private void DoFocusPhieuGiaoHang()
+        {
+            ClearDataPhieuTron();
+            ObjPhieuTron objPhieuTron = this.grvPhieuTron.GetRow(this.grvPhieuTron.FocusedRowHandle) as ObjPhieuTron;
+            if (objPhieuTron != null && objPhieuTron.PhieuTronID != null)
+            {
+                int? phieuTronID = objPhieuTron.PhieuTronID;
+                int num = 0;
+                if (!(phieuTronID.GetValueOrDefault() == num & phieuTronID != null))
+                {
+                    ObjHopDong hopdong = this._presenter.GetHopDongByKey((int)objPhieuTron.HopDongID);
+                    ObjPhieuGiaoHang phieuTronByKey = this._presenter.GetPhieuGiaoHangByCode(objPhieuTron.MaPhieuTron);
+                    if (phieuTronByKey == null)
+                    {
+                        return;
+                    }
+                    if (phieuTronByKey.CreatedBy.HasValue)
+                    {
+                        this._pgh = phieuTronByKey;
+                        this._presenter.GetPhieuGiaoHangByKey(this._pgh.PhieuTronID);
+                        this.userID = (int)phieuTronByKey.CreatedBy;
+                        ObjSEC_User user = _ser.GetSEC_UserByKey(userID);
+                        txtNguoiTron.Text = user.FullName;
+                    }
+                    txtMaHopDong.Text = this._pgh.MaHopDong;
+                    datNgayTron.EditValue = this._pgh.NgayPhieuTron;
+                    txtGioTron.Text = this._pgh.GioBD;
+                    txtGioKTTron.Text = this._pgh.GioKT;
+                    txtMaPhieuTron.Text = this._pgh.MaPhieuTron;
+                    txtSTTPhieuTron.Text = this._pgh.NoPhieu.ToString();
+                    txtTenMAC.Text = this._pgh.TenMAC;
+                    txtTenKhachHang.Text = this._pgh.TenKhachHang;
+                    txtTenCongTruong.Text = this._pgh.TenCongTruong;
+                    if (this._pgh.CuongDo == null)
+                        txtCuongDo.Text = " "; 
+                    else 
+                        txtCuongDo.Text = this._pgh.CuongDo;
+                    if (this._pgh.DoSut == null)
+                        txtDoSut.Text = " ";
+                    else
+                        txtDoSut.Text = this._pgh.DoSut;
+                    
+                    if(this._pgh.DiaDiem == null)
+                        txtDiaDiem.Text = " ";
+                    else
+                        txtDiaDiem.Text = this._pgh.DiaDiem;
+                    if (this._pgh.TenHangMuc == null)
+                        txtHangMuc.Text = " ";
+                    else
+                        txtHangMuc.Text = this._pgh.TenHangMuc;
+                    if(this._pgh.TenTaiXe == null)
+                        txtTaiXe.Text = " ";
+                    else
+                        txtTaiXe.Text = this._pgh.TenTaiXe;
+                    if(this._pgh.BienSo == null)
+                        txtXe.Text = " "; 
+                    else
+                        txtXe.Text = this._pgh.BienSo;
+                    if(this._pgh.NiemChi == null)
+                        txtXe.Text = " "; 
+                    else
+                        txtNiemChi.Text = this._pgh.NiemChi;
+                    txtTheTich.Text = this._pgh.KLDuTinh.ToString();
+                    txtBom.Text = this._pgh.Temp1.ToString();
+                    if (!this._pgh.KLThuc.HasValue)
+                    {
+                        txtLuyKe.Text = (hopdong.KLDaGiao + this._pgh.KLDuTinh).ToString();
+                    }
+                    else
+                    {
+                        txtLuyKe.Text = this._pgh.SLMeHieuChinh.ToString();
+                    }
+                    txtKhoiLuongDatHang.Text = this._pgh.Temp2;
+                }
+
+                /*GetParam();
+
+                lblLoaaded.Visible = false;
+                Task myTask = Task.Run(() =>
+                {
+                    PrintPTFromFile_SA();
+                });
+
+                //Task.WaitAny(myTask);
+
+                if (myTask.IsCompleted)
+                {
+                    lblLoaaded.Visible = true;
+                }*/
+            }
+        }
+
+       
+        private void EditPhieuGiaoHang()
+        {
+            
+            this._pgh.IsNewObject = false;
+            this._pgh.NgayPhieuTron = this.datNgayTron.DateTime.Date;
+            this._pgh.GioBD = this.txtGioTron.Text;
+            this._pgh.GioKT = this.txtGioKTTron.Text;
+            this._pgh.NoPhieu = int.Parse(this.txtSTTPhieuTron.Text);
+            this._pgh.MaPhieuTron = this.txtMaPhieuTron.Text;
+            this._pgh.TenMAC = this.txtTenMAC.Text;
+            this._pgh.CuongDo = this.txtCuongDo.Text;
+            this._pgh.DoSut = this.txtDoSut.Text;
+            this._pgh.TenKhachHang = this.txtTenKhachHang.Text;
+            this._pgh.TenCongTruong = this.txtTenCongTruong.Text;
+            this._pgh.DiaDiem = this.txtDiaDiem.Text;
+            this._pgh.TenHangMuc = this.txtHangMuc.Text;
+            this._pgh.TenTaiXe = this.txtTaiXe.Text;
+            this._pgh.BienSo = this.txtXe.Text;
+            this._pgh.NiemChi = this.txtNiemChi.Text;
+            this._pgh.SLMeHieuChinh = Decimal.Parse(this.txtLuyKe.Text);
+            //phieuGiaoHang.KLThuc = Decimal.Parse(this.txtLuyKe.Text);
+            this._pgh.KLDuTinh = Decimal.Parse(this.txtTheTich.Text);
+            this._pgh.LuyKe = Decimal.Parse(this.txtLuyKe.Text);
+            this._pgh.Temp1 = this.txtBom.Text;
+            this._pgh.Temp2 = this.txtKhoiLuongDatHang.Text;
+
+            BindingList<ObjPhieuGiaoHang> blstPGH = new BindingList<ObjPhieuGiaoHang>();
+            blstPGH.Add(this._pgh);
+            this._presenter.SavePhieuGiaoHang(blstPGH);
+        }
         private void DoFocusPhieuTron_02()
         {
             ClearDataPhieuTron_02();
@@ -365,7 +533,15 @@ namespace NDPSo.KWS
 
                     this._blstMeTron = Converter.ConvertToBindingList<ObjMeTron>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronByPhieuTronID(phieuTronByKey.PhieuTronID) as List<ObjMeTron>);
                     int LnNO = this._blstMeTron.Count;
-                    this._blstMeTronChiTiet = Converter.ConvertToBindingList<ObjMeTronChiTiet>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronChiTietByPhieuTronID(phieuTronByKey.PhieuTronID) as List<ObjMeTronChiTiet>);
+                    if (ConfigManager.TramTronConfig.IsCanFixPCT)
+                    {
+                        this._blstMeTronChiTietGiaoHang = Converter.ConvertToBindingList<ObjMeTronChiTietGiaoHang>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronChiTietGiaoHangByPhieuTronID(phieuTronByKey.PhieuTronID) as List<ObjMeTronChiTietGiaoHang>);
+
+                    }
+                    else
+                    {
+                        this._blstMeTronChiTiet = Converter.ConvertToBindingList<ObjMeTronChiTiet>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListMeTronChiTietByPhieuTronID(phieuTronByKey.PhieuTronID) as List<ObjMeTronChiTiet>);
+                    }
                     BindingList<ObjMTCTFullPrinter> _lstFullPrinter = new BindingList<ObjMTCTFullPrinter>();
 
                     sum_KL = 0;
@@ -373,299 +549,599 @@ namespace NDPSo.KWS
                     {
                         sum_KL += (decimal)mt.KhoiLuong;
                         ObjMTCTFullPrinter mtctPrinter = new ObjMTCTFullPrinter();
-
-                        foreach (ObjMeTronChiTiet mtct in this._blstMeTronChiTiet)
+                        if (ConfigManager.TramTronConfig.IsCanFixPCT)
                         {
-                            if (mt.MeTronID == mtct.MeTronID)
+                            foreach (ObjMeTronChiTietGiaoHang mtct in this._blstMeTronChiTietGiaoHang)
                             {
-                                mtctPrinter.LnNo = mt.LnNo.ToString();
-                                mtctPrinter.KLTungMe = mt.KhoiLuong.ToString();
-
-                                switch (mtct.MaSilo)
+                                if (mt.MeTronID == mtct.MeTronID)
                                 {
-                                    case "Agg1":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Agg1 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Agg1 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Agg1 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Agg1 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Agg1 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Agg1 = (decimal)mtct.ValuePerTol;
-                                        mtctPrinter.DoAm_Agg1 = (decimal)mtct.DoAm_NhomSlioAgg;
-                                        if (mtct.MaterialName != null)
-                                            mtctPrinter.MaterialName_Agg1 = mtct.MaterialName;
-                                        else
-                                            mtctPrinter.MaterialName_Agg1 = "Agg1";
-                                        break;
-                                    case "Agg2":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Agg2 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Agg2 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Agg2 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Agg2 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Agg2 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Agg2 = (decimal)mtct.ValuePerTol;
-                                        mtctPrinter.DoAm_Agg2 = (decimal)mtct.DoAm_NhomSlioAgg;
-                                        if (mtct.MaterialName != null)
-                                            mtctPrinter.MaterialName_Agg2 = mtct.MaterialName;
-                                        else
-                                            mtctPrinter.MaterialName_Agg2 = "Agg2";
-                                        break;
-                                    case "Agg3":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Agg3 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Agg3 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Agg3 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Agg3 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Agg3 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Agg3 = (decimal)mtct.ValuePerTol;
-                                        mtctPrinter.DoAm_Agg3 = (decimal)mtct.DoAm_NhomSlioAgg;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Agg3 = "Agg3";
-                                        else
-                                            mtctPrinter.MaterialName_Agg3 = mtct.MaterialName;
-                                        break;
-                                    case "Agg4":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Agg4 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Agg4 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Agg4 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Agg4 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Agg4 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Agg4 = (decimal)mtct.ValuePerTol;
-                                        mtctPrinter.DoAm_Agg4 = (decimal)mtct.DoAm_NhomSlioAgg;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Agg4 = "Agg4";
-                                        else
-                                            mtctPrinter.MaterialName_Agg4 = mtct.MaterialName;
-                                        break;
-                                    case "Agg5":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Agg5 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Agg5 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Agg5 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Agg5 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Agg5 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Agg5 = (decimal)mtct.ValuePerTol;
-                                        mtctPrinter.DoAm_Agg5 = (decimal)mtct.DoAm_NhomSlioAgg;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Agg5 = "Agg5";
-                                        else
-                                            mtctPrinter.MaterialName_Agg5 = mtct.MaterialName;
-                                        break;
-                                    case "Agg6":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Agg6 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Agg6 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Agg6 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Agg6 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Agg6 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Agg6 = (decimal)mtct.ValuePerTol;
-                                        mtctPrinter.DoAm_Agg6 = (decimal)mtct.DoAm_NhomSlioAgg;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Agg6 = "Agg6";
-                                        else
-                                            mtctPrinter.MaterialName_Agg6 = mtct.MaterialName;
-                                        break;
-                                    case "Ce1":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Ce1 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Ce1 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Ce1 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Ce1 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Ce1 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Ce1 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Ce1 = "Ce1";
-                                        else
-                                            mtctPrinter.MaterialName_Ce1 = mtct.MaterialName;
-                                        break;
-                                    case "Ce2":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Ce2 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Ce2 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Ce2 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Ce2 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Ce2 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Ce2 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName != null)
-                                            mtctPrinter.MaterialName_Ce2 = mtct.MaterialName;
-                                        else
-                                            mtctPrinter.MaterialName_Ce2 = "Ce2";
+                                    mtctPrinter.LnNo = mt.LnNo.ToString();
+                                    mtctPrinter.KLTungMe = mt.KhoiLuong.ToString();
 
-                                        break;
-                                    case "Ce3":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Ce3 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Ce3 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Ce3 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Ce3 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Ce3 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Ce3 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Ce3 = "Ce3";
-                                        else
-                                            mtctPrinter.MaterialName_Ce3 = mtct.MaterialName;
-                                        break;
-                                    case "Ce4":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Ce4 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Ce4 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Ce4 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Ce4 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Ce4 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Ce4 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Ce4 = "Ce4";
-                                        else
-                                            mtctPrinter.MaterialName_Ce4 = mtct.MaterialName;
-                                        break;
-                                    case "Ce5":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Ce5 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Ce5 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Ce5 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Ce5 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Ce5 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Ce5 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Ce5 = "Ce5";
-                                        else
-                                            mtctPrinter.MaterialName_Ce5 = mtct.MaterialName;
-                                        break;
-                                    case "Wa1":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Wa1 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Wa1 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Wa1 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Wa1 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Wa1 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Wa1 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Wa1 = "Wa1";
-                                        else
-                                            mtctPrinter.MaterialName_Wa1 = mtct.MaterialName;
-                                        break;
-                                    case "Wa2":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Wa2 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Wa2 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Wa2 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Wa2 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Wa2 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Wa2 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Wa2 = "Wa2";
-                                        else
-                                            mtctPrinter.MaterialName_Wa2 = mtct.MaterialName;
+                                    switch (mtct.MaSilo)
+                                    {
+                                        case "Agg1":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Agg1 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Agg1 = (int)mtct.Value;
+                                            mtctPrinter.PV_Agg1 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Agg1 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Agg1 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Agg1 = (decimal)mtct.ValuePerTol;
+                                            mtctPrinter.DoAm_Agg1 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                            if (mtct.MaterialName != null)
+                                                mtctPrinter.MaterialName_Agg1 = mtct.MaterialName;
+                                            else
+                                                mtctPrinter.MaterialName_Agg1 = "Agg1";
+                                            break;
+                                        case "Agg2":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Agg2 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Agg2 = (int)mtct.Value;
+                                            mtctPrinter.PV_Agg2 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Agg2 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Agg2 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Agg2 = (decimal)mtct.ValuePerTol;
+                                            mtctPrinter.DoAm_Agg2 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                            if (mtct.MaterialName != null)
+                                                mtctPrinter.MaterialName_Agg2 = mtct.MaterialName;
+                                            else
+                                                mtctPrinter.MaterialName_Agg2 = "Agg2";
+                                            break;
+                                        case "Agg3":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Agg3 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Agg3 = (int)mtct.Value;
+                                            mtctPrinter.PV_Agg3 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Agg3 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Agg3 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Agg3 = (decimal)mtct.ValuePerTol;
+                                            mtctPrinter.DoAm_Agg3 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Agg3 = "Agg3";
+                                            else
+                                                mtctPrinter.MaterialName_Agg3 = mtct.MaterialName;
+                                            break;
+                                        case "Agg4":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Agg4 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Agg4 = (int)mtct.Value;
+                                            mtctPrinter.PV_Agg4 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Agg4 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Agg4 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Agg4 = (decimal)mtct.ValuePerTol;
+                                            mtctPrinter.DoAm_Agg4 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Agg4 = "Agg4";
+                                            else
+                                                mtctPrinter.MaterialName_Agg4 = mtct.MaterialName;
+                                            break;
+                                        case "Agg5":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Agg5 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Agg5 = (int)mtct.Value;
+                                            mtctPrinter.PV_Agg5 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Agg5 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Agg5 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Agg5 = (decimal)mtct.ValuePerTol;
+                                            mtctPrinter.DoAm_Agg5 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Agg5 = "Agg5";
+                                            else
+                                                mtctPrinter.MaterialName_Agg5 = mtct.MaterialName;
+                                            break;
+                                        case "Agg6":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Agg6 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Agg6 = (int)mtct.Value;
+                                            mtctPrinter.PV_Agg6 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Agg6 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Agg6 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Agg6 = (decimal)mtct.ValuePerTol;
+                                            mtctPrinter.DoAm_Agg6 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Agg6 = "Agg6";
+                                            else
+                                                mtctPrinter.MaterialName_Agg6 = mtct.MaterialName;
+                                            break;
+                                        case "Ce1":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Ce1 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Ce1 = (int)mtct.Value;
+                                            mtctPrinter.PV_Ce1 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Ce1 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Ce1 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Ce1 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Ce1 = "Ce1";
+                                            else
+                                                mtctPrinter.MaterialName_Ce1 = mtct.MaterialName;
+                                            break;
+                                        case "Ce2":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Ce2 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Ce2 = (int)mtct.Value;
+                                            mtctPrinter.PV_Ce2 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Ce2 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Ce2 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Ce2 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName != null)
+                                                mtctPrinter.MaterialName_Ce2 = mtct.MaterialName;
+                                            else
+                                                mtctPrinter.MaterialName_Ce2 = "Ce2";
 
-                                        break;
-                                    case "Add1":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Add1 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Add1 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Add1 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Add1 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Add1 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Add1 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Add1 = "Add1";
-                                        else
-                                            mtctPrinter.MaterialName_Add1 = mtct.MaterialName;
+                                            break;
+                                        case "Ce3":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Ce3 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Ce3 = (int)mtct.Value;
+                                            mtctPrinter.PV_Ce3 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Ce3 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Ce3 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Ce3 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Ce3 = "Ce3";
+                                            else
+                                                mtctPrinter.MaterialName_Ce3 = mtct.MaterialName;
+                                            break;
+                                        case "Ce4":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Ce4 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Ce4 = (int)mtct.Value;
+                                            mtctPrinter.PV_Ce4 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Ce4 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Ce4 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Ce4 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Ce4 = "Ce4";
+                                            else
+                                                mtctPrinter.MaterialName_Ce4 = mtct.MaterialName;
+                                            break;
+                                        case "Ce5":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Ce5 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Ce5 = (int)mtct.Value;
+                                            mtctPrinter.PV_Ce5 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Ce5 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Ce5 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Ce5 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Ce5 = "Ce5";
+                                            else
+                                                mtctPrinter.MaterialName_Ce5 = mtct.MaterialName;
+                                            break;
+                                        case "Wa1":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Wa1 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Wa1 = (int)mtct.Value;
+                                            mtctPrinter.PV_Wa1 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Wa1 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Wa1 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Wa1 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Wa1 = "Wa1";
+                                            else
+                                                mtctPrinter.MaterialName_Wa1 = mtct.MaterialName;
+                                            break;
+                                        case "Wa2":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Wa2 = (int)mtct.SiloValue;
+                                            mtctPrinter.CP_Wa2 = (int)mtct.Value;
+                                            mtctPrinter.PV_Wa2 = (int)mtct.ValueBat;
+                                            mtctPrinter.PVM_Wa2 = (int)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Wa2 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Wa2 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Wa2 = "Wa2";
+                                            else
+                                                mtctPrinter.MaterialName_Wa2 = mtct.MaterialName;
 
-                                        break;
-                                    case "Add2":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Add2 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Add2 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Add2 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Add2 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Add2 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Add2 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Add2 = "Add2";
-                                        else
-                                            mtctPrinter.MaterialName_Add2 = mtct.MaterialName;
+                                            break;
+                                        case "Add1":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Add1 = (decimal)mtct.SiloValue;
+                                            mtctPrinter.CP_Add1 = (decimal)mtct.Value;
+                                            mtctPrinter.PV_Add1 = (decimal)mtct.ValueBat;
+                                            mtctPrinter.PVM_Add1 = (decimal)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Add1 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Add1 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Add1 = "Add1";
+                                            else
+                                                mtctPrinter.MaterialName_Add1 = mtct.MaterialName;
 
-                                        break;
-                                    case "Add3":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Add3 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Add3 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Add3 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Add3 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Add3 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Add3 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Add3 = "Add3";
-                                        else
-                                            mtctPrinter.MaterialName_Add3 = mtct.MaterialName;
+                                            break;
+                                        case "Add2":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Add2 = (decimal)mtct.SiloValue;
+                                            mtctPrinter.CP_Add2 = (decimal)mtct.Value;
+                                            mtctPrinter.PV_Add2 = (decimal)mtct.ValueBat;
+                                            mtctPrinter.PVM_Add2 = (decimal)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Add2 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Add2 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Add2 = "Add2";
+                                            else
+                                                mtctPrinter.MaterialName_Add2 = mtct.MaterialName;
 
-                                        break;
-                                    case "Add4":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Add4 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Add4 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Add4 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Add4 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Add4 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Add4 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Add4 = "Add4";
-                                        else
-                                            mtctPrinter.MaterialName_Add4 = mtct.MaterialName;
+                                            break;
+                                        case "Add3":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Add3 = (decimal)mtct.SiloValue;
+                                            mtctPrinter.CP_Add3 = (decimal)mtct.Value;
+                                            mtctPrinter.PV_Add3 = (decimal)mtct.ValueBat;
+                                            mtctPrinter.PVM_Add3 = (decimal)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Add3 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Add3 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Add3 = "Add3";
+                                            else
+                                                mtctPrinter.MaterialName_Add3 = mtct.MaterialName;
 
-                                        break;
-                                    case "Add5":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Add5 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Add5 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Add5 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Add5 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Add5 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Add5 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Add5 = "Add5";
-                                        else
-                                            mtctPrinter.MaterialName_Add5 = mtct.MaterialName;
+                                            break;
+                                        case "Add4":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Add4 = (decimal)mtct.SiloValue;
+                                            mtctPrinter.CP_Add4 = (decimal)mtct.Value;
+                                            mtctPrinter.PV_Add4 = (decimal)mtct.ValueBat;
+                                            mtctPrinter.PVM_Add4 = (decimal)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Add4 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Add4 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Add4 = "Add4";
+                                            else
+                                                mtctPrinter.MaterialName_Add4 = mtct.MaterialName;
 
-                                        break;
-                                    case "Add6":
-                                        if (mtct.SiloValue == null)
-                                            mtct.SiloValue = 0;
-                                        mtctPrinter.SiloValue_Add6 = (decimal)mtct.SiloValue;
-                                        mtctPrinter.CP_Add6 = (decimal)mtct.Value;
-                                        mtctPrinter.PV_Add6 = (decimal)mtct.ValueBat;
-                                        mtctPrinter.PVM_Add6 = (decimal)mtct.ValueBatMan;
-                                        mtctPrinter.SaiSo_Add6 = (decimal)mtct.ValueTol;
-                                        mtctPrinter.PerSaiSo_Add6 = (decimal)mtct.ValuePerTol;
-                                        if (mtct.MaterialName == null)
-                                            mtctPrinter.MaterialName_Add6 = "Add6";
-                                        else
-                                            mtctPrinter.MaterialName_Add6 = mtct.MaterialName;
+                                            break;
+                                        case "Add5":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Add5 = (decimal)mtct.SiloValue;
+                                            mtctPrinter.CP_Add5 = (decimal)mtct.Value;
+                                            mtctPrinter.PV_Add5 = (decimal)mtct.ValueBat;
+                                            mtctPrinter.PVM_Add5 = (decimal)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Add5 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Add5 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Add5 = "Add5";
+                                            else
+                                                mtctPrinter.MaterialName_Add5 = mtct.MaterialName;
 
-                                        break;
+                                            break;
+                                        case "Add6":
+                                            if (mtct.SiloValue == null)
+                                                mtct.SiloValue = 0;
+                                            mtctPrinter.SiloValue_Add6 = (decimal)mtct.SiloValue;
+                                            mtctPrinter.CP_Add6 = (decimal)mtct.Value;
+                                            mtctPrinter.PV_Add6 = (decimal)mtct.ValueBat;
+                                            mtctPrinter.PVM_Add6 = (decimal)mtct.ValueBatMan;
+                                            mtctPrinter.SaiSo_Add6 = (decimal)mtct.ValueTol;
+                                            mtctPrinter.PerSaiSo_Add6 = (decimal)mtct.ValuePerTol;
+                                            if (mtct.MaterialName == null)
+                                                mtctPrinter.MaterialName_Add6 = "Add6";
+                                            else
+                                                mtctPrinter.MaterialName_Add6 = mtct.MaterialName;
 
+                                            break;
+
+                                    }
                                 }
                             }
+
+                        }
+                        else
+                        {
+                            foreach (ObjMeTronChiTiet mtct in this._blstMeTronChiTiet)
+                                {
+                                    if (mt.MeTronID == mtct.MeTronID)
+                                    {
+                                        mtctPrinter.LnNo = mt.LnNo.ToString();
+                                        mtctPrinter.KLTungMe = mt.KhoiLuong.ToString();
+
+                                        switch (mtct.MaSilo)
+                                        {
+                                            case "Agg1":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Agg1 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Agg1 = (int)mtct.Value;
+                                                mtctPrinter.PV_Agg1 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Agg1 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Agg1 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Agg1 = (decimal)mtct.ValuePerTol;
+                                                mtctPrinter.DoAm_Agg1 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                                if (mtct.MaterialName != null)
+                                                    mtctPrinter.MaterialName_Agg1 = mtct.MaterialName;
+                                                else
+                                                    mtctPrinter.MaterialName_Agg1 = "Agg1";
+                                                break;
+                                            case "Agg2":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Agg2 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Agg2 = (int)mtct.Value;
+                                                mtctPrinter.PV_Agg2 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Agg2 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Agg2 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Agg2 = (decimal)mtct.ValuePerTol;
+                                                mtctPrinter.DoAm_Agg2 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                                if (mtct.MaterialName != null)
+                                                    mtctPrinter.MaterialName_Agg2 = mtct.MaterialName;
+                                                else
+                                                    mtctPrinter.MaterialName_Agg2 = "Agg2";
+                                                break;
+                                            case "Agg3":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Agg3 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Agg3 = (int)mtct.Value;
+                                                mtctPrinter.PV_Agg3 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Agg3 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Agg3 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Agg3 = (decimal)mtct.ValuePerTol;
+                                                mtctPrinter.DoAm_Agg3 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Agg3 = "Agg3";
+                                                else
+                                                    mtctPrinter.MaterialName_Agg3 = mtct.MaterialName;
+                                                break;
+                                            case "Agg4":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Agg4 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Agg4 = (int)mtct.Value;
+                                                mtctPrinter.PV_Agg4 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Agg4 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Agg4 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Agg4 = (decimal)mtct.ValuePerTol;
+                                                mtctPrinter.DoAm_Agg4 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Agg4 = "Agg4";
+                                                else
+                                                    mtctPrinter.MaterialName_Agg4 = mtct.MaterialName;
+                                                break;
+                                            case "Agg5":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Agg5 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Agg5 = (int)mtct.Value;
+                                                mtctPrinter.PV_Agg5 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Agg5 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Agg5 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Agg5 = (decimal)mtct.ValuePerTol;
+                                                mtctPrinter.DoAm_Agg5 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Agg5 = "Agg5";
+                                                else
+                                                    mtctPrinter.MaterialName_Agg5 = mtct.MaterialName;
+                                                break;
+                                            case "Agg6":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Agg6 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Agg6 = (int)mtct.Value;
+                                                mtctPrinter.PV_Agg6 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Agg6 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Agg6 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Agg6 = (decimal)mtct.ValuePerTol;
+                                                mtctPrinter.DoAm_Agg6 = (decimal)mtct.DoAm_NhomSlioAgg;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Agg6 = "Agg6";
+                                                else
+                                                    mtctPrinter.MaterialName_Agg6 = mtct.MaterialName;
+                                                break;
+                                            case "Ce1":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Ce1 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Ce1 = (int)mtct.Value;
+                                                mtctPrinter.PV_Ce1 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Ce1 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Ce1 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Ce1 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Ce1 = "Ce1";
+                                                else
+                                                    mtctPrinter.MaterialName_Ce1 = mtct.MaterialName;
+                                                break;
+                                            case "Ce2":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Ce2 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Ce2 = (int)mtct.Value;
+                                                mtctPrinter.PV_Ce2 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Ce2 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Ce2 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Ce2 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName != null)
+                                                    mtctPrinter.MaterialName_Ce2 = mtct.MaterialName;
+                                                else
+                                                    mtctPrinter.MaterialName_Ce2 = "Ce2";
+
+                                                break;
+                                            case "Ce3":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Ce3 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Ce3 = (int)mtct.Value;
+                                                mtctPrinter.PV_Ce3 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Ce3 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Ce3 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Ce3 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Ce3 = "Ce3";
+                                                else
+                                                    mtctPrinter.MaterialName_Ce3 = mtct.MaterialName;
+                                                break;
+                                            case "Ce4":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Ce4 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Ce4 = (int)mtct.Value;
+                                                mtctPrinter.PV_Ce4 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Ce4 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Ce4 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Ce4 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Ce4 = "Ce4";
+                                                else
+                                                    mtctPrinter.MaterialName_Ce4 = mtct.MaterialName;
+                                                break;
+                                            case "Ce5":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Ce5 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Ce5 = (int)mtct.Value;
+                                                mtctPrinter.PV_Ce5 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Ce5 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Ce5 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Ce5 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Ce5 = "Ce5";
+                                                else
+                                                    mtctPrinter.MaterialName_Ce5 = mtct.MaterialName;
+                                                break;
+                                            case "Wa1":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Wa1 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Wa1 = (int)mtct.Value;
+                                                mtctPrinter.PV_Wa1 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Wa1 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Wa1 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Wa1 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Wa1 = "Wa1";
+                                                else
+                                                    mtctPrinter.MaterialName_Wa1 = mtct.MaterialName;
+                                                break;
+                                            case "Wa2":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Wa2 = (int)mtct.SiloValue;
+                                                mtctPrinter.CP_Wa2 = (int)mtct.Value;
+                                                mtctPrinter.PV_Wa2 = (int)mtct.ValueBat;
+                                                mtctPrinter.PVM_Wa2 = (int)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Wa2 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Wa2 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Wa2 = "Wa2";
+                                                else
+                                                    mtctPrinter.MaterialName_Wa2 = mtct.MaterialName;
+
+                                                break;
+                                            case "Add1":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Add1 = (decimal)mtct.SiloValue;
+                                                mtctPrinter.CP_Add1 = (decimal)mtct.Value;
+                                                mtctPrinter.PV_Add1 = (decimal)mtct.ValueBat;
+                                                mtctPrinter.PVM_Add1 = (decimal)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Add1 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Add1 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Add1 = "Add1";
+                                                else
+                                                    mtctPrinter.MaterialName_Add1 = mtct.MaterialName;
+
+                                                break;
+                                            case "Add2":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Add2 = (decimal)mtct.SiloValue;
+                                                mtctPrinter.CP_Add2 = (decimal)mtct.Value;
+                                                mtctPrinter.PV_Add2 = (decimal)mtct.ValueBat;
+                                                mtctPrinter.PVM_Add2 = (decimal)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Add2 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Add2 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Add2 = "Add2";
+                                                else
+                                                    mtctPrinter.MaterialName_Add2 = mtct.MaterialName;
+
+                                                break;
+                                            case "Add3":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Add3 = (decimal)mtct.SiloValue;
+                                                mtctPrinter.CP_Add3 = (decimal)mtct.Value;
+                                                mtctPrinter.PV_Add3 = (decimal)mtct.ValueBat;
+                                                mtctPrinter.PVM_Add3 = (decimal)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Add3 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Add3 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Add3 = "Add3";
+                                                else
+                                                    mtctPrinter.MaterialName_Add3 = mtct.MaterialName;
+
+                                                break;
+                                            case "Add4":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Add4 = (decimal)mtct.SiloValue;
+                                                mtctPrinter.CP_Add4 = (decimal)mtct.Value;
+                                                mtctPrinter.PV_Add4 = (decimal)mtct.ValueBat;
+                                                mtctPrinter.PVM_Add4 = (decimal)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Add4 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Add4 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Add4 = "Add4";
+                                                else
+                                                    mtctPrinter.MaterialName_Add4 = mtct.MaterialName;
+
+                                                break;
+                                            case "Add5":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Add5 = (decimal)mtct.SiloValue;
+                                                mtctPrinter.CP_Add5 = (decimal)mtct.Value;
+                                                mtctPrinter.PV_Add5 = (decimal)mtct.ValueBat;
+                                                mtctPrinter.PVM_Add5 = (decimal)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Add5 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Add5 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Add5 = "Add5";
+                                                else
+                                                    mtctPrinter.MaterialName_Add5 = mtct.MaterialName;
+
+                                                break;
+                                            case "Add6":
+                                                if (mtct.SiloValue == null)
+                                                    mtct.SiloValue = 0;
+                                                mtctPrinter.SiloValue_Add6 = (decimal)mtct.SiloValue;
+                                                mtctPrinter.CP_Add6 = (decimal)mtct.Value;
+                                                mtctPrinter.PV_Add6 = (decimal)mtct.ValueBat;
+                                                mtctPrinter.PVM_Add6 = (decimal)mtct.ValueBatMan;
+                                                mtctPrinter.SaiSo_Add6 = (decimal)mtct.ValueTol;
+                                                mtctPrinter.PerSaiSo_Add6 = (decimal)mtct.ValuePerTol;
+                                                if (mtct.MaterialName == null)
+                                                    mtctPrinter.MaterialName_Add6 = "Add6";
+                                                else
+                                                    mtctPrinter.MaterialName_Add6 = mtct.MaterialName;
+
+                                                break;
+
+                                        }
+                                    }
+                                }
+
                         }
                         _lstFullPrinter.Add(mtctPrinter);
 
@@ -1019,12 +1495,39 @@ namespace NDPSo.KWS
             this.head_Add6 = _lstFullPrinter.FirstOrDefault().MaterialName_Add6;
 
             List<DevExpress.XtraGrid.Views.BandedGrid.GridBand> bandListAgg = new List<DevExpress.XtraGrid.Views.BandedGrid.GridBand>();
-            bandListAgg.Add(this.bandedGridView1.Bands["Agg1"]);
-            bandListAgg.Add(this.bandedGridView1.Bands["Agg2"]);
-            bandListAgg.Add(this.bandedGridView1.Bands["Agg3"]);
-            bandListAgg.Add(this.bandedGridView1.Bands["Agg4"]);
-            bandListAgg.Add(this.bandedGridView1.Bands["Agg5"]);
-            bandListAgg.Add(this.bandedGridView1.Bands["Agg6"]);
+            if (this.head_Agg1 != null)
+            {
+                bandListAgg.Add(this.bandedGridView1.Bands["Agg1"]);
+
+            }
+            if (this.head_Agg2 != null)
+            {
+                bandListAgg.Add(this.bandedGridView1.Bands["Agg2"]);
+
+            }
+            if (this.head_Agg3 != null)
+            {
+                bandListAgg.Add(this.bandedGridView1.Bands["Agg3"]);
+
+            }
+            if (this.head_Agg4 != null)
+            {
+                bandListAgg.Add(this.bandedGridView1.Bands["Agg4"]);
+
+            }
+            if (this.head_Agg5 != null)
+            {
+                bandListAgg.Add(this.bandedGridView1.Bands["Agg5"]);
+
+            }
+            if (this.head_Agg6 != null)
+            {
+                bandListAgg.Add(this.bandedGridView1.Bands["Agg6"]);
+
+            }
+
+
+           
             foreach (DevExpress.XtraGrid.Views.BandedGrid.GridBand band in bandListAgg)
             {
                 band.Visible = false;
@@ -1102,13 +1605,37 @@ namespace NDPSo.KWS
             this.bandedGridView2.Bands["Total_Add6"].Caption = _lstFullPrinter.FirstOrDefault().MaterialName_Add6;
 
             List<GridBand> bandListAgg = new List<GridBand>();
-            bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg1"]);
-            bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg2"]);
-            bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg3"]);
-            bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg4"]);
-            bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg5"]);
-            bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg6"]);
+            if (_lstFullPrinter.FirstOrDefault().MaterialName_Agg1 != null)
+            {
+                bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg1"]);
 
+            }
+            if (_lstFullPrinter.FirstOrDefault().MaterialName_Agg2 != null)
+            {
+                bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg2"]);
+
+            }
+            if (_lstFullPrinter.FirstOrDefault().MaterialName_Agg3 != null)
+            {
+                bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg3"]);
+
+            }
+            if (_lstFullPrinter.FirstOrDefault().MaterialName_Agg4 != null)
+            {
+                bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg4"]);
+
+            }
+            if (_lstFullPrinter.FirstOrDefault().MaterialName_Agg5 != null)
+            {
+                bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg5"]);
+
+            }
+            if (_lstFullPrinter.FirstOrDefault().MaterialName_Agg6 != null)
+            {
+                bandListAgg.Add(this.bandedGridView2.Bands["Total_Agg6"]);
+
+            }
+           
             foreach (GridBand band in bandListAgg)
             {
                 band.Visible = false;
@@ -1267,7 +1794,15 @@ namespace NDPSo.KWS
         }
         private void grvPhieuTron_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            DoFocusPhieuTron();
+            /*if (ConfigManager.TramTronConfig.IsCanFixPGH)
+            {
+                DoFocusPhieuGiaoHang();
+            }
+            else
+            {
+                DoFocusPhieuTron();
+            }*/
+            DoFocusPhieuGiaoHang();
         }
         private void grvPhieuTron_02_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
@@ -1296,6 +1831,8 @@ namespace NDPSo.KWS
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            //PrintPTFromFile_SA();
+
             if (this.grvPhieuTron != null && this.grvPhieuTron.SelectedRowsCount != 0)
             {
                 this.btnPrint.Enabled = false;
@@ -1318,10 +1855,14 @@ namespace NDPSo.KWS
 
         private void PrintPTFromFile()
         {
-            GetParam();
-            WriteDetailInvoice(lstParam);
             try
             {
+                PrintPTFromFile_SA();
+                /*if (ConfigManager.TramTronConfig.IsCanFixPGH)
+                {
+                    EditPhieuGiaoHang();
+                }*/
+                EditPhieuGiaoHang();
                 this.numberOfCopies_GH = (int)spin_numberOfCopies.Value;
                 if (filePathMau != string.Empty)
                 {
@@ -1329,43 +1870,96 @@ namespace NDPSo.KWS
                 }
 
                 string wordFilePath = Path.Combine(folderDesPhieuPath, fileName);
-                string pdfFilePath = Path.ChangeExtension(wordFilePath, ".pdf");
+                //  string pdfFilePath = Path.ChangeExtension(wordFilePath, ".pdf");
 
-                var wordApp = new Application();
-
-                var wordDoc = wordApp.Documents.Add(wordFilePath);
-                wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath, WdExportFormat.wdExportFormatPDF);
-
-                wordDoc.Close(false);
-                Marshal.ReleaseComObject(wordDoc);
-
-                if (File.Exists(wordFilePath))
+                if (PrinterInvoke(wordFilePath, numberOfCopies_GH))
                 {
-                    try
-                    {
-                        File.Delete(wordFilePath);
-                        if (PrinterInvoke(pdfFilePath, numberOfCopies_GH))
-                        {
-                            this.btnPrint.Enabled = true;
-                        }
-                        
-                    }
-                    catch (Exception ex)
-                    {
-                        //Console.WriteLine($"Lỗi khi xóa tệp tin Word: {ex.Message}");
-                        TramTronLogger.WriteError(ex);
-                    }
+                    this.btnPrint.Enabled = true;
                 }
+                /*if (PrinterFileWordInvoke(wordFilePath, numberOfCopies_GH))
+                {
+                    this.btnPrint.Enabled = true;
+                }*/
 
-                wordApp.Quit();
             }
             catch (Exception ex)
             {
                 TramTromMessageBox.ShowErrorDialog(ex.ToString());
             }
         }
+        private void PrintPTFromFile_SA()
+        {
 
-        private void GetParam()
+            GetParam();
+
+            Support.CloseWordApplications();
+            DeleteAllFilesInDirectory(folderDesPhieuPath);
+            WriteDetailInvoice(lstParam);
+           
+            try
+            {
+                if (filePathMau != string.Empty)
+                {
+                    fileName = Path.GetFileName(filePathMau);
+                }
+
+                string wordFilePath = Path.Combine(folderDesPhieuPath, fileName);
+                //string pdfFilePath = Path.ChangeExtension(wordFilePath, ".pdf");
+
+                var wordApp = new Application();
+
+                //var wordDoc = wordApp.Documents.Add(wordFilePath);
+                //wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath, WdExportFormat.wdExportFormatPDF);
+
+                //wordDoc.Close(false);
+                //Marshal.ReleaseComObject(wordDoc);
+
+                try
+                {
+                    //await Task.Run(() => File.Delete(wordFilePath));
+                    //File.Delete(wordFilePath);
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine($"Lỗi khi xóa tệp tin Word: {ex.Message}");
+                    TramTronLogger.WriteError(ex);
+                }
+
+                wordApp.Quit();
+            }
+            catch (Exception ex)
+            {
+                //TramTromMessageBox.ShowMessageDialog("Đang khởi tạo dữ liệu...");
+                TramTronLogger.WriteError(ex);
+            }
+        }
+        public async Task DeleteAllFilesInDirectory(string directoryPath)
+        {
+            try
+            {
+                if (Directory.Exists(directoryPath))
+                {
+                    var files = Directory.GetFiles(directoryPath);
+
+                    // Xóa từng tệp
+                    foreach (var file in files)
+                    {
+                        await Task.Run(() => File.Delete(file));
+                    }
+
+                    Console.WriteLine("All files in the directory have been deleted successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("The directory does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while deleting files: {ex.Message}");
+            }
+        }
+        void GetParam()
         {
             lstParam.Clear();
             lstParam.Add(ConfigManager.TramTronConfig.TenCty);
@@ -1378,18 +1972,19 @@ namespace NDPSo.KWS
             lstParam.Add("200");
             lstParam.Add(this.txtDoSut.Text);
             lstParam.Add(this.txtTaiXe.Text);
-            lstParam.Add(ConfigManager.TramTronConfig.KLChoLonNhat.ToString() + "m³");
-            lstParam.Add(this.txtTheTich.Text + "m³");
-            lstParam.Add(this.txtLuyKe.Text + "m³");
+            lstParam.Add(this.txtKhoiLuongDatHang.Text+ " m³");
+            lstParam.Add(this.txtTheTich.Text + " m³");
+            lstParam.Add(this.txtLuyKe.Text + " m³");
             lstParam.Add(this.txtXe.Text);
             lstParam.Add(txtGioTron.Text);
             lstParam.Add(this.txtDiaDiem.Text);
             lstParam.Add(this.txtMaPhieuTron.Text);
-            lstParam.Add("1m³");
+            lstParam.Add("1 m³");
             lstParam.Add(this.txtHangMuc.Text);
             lstParam.Add(this.txtNiemChi.Text);
             lstParam.Add(this.txtNguoiTron.Text);
             lstParam.Add(this.txtGioKTTron.Text);
+            lstParam.Add(this.txtBom.Text);
         }
         private void GetParam_02()
         {
@@ -1404,14 +1999,14 @@ namespace NDPSo.KWS
             lstParam_02.Add("200");
             lstParam_02.Add(this.txtDoSut_02.Text);
             lstParam_02.Add(this.txtTaiXe_02.Text);
-            lstParam_02.Add(ConfigManager.TramTronConfig.KLChoLonNhat.ToString() + "m³");
-            lstParam_02.Add(this.txtTheTich_02.Text + "m³");
-            lstParam_02.Add(this.txtLuyKe_02.Text + "m³");
+            lstParam_02.Add(this.txtKhoiLuongDatHang_02.Text + " m³");
+            lstParam_02.Add(this.txtTheTich_02.Text + " m³");
+            lstParam_02.Add(this.txtLuyKe_02.Text + " m³");
             lstParam_02.Add(this.txtXe_02.Text);
             lstParam_02.Add(txtGioTron_02.Text);
             lstParam_02.Add(this.txtDiaDiem_02.Text);
             lstParam_02.Add(this.txtMaPhieuTron_02.Text);
-            lstParam_02.Add("1m³");
+            lstParam_02.Add("1 m³");
             lstParam_02.Add(this.txtHangMuc_02.Text);
             lstParam_02.Add(this.txtNiemChi_02.Text);
             lstParam_02.Add(this.txtNguoiTron_02.Text);
@@ -1432,6 +2027,11 @@ namespace NDPSo.KWS
 
                     string filePath = Path.Combine(folderDesPhieuPath, fileName);
 
+                    /*if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }*/
+
                     Application wordProcessor = new Application();
 
                     Document document = wordProcessor.Documents.Open(filePath);
@@ -1450,7 +2050,9 @@ namespace NDPSo.KWS
             }
             catch (Exception ex)
             {
-                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+                //TramTromMessageBox.ShowErrorDialog(ex.ToString());
+                //TramTromMessageBox.ShowMessageDialog("Đang khởi tạo dữ liệu...");
+                TramTronLogger.WriteError(ex);
             }
         }
         private bool CopyTempFile()
@@ -1541,7 +2143,7 @@ namespace NDPSo.KWS
                 for (int i = 0; i < numberOfCopies; i++)
                 {
                     int copyIndex = i;
-                    printTasks[i] = System.Threading.Tasks.Task.Run(() => Support.PrintReport(pdfFilePath));
+                    printTasks[i] = Task.Run(() => Support.PrintReport(pdfFilePath));
                 }
 
                 Task.WaitAll(printTasks);
@@ -1554,7 +2156,86 @@ namespace NDPSo.KWS
             }
             return false;
         }
+        public bool PrinterInvokePDF(string pdfFilePath, int numberOfCopies)
+        {
+            try
+            {
+                Task[] printTasks = new Task[numberOfCopies];
 
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    int copyIndex = i;
+                    printTasks[i] = Task.Run(() => Support.PrintReportPDF(pdfFilePath));
+                }
+
+                Task.WaitAll(printTasks);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+            return false;
+        }
+        
+        public bool PrinterInvokeWord(string pdfFilePath, int numberOfCopies)
+        {
+            try
+            {
+                Task[] printTasks = new Task[numberOfCopies];
+
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    int copyIndex = i;
+                    printTasks[i] = Task.Run(() => Support.PrintReportWord(pdfFilePath));
+                }
+
+                Task.WaitAll(printTasks);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+            return false;
+        }
+        private bool PrinterFileWordInvoke(string wordFilePath, int numberOfCopies) //Add 0307
+        {
+            Application wordApp = new Application();
+            Document wordDoc = null;
+
+            try
+            {
+                wordDoc = wordApp.Documents.Open(wordFilePath);
+
+                for (int i = 0; i < numberOfCopies; i++)
+                {
+                    wordDoc.PrintOut();
+                }
+
+                wordDoc.Close(WdSaveOptions.wdDoNotSaveChanges);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+                return false;
+            }
+            finally
+            {
+                if (wordDoc != null)
+                {
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(wordDoc);
+                }
+                if (wordApp != null)
+                {
+                    wordApp.Quit();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
+                }
+            }
+        }
         private void btnInPCT_Click(object sender, EventArgs e)
         {
             if (this.grvPhieuTron_02 != null && this.grvPhieuTron_02.SelectedRowsCount != 0)
@@ -1569,9 +2250,44 @@ namespace NDPSo.KWS
             thread_CT.Start();
         }
 
+        private void DeleteFileGH()
+        {
+            string fileName = "";
+            string filePathMau = ConfigManager.TramTronConfig.PIPath;
+            if (filePathMau != string.Empty)
+            {
+                fileName = Path.GetFileName(filePathMau);
+            }
+            string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
+            string wordFilePath_02 = Path.Combine(folderDesPhieuPath, fileName);
+
+            if (File.Exists(wordFilePath_02))
+            {
+                File.Delete(wordFilePath_02);
+            }
+
+        }
+        private void DeleteFileCTMT()
+        {
+            string fileName = "";
+            string filePathMau = ConfigManager.TramTronConfig.PICTPath;
+            if (filePathMau != string.Empty)
+            {
+                fileName = Path.GetFileName(filePathMau);
+            }
+            string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
+            string wordFilePath_02 = Path.Combine(folderDesPhieuPath, fileName);
+
+            if (File.Exists(wordFilePath_02))
+            {
+                File.Delete(wordFilePath_02);
+            }
+
+        }
         private void PrintPTFromFile_02()
         {
-
+            Support.CloseWordApplications();
+            DeleteFileCTMT();
             dataTableNameMaterial = CreateTableNameMaterial(this.dataTableMaterial);
             dataTableSumMaterial = CreateTableSumMaterial(this.dataTableMaterial);
 
@@ -1585,32 +2301,34 @@ namespace NDPSo.KWS
                 string sourceFileName = ConfigManager.TramTronConfig.PICTPath;
                 string fileName = "";
                 string filePathMau = ConfigManager.TramTronConfig.PICTPath;
-
                 if (filePathMau != string.Empty)
                 {
                     fileName = Path.GetFileName(filePathMau);
                 }
                 string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
                 string wordFilePath_02 = Path.Combine(folderDesPhieuPath, fileName);
-                string pdfFilePath_02 = Path.ChangeExtension(wordFilePath_02, ".pdf");
 
-                var wordApp = new Application();
+                //string pdfFilePath_02 = Path.ChangeExtension(wordFilePath_02, ".pdf");
 
-                var wordDoc = wordApp.Documents.Add(wordFilePath_02);
-                wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath_02, WdExportFormat.wdExportFormatPDF);
+                //var wordApp = new Application();
 
-                wordDoc.Close(false);
-                Marshal.ReleaseComObject(wordDoc);
+                //var wordDoc = wordApp.Documents.Add(wordFilePath_02);
+                //wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath_02, WdExportFormat.wdExportFormatPDF);
+
+               // wordDoc.Close(false);
+                //Marshal.ReleaseComObject(wordDoc);
 
                 if (File.Exists(wordFilePath_02))
                 {
                     try
                     {
-                        File.Delete(wordFilePath_02);
-                        if(PrinterInvoke(pdfFilePath_02, numberOfCopies_CT))
+                        //File.Delete(wordFilePath_02);
+                        if(PrinterInvokeWord(wordFilePath_02, numberOfCopies_CT))
                         {
                             this.btnInPCT.Enabled = true;
+                            
                         }
+                        //File.Delete(wordFilePath_02);
                     }
                     catch (Exception ex)
                     {
@@ -1621,7 +2339,7 @@ namespace NDPSo.KWS
 
 
 
-                wordApp.Quit();
+                //wordApp.Quit();
             }
             catch (Exception ex)
             {
@@ -1692,19 +2410,155 @@ namespace NDPSo.KWS
             List<string> newStringNameMaterial = new List<string>();
             for (int i = 0; i < this.num_silo_Agg; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Agg1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Agg2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 2:
+                        if (this.head_Agg3 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 3:
+                        if (this.head_Agg4 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 4:
+                        if (this.head_Agg5 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 5:
+                        if (this.head_Agg6 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                }
+
             }
             for (int i = 0; i < this.num_silo_Ce; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Ce1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Ce2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 2:
+                        if (this.head_Ce3 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 3:
+                        if (this.head_Ce4 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 4:
+                        if (this.head_Ce5 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                }
             }
             for (int i = 0; i < this.num_silo_Wa; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Wa[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Wa1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Wa[i]);
+
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Wa2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Wa[i]);
+
+                        }
+                        break;
+                }
             }
             for (int i = 0; i < this.num_silo_Add; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Add1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Add2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+
+                        }
+                        break;
+                    case 2:
+                        if (this.head_Add3 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+
+                        }
+                        break;
+                    case 3:
+                        if (this.head_Add4 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+
+                        }
+                        break;
+                    case 4:
+                        if (this.head_Add5 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+
+                        }
+                        break;
+                    case 5:
+                        if (this.head_Add6 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+
+                        }
+                        break;
+                }
             }
             return newStringNameMaterial;
         }
@@ -1771,21 +2625,150 @@ namespace NDPSo.KWS
 
             //this.num_silo_Agg
             List<string> newStringNameMaterial = new List<string>();
-            for (int i = 0; i < this.num_silo_Agg; i++)
+            for (int i = 0; i < num_silo_Agg; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Agg1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Agg2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 2:
+                        if (this.head_Agg3 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 3:
+                        if (this.head_Agg4 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 4:
+                        if (this.head_Agg5 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                    case 5:
+                        if (this.head_Agg6 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Agg[i]);
+                        }
+                        break;
+                }
+
             }
             for (int i = 0; i < this.num_silo_Ce; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Ce1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Ce2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 2:
+                        if (this.head_Ce3 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 3:
+                        if (this.head_Ce4 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                    case 4:
+                        if (this.head_Ce5 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Ce[i]);
+
+                        }
+                        break;
+                }
             }
             for (int i = 0; i < this.num_silo_Wa; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Wa[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Wa1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Wa[i]);
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Wa2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Wa[i]);
+                        }
+                        break;
+                }
             }
             for (int i = 0; i < this.num_silo_Add; i++)
             {
-                newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                switch (i)
+                {
+                    case 0:
+                        if (this.head_Add1 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                        }
+                        break;
+                    case 1:
+                        if (this.head_Add2 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                        }
+                        break;
+                    case 2:
+                        if (this.head_Add3 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                        }
+                        break;
+                    case 3:
+                        if (this.head_Add4 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                        }
+                        break;
+                    case 4:
+                        if (this.head_Add5 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                        }
+                        break;
+                    case 5:
+                        if (this.head_Add6 != null)
+                        {
+                            newStringNameMaterial.Add(columnNamesSumCol_Add[i]);
+                        }
+                        break;
+                }
             }
             return newStringNameMaterial;
         }
@@ -1957,6 +2940,305 @@ namespace NDPSo.KWS
             table.Rows[5].Alignment = WdRowAlignment.wdAlignRowLeft;
         }
 
+        private void bttExportFile_Word_GH_Click(object sender, EventArgs e)
+        {
+            if (this.grvPhieuTron != null && this.grvPhieuTron.SelectedRowsCount != 0)
+            {
+                ExportFileWord_GH();
+                //ExportFileExcel_GH();
+            }
+        }
+        private void ExportFileWord_GH()
+        {
+            GetParam();
+            WriteDetailInvoice(lstParam);
+            try
+            {
+                
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Word File (*.docx)|*.docx";
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                string newFileName = saveFileDialog.FileName;
+                string newWordFilePath = Path.Combine(folderDesPhieuPath, newFileName);
 
+                if (filePathMau != string.Empty)
+                {
+                    fileName = Path.GetFileName(filePathMau);
+                }
+
+                string wordFilePath = Path.Combine(folderDesPhieuPath, fileName);
+
+                // Copy tệp Word sang thư mục đích mới
+                File.Copy(wordFilePath, newWordFilePath, true);
+
+                // Xóa tệp Word ban đầu
+                File.Delete(wordFilePath);
+
+
+                var wordApp = new Application();
+
+                var wordDoc = wordApp.Documents.Add(newWordFilePath);
+                wordDoc.SaveAs(newWordFilePath); // Lưu file Word tại vị trí mới
+
+                wordDoc.Close(false);
+                Marshal.ReleaseComObject(wordDoc);
+
+                wordApp.Quit();
+
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        private void ExportFileExcel_GH()
+        {
+            GetParam();
+            WriteDetailInvoice(lstParam);
+            try
+            {
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel File (*.xlsx)|*.xlsx";
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                string newFileName = saveFileDialog.FileName;
+                string newExcelFilePath = Path.Combine(folderDesPhieuPath, newFileName);
+
+                if (filePathMau != string.Empty)
+                {
+                    fileName = Path.GetFileName(filePathMau);
+                }
+
+                string wordFilePath = Path.Combine(folderDesPhieuPath, fileName);
+
+                Support.ReadTableFromWordAndWriteToExcel(wordFilePath, newExcelFilePath);
+
+                File.Delete(wordFilePath);
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+
+        }
+
+        private void bttExportFile_PDF_GH_Click(object sender, EventArgs e)
+        {
+            Support.CloseWordApplications();
+            DeleteFileGH();
+
+            ExportFilePDF();
+        }
+        private void ExportFilePDF()
+        {
+            GetParam();
+            WriteDetailInvoice(lstParam);
+
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF File (*.pdf)|*.pdf";
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                string newFileName = saveFileDialog.FileName;
+                string newwordFileName = System.IO.Path.ChangeExtension(newFileName, ".docx");
+                string newWordFilePath = Path.Combine(folderDesPhieuPath, newwordFileName);
+
+
+                if (filePathMau != string.Empty)
+                {
+                    fileName = Path.GetFileName(filePathMau);
+                }
+
+                string wordFilePath = Path.Combine(folderDesPhieuPath, fileName);
+                File.Copy(wordFilePath, newWordFilePath, true);
+
+                string pdfFilePath = Path.ChangeExtension(newWordFilePath, ".pdf");
+
+                var wordApp = new Application();
+
+                var wordDoc = wordApp.Documents.Add(wordFilePath);
+
+
+                wordDoc.SaveAs(newWordFilePath); // Lưu file Word tại vị trí mới
+
+                wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath, WdExportFormat.wdExportFormatPDF);
+
+                wordDoc.Close(false);
+                Marshal.ReleaseComObject(wordDoc);
+
+                wordApp.Quit();
+                Marshal.ReleaseComObject(wordDoc);
+
+                if (File.Exists(newwordFileName))
+                {
+                    File.Delete(newwordFileName);
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        private void CreateFilePDF_CT()
+        {
+            string fileName = "";
+            string filePathMau = ConfigManager.TramTronConfig.PICTPath;
+
+            if (filePathMau != string.Empty)
+            {
+                fileName = Path.GetFileName(filePathMau);
+            }
+            string folderDesPhieuPath = ConfigManager.TramTronConfig.ReportPath;
+            string wordFilePath_02 = Path.Combine(folderDesPhieuPath, fileName);
+            string pdfFilePath_02 = Path.ChangeExtension(wordFilePath_02, ".pdf");
+
+            var wordApp = new Application();
+
+            var wordDoc = wordApp.Documents.Add(wordFilePath_02);
+            wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath_02, WdExportFormat.wdExportFormatPDF);
+
+
+            wordDoc.Close(false);
+            Marshal.ReleaseComObject(wordDoc);
+
+            File.Delete(wordFilePath_02);
+
+        }
+
+        private void bttExportFile_Word_CT_Click(object sender, EventArgs e)
+        {
+            Support.CloseWordApplications();
+            DeleteFileCTMT();
+
+            dataTableNameMaterial = CreateTableNameMaterial(this.dataTableMaterial);
+            dataTableSumMaterial = CreateTableSumMaterial(this.dataTableMaterial);
+
+            this.GetParam_02();
+            WriteDetailInvoice_02(this.lstParam_02, this._tablePTCT, dataTableNameMaterial, dataTableSumMaterial);
+
+            try
+            {
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Word File (*.docx)|*.docx";
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                string newFileName = saveFileDialog.FileName;
+                string newWordFilePath_02 = Path.Combine(folderDesPhieuPath, newFileName);
+                if (filePathMau_CT != string.Empty)
+                {
+                    fileName = Path.GetFileName(filePathMau_CT);
+                }
+
+                string wordFilePath_02 = Path.Combine(folderDesPhieuPath, fileName);
+                File.Copy(wordFilePath_02, newWordFilePath_02, true);
+
+                File.Delete(wordFilePath_02);
+                var wordApp = new Application();
+
+                var wordDoc = wordApp.Documents.Add(wordFilePath_02);
+                wordDoc.SaveAs(newWordFilePath_02); // Lưu file Word tại vị trí mới
+
+                wordDoc.Close(false);
+                Marshal.ReleaseComObject(wordDoc);
+
+                wordApp.Quit();
+
+            }
+            catch (Exception ex)
+            {
+                //TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        private void bttExportFile_PDF_CT_Click(object sender, EventArgs e)
+        {
+            Support.CloseWordApplications();
+            DeleteFileCTMT();
+
+            dataTableNameMaterial = CreateTableNameMaterial(this.dataTableMaterial);
+            dataTableSumMaterial = CreateTableSumMaterial(this.dataTableMaterial);
+
+            this.GetParam_02();
+            WriteDetailInvoice_02(this.lstParam_02, this._tablePTCT, dataTableNameMaterial, dataTableSumMaterial);
+
+            try
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF File (*.pdf)|*.pdf";
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                string newFileName = saveFileDialog.FileName;
+                string newwordFileName = System.IO.Path.ChangeExtension(newFileName, ".docx");
+                string newWordFilePath_02 = Path.Combine(folderDesPhieuPath, newwordFileName);
+                if (filePathMau_CT != string.Empty)
+                {
+                    fileName = Path.GetFileName(filePathMau_CT);
+                }
+
+                string wordFilePath_02 = Path.Combine(folderDesPhieuPath, fileName);
+                File.Copy(wordFilePath_02, newWordFilePath_02, true);
+
+                string pdfFilePath_02 = Path.ChangeExtension(newWordFilePath_02, ".pdf");
+
+                var wordApp = new Application();
+
+                var wordDoc = wordApp.Documents.Add(wordFilePath_02);
+
+                
+                wordDoc.SaveAs(newWordFilePath_02); // Lưu file Word tại vị trí mới
+
+                wordApp.ActiveDocument.ExportAsFixedFormat(pdfFilePath_02, WdExportFormat.wdExportFormatPDF);
+
+                wordDoc.Close(false);
+                Marshal.ReleaseComObject(wordDoc);
+
+                wordApp.Quit();
+                Marshal.ReleaseComObject(wordDoc);
+
+                if (File.Exists(newwordFileName))
+                {
+                    File.Delete(newwordFileName);
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        private void txtSTTPhieuTron_02_EditValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtTenKhachHang_EditValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        public void HandleShortcutKeys(Keys key, bool shiftPressed)
+        {
+            if (shiftPressed && key == Keys.A)
+            {
+                //ConfigManager.TramTronConfig.IsCanFixPGH = !ConfigManager.TramTronConfig.IsCanFixPGH;
+                ConfigManager.TramTronConfig.IsCanFixPCT = !ConfigManager.TramTronConfig.IsCanFixPCT;
+                this.lblLoaaded.Visible = ConfigManager.TramTronConfig.IsCanFixPGH;
+                this.lblLoaadedCT.Visible = ConfigManager.TramTronConfig.IsCanFixPCT;
+                DoFocusPhieuTron_02();
+            }
+        }
     }
 }

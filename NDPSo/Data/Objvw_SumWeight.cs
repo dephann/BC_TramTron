@@ -43,10 +43,6 @@ namespace NDPSo.Data
         [DataMember]
         public string TenMAC { get; set; }
         [DataMember]
-        public int? NhanVienID { get; set; }
-        [DataMember]
-        public string TenNhanVien { get; set; }
-        [DataMember]
         public int? XeID { get; set; }
         [DataMember]
         public string BienSo { get; set; }
@@ -66,5 +62,10 @@ namespace NDPSo.Data
         public int? CreatedBy { get; set; }
         [DataMember]
         public string FullName { get; set; }
+        [DataMember]
+        public decimal? TongKhoiLuong { get; set; }
+        [DataMember]
+        public int? TongMeTron { get; set; }
+
     }
 }

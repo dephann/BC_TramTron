@@ -83,10 +83,12 @@ namespace NDPSo.MasterData
 		BindingList<ObjMeTronChiTiet> ListMeTronChiTiet();
 
 		BindingList<ObjMeTronChiTiet> ListMeTronChiTietByPhieuTronID(int ptID);
+		BindingList<ObjMeTronChiTietGiaoHang> ListMeTronChiTietGiaoHangByPhieuTronID(int ptID);
 
 		bool SaveMeTronChiTiet(BindingList<ObjMeTronChiTiet> blstMTCT);
 
 		ObjMeTronChiTiet SaveMeTronChiTiet(ObjMeTronChiTiet objMTCT, int phieuTronID);
+		ObjMeTronChiTietGiaoHang SaveMeTronChiTietGiaoHang(ObjMeTronChiTietGiaoHang objMTCT, int phieuTronID);
 
 		ObjNhomSilo GetNhomSiloByKey(int ctID);
 
@@ -122,16 +124,20 @@ namespace NDPSo.MasterData
 
 
 		ObjPhieuTron GetPhieuTronByKey(int ctID);
+		ObjPhieuGiaoHang GetPhieuGiaoHangByKey(int ctID);
 
 		ObjPhieuTron GetPhieuTronByCode(string code);
+		ObjPhieuGiaoHang GetPhieuGiaoHangByCode(string code);
 
 		BindingList<ObjPhieuTron> ListPhieuTron();
+		BindingList<ObjPhieuGiaoHang> ListPhieuGiaoHang();
 
 		BindingList<ObjPhieuTron> ListPhieuTron_ForTronOnline();
 
 		BindingList<ObjPhieuTron> ListPhieuTron_ByStatus(int status);
 
 		BindingList<ObjPhieuTron> ListPhieuTron_ByIsQueued(bool isQueued);
+		BindingList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByIsQueued(bool isQueued);
 
 		BindingList<ObjPhieuTron> ListPhieuTron_ByCondition(
 		  string maPhieuTron,
@@ -139,9 +145,16 @@ namespace NDPSo.MasterData
 		  DateTime toDate,
 		  int? status,
 		  bool? isQueued);
+        BindingList<ObjPhieuGiaoHang> ListPhieuGiaoHang_ByCondition(
+          string maPhieuTron,
+          DateTime fromDate,
+          DateTime toDate,
+          bool? isQueued);
 
-		bool SavePhieuTron(BindingList<ObjPhieuTron> blstCT);
+        bool SavePhieuTron(BindingList<ObjPhieuTron> blstCT);
+        bool SavePhieuGiaoHang(BindingList<ObjPhieuGiaoHang> blstCT);
 		bool UpdatePhieuTron(ObjPhieuTron objPhieuTron, decimal klThuc);
+		bool UpdatePhieuGiaoHang(ObjPhieuGiaoHang objPhieuTron, string klThuc);
 
 		bool ResolveUnfinishPhieuTron();
 
@@ -298,7 +311,8 @@ namespace NDPSo.MasterData
 
 		string GetNextCode(string strTblName);
 
-		BindingList<Objvw_TotalMaterial> ListTotalMaterial_ByCondition(int? materialID, bool? isManual);
+		BindingList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual);
 		BindingList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual);
+		BindingList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual);
 	}
 }
