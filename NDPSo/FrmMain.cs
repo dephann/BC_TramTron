@@ -51,7 +51,9 @@ namespace NDPSo
 		private DateTime timeTrie;
 
         //public static List<NDPSo.Data.ObjSEC_Function> _lstFuncOfUser;
-        private ChatbotSidebarPanel _chatbotPanel;
+        //private ChatbotSidebarPanel _chatbotPanel;
+        private NDPSo.Chatbot.ChatbotPopupManager _chatbotPopup;
+
         public static CultureInfo Culture	
 		{
 			get
@@ -71,15 +73,11 @@ namespace NDPSo
 		}
         private void InitChatbot()
          {
-             _chatbotPanel = new ChatbotSidebarPanel();      // [3] Tạo panel
-             this.Controls.Add(_chatbotPanel);               // [4] Thêm vào form
-
-			//[5] Khởi tạo với API key và connection string
-
-			_chatbotPanel.Initialize(
-				//claudeApiKey: "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",           // API key của bạn
-				claudeApiKey: "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",           // API key của bạn
-				sqlConnectionString:                         // Connection string của bạn
+            _chatbotPopup = new NDPSo.Chatbot.ChatbotPopupManager(
+			parentForm: this,
+               //claudeApiKey: "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",           // API key của bạn
+               apiKey: "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",           // API key của bạn
+                connStr:                         // Connection string của bạn
 					"Server=localhost;Database=RONEMQu;User Id=sa;Password=1234;"
 			);
 		}

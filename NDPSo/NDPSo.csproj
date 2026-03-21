@@ -240,6 +240,7 @@
     <Compile Include="BusinessObject\AdministrationBO.cs" />
     <Compile Include="BusinessObject\WriteInvoice.cs" />
     <Compile Include="Chatbot\ChatbotOrchestrator.cs" />
+    <Compile Include="Chatbot\ChatbotPopupManager.cs" />
     <Compile Include="Chatbot\ChatbotSidebarPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
