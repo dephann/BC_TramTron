@@ -45,6 +45,8 @@ namespace NDPSo.MasterData
             this.lueXe = new DevExpress.XtraEditors.LookUpEdit();
             this.lueTaiXe = new DevExpress.XtraEditors.LookUpEdit();
             this.datNgayPhieuTron = new DevExpress.XtraEditors.DateEdit();
+            this.datThoiGianGiaoHang = new DevExpress.XtraEditors.DateEdit();
+            this.lblThoiGianGiaoHang = new DevExpress.XtraEditors.LabelControl();
             this.txtMaPhieuTron = new DevExpress.XtraEditors.TextEdit();
             this.bteMaHopDong = new DevExpress.XtraEditors.ButtonEdit();
             this.lblSLMeDaTron = new DevExpress.XtraEditors.LabelControl();
@@ -83,6 +85,8 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.lueTaiXe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayPhieuTron.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayPhieuTron.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datThoiGianGiaoHang.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datThoiGianGiaoHang.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteMaHopDong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCommand)).BeginInit();
@@ -106,6 +110,8 @@ namespace NDPSo.MasterData
             this.pnlMain.Controls.Add(this.lueXe);
             this.pnlMain.Controls.Add(this.lueTaiXe);
             this.pnlMain.Controls.Add(this.datNgayPhieuTron);
+            this.pnlMain.Controls.Add(this.datThoiGianGiaoHang);
+            this.pnlMain.Controls.Add(this.lblThoiGianGiaoHang);
             this.pnlMain.Controls.Add(this.txtMaPhieuTron);
             this.pnlMain.Controls.Add(this.bteMaHopDong);
             this.pnlMain.Controls.Add(this.lblSLMeDaTron);
@@ -381,7 +387,37 @@ namespace NDPSo.MasterData
             this.datNgayPhieuTron.Properties.Mask.EditMask = "dd/MM/yyyy";
             this.datNgayPhieuTron.Size = new System.Drawing.Size(133, 22);
             this.datNgayPhieuTron.TabIndex = 17;
-            // 
+            //
+            // lblThoiGianGiaoHang
+            //
+            this.lblThoiGianGiaoHang.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThoiGianGiaoHang.Appearance.Options.UseFont = true;
+            this.lblThoiGianGiaoHang.Location = new System.Drawing.Point(568, 213);
+            this.lblThoiGianGiaoHang.Margin = new System.Windows.Forms.Padding(2);
+            this.lblThoiGianGiaoHang.Name = "lblThoiGianGiaoHang";
+            this.lblThoiGianGiaoHang.Text = "Giờ giao hàng:";
+            //
+            // datThoiGianGiaoHang
+            //
+            this.datThoiGianGiaoHang.EditValue = null;
+            this.datThoiGianGiaoHang.Location = new System.Drawing.Point(665, 210);
+            this.datThoiGianGiaoHang.Margin = new System.Windows.Forms.Padding(2);
+            this.datThoiGianGiaoHang.Name = "datThoiGianGiaoHang";
+            this.datThoiGianGiaoHang.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datThoiGianGiaoHang.Properties.Appearance.Options.UseFont = true;
+            this.datThoiGianGiaoHang.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datThoiGianGiaoHang.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.datThoiGianGiaoHang.Properties.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm";
+            this.datThoiGianGiaoHang.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datThoiGianGiaoHang.Properties.EditFormat.FormatString = "dd/MM/yyyy HH:mm";
+            this.datThoiGianGiaoHang.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.datThoiGianGiaoHang.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTime;
+            this.datThoiGianGiaoHang.Properties.Mask.EditMask = "dd/MM/yyyy HH:mm";
+            this.datThoiGianGiaoHang.Size = new System.Drawing.Size(160, 22);
+            this.datThoiGianGiaoHang.TabIndex = 19;
+            //
             // txtMaPhieuTron
             // 
             this.txtMaPhieuTron.Location = new System.Drawing.Point(125, 76);
@@ -644,6 +680,8 @@ namespace NDPSo.MasterData
             ((System.ComponentModel.ISupportInitialize)(this.lueTaiXe.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayPhieuTron.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datNgayPhieuTron.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datThoiGianGiaoHang.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datThoiGianGiaoHang.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaPhieuTron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bteMaHopDong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlCommand)).EndInit();
@@ -671,6 +709,8 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.LookUpEdit lueXe;
         private DevExpress.XtraEditors.LookUpEdit lueTaiXe;
         private DevExpress.XtraEditors.DateEdit datNgayPhieuTron;
+        private DevExpress.XtraEditors.DateEdit datThoiGianGiaoHang;
+        private DevExpress.XtraEditors.LabelControl lblThoiGianGiaoHang;
         private DevExpress.XtraEditors.TextEdit txtMaPhieuTron;
         private DevExpress.XtraEditors.ButtonEdit bteMaHopDong;
         private DevExpress.XtraEditors.LabelControl lblSLMeDaTron;

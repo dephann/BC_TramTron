@@ -181,6 +181,8 @@ namespace NDPSo.MasterData
                 this.txtMaPhieuTron.DataBindings.Add("Text", (object)this._pt, "MaPhieuTron");
                 this.datNgayPhieuTron.DataBindings.Clear();
                 this.datNgayPhieuTron.DataBindings.Add("DateTime", (object)this._pt, "NgayPhieuTron");
+                this.datThoiGianGiaoHang.DataBindings.Clear();
+                this.datThoiGianGiaoHang.DataBindings.Add("EditValue", (object)this._pt, "ThoiGianGiaoHang");
                 this.lueTaiXe.DataBindings.Clear();
                 this.lueTaiXe.DataBindings.Add("EditValue", (object)this._pt, "TaiXeID");
                 this.lueXe.DataBindings.Clear();

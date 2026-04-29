@@ -36,6 +36,7 @@ namespace NDPSo.MasterData
             this.bbiUpdate = new DevExpress.XtraBars.BarButtonItem();
             this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
             this.bbiView = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSchedule = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -98,9 +99,10 @@ namespace NDPSo.MasterData
             this.bsiCaption,
             this.bbiUpdate,
             this.bbiDelete,
-            this.bbiView});
+            this.bbiView,
+            this.bbiSchedule});
             this.barManager1.MainMenu = this.barButtons;
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 5;
             // 
             // barButtons
             // 
@@ -112,7 +114,8 @@ namespace NDPSo.MasterData
             new DevExpress.XtraBars.LinkPersistInfo(this.bsiCaption),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiUpdate),
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiDelete),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiView)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiView),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSchedule)});
             this.barButtons.OptionsBar.MultiLine = true;
             this.barButtons.OptionsBar.UseWholeRow = true;
             this.barButtons.Text = "Main menu";
@@ -157,7 +160,17 @@ namespace NDPSo.MasterData
             this.bbiView.Name = "bbiView";
             this.bbiView.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.bbiView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiView_ItemClick);
-            // 
+            //
+            // bbiSchedule
+            //
+            this.bbiSchedule.Caption = "Lịch Trình";
+            this.bbiSchedule.Id = 4;
+            this.bbiSchedule.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bbiSchedule.ItemAppearance.Normal.Options.UseFont = true;
+            this.bbiSchedule.Name = "bbiSchedule";
+            this.bbiSchedule.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.bbiSchedule.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSchedule_ItemClick);
+            //
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -618,6 +631,7 @@ namespace NDPSo.MasterData
         private DevExpress.XtraBars.BarButtonItem bbiUpdate;
         private DevExpress.XtraBars.BarButtonItem bbiDelete;
         private DevExpress.XtraBars.BarButtonItem bbiView;
+        private DevExpress.XtraBars.BarButtonItem bbiSchedule;
         private DevExpress.XtraEditors.GroupControl grcMaster;
         private DevExpress.XtraEditors.GroupControl grcSearch;
         private DevExpress.XtraGrid.GridControl grcPhieuTron;

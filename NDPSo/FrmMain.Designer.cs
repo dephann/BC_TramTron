@@ -57,6 +57,8 @@ namespace NDPSo
             this.bsiManage = new DevExpress.XtraBars.BarSubItem();
             this.bbiContract = new DevExpress.XtraBars.BarButtonItem();
             this.bbiPhieuTron = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiSchedule = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiTonKho = new DevExpress.XtraBars.BarButtonItem();
             this.bsiMasterData = new DevExpress.XtraBars.BarSubItem();
             this.bbiCustomer = new DevExpress.XtraBars.BarButtonItem();
             this.bbiJobSite = new DevExpress.XtraBars.BarButtonItem();
@@ -145,6 +147,8 @@ namespace NDPSo
             this.bbiExit,
             this.bbiContract,
             this.bbiPhieuTron,
+            this.bbiSchedule,
+            this.bbiTonKho,
             this.bbiSilo,
             this.bbiDoAmAgg,
             this.bbiCongThucDoHutNuoc,
@@ -198,7 +202,7 @@ namespace NDPSo
             this.barStaticItem4,
             this.bsiRemind});
             this.barManager1.MainMenu = this.barMenu;
-            this.barManager1.MaxItemId = 77;
+            this.barManager1.MaxItemId = 79;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit1,
             this.repositoryItemImageEdit1,
@@ -451,7 +455,9 @@ namespace NDPSo
             this.bsiManage.ItemAppearance.Normal.Options.UseFont = true;
             this.bsiManage.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.bbiContract),
-            new DevExpress.XtraBars.LinkPersistInfo(this.bbiPhieuTron)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiPhieuTron),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiSchedule),
+            new DevExpress.XtraBars.LinkPersistInfo(this.bbiTonKho)});
             this.bsiManage.Name = "bsiManage";
             // 
             // bbiContract
@@ -471,7 +477,25 @@ namespace NDPSo
             this.bbiPhieuTron.ItemAppearance.Normal.Options.UseFont = true;
             this.bbiPhieuTron.Name = "bbiPhieuTron";
             this.bbiPhieuTron.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiPhieuTron_ItemClick);
-            // 
+            //
+            // bbiSchedule
+            //
+            this.bbiSchedule.Caption = "Lịch Trình Sản Xuất";
+            this.bbiSchedule.Id = 77;
+            this.bbiSchedule.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bbiSchedule.ItemAppearance.Normal.Options.UseFont = true;
+            this.bbiSchedule.Name = "bbiSchedule";
+            this.bbiSchedule.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiSchedule_ItemClick);
+            //
+            // bbiTonKho
+            //
+            this.bbiTonKho.Caption = "Tồn Kho";
+            this.bbiTonKho.Id = 78;
+            this.bbiTonKho.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bbiTonKho.ItemAppearance.Normal.Options.UseFont = true;
+            this.bbiTonKho.Name = "bbiTonKho";
+            this.bbiTonKho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiTonKho_ItemClick);
+            //
             // bsiMasterData
             // 
             this.bsiMasterData.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
@@ -1007,6 +1031,8 @@ namespace NDPSo
         private DevExpress.XtraBars.BarButtonItem bbiExit;
         private DevExpress.XtraBars.BarButtonItem bbiContract;
         private DevExpress.XtraBars.BarButtonItem bbiPhieuTron;
+        private DevExpress.XtraBars.BarButtonItem bbiSchedule;
+        private DevExpress.XtraBars.BarButtonItem bbiTonKho;
         private DevExpress.XtraBars.BarButtonItem bbiSilo;
         private DevExpress.XtraBars.BarButtonItem bbiDoAmAgg;
         private DevExpress.XtraBars.BarButtonItem bbiCongThucDoHutNuoc;

@@ -158,6 +158,40 @@ namespace NDPSo.Data
 		[DataMember]
 		public byte[] VersionNo { get; set; }
 
+		[DataMember]
+		public DateTime? ThoiGianGiaoHang { get; set; }
+
+		/// <summary>
+		/// Critical Ratio = thời gian còn lại / thời gian xử lý ước tính
+		/// CR &lt; 1.0 = đã trễ, 1.0–1.5 = sắp trễ, &gt; 1.5 = an toàn
+		/// </summary>
+		public double? CriticalRatio
+		{
+			get
+			{
+				if (!ThoiGianGiaoHang.HasValue) return null;
+				double slMe = (double)(DLT_SLMeDuTinh ?? 1m);
+				double estimatedMinutes = slMe * 5.0; // ước tính 5 phút/mẻ
+				if (estimatedMinutes <= 0) return null;
+				double remainingMinutes = (ThoiGianGiaoHang.Value - DateTime.Now).TotalMinutes;
+				return remainingMinutes / estimatedMinutes;
+			}
+		}
+
+		/// <summary>Trạng thái thời gian giao hàng dựa theo CR</summary>
+		public string TrangThaiThoiGian
+		{
+			get
+			{
+				if (!ThoiGianGiaoHang.HasValue) return "";
+				double? cr = CriticalRatio;
+				if (cr == null) return "";
+				if (cr < 1.0) return "TRỄ";
+				if (cr < 1.5) return "SẮP TRỄ";
+				return "ĐÚNG HẠN";
+			}
+		}
+
 		private string _Status2 = "1";
 	}
 }

@@ -298,6 +298,7 @@
     <Compile Include="DAL\KhachHangRepository.cs" />
     <Compile Include="BusinessObject\NDPSystemBO.cs" />
     <Compile Include="BusinessObject\NDPTramTronBO.cs" />
+    <Compile Include="BusinessObject\OrderScheduleOptimizer.cs" />
     <Compile Include="ClientSetting\IServices.cs" />
     <Compile Include="ClientSetting\LocalServicesFactory.cs" />
     <Compile Include="ClientSetting\ServiceFactories.cs" />
@@ -417,6 +418,7 @@
     <Compile Include="Data\ObjPCInput.cs" />
     <Compile Include="Data\ObjPCOutput.cs" />
     <Compile Include="Data\ObjPhieuTron.cs" />
+    <Compile Include="Data\ObjScheduleItem.cs" />
     <Compile Include="Data\ObjPointDataPrinter.cs" />
     <Compile Include="Data\ObjRptMAC.cs" />
     <Compile Include="Data\ObjRptTheoPhieu.cs" />
@@ -1385,6 +1387,27 @@
     <Compile Include="MasterData\InitOnline.cs" />
     <Compile Include="MasterData\IPCInputMngView.cs" />
     <Compile Include="MasterData\IPhieuTronMngView.cs" />
+    <Compile Include="MasterData\OptimizeSchedule\IOptimizeScheduleView.cs" />
+    <Compile Include="MasterData\OptimizeSchedule\OptimizeSchedulePresenter.cs" />
+    <Compile Include="MasterData\OptimizeSchedule\OptimizeScheduleView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\OptimizeSchedule\OptimizeScheduleView.Designer.cs">
+      <DependentUpon>OptimizeScheduleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TonKho\TonKhoService.cs" />
+    <Compile Include="MasterData\TonKho\TonKhoView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\TonKho\TonKhoView.Designer.cs">
+      <DependentUpon>TonKhoView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\TonKho\NhapKhoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\TonKho\NhapKhoDialog.Designer.cs">
+      <DependentUpon>NhapKhoDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterData\ISiloDoAmMngView.cs" />
     <Compile Include="MasterData\ISiloMngView.cs" />
     <Compile Include="MasterData\ITaiXeMngView.cs" />
@@ -1549,6 +1572,30 @@
     <Compile Include="MasterData\VanHanh.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="MasterData\VanHanh.Grid.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.Silo.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.Commands.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.PLC.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.LogicConfig.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MasterData\VanHanh.Printing.cs">
+      <DependentUpon>VanHanh.cs</DependentUpon>
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MasterData\VanHanh.Designer.cs">
       <DependentUpon>VanHanh.cs</DependentUpon>
     </Compile>
@@ -1703,6 +1750,7 @@
     <Compile Include="Utils\TramTronConfig.cs" />
     <Compile Include="Utils\TramTronLogger.cs" />
     <Compile Include="Utils\Enums.cs" />
+    <Compile Include="Utils\ScheduleColorHelper.cs" />
     <Compile Include="Utils\FieldCode.cs" />
     <Compile Include="Utils\FrmErrorMessage.cs">
       <SubType>Form</SubType>

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using DevExpress.XtraBars;
 
 namespace NDPSo.Chatbot
 {
@@ -16,10 +17,13 @@ namespace NDPSo.Chatbot
         private readonly ChatbotOrchestrator _ai;
         private FloatBtn _fab;
         private PopupWindow _win;
+        private readonly BarButtonItem _plcItem; // để tính vị trí sát bbiConnectPLC
 
-        public ChatbotPopupManager(Form parentForm, string apiKey, string connStr)
+        public ChatbotPopupManager(Form parentForm, string apiKey, string connStr,
+                                   BarButtonItem plcItem = null)
         {
             _host = parentForm;
+            _plcItem = plcItem;
             _ai = new ChatbotOrchestrator(apiKey, connStr);
             _ai.OnStatusChanged += OnStatus;
 
@@ -30,7 +34,8 @@ namespace NDPSo.Chatbot
 
             _host.Resize += (s, e) => PlaceFab();
             _host.Move += (s, e) => { if (_win != null && _win.Visible) PlaceWin(); };
-            _host.Shown += (s, e) => PlaceFab();
+            // BeginInvoke để đợi BarManager layout xong rồi mới tính vị trí
+            _host.Shown += (s, e) => _host.BeginInvoke((Action)PlaceFab);
         }
 
         private void Toggle()
@@ -57,11 +62,62 @@ namespace NDPSo.Chatbot
 
         private void PlaceFab()
         {
-            _fab.Location = new Point(
-                _host.ClientSize.Width - _fab.Width - 20,
-                _host.ClientSize.Height - _fab.Height - 55
-            );
+            // Tìm barDockControlBottom (status bar DevExpress)
+            Control statusBar = null;
+            foreach (Control c in _host.Controls)
+            {
+                if (c.Name == "barDockControlBottom") { statusBar = c; break; }
+            }
+
+            int fabY = statusBar != null && statusBar.Height > 0
+                ? statusBar.Top + (statusBar.Height - _fab.Height) / 2
+                : _host.ClientSize.Height - _fab.Height - 4;
+
+            int fabX;
+
+            // Lấy vị trí trái của bbiConnectPLC
+            // link.Bounds trong DevExpress là screen coordinates → dùng PointToClient trực tiếp
+            if (_plcItem != null && _plcItem.Links.Count > 0)
+            {
+                try
+                {
+                    var link  = _plcItem.Links[0];
+                    var bounds = link.Bounds;
+                    if (bounds.Width > 0)
+                    {
+                        // Bounds là screen coordinates
+                        var clientPt = _host.PointToClient(new Point(bounds.X, bounds.Y));
+                        fabX = clientPt.X - _fab.Width;
+                    }
+                    else
+                    {
+                        // Bounds chưa sẵn sàng → fallback ước tính
+                        fabX = _host.ClientSize.Width - _fab.Width - 125;
+                    }
+                }
+                catch
+                {
+                    fabX = _host.ClientSize.Width - _fab.Width - 125;
+                }
+            }
+            else
+            {
+                fabX = _host.ClientSize.Width - _fab.Width - 125;
+            }
+
+            _fab.Location = new Point(Math.Max(0, fabX), Math.Max(0, fabY));
             _fab.BringToFront();
+        }
+
+        private static Control FindControl(Control parent, string name)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c.Name == name) return c;
+                var found = FindControl(c, name);
+                if (found != null) return found;
+            }
+            return null;
         }
 
         private void PlaceWin()
@@ -85,18 +141,23 @@ namespace NDPSo.Chatbot
     }
 
     // ═══════════════════════════════════════════════════════════════════
-    //  FLOATING BUTTON
+    //  FLOATING BUTTON  — nhỏ gọn, nằm trong status bar
     // ═══════════════════════════════════════════════════════════════════
     public class FloatBtn : Panel
     {
         public bool Active { get; set; }
         private bool _hover;
 
+        private const int BTN_W = 72;
+        private const int BTN_H = 24;
+
         public FloatBtn()
         {
-            Size = new Size(48, 48);
+            Size = new Size(BTN_W, BTN_H);
             Cursor = Cursors.Hand;
             DoubleBuffered = true;
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            BackColor = Color.Transparent;
             MouseEnter += (s, e) => { _hover = true; Invalidate(); };
             MouseLeave += (s, e) => { _hover = false; Invalidate(); };
         }
@@ -107,29 +168,36 @@ namespace NDPSo.Chatbot
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
-            // Shadow
-            using (var b = new SolidBrush(Color.FromArgb(35, 0, 0, 0)))
-                g.FillEllipse(b, 3, 6, 44, 44);
+            // Nền rounded rectangle phủ toàn bộ control
+            var bgColor = _hover
+                ? Color.FromArgb(75, 75, 92)
+                : Active ? Color.FromArgb(62, 62, 80) : Color.FromArgb(45, 45, 58);
 
-            // Circle
-            var c = _hover
-                ? Color.FromArgb(60, 60, 68)
-                : Active ? Color.FromArgb(50, 50, 60) : Color.FromArgb(38, 38, 44);
-            using (var b = new SolidBrush(c))
-                g.FillEllipse(b, 1, 1, 44, 44);
-
-            // Border
-            using (var p = new Pen(Color.FromArgb(68, 68, 80), 1.2f))
-                g.DrawEllipse(p, 1, 1, 44, 44);
-
-            // Icon
-            string icon = Active ? "✕" : "🤖";
-            using (var f = new Font("Segoe UI Emoji", Active ? 16f : 17f, FontStyle.Regular))
+            var rect = new Rectangle(0, 1, BTN_W - 1, BTN_H - 2);
+            int r = 4;
+            using (var path = new GraphicsPath())
             {
-                var sz = g.MeasureString(icon, f);
-                using (var b = new SolidBrush(Color.FromArgb(210, 210, 220)))
-                    g.DrawString(icon, f, b, (Width - sz.Width) / 2f, (Height - sz.Height) / 2f);
+                path.AddArc(rect.X, rect.Y, r * 2, r * 2, 180, 90);
+                path.AddArc(rect.Right - r * 2, rect.Y, r * 2, r * 2, 270, 90);
+                path.AddArc(rect.Right - r * 2, rect.Bottom - r * 2, r * 2, r * 2, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - r * 2, r * 2, r * 2, 90, 90);
+                path.CloseFigure();
+                using (var b = new SolidBrush(bgColor))
+                    g.FillPath(b, path);
+                using (var p = new Pen(Color.FromArgb(85, 85, 105), 1f))
+                    g.DrawPath(p, path);
             }
+
+            // Icon + label
+            string icon = Active ? "✕  Đóng" : "🤖 CMix AI";
+            using (var f = new Font("Segoe UI Emoji", 8f, FontStyle.Regular))
+            using (var b = new SolidBrush(Color.FromArgb(215, 215, 225)))
+            using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+                g.DrawString(icon, f, b, new RectangleF(0, 0, BTN_W, BTN_H), sf);
+
+            // Dấu "|" phân cách — lùi vào 4px để tránh vùng rounded corner
+            using (var p = new Pen(Color.FromArgb(170, 170, 190), 1.5f))
+                g.DrawLine(p, BTN_W - 5, 5, BTN_W - 5, BTN_H - 5);
         }
     }
 

@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Grid;
 using NDPSo.Data;
 using NDPSo.MasterData.Config;
 using NDPSo.Utils;
@@ -7,11 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NDPSo.MasterData
@@ -94,9 +89,7 @@ namespace NDPSo.MasterData
         {
             InitializeComponent();
             this._presenter = new ConfigUIMngDataPresenter((IConfigUIMngView)this);
-            LoadData();
             this.Caption = "Cấu hình giao diện";
-
         }
 
         protected override void PopulateData()
@@ -235,13 +228,8 @@ namespace NDPSo.MasterData
             lue_Wei_Add.Properties.DataSource = (object)Converter.EnumToListFieldCode<wei_ADD>(false);
         }
 
-        private void LoadData()
-        {
-
-        }
         private void lue_Silo_Agg_EditValueChanged(object sender, EventArgs e)
         {
-            string selectedOption = lue_Silo_Agg.EditValue.ToString();
         }
 
         
@@ -378,146 +366,46 @@ namespace NDPSo.MasterData
             
 
         }
-        private void ActiveSilo(List<ucSilo> lst_Silo, int sl)
+        // Hiển thị `count` controls đầu tiên, ẩn phần còn lại
+        private static void SetControlsVisible<T>(T[] controls, int count) where T : Control
         {
-            LimitedList<ucSilo> limitedList = new LimitedList<ucSilo>(sl);
-            for (int i = 0; i < sl; i++)
-            {
-                limitedList.Add(lst_Silo[i]);
-            }
-            foreach (ucSilo sl_Silo in limitedList)
-            {
-                sl_Silo.Visible = true;
-            }
+            for (int i = 0; i < controls.Length; i++)
+                controls[i].Visible = i < count;
         }
-        private void ActiveWeight(List<ucWeight> lst_Wei, int sl)
-        {
-            LimitedList<ucWeight> limitedList = new LimitedList<ucWeight>(sl);
-            for (int i = 0; i < sl; i++)
-            {
-                limitedList.Add(lst_Wei[i]);
-            }
-            foreach (ucWeight sl_Wei in limitedList)
-            {
-                sl_Wei.Visible = true;
-            }
-        }
-        private void CreateSilo_AGG(int sl)
-        {
-            List<ucSilo> lst_Agg = new List<ucSilo>();
-            lst_Agg.Add(silo_Agg1);
-            lst_Agg.Add(silo_Agg2);
-            lst_Agg.Add(silo_Agg3);
-            lst_Agg.Add(silo_Agg4);
-            lst_Agg.Add(silo_Agg5);
-            lst_Agg.Add(silo_Agg6);
-            foreach(ucSilo silo_Agg in lst_Agg)
-            {
-                silo_Agg.Visible = false;
-            }
-            ActiveSilo(lst_Agg, sl);
-        }
-        private void CreateSilo_CE(int sl)
-        {
-            List<ucSilo> lst_Ce = new List<ucSilo>();
-            lst_Ce.Add(silo_Ce1);
-            lst_Ce.Add(silo_Ce2);
-            lst_Ce.Add(silo_Ce3);
-            lst_Ce.Add(silo_Ce4);
-            lst_Ce.Add(silo_Ce5);
-            foreach (ucSilo silo_Ce in lst_Ce)
-            {
-                silo_Ce.Visible = false;
-            }
-            ActiveSilo(lst_Ce, sl);
-        }
-        private void CreateSilo_WA(int sl)
-        {
-            List<ucSilo> lst_Wa = new List<ucSilo>();
-            lst_Wa.Add(silo_Wa1);
-            lst_Wa.Add(silo_Wa2);
-            foreach (ucSilo silo_Wa in lst_Wa)
-            {
-                silo_Wa.Visible = false;
-            }
-            ActiveSilo(lst_Wa, sl);
-        }
-        private void CreateSilo_ADD(int sl)
-        {
-            List<ucSilo> lst_Add = new List<ucSilo>();
-            lst_Add.Add(silo_Add1);
-            lst_Add.Add(silo_Add2);
-            lst_Add.Add(silo_Add3);
-            lst_Add.Add(silo_Add4);
-            lst_Add.Add(silo_Add5);
-            lst_Add.Add(silo_Add6);
-            foreach (ucSilo silo_Add in lst_Add)
-            {
-                silo_Add.Visible = false;
-            }
-            ActiveSilo(lst_Add, sl);
-        }
-        private void CreateWei_AGG(int sl)
-        {
-            List<ucWeight> lst_Agg = new List<ucWeight>();
-            lst_Agg.Add(wei_Agg1);
-            lst_Agg.Add(wei_Agg2);
-            lst_Agg.Add(wei_Agg3);
-            lst_Agg.Add(wei_Agg4);
-            lst_Agg.Add(wei_Agg5);
-            lst_Agg.Add(wei_Agg6);
-            foreach (ucWeight wei_Agg in lst_Agg)
-            {
-                wei_Agg.Visible = false;
-            }
-            ActiveWeight(lst_Agg, sl);
-        }
-        private void CreateWei_CE(int sl)
-        {
-            List<ucWeight> lst_Ce = new List<ucWeight>();
-            lst_Ce.Add(wei_Ce1);
-            lst_Ce.Add(wei_Ce2);
-            foreach (ucWeight wei_Ce in lst_Ce)
-            {
-                wei_Ce.Visible = false;
-            }
-            ActiveWeight(lst_Ce, sl);
-        }
-        private void CreateWei_WA(int sl)
-        {
-            List<ucWeight> lst_Wa = new List<ucWeight>();
-            lst_Wa.Add(wei_Wa1);
-            lst_Wa.Add(wei_Wa2);
-            foreach (ucWeight wei_Wa in lst_Wa)
-            {
-                wei_Wa.Visible = false;
-            }
-            ActiveWeight(lst_Wa, sl);
-        }
-        private void CreateWei_ADD(int sl)
-        {
-            List<ucWeight> lst_Add = new List<ucWeight>();
-            lst_Add.Add(wei_Add1);
-            lst_Add.Add(wei_Add2);
-            foreach (ucWeight wei_Add in lst_Add)
-            {
-                wei_Add.Visible = false;
-            }
-            ActiveWeight(lst_Add, sl);
-        }
+
+        private void CreateSilo_AGG(int sl) =>
+            SetControlsVisible(new[] { silo_Agg1, silo_Agg2, silo_Agg3, silo_Agg4, silo_Agg5, silo_Agg6 }, sl);
+
+        private void CreateSilo_CE(int sl) =>
+            SetControlsVisible(new[] { silo_Ce1, silo_Ce2, silo_Ce3, silo_Ce4, silo_Ce5 }, sl);
+
+        private void CreateSilo_WA(int sl) =>
+            SetControlsVisible(new[] { silo_Wa1, silo_Wa2 }, sl);
+
+        private void CreateSilo_ADD(int sl) =>
+            SetControlsVisible(new[] { silo_Add1, silo_Add2, silo_Add3, silo_Add4, silo_Add5, silo_Add6 }, sl);
+
+        private void CreateWei_AGG(int sl) =>
+            SetControlsVisible(new[] { wei_Agg1, wei_Agg2, wei_Agg3, wei_Agg4, wei_Agg5, wei_Agg6 }, sl);
+
+        private void CreateWei_CE(int sl) =>
+            SetControlsVisible(new[] { wei_Ce1, wei_Ce2 }, sl);
+
+        private void CreateWei_WA(int sl) =>
+            SetControlsVisible(new[] { wei_Wa1, wei_Wa2 }, sl);
+
+        private void CreateWei_ADD(int sl) =>
+            SetControlsVisible(new[] { wei_Add1, wei_Add2 }, sl);
 
         private void Silo_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show("fff");
             switch (e.KeyCode)
             {
-
                 case Keys.Left:
-                    this.Left -= 5; // Di chuyển sang trái
-                    
+                    this.Left -= 5;
                     break;
                 case Keys.Right:
-                    this.Left += 5; // Di chuyển sang phải
+                    this.Left += 5;
                     break;
             }
         }
@@ -696,16 +584,6 @@ namespace NDPSo.MasterData
             }
         }
 
-        private void CloseFormVHTabs()
-        {
-           
-        }
-
-        private void ConfigUIMngView_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void CreateListAgg()
         {
             BindingList<ObjSilo> blstSilo = new BindingList<ObjSilo>();
@@ -760,12 +638,8 @@ namespace NDPSo.MasterData
             }
             this._presenter.SaveSilo(blstSilo);
         }
-        private void CreateListCe()
+        private void ConfigUIMngView_Load(object sender, EventArgs e)
         {
-            BindingList<ObjSilo> blstSilo = new BindingList<ObjSilo>();
-            
-
-            //this._presenter.SaveSilo(blstSilo);
         }
 
         private void spnWidthBTC_EditValueChanged(object sender, EventArgs e)
@@ -782,22 +656,15 @@ namespace NDPSo.MasterData
         }
     }
 
-
     public class LimitedList<T> : List<T>
     {
-        private int maxSize;
+        private readonly int _maxSize;
 
-        public LimitedList(int maxSize)
-        {
-            this.maxSize = maxSize;
-        }
+        public LimitedList(int maxSize) { _maxSize = maxSize; }
 
         public new void Add(T item)
         {
-            if (Count >= maxSize)
-            {
-                throw new InvalidOperationException("List is full.");
-            }
+            if (Count >= _maxSize) throw new InvalidOperationException("List is full.");
             base.Add(item);
         }
     }

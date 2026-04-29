@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "NDPSo (Run)",
+            "type": "node",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "runtimeExecutable": "${workspaceFolder}\\NDPSo\\bin\\Debug\\NDPSo.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}\\NDPSo\\bin\\Debug",
+            "console": "internalConsole"
+        }
+    ]
+}

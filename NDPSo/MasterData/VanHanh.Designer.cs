@@ -64,6 +64,8 @@ namespace NDPSo.MasterData
             this.gcKLDatHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcKLDaGiao = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcTongPhieuTron = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTrangThaiGiaoHang = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcThoiGianGiaoHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ilueHDStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
@@ -758,7 +760,9 @@ namespace NDPSo.MasterData
             this.gcMACSUMSiloValue,
             this.gcKLDatHang,
             this.gcKLDaGiao,
-            this.gcTongPhieuTron});
+            this.gcTongPhieuTron,
+            this.gcThoiGianGiaoHang,
+            this.gcTrangThaiGiaoHang});
             this.grvHopDong.DetailHeight = 284;
             this.grvHopDong.GridControl = this.grcHopDong;
             this.grvHopDong.Name = "grvHopDong";
@@ -824,14 +828,14 @@ namespace NDPSo.MasterData
             // 
             this.gcDuLieuTron.Caption = "Dữ Liệu Trộn";
             this.gcDuLieuTron.FieldName = "TenHopDong";
-            this.gcDuLieuTron.MinWidth = 350;
+            this.gcDuLieuTron.MinWidth = 200;
             this.gcDuLieuTron.Name = "gcDuLieuTron";
             this.gcDuLieuTron.OptionsColumn.AllowEdit = false;
             this.gcDuLieuTron.OptionsColumn.AllowFocus = false;
             this.gcDuLieuTron.OptionsColumn.ReadOnly = true;
             this.gcDuLieuTron.Visible = true;
             this.gcDuLieuTron.VisibleIndex = 3;
-            this.gcDuLieuTron.Width = 547;
+            this.gcDuLieuTron.Width = 360;
             // 
             // gcNgayHopDong
             // 
@@ -839,14 +843,14 @@ namespace NDPSo.MasterData
             this.gcNgayHopDong.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.gcNgayHopDong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gcNgayHopDong.FieldName = "NgayHopDong";
-            this.gcNgayHopDong.MinWidth = 150;
+            this.gcNgayHopDong.MinWidth = 95;
             this.gcNgayHopDong.Name = "gcNgayHopDong";
             this.gcNgayHopDong.OptionsColumn.AllowEdit = false;
             this.gcNgayHopDong.OptionsColumn.AllowFocus = false;
             this.gcNgayHopDong.OptionsColumn.ReadOnly = true;
             this.gcNgayHopDong.Visible = true;
             this.gcNgayHopDong.VisibleIndex = 5;
-            this.gcNgayHopDong.Width = 158;
+            this.gcNgayHopDong.Width = 100;
             // 
             // gcKhachHang
             // 
@@ -887,14 +891,14 @@ namespace NDPSo.MasterData
             this.gcDLT_KLDuTinh.DisplayFormat.FormatString = "n2";
             this.gcDLT_KLDuTinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcDLT_KLDuTinh.FieldName = "DLT_KLDuTinh";
-            this.gcDLT_KLDuTinh.MinWidth = 150;
+            this.gcDLT_KLDuTinh.MinWidth = 90;
             this.gcDLT_KLDuTinh.Name = "gcDLT_KLDuTinh";
             this.gcDLT_KLDuTinh.OptionsColumn.AllowEdit = false;
             this.gcDLT_KLDuTinh.OptionsColumn.AllowFocus = false;
             this.gcDLT_KLDuTinh.OptionsColumn.ReadOnly = true;
             this.gcDLT_KLDuTinh.Visible = true;
             this.gcDLT_KLDuTinh.VisibleIndex = 4;
-            this.gcDLT_KLDuTinh.Width = 158;
+            this.gcDLT_KLDuTinh.Width = 105;
             // 
             // gcDLT_KLDuTinhCuaTungMe
             // 
@@ -902,14 +906,14 @@ namespace NDPSo.MasterData
             this.gcDLT_KLDuTinhCuaTungMe.DisplayFormat.FormatString = "n2";
             this.gcDLT_KLDuTinhCuaTungMe.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcDLT_KLDuTinhCuaTungMe.FieldName = "DLT_KLDuTinhCuaTungMe";
-            this.gcDLT_KLDuTinhCuaTungMe.MinWidth = 150;
+            this.gcDLT_KLDuTinhCuaTungMe.MinWidth = 80;
             this.gcDLT_KLDuTinhCuaTungMe.Name = "gcDLT_KLDuTinhCuaTungMe";
             this.gcDLT_KLDuTinhCuaTungMe.OptionsColumn.AllowEdit = false;
             this.gcDLT_KLDuTinhCuaTungMe.OptionsColumn.AllowFocus = false;
             this.gcDLT_KLDuTinhCuaTungMe.OptionsColumn.ReadOnly = true;
             this.gcDLT_KLDuTinhCuaTungMe.Visible = true;
             this.gcDLT_KLDuTinhCuaTungMe.VisibleIndex = 6;
-            this.gcDLT_KLDuTinhCuaTungMe.Width = 158;
+            this.gcDLT_KLDuTinhCuaTungMe.Width = 90;
             // 
             // gcDLT_SLMeDuTinh
             // 
@@ -917,14 +921,14 @@ namespace NDPSo.MasterData
             this.gcDLT_SLMeDuTinh.DisplayFormat.FormatString = "n0";
             this.gcDLT_SLMeDuTinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcDLT_SLMeDuTinh.FieldName = "DLT_SLMeDuTinh";
-            this.gcDLT_SLMeDuTinh.MinWidth = 150;
+            this.gcDLT_SLMeDuTinh.MinWidth = 80;
             this.gcDLT_SLMeDuTinh.Name = "gcDLT_SLMeDuTinh";
             this.gcDLT_SLMeDuTinh.OptionsColumn.AllowEdit = false;
             this.gcDLT_SLMeDuTinh.OptionsColumn.AllowFocus = false;
             this.gcDLT_SLMeDuTinh.OptionsColumn.ReadOnly = true;
             this.gcDLT_SLMeDuTinh.Visible = true;
             this.gcDLT_SLMeDuTinh.VisibleIndex = 7;
-            this.gcDLT_SLMeDuTinh.Width = 158;
+            this.gcDLT_SLMeDuTinh.Width = 90;
             // 
             // gcMACSUMSiloValue
             // 
@@ -955,14 +959,14 @@ namespace NDPSo.MasterData
             this.gcKLDatHang.DisplayFormat.FormatString = "n2";
             this.gcKLDatHang.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcKLDatHang.FieldName = "KLDatHang";
-            this.gcKLDatHang.MinWidth = 150;
+            this.gcKLDatHang.MinWidth = 90;
             this.gcKLDatHang.Name = "gcKLDatHang";
             this.gcKLDatHang.OptionsColumn.AllowEdit = false;
             this.gcKLDatHang.OptionsColumn.AllowFocus = false;
             this.gcKLDatHang.OptionsColumn.ReadOnly = true;
             this.gcKLDatHang.Visible = true;
             this.gcKLDatHang.VisibleIndex = 8;
-            this.gcKLDatHang.Width = 158;
+            this.gcKLDatHang.Width = 105;
             // 
             // gcKLDaGiao
             // 
@@ -970,14 +974,14 @@ namespace NDPSo.MasterData
             this.gcKLDaGiao.DisplayFormat.FormatString = "n2";
             this.gcKLDaGiao.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcKLDaGiao.FieldName = "KLDaGiao";
-            this.gcKLDaGiao.MinWidth = 150;
+            this.gcKLDaGiao.MinWidth = 90;
             this.gcKLDaGiao.Name = "gcKLDaGiao";
             this.gcKLDaGiao.OptionsColumn.AllowEdit = false;
             this.gcKLDaGiao.OptionsColumn.AllowFocus = false;
             this.gcKLDaGiao.OptionsColumn.ReadOnly = true;
             this.gcKLDaGiao.Visible = true;
             this.gcKLDaGiao.VisibleIndex = 9;
-            this.gcKLDaGiao.Width = 158;
+            this.gcKLDaGiao.Width = 105;
             // 
             // gcTongPhieuTron
             // 
@@ -985,14 +989,38 @@ namespace NDPSo.MasterData
             this.gcTongPhieuTron.DisplayFormat.FormatString = "n0";
             this.gcTongPhieuTron.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcTongPhieuTron.FieldName = "TongPhieu";
-            this.gcTongPhieuTron.MinWidth = 150;
+            this.gcTongPhieuTron.MinWidth = 80;
             this.gcTongPhieuTron.Name = "gcTongPhieuTron";
             this.gcTongPhieuTron.OptionsColumn.AllowFocus = false;
             this.gcTongPhieuTron.OptionsColumn.ReadOnly = true;
             this.gcTongPhieuTron.Visible = true;
             this.gcTongPhieuTron.VisibleIndex = 10;
-            this.gcTongPhieuTron.Width = 150;
-            // 
+            this.gcTongPhieuTron.Width = 90;
+            //
+            // gcThoiGianGiaoHang
+            //
+            this.gcThoiGianGiaoHang.Caption = "Giờ Giao Hàng";
+            this.gcThoiGianGiaoHang.FieldName = "ThoiGianGiaoHang";
+            this.gcThoiGianGiaoHang.Name = "gcThoiGianGiaoHang";
+            this.gcThoiGianGiaoHang.OptionsColumn.AllowEdit = false;
+            this.gcThoiGianGiaoHang.OptionsColumn.ReadOnly = true;
+            this.gcThoiGianGiaoHang.Visible = true;
+            this.gcThoiGianGiaoHang.VisibleIndex = 11;
+            this.gcThoiGianGiaoHang.Width = 155;
+            this.gcThoiGianGiaoHang.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gcThoiGianGiaoHang.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            //
+            // gcTrangThaiGiaoHang
+            //
+            this.gcTrangThaiGiaoHang.Caption = "Trạng Thái Giao";
+            this.gcTrangThaiGiaoHang.FieldName = "TrangThaiThoiGian";
+            this.gcTrangThaiGiaoHang.Name = "gcTrangThaiGiaoHang";
+            this.gcTrangThaiGiaoHang.OptionsColumn.AllowEdit = false;
+            this.gcTrangThaiGiaoHang.OptionsColumn.ReadOnly = true;
+            this.gcTrangThaiGiaoHang.Visible = true;
+            this.gcTrangThaiGiaoHang.VisibleIndex = 12;
+            this.gcTrangThaiGiaoHang.Width = 100;
+            //
             // ilueHDStatus
             // 
             this.ilueHDStatus.AutoHeight = false;
@@ -8352,6 +8380,8 @@ namespace NDPSo.MasterData
         private DevExpress.XtraEditors.LabelControl lblSoPhieuTron;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraGrid.Columns.GridColumn gcTongPhieuTron;
+        private DevExpress.XtraGrid.Columns.GridColumn gcThoiGianGiaoHang;
+        private DevExpress.XtraGrid.Columns.GridColumn gcTrangThaiGiaoHang;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private TronOnlineView.UserControls.UcThoiGianNoiTron ucThoiGianThucTronUot;
         private TronOnlineView.UserControls.UcOnOff_BaoRungCan uc_TinHieu_CuaNoi1per2;

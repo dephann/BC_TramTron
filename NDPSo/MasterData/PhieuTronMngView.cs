@@ -149,7 +149,11 @@ namespace NDPSo.MasterData
             if (this.grvPhieuTron.RowCount == 0)
                 return;
             ViewManager.ShowViewDialog((ControlViewBase)new NewPhieuTronView(this.grvPhieuTron.GetRow(this.grvPhieuTron.FocusedRowHandle) as ObjPhieuTron, Enums.FormAction.View));
+        }
 
+        private void bbiSchedule_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ViewManager.ShowView(new OptimizeScheduleView(this.datTuNgay.DateTime), false);
         }
         private void BindPermission()
         {

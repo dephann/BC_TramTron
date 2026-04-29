@@ -106,12 +106,8 @@ namespace NDPSo.Reports
         }
         protected override void PopulateData()
         {
-            //this.LoadDataMix();
-            //LoadData();
-            // Task.Run(() => LoadData());
-            _blstTotalMaterial = Converter.ConvertToBindingList<Objvw_MaterialDetailDayWithID>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTotalMaterial_ByCondition(null, null) as List<Objvw_MaterialDetailDayWithID>);
-
-            //Task.Run(() => LoadData_DetailDay());
+            // Dùng cùng logic với btnTimKiem_Click để hiển thị đúng khoảng ngày mặc định
+            Task.Run((Action)RunSearch);
         }
         private void LoadSearchDefaultValues()
         {
@@ -218,14 +214,12 @@ namespace NDPSo.Reports
 
             var startDate = Searching.Build_StartDateTime(this.datFromDate.DateTime.AddDays(-1));
             var endDate = Searching.Build_EndDateTime(this.datToDate.DateTime.AddDays(-1));
-            filteredList.Clear();
-            filteredList = Converter.ConvertToList<Objvw_MaterialDetailDayWithID>(blstMaterialDetailDayID);
-
-            filteredList.Where(item => item.NgayMeTron >= startDate &&
-                                       item.NgayMeTron <= endDate &&
-                                       ( active == null || item.IsManual == active) &&
-                                       (materialID == null || item.MaterialID == materialID))
-             .ToList();
+            filteredList = Converter.ConvertToList<Objvw_MaterialDetailDayWithID>(blstMaterialDetailDayID)
+                .Where(item => item.NgayMeTron >= startDate &&
+                               item.NgayMeTron <= endDate &&
+                               (active == null || item.IsManual == active) &&
+                               (materialID == null || item.MaterialID == materialID))
+                .ToList();
             _blstMaterialDetailDayID.Clear();
             foreach (var item in filteredList)
             {
@@ -469,9 +463,11 @@ namespace NDPSo.Reports
          }*/
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            //_blstTotalMaterial = Converter.ConvertToBindingList<Objvw_MaterialDetailDayWithID>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTotalMaterial_ByCondition(null, null) as List<Objvw_MaterialDetailDayWithID>);
+            Task.Run((Action)RunSearch);
+        }
 
-            //Task.Run(() => LoadData());
+        private void RunSearch()
+        {
             bool? active = null;
             if (Convert.ToInt32(this.lueCheDo.EditValue) == 1)
                 active = new bool?(false);
@@ -931,10 +927,11 @@ namespace NDPSo.Reports
                 materialSummaries.Add(obj);
             }
 
-            this.txtSoKhoi.Text = sumKhoiLuong.ToString();
-            this.grcTongVatTu.DataSource = materialSummaries;
-            //Console.WriteLine(list);
-            // Task.Run(() => LoadData_DetailDay());
+            Invoke(new Action(() =>
+            {
+                this.txtSoKhoi.Text = sumKhoiLuong.ToString();
+                this.grcTongVatTu.DataSource = materialSummaries;
+            }));
         }
 
        

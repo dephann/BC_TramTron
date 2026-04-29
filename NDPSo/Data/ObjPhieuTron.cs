@@ -145,5 +145,9 @@ namespace NDPSo.Data
 		public decimal? NPHopDongKLDatHang { get; set; }
 		[DataMember]
 		public decimal? NPHopDongKLDaGiao { get; set; }
+
+		/// <summary>Thời gian giao hàng theo yêu cầu của khách (deadline)</summary>
+		[DataMember]
+		public DateTime? ThoiGianGiaoHang { get; set; }
 	}
 }

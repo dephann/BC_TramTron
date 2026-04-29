@@ -88,7 +88,8 @@ namespace NDPSo.Data
 			r = r + "#1@#CreatedBy#2@#" + obj.CreatedBy;
 			r = r + "#1@#LatestUpdateDate#2@#" + obj.LatestUpdateDate;
 			r = r + "#1@#LatestUpdatedBy#2@#" + obj.LatestUpdatedBy;
-			return r + "#1@#VersionNo#2@#" + obj.VersionNo;
+			r = r + "#1@#VersionNo#2@#" + obj.VersionNo;
+			return r + "#1@#ThoiGianGiaoHang#2@#" + obj.ThoiGianGiaoHang;
 		}
 
 		public static string GenMemberValues(DuLieuTron ent)
@@ -134,7 +135,8 @@ namespace NDPSo.Data
 			r = r + "#1@#CreatedBy#2@#" + ent.CreatedBy;
 			r = r + "#1@#LatestUpdateDate#2@#" + ent.LatestUpdateDate;
 			r = r + "#1@#LatestUpdatedBy#2@#" + ent.LatestUpdatedBy;
-			return r + "#1@#VersionNo#2@#" + ent.VersionNo;
+			r = r + "#1@#VersionNo#2@#" + ent.VersionNo;
+			return r + "#1@#ThoiGianGiaoHang#2@#" + ent.ThoiGianGiaoHang;
 		}
 
 		public static void CopyToObjDuLieuTron(DuLieuTron fromEnt, ObjDuLieuTron toObj)
@@ -180,6 +182,7 @@ namespace NDPSo.Data
 			toObj.LatestUpdateDate = fromEnt.LatestUpdateDate;
 			toObj.LatestUpdatedBy = fromEnt.LatestUpdatedBy;
 			toObj.VersionNo = fromEnt.VersionNo;
+			toObj.ThoiGianGiaoHang = fromEnt.ThoiGianGiaoHang;
 			if (toObj.DuLieuTronID > 0)
 			{
 				toObj.IsNewObject = false;
@@ -257,6 +260,7 @@ namespace NDPSo.Data
 			toEnt.LatestUpdateDate = fromObj.LatestUpdateDate;
 			toEnt.LatestUpdatedBy = fromObj.LatestUpdatedBy;
 			toEnt.VersionNo = fromObj.VersionNo;
+			toEnt.ThoiGianGiaoHang = fromObj.ThoiGianGiaoHang;
 		}
 
 		public static ObjDuLieuTron BuildNewObjDuLieuTron(DuLieuTron entDuLieuTron)

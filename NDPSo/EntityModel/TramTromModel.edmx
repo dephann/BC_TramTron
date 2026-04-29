@@ -90,6 +90,7 @@
           <Property Name="LatestUpdatedBy" Type="int" />
           <Property Name="VersionNo" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="HangMucID" Type="int" />
+          <Property Name="ThoiGianGiaoHang" Type="datetime" />
         </EntityType>
         <EntityType Name="EventActionCode">
           <Key>
@@ -2969,6 +2970,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
           <Property Name="VersionNo" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="HopDong" Relationship="Self.FK_DuLieuTron_HopDong" FromRole="DuLieuTron" ToRole="HopDong" />
           <Property Name="HangMucID" Type="Int32" />
+          <Property Name="ThoiGianGiaoHang" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EventActionCode">
           <Key>
@@ -5256,6 +5258,7 @@ warning 6002: The table/view 'TramTron.dbo.vw_Temp_Removing' does not have a pri
                 <ScalarProperty Name="LatestUpdateDate" ColumnName="LatestUpdateDate" />
                 <ScalarProperty Name="LatestUpdatedBy" ColumnName="LatestUpdatedBy" />
                 <ScalarProperty Name="VersionNo" ColumnName="VersionNo" />
+                <ScalarProperty Name="ThoiGianGiaoHang" ColumnName="ThoiGianGiaoHang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

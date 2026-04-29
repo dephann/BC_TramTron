@@ -8,6 +8,7 @@ using NDPSo.Data;
 using NDPSo.KWS;
 using NDPSo.MasterData;
 using NDPSo.MasterData.Config;
+using NDPSo.MasterData.TonKho;
 using NDPSo.PLCModule;
 using NDPSo.Reports;
 using NDPSo.Utils;
@@ -78,7 +79,8 @@ namespace NDPSo
                //claudeApiKey: "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",           // API key của bạn
                apiKey: "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",           // API key của bạn
                 connStr:                         // Connection string của bạn
-					"Server=localhost;Database=RONEMQu;User Id=sa;Password=1234;"
+					"Server=localhost;Database=RONEMQu;User Id=sa;Password=1234;",
+                plcItem: this.bbiConnectPLC      // để FAB bám sát bên trái PLC status
 			);
 		}
         private void Read()
@@ -636,6 +638,16 @@ namespace NDPSo
 				LstFunction = this.BuildLstFunction(Convert.ToInt32(this.bbiPhieuTron.Tag))
 			}, false);
 		}
+
+        private void bbiSchedule_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewManager.ShowView(new OptimizeScheduleView(), false);
+        }
+
+        private void bbiTonKho_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewManager.ShowView(new TonKhoView(), false);
+        }
 
         private void bbiTronOnline_ItemClick(object sender, ItemClickEventArgs e)
         {
