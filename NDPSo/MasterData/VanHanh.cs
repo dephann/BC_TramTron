@@ -1176,6 +1176,7 @@ namespace NDPSo.MasterData
 
             ChangeStusLight(false);
             InitNVLMonitor();
+            InitHoanThanhToggle();
 
             // this.ucLogicSiloAgg1._blstSiloLogicAggSelected1 = this._blstSiloLogicAG;
         }
@@ -1226,6 +1227,31 @@ namespace NDPSo.MasterData
                     _lblNVLStatus.ForeColor = System.Drawing.Color.Red;
                     break;
             }
+        }
+
+        private void InitHoanThanhToggle()
+        {
+            var chk = new DevExpress.XtraEditors.CheckEdit
+            {
+                Text     = "Ẩn đơn đã hoàn thành",
+                Location = new System.Drawing.Point(4, 4),
+                AutoSize = true
+            };
+
+            // Nhả tabDuLieuTron ra khỏi Fill để nhường 24px trên cho checkbox
+            tabDuLieuTron.Dock     = System.Windows.Forms.DockStyle.None;
+            tabDuLieuTron.Location = new System.Drawing.Point(0, 24);
+            tabDuLieuTron.Size     = new System.Drawing.Size(panelControl3.Width, panelControl3.Height - 24);
+            tabDuLieuTron.Anchor   = System.Windows.Forms.AnchorStyles.Top
+                                   | System.Windows.Forms.AnchorStyles.Left
+                                   | System.Windows.Forms.AnchorStyles.Right
+                                   | System.Windows.Forms.AnchorStyles.Bottom;
+
+            panelControl3.Controls.Add(chk);
+            chk.BringToFront();
+
+            chk.CheckedChanged += (s, e) =>
+                grvHopDong.ActiveFilterString = chk.Checked ? "[Status] <> 4" : "";
         }
 
         private void ChangeStusLight(bool isOn) //funcction
@@ -4929,12 +4955,17 @@ namespace NDPSo.MasterData
                 return;
             }
             ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(this.grvHopDong.FocusedRowHandle) as ObjDuLieuTron;
-            int hopDongID = objDuLieuTron.HopDongID.Value;
             if (objDuLieuTron == null || objDuLieuTron.HopDongID == null)
             {
                 TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.EmptyDataCannotF1);
                 return;
             }
+            if (objDuLieuTron.Status == 4)
+            {
+                TramTromMessageBox.ShowWarningDialog("Đơn hàng đã hoàn thành, không thể chạy lại.");
+                return;
+            }
+            int hopDongID = objDuLieuTron.HopDongID.Value;
             /*if (this.CheckDLTChanged(objDuLieuTron))
             {
                 return;
@@ -5054,19 +5085,26 @@ namespace NDPSo.MasterData
         }
         private void RefreshRankingDLT()
         {
-            this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(this._blstDuLieuTron.OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB).ToList());
-            
-            for (int i = 0; i < this._blstDuLieuTron.Count; i++)
-            {
-                this._blstDuLieuTron[i].LnNo = i + 1;
-            }
+            // Đơn active: sort theo priority, đơn hoàn thành: giữ nguyên thứ tự cũ → luôn ở cuối
+            var active = this._blstDuLieuTron
+                .Where(d => d.Status != 4)
+                .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+                .ToList();
+            var done = this._blstDuLieuTron
+                .Where(d => d.Status == 4)
+                .OrderBy(d => d.LnNo)
+                .ToList();
+
+            var merged = active.Concat(done).ToList();
+            for (int i = 0; i < merged.Count; i++)
+                merged[i].LnNo = i + 1;
+
+            this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(merged);
             this._presenter.SaveDuLieuTron(this._blstDuLieuTron);
             this._presenter.ListDuLieuTron(); // Xây dựng 1 luồng xử lý riêng để tránh việc
-            //this.grvHopDong.Refresh();
             this.grvHopDong.RefreshData();
             this.grvHopDong.SortInfo.ClearAndAddRange(new[] { new GridColumnSortInfo(this.grvHopDong.Columns["LnNo"], ColumnSortOrder.Ascending) });
             this.grvHopDong.FocusedRowHandle = 0;
-
         }
         private void UpdateKLDaGiaoDLT()
         {
@@ -5085,6 +5123,7 @@ namespace NDPSo.MasterData
             UpdateKLDaGiaoHD(objDuLieuTron);
             ChangeStatusSelectedDuLieuTron(4, 4);
             this.grvHopDong.RefreshRow(this.grvHopDong.FocusedRowHandle);
+            RefreshRankingDLT();
 
         }
         private void UpdateKLDaGiaoDLT_FocusMeTron()
