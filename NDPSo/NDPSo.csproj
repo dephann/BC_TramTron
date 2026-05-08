@@ -1395,6 +1395,9 @@
     <Compile Include="MasterData\OptimizeSchedule\OptimizeScheduleView.Designer.cs">
       <DependentUpon>OptimizeScheduleView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterData\TonKho\Monitor\NVLMonitorResult.cs" />
+    <Compile Include="MasterData\TonKho\Monitor\NVLSimulation.cs" />
+    <Compile Include="MasterData\TonKho\Monitor\NVLMonitorEngine.cs" />
     <Compile Include="MasterData\TonKho\TonKhoService.cs" />
     <Compile Include="MasterData\TonKho\TonKhoView.cs">
       <SubType>UserControl</SubType>

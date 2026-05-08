@@ -468,6 +468,9 @@ namespace NDPSo.MasterData
             this._so.SendingCommand.SW_RUA_NOI_TRON = false;
 
             this.SendData_DB2_NewTread();
+
+            _nvlMonitor?.Stop();
+            _nvlMonitor?.Dispose();
         }
 
         private void ucXeBonTron1_Click(object sender, EventArgs e)

@@ -18,6 +18,7 @@ using NDPSo.EntityModel;
 using NDPSo.KWS;
 using NDPSo.MasterData.Config;
 using NDPSo.MasterData.TonKho;
+using NDPSo.MasterData.TonKho.Monitor;
 using NDPSo.MasterData.TronOnlineView.UserControls;
 using NDPSo.PLCMapping;
 using NDPSo.PLCModule;
@@ -84,6 +85,8 @@ namespace NDPSo.MasterData
         private ObjPhieuTron _selectedPT_Run;
         private ObjPhieuGiaoHang _selectedPGH_Run;
         private readonly TonKhoService _tonKhoSvc = new TonKhoService();
+        private NVLMonitorEngine _nvlMonitor;
+        private System.Windows.Forms.Label _lblNVLStatus;
         private Decimal _themBotNuoc;
         private Decimal _giuNuocTenCan;
 
@@ -216,8 +219,11 @@ namespace NDPSo.MasterData
         {
             set
             {
-                this._blstDuLieuTron = value;
-                //LoadDuLieuTron();
+                var sorted = value
+                    .OrderBy(d => d.Status == 4 ? 1 : 0)
+                    .ThenBy(d => d.LnNo)
+                    .ToList();
+                this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(sorted);
                 this.grcHopDong.DataSource = this._blstDuLieuTron;
             }
         }
@@ -1169,9 +1175,57 @@ namespace NDPSo.MasterData
             _thread.Start();
 
             ChangeStusLight(false);
-
+            InitNVLMonitor();
 
             // this.ucLogicSiloAgg1._blstSiloLogicAggSelected1 = this._blstSiloLogicAG;
+        }
+
+        private void InitNVLMonitor()
+        {
+            _lblNVLStatus = new System.Windows.Forms.Label
+            {
+                AutoSize  = false,
+                Width     = 524,
+                Height    = 32,
+                Location  = new System.Drawing.Point(1310, 350),
+                Font      = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Bold),
+                ForeColor = System.Drawing.Color.Gray,
+                BackColor = System.Drawing.Color.FromArgb(240, 240, 240),
+                Text      = "NVL: đang kiểm tra...",
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Padding   = new System.Windows.Forms.Padding(6, 0, 0, 0)
+            };
+            pnlOperation.Controls.Add(_lblNVLStatus);
+            _lblNVLStatus.BringToFront();
+
+            _nvlMonitor = new NVLMonitorEngine();
+            _nvlMonitor.AlertLevelChanged += OnNVLAlertLevelChanged;
+            _nvlMonitor.Start(intervalSeconds: 60);
+        }
+
+        private void OnNVLAlertLevelChanged(object sender, NVLAlertLevel level)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(new Action(() => OnNVLAlertLevelChanged(sender, level)));
+                return;
+            }
+            if (_lblNVLStatus == null) return;
+            var result = _nvlMonitor?.LastResult;
+            _lblNVLStatus.Text = result?.StatusBarText ?? "NVL: --";
+            switch (level)
+            {
+                case NVLAlertLevel.OK:
+                    _lblNVLStatus.ForeColor = System.Drawing.Color.Green;
+                    break;
+                case NVLAlertLevel.Warning:
+                    _lblNVLStatus.ForeColor = System.Drawing.Color.OrangeRed;
+                    break;
+                case NVLAlertLevel.Critical:
+                case NVLAlertLevel.StockOut:
+                    _lblNVLStatus.ForeColor = System.Drawing.Color.Red;
+                    break;
+            }
         }
 
         private void ChangeStusLight(bool isOn) //funcction
