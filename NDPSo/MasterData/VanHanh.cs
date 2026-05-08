@@ -4343,16 +4343,17 @@ namespace NDPSo.MasterData
         {
             try
             {
-                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ResolveUnfinishPhieuTron())
-                    return;
+                // ResolveUnfinishPhieuTron và XuatKho là 2 việc độc lập —
+                // không để Resolve fail chặn XuatKho
+                ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ResolveUnfinishPhieuTron();
 
-                // Xuất kho tự động khi phiếu trộn hoàn tất
                 if (_selectedPT_Run != null)
                 {
                     var dlt = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
                     int duLieuTronID = dlt != null ? dlt.DuLieuTronID : 0;
+                    int phieuTronID  = _selectedPT_Run.PhieuTronID;
                     System.Threading.Tasks.Task.Run(() =>
-                        _tonKhoSvc.XuatKhoTheoPhieuTron(_selectedPT_Run.PhieuTronID, duLieuTronID, GlobalValues.UserID));
+                        _tonKhoSvc.XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID, GlobalValues.UserID));
                 }
             }
             catch (System.Exception ex)
