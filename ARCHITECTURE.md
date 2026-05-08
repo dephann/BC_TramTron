@@ -446,9 +446,9 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 {
     set
     {
-        // Sort: Finished (Status=4) xuống cuối, rồi theo LnNo
+        // Sort: Cancelled (Status=3) kế cuối, Finished (Status=4) cuối cùng, rồi theo LnNo
         var sorted = value
-            .OrderBy(d => d.Status == 4 ? 1 : 0)
+            .OrderBy(d => d.Status == 4 ? 2 : d.Status == 3 ? 1 : 0)
             .ThenBy(d => d.LnNo)
             .ToList();
         this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(sorted);
@@ -496,19 +496,21 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 #### Sắp xếp (DoTogglePrioritySort)
 ```
 _isPrioritySort = false (mặc định):
-  OrderBy(Status==4 ? 1 : 0) → ThenBy(LnNo)
+  OrderBy(Status==4 ? 2 : Status==3 ? 1 : 0) → ThenBy(LnNo)
+  ← Active đầu, Cancelled kế cuối, Finished cuối
 
 _isPrioritySort = true (chế độ CR):
-  OrderBy(Status==4 ? 2 : Status==1 ? 0 : 1)  ← Finished cuối, Running đầu
-  ThenBy(ThoiGianGiaoHang.HasValue ? 0 : 1)    ← có deadline trước
-  ThenBy(CriticalRatio ?? double.MaxValue)       ← CR thấp = gấp nhất
+  OrderBy(Status==4 ? 3 : Status==3 ? 2 : Status==1 ? 0 : 1)  ← Running đầu, Cancelled kế cuối, Done cuối
+  ThenBy(ThoiGianGiaoHang.HasValue ? 0 : 1)                    ← có deadline trước
+  ThenBy(CriticalRatio ?? double.MaxValue)                       ← CR thấp = gấp nhất
 ```
 
 #### Màu dòng (grvHopDong_RowStyle)
 ```
-Status == 4 (Finished) → ColorDone (#D2D2D2 xám) + DimGray  [ưu tiên 1]
-Status == 1 (Running)  → ColorRunning (#B4FFB4 xanh lá)      [ưu tiên 2]
-ThoiGianGiaoHang set  → BackColorByCR(cr): Đỏ/Vàng/Xanh     [ưu tiên 3]
+Status == 3 (Cancelled) → ColorCancelled (#FFB4B4 hồng) + ForeCancelled (#8C0000 đỏ đậm)  [ưu tiên 1]
+Status == 4 (Finished)  → ColorDone (#D2D2D2 xám) + DimGray                                [ưu tiên 2]
+Status == 1 (Running)   → ColorRunning (#B4FFB4 xanh lá)                                    [ưu tiên 3]
+ThoiGianGiaoHang set    → BackColorByCR(cr): Đỏ/Vàng/Xanh                                  [ưu tiên 4]
 ```
 
 #### Context Menu (grvHopDong_PopupMenuShowing)
@@ -519,12 +521,12 @@ ThoiGianGiaoHang set  → BackColorByCR(cr): Đỏ/Vàng/Xanh     [ưu tiên 3]
 - Đặt giờ giao hàng → `DoSetThoiGianGiaoHang`
 - Toggle sắp xếp CR / mặc định → `DoTogglePrioritySort`
 
-#### Disable btnRun cho Finished (FocusedRowChanged)
+#### Disable btnRun cho Cancelled & Finished (FocusedRowChanged)
 ```csharp
 private void grvHopDong_FocusedRowChanged_1(...)
 {
     ObjDuLieuTron dlt = grvHopDong.GetRow(e.FocusedRowHandle) as ObjDuLieuTron;
-    btnRun.Enabled = dlt?.Status != 4;
+    btnRun.Enabled = dlt?.Status != 4 && dlt?.Status != 3;  // không chạy lại Cancelled/Finished
     DoFocusHopDong();
 }
 ```
@@ -567,6 +569,47 @@ private void btnVanXa_Agg1_ButtonMouseUp(...)
 ```
 
 Silo: 6 Agg + 5 Ce + 2 Wa + 5 Add = **18 silo vật liệu**
+
+### 8.6 Ranking & Auto-Advance Logic (VanHanh.cs)
+
+#### RefreshRankingDLT()
+Sắp xếp lại toàn bộ `_blstDuLieuTron`, lưu DB, refresh grid:
+```
+1. active   = Status != 3 && Status != 4  → sort theo DLT_KLDuTinhCuaTungMe_NoiB (priority field)
+2. cancelled = Status == 3               → giữ nguyên thứ tự LnNo cũ
+3. done      = Status == 4               → giữ nguyên thứ tự LnNo cũ
+merged = active + cancelled + done → renumber LnNo = 1..n
+→ SaveDuLieuTron() → ListDuLieuTron() → grvHopDong sort by LnNo asc → FocusedRowHandle = 0
+```
+
+#### UpdateRankingDLT(dulieutron)
+Đặt `dulieutron` làm ưu tiên cao nhất (priority = 1):
+```
+→ Set dulieutron.DLT_KLDuTinhCuaTungMe_NoiB = 1, others increment
+→ Gọi RefreshRankingDLT()
+```
+
+#### AutoAdvanceAfterCancel()  *(thêm 2026-05-08)*
+Sau khi hủy đơn, tự động chuyển sang đơn active tiếp theo:
+```csharp
+var next = _blstDuLieuTron
+    .Where(d => d.Status != 3 && d.Status != 4)
+    .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+    .FirstOrDefault();
+if (next != null) UpdateRankingDLT(next);
+else RefreshRankingDLT();
+```
+
+#### DoHuy() → luồng hủy đơn  *(cập nhật 2026-05-08)*
+```
+F3 pressed → ChangeStatusSelectedDuLieuTron(3, null) → AutoAdvanceAfterCancel()
+```
+
+#### InitRunning() — các guard  *(cập nhật 2026-05-08)*
+```
+Status == 4 → cảnh báo "đã hoàn thành", return
+Status == 3 → cảnh báo "đã bị hủy", return
+```
 
 ---
 
@@ -677,18 +720,21 @@ File: `NDPSo/Utils/ScheduleColorHelper.cs`
 
 ```csharp
 // Màu sắc chính
-ColorRunning  = RGB(180, 255, 180)  // #B4FFB4 xanh lá — đang chạy
-ColorDone     = RGB(210, 210, 210)  // #D2D2D2 xám     — hoàn tất
-ColorSwitch   = RGB(255, 230, 180)  // #FFE6B4 cam nhạt — đang vệ sinh
+ColorRunning   = RGB(180, 255, 180)  // #B4FFB4 xanh lá  — đang chạy
+ColorDone      = RGB(210, 210, 210)  // #D2D2D2 xám      — hoàn tất
+ColorCancelled = RGB(255, 180, 180)  // #FFB4B4 hồng nhạt — đã hủy
+ColorSwitch    = RGB(255, 230, 180)  // #FFE6B4 cam nhạt  — đang vệ sinh
 
-ColorLate     = RGB(255, 100, 100)  // #FF6464 đỏ      — CR < 1.0 (trễ)
-ColorSoonLate = RGB(255, 230,  80)  // #FFE650 vàng    — CR 1.0-1.5
-ColorOnTime   = RGB(200, 240, 200)  // #C8F0C8 xanh nhạt — CR > 1.5
+ColorLate      = RGB(255, 100, 100)  // #FF6464 đỏ       — CR < 1.0 (trễ)
+ColorSoonLate  = RGB(255, 230,  80)  // #FFE650 vàng     — CR 1.0-1.5
+ColorOnTime    = RGB(200, 240, 200)  // #C8F0C8 xanh nhạt — CR > 1.5
 
-ForeRunning   = RGB(  0, 110,   0)  // xanh đậm
-ForeLate      = White
-ForeSoonLate  = RGB( 80,  60,   0)  // nâu đậm
-ForeOnTime    = RGB(  0,  80,   0)
+ForeRunning    = RGB(  0, 110,   0)  // xanh đậm
+ForeDone       = RGB(120, 120, 120)  // xám
+ForeCancelled  = RGB(140,   0,   0)  // đỏ đậm
+ForeLate       = White
+ForeSoonLate   = RGB( 80,  60,   0)  // nâu đậm
+ForeOnTime     = RGB(  0,  80,   0)
 
 // Methods
 BackColorByCR(double? cr) → Color   // trả màu nền theo CR
@@ -885,11 +931,12 @@ WeiSiloType:        Silo=1, Wei=11
 
 | Điều kiện | BackColor | ForeColor | Ưu tiên |
 |-----------|-----------|-----------|---------|
-| Status == 4 (Finished) | #D2D2D2 xám | DimGray | 1 (cao nhất) |
-| Status == 1 (Running) | #B4FFB4 xanh lá | #006E00 xanh đậm | 2 |
-| CR < 1.0 (Trễ) | #FF6464 đỏ | White | 3 |
-| 1.0 ≤ CR < 1.5 (Sắp trễ) | #FFE650 vàng | #503C00 nâu | 3 |
-| CR ≥ 1.5 (Đúng hạn) | #C8F0C8 xanh nhạt | #005000 xanh đậm | 3 |
+| Status == 3 (Cancelled) | #FFB4B4 hồng nhạt | #8C0000 đỏ đậm | 1 (cao nhất) |
+| Status == 4 (Finished) | #D2D2D2 xám | DimGray | 2 |
+| Status == 1 (Running) | #B4FFB4 xanh lá | #006E00 xanh đậm | 3 |
+| CR < 1.0 (Trễ) | #FF6464 đỏ | White | 4 |
+| 1.0 ≤ CR < 1.5 (Sắp trễ) | #FFE650 vàng | #503C00 nâu | 4 |
+| CR ≥ 1.5 (Đúng hạn) | #C8F0C8 xanh nhạt | #005000 xanh đậm | 4 |
 | Không có deadline | (mặc định) | (mặc định) | — |
 
 ### Critical Ratio (CR) formula
