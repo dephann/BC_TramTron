@@ -12,6 +12,9 @@ namespace NDPSo.MasterData.TonKho
     /// </summary>
     public class TonKhoService
     {
+        // Raised on background thread after XuatKho completes — subscribers must BeginInvoke
+        public static event Action TonKhoChanged;
+
         private readonly string _connStr;
 
         public TonKhoService()
@@ -212,6 +215,7 @@ namespace NDPSo.MasterData.TonKho
                         }
                     }
                 }
+                TonKhoChanged?.Invoke();
             }
             catch (Exception ex)
             {

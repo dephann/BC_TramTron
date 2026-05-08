@@ -18,6 +18,18 @@ namespace NDPSo.MasterData.TonKho
             InitializeComponent();
             this.Caption = "Tồn Kho Nguyên Vật Liệu";
             Load += (s, e) => Refresh_All();
+            TonKhoService.TonKhoChanged += OnTonKhoChanged;
+            Disposed += (s, e) => TonKhoService.TonKhoChanged -= OnTonKhoChanged;
+        }
+
+        // Called from background thread after XuatKho — marshal to UI thread
+        private void OnTonKhoChanged()
+        {
+            if (this.IsDisposed) return;
+            if (this.InvokeRequired)
+                this.BeginInvoke(new Action(Refresh_All));
+            else
+                Refresh_All();
         }
 
         private void Refresh_All()
