@@ -163,7 +163,150 @@
 
 ## 📊 THỐNG KÊ ĐÁNH GIÁ TỔNG THỂ
 
-| CHỈ SỐ          | ĐIỂM (1-10) | NHẬN XÉT                           |
-| --------------- | ----------- | ---------------------------------- |
-| Kiến trúc       | 7/10        | Tốt, phân lớp đúng chuẩn           |
-| Chất lượng code | 5/10        | Trung bình, nhiều chỗ cần refactor |
+| CHỈ SỐ          | ĐIỂM (1-10) | NHẬN XÉT                                 |
+| --------------- | ----------- | ---------------------------------------- |
+| Kiến trúc       | 7/10        | Tốt, phân lớp đúng chuẩn                 |
+| Chất lượng code | 5/10        | Trung bình, nhiều chỗ cần refactor       |
+| Ổn định         | 8/10        | Hệ thống đã chạy thực tế, ổn định        |
+| Tính năng       | 9/10        | Đầy đủ hầu hết các chức năng cần thiết   |
+| Công nghệ       | 3/10        | Đã lỗi thời, cần nâng cấp gấp            |
+| Bảo trì         | 4/10        | Khó bảo trì do thiếu test, documentation |
+
+---
+
+---
+
+## 🔮 ĐỀ XUẤT KIẾN TRÚC MỚI CHO TƯƠNG LAI
+
+> ✅ **Đề xuất nâng cấp toàn bộ nền tảng dựa trên phân tích yêu cầu**
+
+### 🎯 MỤC TIÊU KIẾN TRÚC MỚI:
+
+- ✅ Truy xuất dữ liệu nhanh hơn 5-10 lần
+- ✅ Dễ bảo trì, dễ mở rộng tính năng
+- ✅ Hoạt động trơn tru, không treo giao diện
+- ✅ Thay đổi công nghệ mà không ảnh hưởng logic nghiệp vụ
+- ✅ Dễ dàng thay đổi Database Provider trong tương lai
+
+---
+
+### 🏗️ KIẾN TRÚC ĐỀ XUẤT: CLEAN ARCHITECTURE
+
+| Lớp                         | Mô tả                                | Công nghệ                                      |
+| --------------------------- | ------------------------------------ | ---------------------------------------------- |
+| 🔝 **Presentation Layer**   | Giao diện người dùng                 | **WPF .NET 8 / Avalonia UI**                   |
+| 🎯 **Application Layer**    | CQRS, Mediator Pattern, Use Cases    | MediatR, FluentValidation                      |
+| 🧠 **Domain Layer**         | Entity, Interface, Business Logic    | Thuần .NET, không phụ thuộc thư viện bên ngoài |
+| 💾 **Infrastructure Layer** | Truy cập dữ liệu, tích hợp bên ngoài | EF Core 8, Repository Pattern                  |
+
+✅ **Lợi ích:**
+
+- Tách biệt hoàn toàn logic nghiệp vụ khỏi UI và Database
+- Có thể thay đổi WinForms -> WPF mà không cần viết lại logic
+- Có thể đổi SQL Server sang PostgreSQL / ClickHouse / TimescaleDB bất cứ lúc nào
+- Dễ viết Unit Test, Integration Test
+- Tuân thủ đúng các nguyên tắc SOLID
+
+---
+
+### 💾 LỰA CHỌN DATABASE TỐI ƯU CHO TRẠM TRỘN:
+
+| Database             | Ưu điểm                                               | Phù hợp với                 | Đánh giá                    |
+| -------------------- | ----------------------------------------------------- | --------------------------- | --------------------------- |
+| 🟢 **PostgreSQL 16** | Mã nguồn mở, hiệu năng cao, hỗ trợ Time Series        | Tất cả dữ liệu thông thường | ⭐⭐⭐⭐⭐ Đề xuất hàng đầu |
+| 🟡 **TimescaleDB**   | Tối ưu cho dữ liệu timeseries, dữ liệu thời gian thực | Dữ liệu PLC, cân nặng, log  | ⭐⭐⭐⭐ Rất phù hợp        |
+| 🔴 **SQL Server**    | Hiện tại đang dùng, ổn định                           | -                           | ⭐⭐⭐                      |
+| 🟠 **ClickHouse**    | Xử lý báo cáo siêu nhanh, hàng triệu record/s         | Báo cáo phân tích, thống kê | ⭐⭐⭐⭐                    |
+
+✅ **Khuyến nghị:** Chuyển sang `PostgreSQL 16 + TimescaleDB` cho dữ liệu thời gian thực từ PLC. Sẽ tăng tốc độ truy vấn log và báo cáo lên **10-20 lần** so với SQL Server hiện tại.
+
+---
+
+### 🎨 GIAO DIỆN: CHUYỂN TỪ WINFORMS SANG WPF
+
+✅ **Lý do nên chuyển sang WPF .NET 8:**
+
+- MVVM Pattern chuẩn, tách hoàn toàn UI và Logic
+- Data Binding mạnh mẽ, giảm 70% code xử lý giao diện
+- Hiệu năng giao diện tốt hơn nhiều, animation mượt mà
+- Dễ responsive, hỗ trợ màn hình độ phân giải cao
+- Có thể sau này chuyển sang Avalonia UI để chạy trên Windows/Linux/macOS
+- Cộng đồng lớn, được Microsoft hỗ trợ dài hạn
+
+⚠️ **Lộ trình chuyển đổi:** Không viết lại toàn bộ cùng lúc, chuyển dần từng module một, chạy song song 2 giao diện trong giai đoạn chuyển tiếp.
+
+---
+
+### 🔧 CÁC MẪU THIẾT KẾ NÊN ÁP DỤNG KHI REFACTOR:
+
+1.  **✅ Repository Pattern + Unit Of Work**
+    - Thay thế 40+ Repository hiện tại bằng 1 Generic Repository duy nhất
+    - Giảm 90% code lặp lại ở tầng DAL
+
+2.  **✅ CQRS Pattern**
+    - Tách riêng lệnh ghi và truy vấn đọc
+    - Dễ tối ưu độc lập cho 2 phía đọc và ghi
+    - Hỗ trợ caching, scaling tốt hơn
+
+3.  **✅ Mediator Pattern**
+    - Loại bỏ phụ thuộc chéo giữa các service
+    - Code dễ test, dễ bảo trì
+
+4.  **✅ Dependency Injection gốc .NET**
+    - Thay thế Unity Container bằng DI tích hợp sẵn của .NET Core
+    - Nhanh hơn, chuẩn hơn, được hỗ trợ chính thức
+
+---
+
+### 🚀 LỘ TRÌNH REFACTOR CHI TIẾT:
+
+#### 🎯 GIAI ĐOẠN 0: CHUẨN BỊ (0-2 tuần)
+
+- [ ] Thêm Unit Test cho tất cả Business Logic hiện tại trước khi thay đổi
+- [ ] Tách riêng tất cả Hardcode ra appsettings.json
+- [ ] Chuẩn hóa tất cả Exception và Logging
+
+#### 🎯 GIAI ĐOẠN 1: TÁCH LỚP BUSINESS LOGIC (2-4 tuần)
+
+- [ ] Di chuyển toàn bộ logic từ Form ra các lớp Service riêng
+- [ ] Không còn bất kỳ logic nghiệp vụ nào trong file .cs của Form
+- [ ] Tất cả truy vấn DB được di chuyển ra khỏi UI
+
+#### 🎯 GIAI ĐOẠN 2: NÂNG CẤP .NET 8 (4-8 tuần)
+
+- [ ] Nâng cấp dự án lên .NET 8
+- [ ] Thay thế EF6 bằng EF Core 8
+- [ ] Thay thế Unity bằng DI gốc .NET
+- [ ] Tối ưu tất cả truy vấn database
+
+#### 🎯 GIAI ĐOẠN 3: ÁP DỤNG CLEAN ARCHITECTURE (8-16 tuần)
+
+- [ ] Chia dự án thành 4 Project theo Clean Architecture
+- [ ] Áp dụng CQRS + MediatR
+- [ ] Thêm FluentValidation
+- [ ] Viết lại tầng DAL với Generic Repository
+
+#### 🎯 GIAI ĐOẠN 4: CHUYỂN SANG WPF (16-24 tuần)
+
+- [ ] Tạo project WPF mới song song
+- [ ] Chuyển dần từng module qua WPF
+- [ ] Sử dụng chung logic Business Layer đã tách
+- [ ] Giai đoạn chuyển tiếp chạy cả 2 giao diện cùng lúc
+
+---
+
+## 💡 KHUYẾN NGHỊ
+
+> ✅ **ƯU TIÊN HÀNG ĐẦU:** Xử lý các vấn đề ở mức độ CAO trước, đặc biệt là các treo giao diện và xử lý lỗi
+>
+> ✅ **QUAN TRỌNG NHẤT:** Không nên viết thêm tính năng mới cho đến khi hoàn thành việc tách Business Logic ra khỏi Form. Đây là bước gốc để tất cả các cải tiến sau này thành công.
+>
+> ✅ Không cần viết lại toàn bộ dự án cùng lúc, thực hiện từng bước nhỏ, hệ thống luôn hoạt động ổn định trong suốt quá trình nâng cấp
+>
+> ✅ Nên bắt đầu áp dụng Unit Test từ bây giờ cho mọi code mới
+>
+> ✅ Lập kế hoạch nâng cấp .NET trong vòng 1 năm tới
+
+---
+
+_File này được tạo tự động bằng phân tích toàn bộ mã nguồn dự án. Cập nhật lần cuối ngày 29/04/2026_

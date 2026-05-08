@@ -1328,6 +1328,7 @@ namespace NDPSo.MasterData
             this._ro.StatusIO_03 = a[3];
             this._ro.StatusIO_04 = a[4];
             this._ro.StatusIO_05 = a[5];
+            this._ro.StatusIO_06 = a[6];
             
         }
 
@@ -1362,70 +1363,53 @@ namespace NDPSo.MasterData
             this._ro.PheuChoStatus = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104
             this._ro.ThoiGianThucTronUot = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[108], a[109], a[110], a[111])); // 108
             this._ro.KhoiLuongThucNoiTron = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[112], a[113], a[114], a[115])); // 112
+            this._ro.PV_AGG_2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[116], a[117], a[118], a[119])); // 116
+            this._ro.WE_AGG_TOTAL = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[120], a[121], a[122], a[123])); // 120
         }
 
-        private void ReceiveData_DB8(byte[] a) //READ DATA FROM PLC
+        private void ReceiveData_DB8(byte[] a) //READ DATA FROM PLC 26
         {
             this._ro.StatusIO_SAVE = a[0];
             this._ro.RE_PV_AGG1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[4], a[5], a[6], a[7])); // 4
             this._ro.RE_PVM_AGG1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[8], a[9], a[10], a[11])); // 8
             this._ro.RE_PV_AGG2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[12], a[13], a[14], a[15])); // 12
             this._ro.RE_PVM_AGG2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[16], a[17], a[18], a[19])); // 16
-            this._ro.RE_PV_AGG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[20], a[21], a[22], a[23])); // 20
-            this._ro.RE_PVM_AGG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[24], a[25], a[26], a[27])); // 24
-            this._ro.RE_PV_AGG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[28], a[29], a[30], a[31])); // 28
-            this._ro.RE_PVM_AGG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[32], a[33], a[34], a[35])); // 32
-            this._ro.RE_PV_AGG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 36
-            this._ro.RE_PVM_AGG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 40
-            this._ro.RE_PV_AGG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 44
-            this._ro.RE_PVM_AGG6 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 48.0
-            this._ro.RE_PV_CE1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[52], a[53], a[54], a[55])); // 52.0
-            this._ro.RE_PVM_CE1 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[56], a[57], a[58], a[59])); // 56.0
-            this._ro.RE_PV_CE2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[60], a[61], a[62], a[63])); // 60.0
-            this._ro.RE_PVM_CE2 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[64], a[65], a[66], a[67])); // 64.0
-            this._ro.RE_PV_CE3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[68], a[69], a[70], a[71])); // 68.0
-            this._ro.RE_PVM_CE3 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[72], a[73], a[74], a[75])); // 72.0
-            this._ro.RE_PV_CE4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[76], a[77], a[78], a[79])); // 76.0
-            this._ro.RE_PVM_CE4 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[80], a[81], a[82], a[83])); // 80.0
-            this._ro.RE_PV_CE5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[84], a[85], a[86], a[87])); // 84.0
-            this._ro.RE_PVM_CE5 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[88], a[89], a[90], a[91])); // 88.0
-            this._ro.RE_PV_WA1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[92], a[93], a[94], a[95])); // 92.0
-            this._ro.RE_PVM_WA1 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[96], a[97], a[98], a[99])); // 96.0
-            this._ro.RE_PV_WA2 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[100], a[101], a[102], a[103])); // 100.0
-            this._ro.RE_PVM_WA2 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104.0
-            this._ro.RE_PV_PG1 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[108], a[109], a[110], a[111])); // 108.0
-            this._ro.RE_PVM_PG1 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[112], a[113], a[114], a[115])); // 112
-            this._ro.RE_PV_PG2 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[116], a[117], a[118], a[119])); // 116
-            this._ro.RE_PVM_PG2 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[120], a[121], a[122], a[123])); // 120
-            this._ro.RE_PV_PG3 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[124], a[125], a[126], a[127])); // 124
-            this._ro.RE_PVM_PG3 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[128], a[129], a[130], a[131])); // 128
-            this._ro.RE_PV_PG4 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[132], a[133], a[134], a[135])); // 132
-            this._ro.RE_PVM_PG4 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[136], a[137], a[138], a[139])); // 136
-            this._ro.RE_PV_PG5 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[140], a[141], a[142], a[143])); // 140
-            this._ro.RE_PVM_PG5 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[144], a[145], a[146], a[147])); // 144
-            this._ro.RE_PV_PG6 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[148], a[149], a[150], a[151])); // 148
-            this._ro.RE_PVM_PG6 =
-                this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[152], a[153], a[154], a[155])); // 152
+            this._ro.RE_PV_AGG_TOTAL = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[20], a[21], a[22], a[23])); // 20
+            this._ro.RE_PVM_AGG_TOTAL = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[24], a[25], a[26], a[27])); // 24
+            //this._ro.RE_PV_AGG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[20], a[21], a[22], a[23])); // 20
+            //this._ro.RE_PVM_AGG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[24], a[25], a[26], a[27])); // 24
+            //this._ro.RE_PV_AGG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[28], a[29], a[30], a[31])); // 28
+            //this._ro.RE_PVM_AGG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[32], a[33], a[34], a[35])); // 32
+            //this._ro.RE_PV_AGG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 36
+            //this._ro.RE_PVM_AGG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 40
+            //this._ro.RE_PV_AGG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 44
+            //this._ro.RE_PVM_AGG6 =            //    this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 48.0
+            this._ro.RE_PV_CE1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[28], a[29], a[30], a[31])); // 52.0 - 28
+            this._ro.RE_PVM_CE1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[32], a[33], a[34], a[35])); // 56.0 - 32
+            //this._ro.RE_PV_CE2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[60], a[61], a[62], a[63])); // 60.0
+            //this._ro.RE_PVM_CE2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[64], a[65], a[66], a[67])); // 64.0
+            //this._ro.RE_PV_CE3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[68], a[69], a[70], a[71])); // 68.0
+            //this._ro.RE_PVM_CE3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[72], a[73], a[74], a[75])); // 72.0
+            //this._ro.RE_PV_CE4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[76], a[77], a[78], a[79])); // 76.0
+            //this._ro.RE_PVM_CE4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[80], a[81], a[82], a[83])); // 80.0
+            //this._ro.RE_PV_CE5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[84], a[85], a[86], a[87])); // 84.0
+            //this._ro.RE_PVM_CE5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[88], a[89], a[90], a[91])); // 88.0
+            this._ro.RE_PV_WA1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[36], a[37], a[38], a[39])); // 92.0 - 36
+            this._ro.RE_PVM_WA1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[40], a[41], a[42], a[43])); // 96.0 - 40
+            //this._ro.RE_PV_WA2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[100], a[101], a[102], a[103])); // 100.0
+            //this._ro.RE_PVM_WA2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[104], a[105], a[106], a[107])); // 104.0
+            this._ro.RE_PV_PG1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[44], a[45], a[46], a[47])); // 108.0 - 44
+            this._ro.RE_PVM_PG1 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[48], a[49], a[50], a[51])); // 112 -  48
+            //this._ro.RE_PV_PG2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[116], a[117], a[118], a[119])); // 116
+            //this._ro.RE_PVM_PG2 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[120], a[121], a[122], a[123])); // 120
+            //this._ro.RE_PV_PG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[124], a[125], a[126], a[127])); // 124
+            //this._ro.RE_PVM_PG3 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[128], a[129], a[130], a[131])); // 128
+            //this._ro.RE_PV_PG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[132], a[133], a[134], a[135])); // 132
+            //this._ro.RE_PVM_PG4 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[136], a[137], a[138], a[139])); // 136
+            //this._ro.RE_PV_PG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[140], a[141], a[142], a[143])); // 140
+            //this._ro.RE_PVM_PG5 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[144], a[145], a[146], a[147])); // 144
+            //this._ro.RE_PV_PG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[148], a[149], a[150], a[151])); // 148
+            //this._ro.RE_PVM_PG6 = this.ConvertData(MappingHelper.Merge4BytesIntoInt(a[152], a[153], a[154], a[155])); // 152
         }
 
         private decimal CorectData(double data)
@@ -1852,7 +1836,7 @@ namespace NDPSo.MasterData
                     //============================================================= DU LIEU
 
                     siloAgg1.KLThucTe = this.CorectData(_ro.PV_AGG_1);
-                    weightAgg1.Weight = this.CorectData(_ro.WE_AGG_1);
+                    weightAgg1.Weight = this.CorectData(_ro.WE_AGG_TOTAL);
                     slMeDaCanAgg1.SoLuongMeDaTron = this.CorectData(_ro.SMC_AGG_1);
                     this.lblPV1.Text = "PV1: " + this.CorectData(_ro.PV_AGG_1);
                     this.lblSoMe.Text = "Số mẻ: " + this.CorectData(_ro.SMC_AGG_1);
@@ -1991,6 +1975,23 @@ namespace NDPSo.MasterData
                         //btnXaNoiTron.Caption = "CỬA NỒI TAY";
                     }
                     //RunFan_NewThread(true);
+
+
+                    //========================= Delete Done
+                    if (_ro.DELETE_DONE)
+                    {
+                        //LOAD DU LIEU TRON MOI
+                        //ShowMessage("Saved Data", Enums.MsgType.Error);
+                        this._so.SendingCommand.SAVED = false;
+                        this.SendData_DB2_NewTread();
+                    }
+                    if (_ro.RUN_NEW_PROCESS)
+                    {
+                        this._so.SendingCommand.SAVED = false;
+                        this._so.SendingCommand.ENOUGH_BATCH = false;
+                        this._so.SendingCommand.UPDATED = false;
+                        this.SendData_DB2_NewTread();
+                    }
                 }
             }
             catch (ThreadAbortException ex)
@@ -2254,12 +2255,12 @@ namespace NDPSo.MasterData
             if (this._plcController.IsConnected)
             {
 
-                byte[] b = this._plcController.ReadBytes(DataType.DataBlock, 20, 0, 6);
+                byte[] b = this._plcController.ReadBytes(DataType.DataBlock, 20, 0, 7); //6
                 this.ReceiveData_DB1(b);
 
                
 
-                byte[] d = this._plcController.ReadBytes(DataType.DataBlock, 25, 0, 116);
+                byte[] d = this._plcController.ReadBytes(DataType.DataBlock, 25, 0, 124);
                 this.ReceiveData_DB7(d);
                 //this.labelControl14.Text = d.Length.ToString();
 
@@ -2364,7 +2365,7 @@ namespace NDPSo.MasterData
         {
             if (this._plcController.IsConnected)
             {
-                byte[] s = this._plcController.ReadBytes(DataType.DataBlock, 8, 0, 156);
+                byte[] s = this._plcController.ReadBytes(DataType.DataBlock, 26, 0, 52); //156 - 52
                 this.ReceiveData_DB8(s);
                 BindReceivingOnline_DB8(_ro);
             }
@@ -2386,7 +2387,7 @@ namespace NDPSo.MasterData
                     if (this._ro.Save_Report)
                     {
                         lblSave.Text = "Saved";
-                        //ShowMessage("Saved", Enums.MsgType.Info);
+                        ShowMessage("Saved", Enums.MsgType.Info);
                         _idSavePLC = 1;
 
                     }
@@ -2510,16 +2511,28 @@ namespace NDPSo.MasterData
         }
         private void btnXacNhanLoi_ButtonClick(object sender, EventArgs e)
         {
-            ResetMesageNotifi();
-            this._so.SendingCommand.XAC_NHAN_CAN_DU = true;
-            this.SendData_DB2_NewTread();
-            Thread.Sleep(1000);
-            this._so.SendingCommand.XAC_NHAN_CAN_DU = false;
-            this.SendData_DB2_NewTread();
-            ResetPrevousBuTru();
+            //ResetMesageNotifi();
+            //this._so.SendingCommand.XAC_NHAN_CAN_DU = true;
+            //this.SendData_DB2_NewTread();
+            //Thread.Sleep(1000);
+            //this._so.SendingCommand.XAC_NHAN_CAN_DU = false;
+            //this.SendData_DB2_NewTread();
+            //ResetPrevousBuTru();
 
-            TramTronLogger.WriteInfo(e.ToString());
-
+            //TramTronLogger.WriteInfo(e.ToString());
+            //try
+            //{
+            //    this._so.SendingCommand.F5_RETURN = true;
+            //    this.SendData_DB2_NewTread();
+            //    Thread.Sleep(100);
+            //    this._so.SendingCommand.F5_RETURN = false;
+            //    this.SendData_DB2_NewTread();
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    TramTronLogger.WriteError(ex);
+            //    TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            //}
         }
         private void DoShowTimerPara()
         {
@@ -4070,27 +4083,10 @@ namespace NDPSo.MasterData
                         this.SaveMTCT("WeiAdd4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
                         this.SaveMTCT("WeiAdd5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
                         this.SaveMTCT("WeiAdd6", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        //GH
-                        this.SaveMTCTGiaoHang("WeiAgg1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAgg2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAgg3", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAgg4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAgg5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAgg6", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiCe1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiCe2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiCe3", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiCe4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiCe5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiWa1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiWa2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAdd1", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAdd2", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAdd3", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAdd4", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAdd5", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
-                        this.SaveMTCTGiaoHang("WeiAdd6", some, this.ucHeThongAuto1.IsAuto, numm0, 0);
 
+                        this._so.SendingCommand.SAVED = true;
+                        this._so.SendingCommand.ENOUGH_BATCH = false;
+                        this.SendData_DB2_NewTread();
                         //ShowMessage("Saved Data", Enums.MsgType.Error);
                         if (this._selectedPT_Run != null)
                         {
@@ -4110,9 +4106,9 @@ namespace NDPSo.MasterData
                                 //TramTromMessageBox.ShowYesNoDialog("Xác nhận trộn DLT bù mẻ cuối.");
                             }
                         }*/
-
-                        if(some > this._sp.SoMeTron)
+                        if (some > this._sp.SoMeTron)
                         {
+
                             DoNextNiemChi();
                             UpdateStateFinishPhieuTron();
                             UpdateInfoDataPhieuGiaoHang(this._selectedPGH_Run, DateTime.Now.ToString("HH:mm:ss"));
@@ -4129,7 +4125,47 @@ namespace NDPSo.MasterData
                                 //UpdateKLDaGiaoDLT(); //Cập nhật lại KLĐã giao, KL Cò lại, Tính Luỹ Kế
                             }
                             this._selectedHD_Run = null;
+                            //ghi xuống Saved = true
                             
+                            this._so.SendingCommand.ENOUGH_BATCH = true;
+                            this.SendData_DB2_NewTread();
+
+                            ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(1) as ObjDuLieuTron;
+                            int hopDongID = objDuLieuTron.HopDongID.Value;
+                            if (objDuLieuTron == null || objDuLieuTron.HopDongID == null)
+                            {
+                                TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.EmptyDataCannotF1);
+                                return;
+                            }
+                            
+                            //UpdateRanking
+                            UpdateRankingDLT(objDuLieuTron);
+                            this._selectedHD_Run = this._presenter.GetHopDongByKey(objDuLieuTron.HopDongID.Value);
+                            if (this._selectedHD_Run == null)
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                bool isManual = true;
+                                if (_isSimulation) //if (lblSim.Visible)
+                                    isManual = false;
+                                this._selectedPT_Run = this._presenter.CreateAndSaveNewPhieuTron(this._selectedHD_Run, isManual);
+                                this.some = 1;
+
+                                this.lblMaPhieuTron.Text = this._selectedPT_Run.MaPhieuTron;
+                                this.lblSoPhieuTron.Text = _selectedPT_Run.NoPhieu.ToString();
+                                GetNiemChi();
+                                this.ChangeStatusSelectedDuLieuTron(1, null);
+                                this.GetSiloNotActive();
+
+                                this.BuildSetPoint(this._selectedHD_Run, true);
+                                SendData_DB4_NewTread();
+                                
+
+                                this._so.SendingCommand.UPDATED = true;
+                                this.SendData_DB2_NewTread();
+                            }
                         }
 
                         /*if (!checkEdit3.Checked)
@@ -4310,7 +4346,10 @@ namespace NDPSo.MasterData
         {
 
         }
+        private void LoadNextDLTToSetPoint()
+        {
 
+        }
         private void SaveMTCT(
          string maCan,
          int sttMe,
@@ -5112,43 +5151,41 @@ namespace NDPSo.MasterData
 
         private void simpleButton1_Click(object sender, EventArgs e)//test
         {
-            this.SaveMTCT("WeiAgg1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg3", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg4", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg5", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe3", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe4", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe5", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiWa1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiWa2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiWa2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAdd1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAdd2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg3", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg4", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg5", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe3", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe4", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe5", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiWa1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiWa2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiWa2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAdd1", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAdd2", 0, this.ucHeThongAuto1.IsAuto, 0, 0);
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)//test
         {
-            this.SaveMTCT("WeiAgg1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg3", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg4", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAgg5", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe3", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe4", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiCe5", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiWa1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiWa2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiWa2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAdd1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
-            this.SaveMTCT("WeiAdd2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg3", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg4", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAgg5", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe3", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe4", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiCe5", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiWa1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiWa2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiWa2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAdd1", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
+            //this.SaveMTCT("WeiAdd2", 1, this.ucHeThongAuto1.IsAuto, 0, 0);
         }
-
-        
 
         private void ucBTXien1_ButtonClick_MouseDown(object sender, EventArgs e)//event
         {
@@ -5440,7 +5477,6 @@ namespace NDPSo.MasterData
 
         }
 
-        
         private void spnThemBotNc_EditValueChanged(object sender, EventArgs e)
         {
             ObjHopDong selectedHD = this.lblMAC.Tag as ObjHopDong;
@@ -5591,8 +5627,6 @@ namespace NDPSo.MasterData
         }
 
         
-
-        
         private void simpleButton9_Click(object sender, EventArgs e)
         {
             txtNiemChi.Text = Support.GetNextNiemChi(ConfigManager.TramTronConfig.SecuritySealNum);
@@ -5692,6 +5726,35 @@ namespace NDPSo.MasterData
                 {
                     MessageBox.Show("Lỗi: " + ex.Message);
                 }
+            }
+        }
+
+        private void btnReturn_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this._so.SendingCommand.F5_RETURN = true;
+                this.SendData_DB2_NewTread();
+                
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
+            }
+        }
+
+        private void btnReturn_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this._so.SendingCommand.F5_RETURN = false;
+                this.SendData_DB2_NewTread();
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                TramTromMessageBox.ShowErrorDialog(ex.ToString());
             }
         }
     }

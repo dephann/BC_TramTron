@@ -169,10 +169,10 @@ namespace NDPSo.MasterData
                     [0] = this._objSC.NN_AGG6_2,
                     [1] = this._objSC.SW_XA_WAGG6,
                     [2] = this._objSC.FU_CE1,
-                    [3] = this._objSC.PA_CE1,
-                    [4] = this._objSC.NN_CE1,
-                    [5] = this._objSC.NN_SKSL1,
-                    [6] = this._objSC.FU_CE2,
+                    [3] = this._objSC.F5_RETURN,
+                    [4] = this._objSC.SAVED,
+                    [5] = this._objSC.ENOUGH_BATCH,
+                    [6] = this._objSC.UPDATED,
                     [7] = this._objSC.PA_CE2
                 });
                 return this._Byte_6;

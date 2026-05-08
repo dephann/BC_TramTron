@@ -75,7 +75,7 @@ namespace NDPSo.MasterData
                 this._listTimer.Add(this._blstTimerPara[35]);
                 this._listTimer.Add(this._blstTimerPara[36]);
                 this._listTimer.Add(this._blstTimerPara[37]);
-                this._listTimer.Add(this._blstTimerPara[69]);
+                this._listTimer.Add(this._blstTimerPara[38]);
 
                 this.grcData.DataSource = (object)this._listTimer;
             }

@@ -230,6 +230,8 @@ namespace NDPSo.MasterData
         private bool _STT_MAN_AUT; //Bit 13.1
         private bool _STT_PAUSE; //Bit 13.2
         private bool _STT_CANCEL; //Bit 13.3
+        private bool _DELETE_DONE; //Bit 6.0
+        private bool _RUN_NEW_PROCESS; //Bit 6.1
 
         private bool _CAN_DU_AGG1; //Bit 13.4
         private bool _CAN_DU_AGG2; //Bit 13.5
@@ -726,6 +728,7 @@ namespace NDPSo.MasterData
 
         //================================================================================DB7 READ DATA
         //===============================AGG1
+        private Double _TEMP; //0
         private Double _PV_AGG_1; //0
         private Double _Per_WAGG_1; //4
         private Double _WE_AGG_1; //8
@@ -735,6 +738,7 @@ namespace NDPSo.MasterData
         private Double _PV_AGG_2; //20
         private Double _Per_WAGG_2; //24
         private Double _WE_AGG_2; //28
+        private Double _WE_AGG_TOTAL; //28
         private Double _SMC_AGG_2; //32
         private Double _SMX_AGG_2; //36
         //===============================AGG3
@@ -822,6 +826,8 @@ namespace NDPSo.MasterData
         private Double _RE_PVM_AGG1; //8
         private Double _RE_PV_AGG2; //12
         private Double _RE_PVM_AGG2; //16
+        private Double _RE_PV_AGG_TOTAL; //12
+        private Double _RE_PVM_AGG_TOTAL; //16
         private Double _RE_PV_AGG3; //20
         private Double _RE_PVM_AGG3; //24
         private Double _RE_PV_AGG4; //28
@@ -3261,6 +3267,17 @@ namespace NDPSo.MasterData
                 this._Temple = value;
             }
         }
+        public double TEMP
+        {
+            get
+            {
+                return this._TEMP;
+            }
+            set
+            {
+                this._TEMP = value;
+            }
+        }
         //BYTE 9
         public bool Op_RUNNING
         {
@@ -3669,6 +3686,29 @@ namespace NDPSo.MasterData
                 this._STT_CANCEL = value;
             }
         }
+        public bool DELETE_DONE
+        {
+            get
+            {
+                return this._DELETE_DONE;
+            }
+            set
+            {
+                this._DELETE_DONE = value;
+            }
+        }
+        public bool RUN_NEW_PROCESS
+        {
+            get
+            {
+                return this._RUN_NEW_PROCESS;
+            }
+            set
+            {
+                this._RUN_NEW_PROCESS = value;
+            }
+        }
+
         // NOTIFI CÂN DU
         public bool CAN_DU_AGG1
         {
@@ -4774,7 +4814,17 @@ namespace NDPSo.MasterData
                 this._WE_AGG_2 = value;
             }
         }
-
+        public Double WE_AGG_TOTAL
+        {
+            get
+            {
+                return this._WE_AGG_TOTAL;
+            }
+            set
+            {
+                this._WE_AGG_TOTAL = value;
+            }
+        }
         public Double SMC_AGG_2
         {
             get
@@ -5659,6 +5709,28 @@ namespace NDPSo.MasterData
                 this._RE_PVM_AGG2 = value;
             }
         }
+        public Double RE_PV_AGG_TOTAL
+        {
+            get
+            {
+                return this._RE_PV_AGG_TOTAL;
+            }
+            set
+            {
+                this._RE_PV_AGG_TOTAL = value;
+            }
+        }
+        public Double RE_PVM_AGG_TOTAL
+        {
+            get
+            {
+                return this._RE_PVM_AGG_TOTAL;
+            }
+            set
+            {
+                this._RE_PVM_AGG_TOTAL = value;
+            }
+        }
         public Double RE_PV_AGG3
         {
             get
@@ -6163,11 +6235,26 @@ namespace NDPSo.MasterData
                 Temple = bitArray[3];
                 Op_VanXa_PheuCan_Agg_1 = bitArray[4];
                 Op_VanXa_NoiTron = bitArray[5];
-                Temple = bitArray[6];
-                Temple = bitArray[7];
+                Op_VanCan_Agg_2_1 = bitArray[6];
+                Op_VanCan_Agg_2_2 = bitArray[7];
             }
         }
-
+        public byte StatusIO_06
+        {
+            set
+            {
+                this._statusIO_06 = value;
+                BitArray bitArray = Converter.ConvertByteToBitArray(this._statusIO_06);
+                DELETE_DONE = bitArray[0];
+                RUN_NEW_PROCESS = bitArray[1];
+                Temple = bitArray[2];
+                Temple = bitArray[3];
+                Op_VanXa_PheuCan_Agg_1 = bitArray[4];
+                Op_VanXa_NoiTron = bitArray[5];
+                Op_VanCan_Agg_2_1 = bitArray[6];
+                Op_VanCan_Agg_2_2 = bitArray[7];
+            }
+        }
 
         public byte StatusIO_SAVE
         {

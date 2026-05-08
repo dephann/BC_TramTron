@@ -19,6 +19,10 @@ namespace NDPSo.MasterData
         public bool F5_TangMe { get; set; }
 
         public bool F6_GiamMe { get; set; }
+        public bool F5_RETURN { get; set; }
+        public bool SAVED { get; set; }
+        public bool ENOUGH_BATCH { get; set; }
+        public bool UPDATED { get; set; }
 
         //==============================================================DB2 WRITE BIT
 

@@ -1587,7 +1587,7 @@
   <metadata name="panelControl5.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>142, 461</value>
   </metadata>
-  <data name="btnXacNhanLoi.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnReturn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADkAAAAnCAYAAAC1xOBuAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAA9NJREFUaEPdmVtO20AUhmcHZAWIDbADdsAOeOKVHfBW3tgBO2AHvENL1Xubil7V
@@ -1609,7 +1609,7 @@
         TnVgmiTxwStXvHglCq06PLUGTgqa/05Xt6C2W/+tnPsHIQulINdME+wAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnXacNhanLoi.Color_Click" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnReturn.Color_Click" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADkAAAAnCAYAAAC1xOBuAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAA7JJREFUaEPlmc1OE1EUgG/Sn7BsAg9A4AXgCeAJ4AlI2MPCgEQFIzUahSIiUSlu
@@ -1631,7 +1631,7 @@
         UyH8mdDTkk0AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnXacNhanLoi.Color_NoClick" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnReturn.Color_NoClick" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADkAAAAnCAYAAAC1xOBuAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAA9NJREFUaEPdmVtO20AUhmcHZAWIDbADdsAOeOKVHfBW3tgBO2AHvENL1Xubil7V

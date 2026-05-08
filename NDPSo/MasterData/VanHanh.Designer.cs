@@ -64,8 +64,8 @@ namespace NDPSo.MasterData
             this.gcKLDatHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcKLDaGiao = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcTongPhieuTron = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcTrangThaiGiaoHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcThoiGianGiaoHang = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcTrangThaiGiaoHang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ilueHDStatus = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
@@ -142,7 +142,7 @@ namespace NDPSo.MasterData
             this.labelControl40 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl41 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
-            this.btnXacNhanLoi = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset();
+            this.btnReturn = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset();
             this.btnHuy = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnHuyMe();
             this.btnPause = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnPause();
             this.btnRun = new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnRun();
@@ -996,10 +996,12 @@ namespace NDPSo.MasterData
             this.gcTongPhieuTron.Visible = true;
             this.gcTongPhieuTron.VisibleIndex = 10;
             this.gcTongPhieuTron.Width = 90;
-            //
+            // 
             // gcThoiGianGiaoHang
-            //
+            // 
             this.gcThoiGianGiaoHang.Caption = "Giờ Giao Hàng";
+            this.gcThoiGianGiaoHang.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gcThoiGianGiaoHang.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gcThoiGianGiaoHang.FieldName = "ThoiGianGiaoHang";
             this.gcThoiGianGiaoHang.Name = "gcThoiGianGiaoHang";
             this.gcThoiGianGiaoHang.OptionsColumn.AllowEdit = false;
@@ -1007,11 +1009,9 @@ namespace NDPSo.MasterData
             this.gcThoiGianGiaoHang.Visible = true;
             this.gcThoiGianGiaoHang.VisibleIndex = 11;
             this.gcThoiGianGiaoHang.Width = 155;
-            this.gcThoiGianGiaoHang.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
-            this.gcThoiGianGiaoHang.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            //
+            // 
             // gcTrangThaiGiaoHang
-            //
+            // 
             this.gcTrangThaiGiaoHang.Caption = "Trạng Thái Giao";
             this.gcTrangThaiGiaoHang.FieldName = "TrangThaiThoiGian";
             this.gcTrangThaiGiaoHang.Name = "gcTrangThaiGiaoHang";
@@ -1020,7 +1020,7 @@ namespace NDPSo.MasterData
             this.gcTrangThaiGiaoHang.Visible = true;
             this.gcTrangThaiGiaoHang.VisibleIndex = 12;
             this.gcTrangThaiGiaoHang.Width = 100;
-            //
+            // 
             // ilueHDStatus
             // 
             this.ilueHDStatus.AutoHeight = false;
@@ -2105,7 +2105,7 @@ namespace NDPSo.MasterData
             // panelControl5
             // 
             this.panelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl5.Controls.Add(this.btnXacNhanLoi);
+            this.panelControl5.Controls.Add(this.btnReturn);
             this.panelControl5.Controls.Add(this.btnHuy);
             this.panelControl5.Controls.Add(this.btnPause);
             this.panelControl5.Controls.Add(this.btnRun);
@@ -2118,20 +2118,21 @@ namespace NDPSo.MasterData
             this.panelControl5.Size = new System.Drawing.Size(490, 49);
             this.panelControl5.TabIndex = 32;
             // 
-            // btnXacNhanLoi
+            // btnReturn
             // 
-            this.btnXacNhanLoi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnXacNhanLoi.BackgroundImage")));
-            this.btnXacNhanLoi.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnXacNhanLoi.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnXacNhanLoi.Color_Click")));
-            this.btnXacNhanLoi.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnXacNhanLoi.Color_NoClick")));
-            this.btnXacNhanLoi.IsOn = false;
-            this.btnXacNhanLoi.Location = new System.Drawing.Point(406, 4);
-            this.btnXacNhanLoi.Margin = new System.Windows.Forms.Padding(2);
-            this.btnXacNhanLoi.Name = "btnXacNhanLoi";
-            this.btnXacNhanLoi.Size = new System.Drawing.Size(60, 40);
-            this.btnXacNhanLoi.TabIndex = 367;
-            this.btnXacNhanLoi.Visible = false;
-            this.btnXacNhanLoi.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset.DelButtonEventHandler(this.btnXacNhanLoi_ButtonClick);
+            this.btnReturn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReturn.BackgroundImage")));
+            this.btnReturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReturn.Color_Click = ((System.Drawing.Bitmap)(resources.GetObject("btnReturn.Color_Click")));
+            this.btnReturn.Color_NoClick = ((System.Drawing.Bitmap)(resources.GetObject("btnReturn.Color_NoClick")));
+            this.btnReturn.IsOn = false;
+            this.btnReturn.Location = new System.Drawing.Point(406, 4);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(60, 40);
+            this.btnReturn.TabIndex = 367;
+            this.btnReturn.ButtonClick += new NDPSo.MasterData.TronOnlineView.UserControls.UcBtnReset.DelButtonEventHandler(this.btnXacNhanLoi_ButtonClick);
+            this.btnReturn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnReturn_MouseDown);
+            this.btnReturn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnReturn_MouseUp);
             // 
             // btnHuy
             // 
@@ -3853,7 +3854,7 @@ namespace NDPSo.MasterData
             // 
             this.labelControl14.Location = new System.Drawing.Point(67, 737);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(18, 13);
+            this.labelControl14.Size = new System.Drawing.Size(8, 13);
             this.labelControl14.TabIndex = 601;
             this.labelControl14.Text = "#";
             this.labelControl14.Visible = false;
@@ -8313,7 +8314,7 @@ namespace NDPSo.MasterData
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonSKCe2;
         private TronOnlineView.UserControls.UcButtonRungCan ucButtonSKCe1;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private TronOnlineView.UserControls.UcBtnReset btnXacNhanLoi;
+        private TronOnlineView.UserControls.UcBtnReset btnReturn;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
         private DevExpress.XtraEditors.ButtonEdit bteLogoPath;

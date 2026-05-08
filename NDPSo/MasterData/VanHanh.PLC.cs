@@ -137,7 +137,7 @@ namespace NDPSo.MasterData
             byte[] value = list_00.ToArray();
             this._plcController.WriteBytes(DataType.DataBlock, 3, 0, value);
         }
-        private void Send_Data_DB_4_To_PLC() // WRITE DATA TO PLC
+        private void Send_Data_DB_4_To_PLC() // WRITE DATA TO PLC DB 25
         {
             List<byte> list_00 = new List<byte>();
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.ThoiGianTreCan_Agg1));// 0
@@ -167,6 +167,7 @@ namespace NDPSo.MasterData
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Ce1));// 96
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Wa1));// 100
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Add1));// 104
+            list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.KL_CanCan_Agg2));// 108
 
 
             byte[] value = list_00.ToArray();
@@ -236,6 +237,7 @@ namespace NDPSo.MasterData
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSN_ADD1));// 128
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.HSX_ADD1));// 132
             list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes((double)this._sp.TG_TRON_UOT));// 136
+            //list_00.AddRange(MappingHelper.SeparateFloatTo4Bytes(1.0));// 136
 
             byte[] value = list_00.ToArray();
             this._plcController.WriteBytes(DataType.DataBlock, 24, 0, value);
@@ -768,7 +770,7 @@ namespace NDPSo.MasterData
            // thread.Name = "DB_3";
             thread.Start();
         }
-        private void SendData_DB4_NewTread() //WEIGH
+        private void SendData_DB4_NewTread() //WEIGH DB25
         {
             Thread thread = new Thread(new ThreadStart(this.Send_Data_DB_4_To_PLC));
             thread.Name = "DB_4";
