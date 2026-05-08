@@ -2311,6 +2311,7 @@ namespace NDPSo.MasterData
                 this._so.SendingCommand.F3_Cancel = false;
                 this.SendData_DB2_NewTread();
                 this.ChangeStatusSelectedDuLieuTron(3, null);
+                AutoAdvanceAfterCancel();
                 btnHuy.IsTrangThai = UcBtnHuyMe.TrangThai.Stop;
                 this.ShowMessage(GlobalValues.Messages.CancelPhieuTron, Enums.MsgType.Info);
             }
@@ -4965,6 +4966,11 @@ namespace NDPSo.MasterData
                 TramTromMessageBox.ShowWarningDialog("Đơn hàng đã hoàn thành, không thể chạy lại.");
                 return;
             }
+            if (objDuLieuTron.Status == 3)
+            {
+                TramTromMessageBox.ShowWarningDialog("Đơn hàng đã bị hủy, không thể chạy lại.");
+                return;
+            }
             int hopDongID = objDuLieuTron.HopDongID.Value;
             /*if (this.CheckDLTChanged(objDuLieuTron))
             {
@@ -5085,17 +5091,23 @@ namespace NDPSo.MasterData
         }
         private void RefreshRankingDLT()
         {
-            // Đơn active: sort theo priority, đơn hoàn thành: giữ nguyên thứ tự cũ → luôn ở cuối
+            // Active: chưa hủy, chưa xong → sort theo priority
+            // Cancelled (Status=3): giữ thứ tự cũ, nằm sau active
+            // Done (Status=4): luôn ở cuối cùng
             var active = this._blstDuLieuTron
-                .Where(d => d.Status != 4)
+                .Where(d => d.Status != 3 && d.Status != 4)
                 .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+                .ToList();
+            var cancelled = this._blstDuLieuTron
+                .Where(d => d.Status == 3)
+                .OrderBy(d => d.LnNo)
                 .ToList();
             var done = this._blstDuLieuTron
                 .Where(d => d.Status == 4)
                 .OrderBy(d => d.LnNo)
                 .ToList();
 
-            var merged = active.Concat(done).ToList();
+            var merged = active.Concat(cancelled).Concat(done).ToList();
             for (int i = 0; i < merged.Count; i++)
                 merged[i].LnNo = i + 1;
 
@@ -5105,6 +5117,18 @@ namespace NDPSo.MasterData
             this.grvHopDong.RefreshData();
             this.grvHopDong.SortInfo.ClearAndAddRange(new[] { new GridColumnSortInfo(this.grvHopDong.Columns["LnNo"], ColumnSortOrder.Ascending) });
             this.grvHopDong.FocusedRowHandle = 0;
+        }
+        private void AutoAdvanceAfterCancel()
+        {
+            // Sau khi hủy phiếu, tự động chuyển sang phiếu kế tiếp còn active
+            var next = this._blstDuLieuTron
+                .Where(d => d.Status != 3 && d.Status != 4)
+                .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+                .FirstOrDefault();
+            if (next != null)
+                UpdateRankingDLT(next);
+            else
+                RefreshRankingDLT();
         }
         private void UpdateKLDaGiaoDLT()
         {

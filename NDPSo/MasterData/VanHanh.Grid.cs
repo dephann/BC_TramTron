@@ -101,7 +101,7 @@ namespace NDPSo.MasterData
                 // Sắp xếp theo CR tăng dần (CR thấp nhất = gấp nhất → lên đầu)
                 // Các đơn không có ThoiGianGiaoHang đặt xuống cuối
                 var sorted = this._blstDuLieuTron
-                    .OrderBy(d => d.Status == 4 ? 2 : d.Status == 1 ? 0 : 1)     // Finished xuống cuối, Running lên đầu
+                    .OrderBy(d => d.Status == 4 ? 3 : d.Status == 3 ? 2 : d.Status == 1 ? 0 : 1)  // Done cuối, Cancelled kế cuối, Running đầu
                     .ThenBy(d => d.ThoiGianGiaoHang.HasValue ? 0 : 1)             // có deadline trước
                     .ThenBy(d => d.CriticalRatio ?? double.MaxValue)               // CR thấp nhất = ưu tiên
                     .ToList();
@@ -114,7 +114,7 @@ namespace NDPSo.MasterData
             {
                 // Về sắp xếp mặc định theo LnNo
                 var sorted = this._blstDuLieuTron
-                    .OrderBy(d => d.Status == 4 ? 1 : 0)    // Finished xuống cuối
+                    .OrderBy(d => d.Status == 4 ? 2 : d.Status == 3 ? 1 : 0)  // Done cuối, Cancelled kế cuối
                     .ThenBy(d => d.LnNo)
                     .ToList();
                 this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(sorted);
@@ -130,6 +130,15 @@ namespace NDPSo.MasterData
 
             ObjDuLieuTron dlt = gridView.GetRow(e.RowHandle) as ObjDuLieuTron;
             if (dlt == null) return;
+
+            // Đã hủy (Status=3) → hồng nhạt
+            if (dlt.Status == 3)
+            {
+                e.Appearance.BackColor = ScheduleColorHelper.ColorCancelled;
+                e.Appearance.ForeColor = ScheduleColorHelper.ForeCancelled;
+                e.Appearance.Options.UseForeColor = true;
+                return;
+            }
 
             // Hoàn tất (Status=4) → xám, đẩy xuống cuối về mặt hiển thị
             if (dlt.Status == 4)
@@ -621,7 +630,7 @@ namespace NDPSo.MasterData
         private void grvHopDong_FocusedRowChanged_1(object sender, FocusedRowChangedEventArgs e)
         {
             ObjDuLieuTron dlt = this.grvHopDong.GetRow(e.FocusedRowHandle) as ObjDuLieuTron;
-            btnRun.Enabled = dlt?.Status != 4;
+            btnRun.Enabled = dlt?.Status != 4 && dlt?.Status != 3;
             this.DoFocusHopDong();
         }
         
