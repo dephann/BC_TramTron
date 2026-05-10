@@ -53,6 +53,7 @@ namespace NDPSo.EntityModel
         public Nullable<int> NhanVienID { get; set; }
         public Nullable<int> HangMucID { get; set; }
         public Nullable<int> NoPhieu { get; set; }
+        public Nullable<System.DateTime> ThoiGianGiaoHang { get; set; }
     
         public virtual CongTruong CongTruong { get; set; }
         public virtual HopDong HopDong { get; set; }

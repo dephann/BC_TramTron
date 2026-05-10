@@ -28,17 +28,17 @@
 
 ## 1. TỔNG QUAN DỰ ÁN
 
-| Mục | Giá trị |
-|-----|---------|
-| Loại | Windows Desktop (WinForms) |
-| Ngôn ngữ | C# |
-| Framework | .NET Framework 4.8 |
-| UI Library | DevExpress 19.2.5 |
-| ORM | Entity Framework 6 (Database-First) |
-| Database | SQL Server — DB: `TramTron`, Server: `DESKTOP-7KUDOEF` |
-| PLC | Siemens S7-1500 qua S7.Net 0.10.0 |
-| DI | Unity 4.0.1 |
-| Tổng file C# | > 450 file |
+| Mục          | Giá trị                                                |
+| ------------ | ------------------------------------------------------ |
+| Loại         | Windows Desktop (WinForms)                             |
+| Ngôn ngữ     | C#                                                     |
+| Framework    | .NET Framework 4.8                                     |
+| UI Library   | DevExpress 19.2.5                                      |
+| ORM          | Entity Framework 6 (Database-First)                    |
+| Database     | SQL Server — DB: `TramTron`, Server: `DESKTOP-7KUDOEF` |
+| PLC          | Siemens S7-1500 qua S7.Net 0.10.0                      |
+| DI           | Unity 4.0.1                                            |
+| Tổng file C# | > 450 file                                             |
 
 **Mục đích hệ thống:** Quản lý và điều khiển trực tuyến trạm trộn bê tông — hợp đồng, phiếu trộn, giao tiếp PLC theo thời gian thực, in ấn báo cáo, AI chatbot.
 
@@ -116,15 +116,15 @@ NDPSo/
 
 ### Design Patterns áp dụng
 
-| Pattern | Nơi dùng |
-|---------|----------|
-| **MVP** | TronOnlineDataPresenter ↔ ITronOnlineView ↔ VanHanh |
-| **Repository** | DAL/*Repository, Core/EFRepository<T> |
-| **Specification** | Core/ISpecification, Core/Specification<T> |
-| **Dependency Injection** | Core/IoC.cs (Unity container) |
-| **Factory** | ClientSetting/ServiceFactories |
-| **Singleton** | PLCModule/PLCSingleIns |
-| **BindingList** | UI binding: BindingList<ObjDuLieuTron> → grcHopDong |
+| Pattern                  | Nơi dùng                                            |
+| ------------------------ | --------------------------------------------------- |
+| **MVP**                  | TronOnlineDataPresenter ↔ ITronOnlineView ↔ VanHanh |
+| **Repository**           | DAL/\*Repository, Core/EFRepository<T>              |
+| **Specification**        | Core/ISpecification, Core/Specification<T>          |
+| **Dependency Injection** | Core/IoC.cs (Unity container)                       |
+| **Factory**              | ClientSetting/ServiceFactories                      |
+| **Singleton**            | PLCModule/PLCSingleIns                              |
+| **BindingList**          | UI binding: BindingList<ObjDuLieuTron> → grcHopDong |
 
 ---
 
@@ -137,29 +137,30 @@ NDPSo/
 
 File: `NDPSo/Data/ObjDuLieuTron.cs`
 
-| Property | Kiểu | Ghi chú |
-|----------|------|---------|
-| DuLieuTronID | int | PK |
-| HopDongID | int? | FK → HopDong |
-| MaHopDong, TenHopDong, NgayHopDong | string/DateTime? | |
-| KhachHangID, CongTruongID, MACID, HangMucID | int? | FK master data |
-| KLDatHang, KLDaGiao, KLConLai | decimal? | Khối lượng |
-| DLT_KLDuTinh | decimal? | KL dự tính tổng |
-| DLT_KLDuTinhCuaTungMe | decimal? | KL mỗi mẻ |
-| DLT_SLMeDuTinh | decimal? | Số mẻ dự tính |
-| DLT_KLBuTruMeCuoi | decimal? | Bù trừ mẻ cuối |
-| DLT_MACSUMSiloValue | decimal? | Tổng silo MAC |
-| ThoiGianGiaoHang | DateTime? | Deadline giao hàng |
-| **Status** | int? | **0=New 1=Running 2=Pause 3=Abort 4=Finished** |
-| LastStatus | int? | Status trước đó |
-| **CriticalRatio** | double? | *Computed*: thời gian còn lại / thời gian xử lý ước tính |
-| TrangThaiThoiGian | string | *Computed*: "TRỄ" / "SẮP TRỄ" / "ĐÚNG HẠN" |
-| NPStatus | string | *Computed*: Status→string |
-| LnNo | int? | Thứ tự dòng (dùng để sắp xếp mặc định) |
-| VersionNo | byte[] | Optimistic concurrency |
-| Activated | bool | Kích hoạt |
+| Property                                    | Kiểu             | Ghi chú                                                  |
+| ------------------------------------------- | ---------------- | -------------------------------------------------------- |
+| DuLieuTronID                                | int              | PK                                                       |
+| HopDongID                                   | int?             | FK → HopDong                                             |
+| MaHopDong, TenHopDong, NgayHopDong          | string/DateTime? |                                                          |
+| KhachHangID, CongTruongID, MACID, HangMucID | int?             | FK master data                                           |
+| KLDatHang, KLDaGiao, KLConLai               | decimal?         | Khối lượng                                               |
+| DLT_KLDuTinh                                | decimal?         | KL dự tính tổng                                          |
+| DLT_KLDuTinhCuaTungMe                       | decimal?         | KL mỗi mẻ                                                |
+| DLT_SLMeDuTinh                              | decimal?         | Số mẻ dự tính                                            |
+| DLT_KLBuTruMeCuoi                           | decimal?         | Bù trừ mẻ cuối                                           |
+| DLT_MACSUMSiloValue                         | decimal?         | Tổng silo MAC                                            |
+| ThoiGianGiaoHang                            | DateTime?        | Deadline giao hàng                                       |
+| **Status**                                  | int?             | **0=New 1=Running 2=Pause 3=Abort 4=Finished**           |
+| LastStatus                                  | int?             | Status trước đó                                          |
+| **CriticalRatio**                           | double?          | _Computed_: thời gian còn lại / thời gian xử lý ước tính |
+| TrangThaiThoiGian                           | string           | _Computed_: "TRỄ" / "SẮP TRỄ" / "ĐÚNG HẠN"               |
+| NPStatus                                    | string           | _Computed_: Status→string                                |
+| LnNo                                        | int?             | Thứ tự dòng (dùng để sắp xếp mặc định)                   |
+| VersionNo                                   | byte[]           | Optimistic concurrency                                   |
+| Activated                                   | bool             | Kích hoạt                                                |
 
 **CriticalRatio formula:**
+
 ```
 CR = (ThoiGianGiaoHang - DateTime.Now).TotalHours
    / (DLT_SLMeDuTinh * 5 phút/mẻ / 60)
@@ -169,60 +170,60 @@ CR = (ThoiGianGiaoHang - DateTime.Now).TotalHours
 
 File: `NDPSo/Data/ObjHopDong.cs`
 
-| Property | Kiểu | Ghi chú |
-|----------|------|---------|
-| HopDongID | int | PK |
-| MaHopDong, TenHopDong, NgayHopDong | | |
-| KhachHangID, CongTruongID, MACID, HangMucID | int? | FK |
-| KLDatHang, KLDaGiao, KLConLai, KLTaoPhieuTron | decimal? | |
-| DoSut | decimal? | Độ sụt |
-| TongPhieu | int? | Tổng số phiếu |
-| DLT_KLDuTinh, DLT_SLMeDuTinh, ... | | Tham số tính toán DLT |
-| Status | int? | HopDongStatus enum |
-| NPMACTenMAC, NPMACThemBotNuoc1 | | Computed từ MAC |
-| KLLyThuyetCoTheTaoPT | decimal? | *Computed*: KL lý thuyết có thể tạo PT |
+| Property                                      | Kiểu     | Ghi chú                                |
+| --------------------------------------------- | -------- | -------------------------------------- |
+| HopDongID                                     | int      | PK                                     |
+| MaHopDong, TenHopDong, NgayHopDong            |          |                                        |
+| KhachHangID, CongTruongID, MACID, HangMucID   | int?     | FK                                     |
+| KLDatHang, KLDaGiao, KLConLai, KLTaoPhieuTron | decimal? |                                        |
+| DoSut                                         | decimal? | Độ sụt                                 |
+| TongPhieu                                     | int?     | Tổng số phiếu                          |
+| DLT_KLDuTinh, DLT_SLMeDuTinh, ...             |          | Tham số tính toán DLT                  |
+| Status                                        | int?     | HopDongStatus enum                     |
+| NPMACTenMAC, NPMACThemBotNuoc1                |          | Computed từ MAC                        |
+| KLLyThuyetCoTheTaoPT                          | decimal? | _Computed_: KL lý thuyết có thể tạo PT |
 
 ### ObjPhieuTron
 
 File: `NDPSo/Data/ObjPhieuTron.cs`
 
-| Property | Kiểu | Ghi chú |
-|----------|------|---------|
-| PhieuTronID | int | PK |
-| MaPhieuTron | string | Mã phiếu |
-| NoPhieu | int? | Số thứ tự |
-| NgayPhieuTron | DateTime? | |
-| KLDuTinh, KLThuc | decimal? | KL dự tính / thực tế |
-| SLMeDuTinh, SLMeHieuChinh, SLMeDaTron | int? | Số mẻ |
-| HopDongID, KhachHangID, CongTruongID, MACID | int? | FK |
-| Status | int? | PhieuTronStatus enum |
-| IsQueued | bool? | Đã vào hàng đợi |
-| XeID, TaiXeID, NhanVienID | int? | |
-| MinKLTron, MaxKLTron, MaxKLXeCho | decimal? | Ràng buộc KL |
+| Property                                    | Kiểu      | Ghi chú              |
+| ------------------------------------------- | --------- | -------------------- |
+| PhieuTronID                                 | int       | PK                   |
+| MaPhieuTron                                 | string    | Mã phiếu             |
+| NoPhieu                                     | int?      | Số thứ tự            |
+| NgayPhieuTron                               | DateTime? |                      |
+| KLDuTinh, KLThuc                            | decimal?  | KL dự tính / thực tế |
+| SLMeDuTinh, SLMeHieuChinh, SLMeDaTron       | int?      | Số mẻ                |
+| HopDongID, KhachHangID, CongTruongID, MACID | int?      | FK                   |
+| Status                                      | int?      | PhieuTronStatus enum |
+| IsQueued                                    | bool?     | Đã vào hàng đợi      |
+| XeID, TaiXeID, NhanVienID                   | int?      |                      |
+| MinKLTron, MaxKLTron, MaxKLXeCho            | decimal?  | Ràng buộc KL         |
 
-### Các Obj* quan trọng khác
+### Các Obj\* quan trọng khác
 
-| Class | File | Mô tả |
-|-------|------|-------|
-| ObjMAC | Data/ObjMAC.cs | Máy trộn (MACID, MaMAC, TenMAC, LstMACSilo, ThemBotNuoc1/2) |
-| ObjMACSilo | Data/ObjMACSilo.cs | Silo của MAC (MACSiloID, MACID, SiloID, SiloValue) |
-| ObjSilo | Data/ObjSilo.cs | Định nghĩa silo (SiloID, MaSilo, TenSilo, material) |
-| ObjNhomSilo | Data/ObjNhomSilo.cs | Nhóm silo (Agg/Ce/Wa/Add) |
-| ObjMeTron | Data/ObjMeTron.cs | Mẻ trộn |
-| ObjMeTronChiTiet | Data/ObjMeTronChiTiet.cs | Chi tiết mẻ (KL từng silo) |
-| ObjPhieuGiaoHang | Data/ObjPhieuGiaoHang.cs | Phiếu giao hàng |
-| ObjKhachHang | Data/ObjKhachHang.cs | Khách hàng |
-| ObjCongTruong | Data/ObjCongTruong.cs | Công trường |
-| ObjHangMuc | Data/ObjHangMuc.cs | Hạng mục |
-| ObjMaterial | Data/ObjMaterial.cs | Vật liệu |
-| ObjWeigh | Data/ObjWeigh.cs | Cân |
-| ObjXe | Data/ObjXe.cs | Xe |
-| ObjTaiXe | Data/ObjTaiXe.cs | Tài xế |
-| ObjNhanVien | Data/ObjNhanVien.cs | Nhân viên |
-| ObjTimerPara | Data/ObjTimerPara.cs | Cấu hình timer PLC |
-| ObjEventLog | Data/ObjEventLog.cs | Log sự kiện |
-| ObjVatTu | Data/ObjVatTu.cs | Vật tư |
-| SEC_User/Role/Function/... | Data/SEC_*.cs | Bảo mật phân quyền |
+| Class                      | File                     | Mô tả                                                       |
+| -------------------------- | ------------------------ | ----------------------------------------------------------- |
+| ObjMAC                     | Data/ObjMAC.cs           | Máy trộn (MACID, MaMAC, TenMAC, LstMACSilo, ThemBotNuoc1/2) |
+| ObjMACSilo                 | Data/ObjMACSilo.cs       | Silo của MAC (MACSiloID, MACID, SiloID, SiloValue)          |
+| ObjSilo                    | Data/ObjSilo.cs          | Định nghĩa silo (SiloID, MaSilo, TenSilo, material)         |
+| ObjNhomSilo                | Data/ObjNhomSilo.cs      | Nhóm silo (Agg/Ce/Wa/Add)                                   |
+| ObjMeTron                  | Data/ObjMeTron.cs        | Mẻ trộn                                                     |
+| ObjMeTronChiTiet           | Data/ObjMeTronChiTiet.cs | Chi tiết mẻ (KL từng silo)                                  |
+| ObjPhieuGiaoHang           | Data/ObjPhieuGiaoHang.cs | Phiếu giao hàng                                             |
+| ObjKhachHang               | Data/ObjKhachHang.cs     | Khách hàng                                                  |
+| ObjCongTruong              | Data/ObjCongTruong.cs    | Công trường                                                 |
+| ObjHangMuc                 | Data/ObjHangMuc.cs       | Hạng mục                                                    |
+| ObjMaterial                | Data/ObjMaterial.cs      | Vật liệu                                                    |
+| ObjWeigh                   | Data/ObjWeigh.cs         | Cân                                                         |
+| ObjXe                      | Data/ObjXe.cs            | Xe                                                          |
+| ObjTaiXe                   | Data/ObjTaiXe.cs         | Tài xế                                                      |
+| ObjNhanVien                | Data/ObjNhanVien.cs      | Nhân viên                                                   |
+| ObjTimerPara               | Data/ObjTimerPara.cs     | Cấu hình timer PLC                                          |
+| ObjEventLog                | Data/ObjEventLog.cs      | Log sự kiện                                                 |
+| ObjVatTu                   | Data/ObjVatTu.cs         | Vật tư                                                      |
+| SEC_User/Role/Function/... | Data/SEC\_\*.cs          | Bảo mật phân quyền                                          |
 
 ---
 
@@ -233,6 +234,7 @@ File context: `NDPSo/EntityModel/TramTromModel.Context.cs`
 **DbContext class:** `DEPTramTronEntities`
 
 **Connection string** (App.config line 33):
+
 ```
 Server:   DESKTOP-7KUDOEF
 Database: TramTron
@@ -243,50 +245,52 @@ MARS:     enabled
 
 **Các DbSet chính (38 bảng + views):**
 
-| DbSet | Bảng DB | Mục đích |
-|-------|---------|---------|
-| DuLieuTrons | DuLieuTron | Dữ liệu trộn / đơn hàng |
-| HopDongs | HopDong | Hợp đồng |
-| PhieuTrons | PhieuTron | Phiếu trộn |
-| PhieuGiaoHangs | PhieuGiaoHang | Phiếu giao hàng |
-| MeTrons | MeTron | Mẻ trộn |
-| MeTronChiTiets | MeTronChiTiet | Chi tiết mẻ (KL silo) |
-| MACs | MAC | Máy trộn |
-| MACSilos | MACSilo | Silo của máy |
-| Silos | Silo | Silo vật liệu |
-| NhomSilos | NhomSilo | Nhóm silo |
-| KhachHangs | KhachHang | Khách hàng |
-| CongTruongs | CongTruong | Công trường |
-| HangMucs | HangMuc | Hạng mục |
-| Materials | Material | Vật liệu |
-| Weighs | Weigh | Cân |
-| Xes | Xe | Xe |
-| TaiXes | TaiXe | Tài xế |
-| NhanViens | NhanVien | Nhân viên |
-| TimerParas | TimerPara | Timer PLC |
-| SEC_Users | SEC_User | User bảo mật |
-| SEC_Roles | SEC_Role | Vai trò |
-| SEC_Functions | SEC_Function | Chức năng/quyền |
-| SEC_RoleFunctions | SEC_RoleFunction | Mapping role-function |
-| SEC_UserRoles | SEC_UserRole | Mapping user-role |
-| EventLogs | EventLog | Log hệ thống |
-| WeiSiloSavings | WeiSiloSaving | Lưu giá trị cân silo |
-| WeiSiloVisibles | WeiSiloVisible | Hiển thị cân silo |
-| TinhDoHutNuocs | TinhDoHutNuoc | Độ hút nước |
-| vw_DataMix | view | Dữ liệu trộn (view) |
-| vw_InfoPT | view | Thông tin phiếu trộn |
-| vw_SumWeight | view | Tổng KL (view) |
+| DbSet             | Bảng DB          | Mục đích                |
+| ----------------- | ---------------- | ----------------------- |
+| DuLieuTrons       | DuLieuTron       | Dữ liệu trộn / đơn hàng |
+| HopDongs          | HopDong          | Hợp đồng                |
+| PhieuTrons        | PhieuTron        | Phiếu trộn              |
+| PhieuGiaoHangs    | PhieuGiaoHang    | Phiếu giao hàng         |
+| MeTrons           | MeTron           | Mẻ trộn                 |
+| MeTronChiTiets    | MeTronChiTiet    | Chi tiết mẻ (KL silo)   |
+| MACs              | MAC              | Máy trộn                |
+| MACSilos          | MACSilo          | Silo của máy            |
+| Silos             | Silo             | Silo vật liệu           |
+| NhomSilos         | NhomSilo         | Nhóm silo               |
+| KhachHangs        | KhachHang        | Khách hàng              |
+| CongTruongs       | CongTruong       | Công trường             |
+| HangMucs          | HangMuc          | Hạng mục                |
+| Materials         | Material         | Vật liệu                |
+| Weighs            | Weigh            | Cân                     |
+| Xes               | Xe               | Xe                      |
+| TaiXes            | TaiXe            | Tài xế                  |
+| NhanViens         | NhanVien         | Nhân viên               |
+| TimerParas        | TimerPara        | Timer PLC               |
+| SEC_Users         | SEC_User         | User bảo mật            |
+| SEC_Roles         | SEC_Role         | Vai trò                 |
+| SEC_Functions     | SEC_Function     | Chức năng/quyền         |
+| SEC_RoleFunctions | SEC_RoleFunction | Mapping role-function   |
+| SEC_UserRoles     | SEC_UserRole     | Mapping user-role       |
+| EventLogs         | EventLog         | Log hệ thống            |
+| WeiSiloSavings    | WeiSiloSaving    | Lưu giá trị cân silo    |
+| WeiSiloVisibles   | WeiSiloVisible   | Hiển thị cân silo       |
+| TinhDoHutNuocs    | TinhDoHutNuoc    | Độ hút nước             |
+| vw_DataMix        | view             | Dữ liệu trộn (view)     |
+| vw_InfoPT         | view             | Thông tin phiếu trộn    |
+| vw_SumWeight      | view             | Tổng KL (view)          |
 
 ---
 
 ## 6. LỚP DAL (REPOSITORY)
 
 **Base class:** `EFRepository<T>` (Core/EFRepository.cs)
+
 - `SelectAll(ISpecification<T> spec)` — lọc bằng Specification
 - `Insert(T entity)`, `Update(T entity)`, `Delete(T entity)`
 - `GetByKey(int id)`
 
 **Specification pattern** (Core/Specification.cs):
+
 ```csharp
 var spec = new Specification<DuLieuTron>(d => d.Status != 4);
 var results = _repo.SelectAll(spec); // → EF Where()
@@ -294,23 +298,24 @@ var results = _repo.SelectAll(spec); // → EF Where()
 
 **40+ Repository interfaces** (tất cả ở `NDPSo/DAL/I*Repository.cs`):
 
-| Interface | Implementation | Bảng |
-|-----------|---------------|------|
-| IDuLieuTronRepository | DuLieuTronRepository | DuLieuTron |
-| IHopDongRepository | HopDongRepository | HopDong |
-| IPhieuTronRepository | PhieuTronRepository | PhieuTron |
+| Interface                | Implementation          | Bảng          |
+| ------------------------ | ----------------------- | ------------- |
+| IDuLieuTronRepository    | DuLieuTronRepository    | DuLieuTron    |
+| IHopDongRepository       | HopDongRepository       | HopDong       |
+| IPhieuTronRepository     | PhieuTronRepository     | PhieuTron     |
 | IPhieuGiaoHangRepository | PhieuGiaoHangRepository | PhieuGiaoHang |
-| IMeTronRepository | MeTronRepository | MeTron |
+| IMeTronRepository        | MeTronRepository        | MeTron        |
 | IMeTronChiTietRepository | MeTronChiTietRepository | MeTronChiTiet |
-| IMACRepository | MACRepository | MAC |
-| IMACSiloRepository | MACSiloRepository | MACSilo |
-| ISiloRepository | SiloRepository | Silo |
-| IKhachHangRepository | KhachHangRepository | KhachHang |
-| ICongTruongRepository | CongTruongRepository | CongTruong |
-| ITimerParaRepository | TimerParaRepository | TimerPara |
-| ... (30+ khác) | | |
+| IMACRepository           | MACRepository           | MAC           |
+| IMACSiloRepository       | MACSiloRepository       | MACSilo       |
+| ISiloRepository          | SiloRepository          | Silo          |
+| IKhachHangRepository     | KhachHangRepository     | KhachHang     |
+| ICongTruongRepository    | CongTruongRepository    | CongTruong    |
+| ITimerParaRepository     | TimerParaRepository     | TimerPara     |
+| ... (30+ khác)           |                         |               |
 
 **IoC đăng ký** (Core/IoC.cs — Unity container):
+
 ```csharp
 IoC.Register<IHopDongRepository, HopDongRepository>();
 var repo = IoC.Retrieve<IHopDongRepository>();
@@ -325,6 +330,7 @@ var repo = IoC.Retrieve<IHopDongRepository>();
 File: `NDPSo/MasterData/IMasterDataModel.cs`
 
 Định nghĩa toàn bộ CRUD cho hệ thống:
+
 - `ListDuLieuTron()`, `GetDLTByKey()`, `AddDuLieuTron()`, `UpdateDuLieuTron()`, `DeleteDuLieuTron()`
 - `ListHopDong()`, `GetHopDongByKey()`, `AddHopDong()`, `UpdateHopDong()`
 - `ListPhieuTron()`, `ListPhieuGiaoHang()`, `SaveMeTronChiTiet()`
@@ -340,6 +346,7 @@ File: `NDPSo/MasterData/TronOnlineDataPresenter.cs`
 Inherits: `MasterDataPresenter<ITronOnlineView>`
 
 **Các method chính:**
+
 ```
 ListDuLieuTron()           → _iView.BLstDuLieuTron
 ListMAC()                  → _iView.BLstMAC
@@ -358,6 +365,7 @@ BuildNewMeTronChiTiet(...) → ObjMeTronChiTiet (với KL tính toán)
 ### MasterDataPresenter<T> (Base)
 
 File: `NDPSo/MasterData/MasterDataPresenter.cs`
+
 ```csharp
 protected T _iView;
 protected static IMasterDataModel _iMasterDataModel;
@@ -366,6 +374,7 @@ protected static IMasterDataModel _iMasterDataModel;
 ### ITronOnlineView (Interface cho VanHanh)
 
 Properties mà VanHanh phải implement:
+
 ```csharp
 BindingList<ObjDuLieuTron> BLstDuLieuTron { set; }
 BindingList<ObjPhieuTron>  BLstPhieuTron  { set; }
@@ -384,17 +393,17 @@ BindingList<ObjTimerPara>  BLstTimerPara  { set; }
 
 Form `VanHanh` được chia thành **nhiều partial class**:
 
-| File | Nội dung |
-|------|---------|
-| `VanHanh.cs` | Fields, Properties, Form Load/Close, khởi động PLC thread |
-| `VanHanh.Designer.cs` | Tất cả controls UI (auto-generated) |
-| `VanHanh.Grid.cs` | Grid grcHopDong: CRUD, RowStyle, Sort, Context Menu |
-| `VanHanh.PLC.cs` | Send setpoints DB3, đọc giá trị cân, cập nhật UI từ PLC |
-| `VanHanh.Commands.cs` | Click handlers: btnRun, btnPause, btnHuy, 120+ van/động cơ |
-| `VanHanh.Silo.cs` | Quản lý KL + độ ẩm silo |
-| `VanHanh.LogicConfig.cs` | Cấu hình logic silo (tab Agg/Ce/Wa/Add) |
-| `VanHanh.Printing.cs` | In phiếu trộn, in nhanh |
-| `VanHanh.resx` | Resources (strings, images) |
+| File                     | Nội dung                                                   |
+| ------------------------ | ---------------------------------------------------------- |
+| `VanHanh.cs`             | Fields, Properties, Form Load/Close, khởi động PLC thread  |
+| `VanHanh.Designer.cs`    | Tất cả controls UI (auto-generated)                        |
+| `VanHanh.Grid.cs`        | Grid grcHopDong: CRUD, RowStyle, Sort, Context Menu        |
+| `VanHanh.PLC.cs`         | Send setpoints DB3, đọc giá trị cân, cập nhật UI từ PLC    |
+| `VanHanh.Commands.cs`    | Click handlers: btnRun, btnPause, btnHuy, 120+ van/động cơ |
+| `VanHanh.Silo.cs`        | Quản lý KL + độ ẩm silo                                    |
+| `VanHanh.LogicConfig.cs` | Cấu hình logic silo (tab Agg/Ce/Wa/Add)                    |
+| `VanHanh.Printing.cs`    | In phiếu trộn, in nhanh                                    |
+| `VanHanh.resx`           | Resources (strings, images)                                |
 
 ### 8.1 Fields quan trọng trong VanHanh.cs
 
@@ -446,9 +455,9 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 {
     set
     {
-        // Sort: Finished (Status=4) xuống cuối, rồi theo LnNo
+        // Sort: Cancelled (Status=3) kế cuối, Finished (Status=4) cuối cùng, rồi theo LnNo
         var sorted = value
-            .OrderBy(d => d.Status == 4 ? 1 : 0)
+            .OrderBy(d => d.Status == 4 ? 2 : d.Status == 3 ? 1 : 0)
             .ThenBy(d => d.LnNo)
             .ToList();
         this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(sorted);
@@ -460,6 +469,7 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 ### 8.3 Controls chính (VanHanh.Designer.cs)
 
 **Grid:**
+
 - `grcHopDong` (GridControl) + `grvHopDong` (GridView) — danh sách hợp đồng/DLT
 - Events: `RowStyle`, `PopupMenuShowing`, `FocusedRowChanged`, `DoubleClick`
 
@@ -469,7 +479,7 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 `gcMACSUMSiloValue, gcKLDatHang, gcKLDaGiao, gcTongPhieuTron`
 `gcThoiGianGiaoHang, gcTrangThaiGiaoHang`
 
-**Custom Controls (UcBtn*):**
+**Custom Controls (UcBtn\*):**
 | Control | Type | Chức năng |
 |---------|------|-----------|
 | `btnRun` | UcBtnRun | Chạy/dừng tiến trình trộn |
@@ -486,6 +496,7 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 `lblTenHangMuc, lblXe, lblDriver, lblDiaDiem, lblKhoiLuong, lblLuyKe`
 
 **Tabs:**
+
 - `tpgDLTron` — danh sách hợp đồng + thông tin
 - `xtraTabPage1` — cấu hình logic Agg/Ce/Wa/Add (6+5+2+5 silos)
 
@@ -494,24 +505,29 @@ public BindingList<ObjDuLieuTron> BLstDuLieuTron
 ### 8.4 VanHanh.Grid.cs — Logic quan trọng
 
 #### Sắp xếp (DoTogglePrioritySort)
+
 ```
 _isPrioritySort = false (mặc định):
-  OrderBy(Status==4 ? 1 : 0) → ThenBy(LnNo)
+  OrderBy(Status==4 ? 2 : Status==3 ? 1 : 0) → ThenBy(LnNo)
+  ← Active đầu, Cancelled kế cuối, Finished cuối
 
 _isPrioritySort = true (chế độ CR):
-  OrderBy(Status==4 ? 2 : Status==1 ? 0 : 1)  ← Finished cuối, Running đầu
-  ThenBy(ThoiGianGiaoHang.HasValue ? 0 : 1)    ← có deadline trước
-  ThenBy(CriticalRatio ?? double.MaxValue)       ← CR thấp = gấp nhất
+  OrderBy(Status==4 ? 3 : Status==3 ? 2 : Status==1 ? 0 : 1)  ← Running đầu, Cancelled kế cuối, Done cuối
+  ThenBy(ThoiGianGiaoHang.HasValue ? 0 : 1)                    ← có deadline trước
+  ThenBy(CriticalRatio ?? double.MaxValue)                       ← CR thấp = gấp nhất
 ```
 
 #### Màu dòng (grvHopDong_RowStyle)
+
 ```
-Status == 4 (Finished) → ColorDone (#D2D2D2 xám) + DimGray  [ưu tiên 1]
-Status == 1 (Running)  → ColorRunning (#B4FFB4 xanh lá)      [ưu tiên 2]
-ThoiGianGiaoHang set  → BackColorByCR(cr): Đỏ/Vàng/Xanh     [ưu tiên 3]
+Status == 3 (Cancelled) → ColorCancelled (#FFB4B4 hồng) + ForeCancelled (#8C0000 đỏ đậm)  [ưu tiên 1]
+Status == 4 (Finished)  → ColorDone (#D2D2D2 xám) + DimGray                                [ưu tiên 2]
+Status == 1 (Running)   → ColorRunning (#B4FFB4 xanh lá)                                    [ưu tiên 3]
+ThoiGianGiaoHang set    → BackColorByCR(cr): Đỏ/Vàng/Xanh                                  [ưu tiên 4]
 ```
 
 #### Context Menu (grvHopDong_PopupMenuShowing)
+
 - Tạo mới Hợp đồng → `DoCreateNewDuLieuTron`
 - Chỉnh sửa Hợp đồng → `DoEditDuLieuTron`
 - Tìm Hợp đồng đã tạo → `DoChangeDuLieuTron`
@@ -519,12 +535,13 @@ ThoiGianGiaoHang set  → BackColorByCR(cr): Đỏ/Vàng/Xanh     [ưu tiên 3]
 - Đặt giờ giao hàng → `DoSetThoiGianGiaoHang`
 - Toggle sắp xếp CR / mặc định → `DoTogglePrioritySort`
 
-#### Disable btnRun cho Finished (FocusedRowChanged)
+#### Disable btnRun cho Cancelled & Finished (FocusedRowChanged)
+
 ```csharp
 private void grvHopDong_FocusedRowChanged_1(...)
 {
     ObjDuLieuTron dlt = grvHopDong.GetRow(e.FocusedRowHandle) as ObjDuLieuTron;
-    btnRun.Enabled = dlt?.Status != 4;
+    btnRun.Enabled = dlt?.Status != 4 && dlt?.Status != 3;  // không chạy lại Cancelled/Finished
     DoFocusHopDong();
 }
 ```
@@ -547,12 +564,14 @@ private void btnRun_ButtonClick(object sender, EventArgs e)
 ```
 
 **btnRun.Visible** được điều khiển bởi `_running`:
+
 - `_running = true` → `btnRun.Visible = false`
 - `_running = false` → `btnRun.Visible = true`
 
 (Nguồn: VanHanh.cs ~line 1468–1474, đọc từ `_ro.Op_RUNNING`)
 
 **120+ valve button handlers** trong Commands.cs theo pattern:
+
 ```csharp
 private void btnVanXa_Agg1_ButtonMouseDown(...)
 {
@@ -567,6 +586,55 @@ private void btnVanXa_Agg1_ButtonMouseUp(...)
 ```
 
 Silo: 6 Agg + 5 Ce + 2 Wa + 5 Add = **18 silo vật liệu**
+
+### 8.6 Ranking & Auto-Advance Logic (VanHanh.cs)
+
+#### RefreshRankingDLT()
+
+Sắp xếp lại toàn bộ `_blstDuLieuTron`, lưu DB, refresh grid:
+
+```
+1. active   = Status != 3 && Status != 4  → sort theo DLT_KLDuTinhCuaTungMe_NoiB (priority field)
+2. cancelled = Status == 3               → giữ nguyên thứ tự LnNo cũ
+3. done      = Status == 4               → giữ nguyên thứ tự LnNo cũ
+merged = active + cancelled + done → renumber LnNo = 1..n
+→ SaveDuLieuTron() → ListDuLieuTron() → grvHopDong sort by LnNo asc → FocusedRowHandle = 0
+```
+
+#### UpdateRankingDLT(dulieutron)
+
+Đặt `dulieutron` làm ưu tiên cao nhất (priority = 1):
+
+```
+→ Set dulieutron.DLT_KLDuTinhCuaTungMe_NoiB = 1, others increment
+→ Gọi RefreshRankingDLT()
+```
+
+#### AutoAdvanceAfterCancel() _(thêm 2026-05-08)_
+
+Sau khi hủy đơn, tự động chuyển sang đơn active tiếp theo:
+
+```csharp
+var next = _blstDuLieuTron
+    .Where(d => d.Status != 3 && d.Status != 4)
+    .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+    .FirstOrDefault();
+if (next != null) UpdateRankingDLT(next);
+else RefreshRankingDLT();
+```
+
+#### DoHuy() → luồng hủy đơn _(cập nhật 2026-05-08)_
+
+```
+F3 pressed → ChangeStatusSelectedDuLieuTron(3, null) → AutoAdvanceAfterCancel()
+```
+
+#### InitRunning() — các guard _(cập nhật 2026-05-08)_
+
+```
+Status == 4 → cảnh báo "đã hoàn thành", return
+Status == 3 → cảnh báo "đã bị hủy", return
+```
 
 ---
 
@@ -611,6 +679,7 @@ HandleException()            // tăng error counter, tái kết nối sau 10 l�
 File: `NDPSo/MasterData/ReceivingFromPLC.cs`
 
 **DB1 — Đếm mẻ & tín hiệu:**
+
 ```
 _SoMeTron              // số mẻ hiện tại
 _SoMeCan_Agg1-6        // số mẻ đã cân AGG 1-6
@@ -621,6 +690,7 @@ _KL_ThucCan_Agg1-3     // KL thực tế
 ```
 
 **DB4 — Giá trị cân:**
+
 ```
 _XungCan_Agg/Ce/Wa     // xung cân (pulse)
 _KL_Chinh_0            // KL chính hiện tại
@@ -630,6 +700,7 @@ _Per_KL_AGG/CE/WA      // % KL Agg/Ce/Wa
 ```
 
 **DB6 — Tham số (timing/KL):**
+
 ```
 _ThoiGianTreCan_Ce, _ThoiGianTreXa_Ce    // thời gian trễ cân/xả Xi
 _KhoiLuongBaoRong_Ce                      // KL báo rỗng
@@ -638,6 +709,7 @@ _KhoiLuongRungCan_Ce                      // KL rung cân
 ```
 
 **DB7 — Trạng thái I/O (18 bytes × 8 bit = 144 bit):**
+
 ```
 _statusIO_00 ... _statusIO_17   // raw byte (đọc từng bit trong VanHanh)
 Op_RUNNING  (bit cụ thể)        // → điều khiển btnRun.Visible
@@ -645,6 +717,7 @@ Op_SIMULATION                   // → chế độ mô phỏng
 ```
 
 **DB8 — Cờ báo cáo:**
+
 ```
 _Save_Report   // PLC yêu cầu lưu báo cáo → trigger save MeTronChiTiet
 ```
@@ -677,18 +750,21 @@ File: `NDPSo/Utils/ScheduleColorHelper.cs`
 
 ```csharp
 // Màu sắc chính
-ColorRunning  = RGB(180, 255, 180)  // #B4FFB4 xanh lá — đang chạy
-ColorDone     = RGB(210, 210, 210)  // #D2D2D2 xám     — hoàn tất
-ColorSwitch   = RGB(255, 230, 180)  // #FFE6B4 cam nhạt — đang vệ sinh
+ColorRunning   = RGB(180, 255, 180)  // #B4FFB4 xanh lá  — đang chạy
+ColorDone      = RGB(210, 210, 210)  // #D2D2D2 xám      — hoàn tất
+ColorCancelled = RGB(255, 180, 180)  // #FFB4B4 hồng nhạt — đã hủy
+ColorSwitch    = RGB(255, 230, 180)  // #FFE6B4 cam nhạt  — đang vệ sinh
 
-ColorLate     = RGB(255, 100, 100)  // #FF6464 đỏ      — CR < 1.0 (trễ)
-ColorSoonLate = RGB(255, 230,  80)  // #FFE650 vàng    — CR 1.0-1.5
-ColorOnTime   = RGB(200, 240, 200)  // #C8F0C8 xanh nhạt — CR > 1.5
+ColorLate      = RGB(255, 100, 100)  // #FF6464 đỏ       — CR < 1.0 (trễ)
+ColorSoonLate  = RGB(255, 230,  80)  // #FFE650 vàng     — CR 1.0-1.5
+ColorOnTime    = RGB(200, 240, 200)  // #C8F0C8 xanh nhạt — CR > 1.5
 
-ForeRunning   = RGB(  0, 110,   0)  // xanh đậm
-ForeLate      = White
-ForeSoonLate  = RGB( 80,  60,   0)  // nâu đậm
-ForeOnTime    = RGB(  0,  80,   0)
+ForeRunning    = RGB(  0, 110,   0)  // xanh đậm
+ForeDone       = RGB(120, 120, 120)  // xám
+ForeCancelled  = RGB(140,   0,   0)  // đỏ đậm
+ForeLate       = White
+ForeSoonLate   = RGB( 80,  60,   0)  // nâu đậm
+ForeOnTime     = RGB(  0,  80,   0)
 
 // Methods
 BackColorByCR(double? cr) → Color   // trả màu nền theo CR
@@ -721,38 +797,40 @@ ConfigManager.ServiceConfig    // cấu hình service (local/WCF)
 ### SmartRetryEngine
 
 File: `NDPSo/Utils/SmartRetryEngine.cs` (thêm gần đây)
+
 - Cơ chế retry thông minh cho các thao tác có thể thất bại (kết nối PLC, DB)
 
 ### Các Utils khác
 
-| Class | File | Mục đích |
-|-------|------|---------|
-| TramTronLogger | Utils/TramTronLogger.cs | WriteInfo/Error/Warning |
-| TramTromMessageBox | Utils/TramTromMessageBox.cs | Dialog chuẩn của hệ thống |
-| EncryptionHelper | Utils/EncryptionHelper.cs | Mã hóa/giải mã |
-| Converter | Utils/Converter.cs | Enum↔List, BitArray, format |
-| FormatToString | Utils/FormatToString.cs | Format string helper |
-| Validation | Utils/Validation.cs | Validate input |
-| DirectoryMng | Utils/DirectoryMng.cs | Quản lý file/folder |
-| HelpperExport, SupportExport | Utils/ | Export Excel/report |
-| SetPoint | Utils/ | Dung sai KL và setpoint cân |
-| TronOnlineAttributes | Utils/ | Thuộc tính vận hành online |
-| MappingHelper | PLCMapping/MappingHelper.cs | float → 4 bytes cho PLC |
+| Class                        | File                        | Mục đích                    |
+| ---------------------------- | --------------------------- | --------------------------- |
+| TramTronLogger               | Utils/TramTronLogger.cs     | WriteInfo/Error/Warning     |
+| TramTromMessageBox           | Utils/TramTromMessageBox.cs | Dialog chuẩn của hệ thống   |
+| EncryptionHelper             | Utils/EncryptionHelper.cs   | Mã hóa/giải mã              |
+| Converter                    | Utils/Converter.cs          | Enum↔List, BitArray, format |
+| FormatToString               | Utils/FormatToString.cs     | Format string helper        |
+| Validation                   | Utils/Validation.cs         | Validate input              |
+| DirectoryMng                 | Utils/DirectoryMng.cs       | Quản lý file/folder         |
+| HelpperExport, SupportExport | Utils/                      | Export Excel/report         |
+| SetPoint                     | Utils/                      | Dung sai KL và setpoint cân |
+| TronOnlineAttributes         | Utils/                      | Thuộc tính vận hành online  |
+| MappingHelper                | PLCMapping/MappingHelper.cs | float → 4 bytes cho PLC     |
 
 ---
 
 ## 11. CÁC FORM/VIEW PHỤ
 
-| Form | File | Chức năng |
-|------|------|-----------|
-| NewHopDongView | MasterData/NewHopDongView.cs | Tạo/Sửa hợp đồng |
-| NewDuLieuTronView | MasterData/NewDuLieuTronView.cs | Tạo/Sửa/View DLT |
-| UcSearchHopDong | MasterData/UcSearchHopDong.cs | Tìm kiếm hợp đồng |
-| TimerParaMngView | MasterData/TimerParaMngView.cs | Quản lý timer PLC |
-| Administration/* | Administration/ | Quản lý User/Role/Function |
-| Reports/* | Reports/ | Báo cáo thống kê |
+| Form              | File                            | Chức năng                  |
+| ----------------- | ------------------------------- | -------------------------- |
+| NewHopDongView    | MasterData/NewHopDongView.cs    | Tạo/Sửa hợp đồng           |
+| NewDuLieuTronView | MasterData/NewDuLieuTronView.cs | Tạo/Sửa/View DLT           |
+| UcSearchHopDong   | MasterData/UcSearchHopDong.cs   | Tìm kiếm hợp đồng          |
+| TimerParaMngView  | MasterData/TimerParaMngView.cs  | Quản lý timer PLC          |
+| Administration/\* | Administration/                 | Quản lý User/Role/Function |
+| Reports/\*        | Reports/                        | Báo cáo thống kê           |
 
 **ViewManager** (helper mở form):
+
 ```csharp
 ViewManager.ShowViewDialog(ctrView);  // hiển thị modal
 ctrView.GetDialogResult()             // lấy kết quả
@@ -799,13 +877,13 @@ Thread (_thread):
     PLCController.ReadStruct(DB4) → _ro cập nhật weight values
     PLCController.ReadStruct(DB7) → _ro cập nhật status IO bits
     PLCController.ReadStruct(DB8) → _ro._Save_Report
-    
+
     UI update (Invoke):
       lblSoPhieuTron.Text = _ro._SoMeTron
       các cân/đồng hồ cập nhật
       _running = _ro.Op_RUNNING
       btnRun.Visible = !_running
-    
+
     if (_ro._Save_Report):
       SaveMeTronChiTiet() → DB
       Reset _Save_Report
@@ -883,14 +961,15 @@ WeiSiloType:        Silo=1, Wei=11
 
 ### Bảng màu hoàn chỉnh
 
-| Điều kiện | BackColor | ForeColor | Ưu tiên |
-|-----------|-----------|-----------|---------|
-| Status == 4 (Finished) | #D2D2D2 xám | DimGray | 1 (cao nhất) |
-| Status == 1 (Running) | #B4FFB4 xanh lá | #006E00 xanh đậm | 2 |
-| CR < 1.0 (Trễ) | #FF6464 đỏ | White | 3 |
-| 1.0 ≤ CR < 1.5 (Sắp trễ) | #FFE650 vàng | #503C00 nâu | 3 |
-| CR ≥ 1.5 (Đúng hạn) | #C8F0C8 xanh nhạt | #005000 xanh đậm | 3 |
-| Không có deadline | (mặc định) | (mặc định) | — |
+| Điều kiện                | BackColor         | ForeColor        | Ưu tiên      |
+| ------------------------ | ----------------- | ---------------- | ------------ |
+| Status == 3 (Cancelled)  | #FFB4B4 hồng nhạt | #8C0000 đỏ đậm   | 1 (cao nhất) |
+| Status == 4 (Finished)   | #D2D2D2 xám       | DimGray          | 2            |
+| Status == 1 (Running)    | #B4FFB4 xanh lá   | #006E00 xanh đậm | 3            |
+| CR < 1.0 (Trễ)           | #FF6464 đỏ        | White            | 4            |
+| 1.0 ≤ CR < 1.5 (Sắp trễ) | #FFE650 vàng      | #503C00 nâu      | 4            |
+| CR ≥ 1.5 (Đúng hạn)      | #C8F0C8 xanh nhạt | #005000 xanh đậm | 4            |
+| Không có deadline        | (mặc định)        | (mặc định)       | —            |
 
 ### Critical Ratio (CR) formula
 
@@ -908,37 +987,37 @@ CR > 1.5  → AN TOÀN
 
 ## 16. QUICK REFERENCE FILES
 
-| Thành phần | File |
-|-----------|------|
-| Main Form | `NDPSo/MasterData/VanHanh.cs` |
-| Form Designer | `NDPSo/MasterData/VanHanh.Designer.cs` |
-| Grid/CRUD/Sort/Color | `NDPSo/MasterData/VanHanh.Grid.cs` |
-| PLC Read/Write | `NDPSo/MasterData/VanHanh.PLC.cs` |
-| Button Handlers | `NDPSo/MasterData/VanHanh.Commands.cs` |
-| In ấn | `NDPSo/MasterData/VanHanh.Printing.cs` |
-| Presenter | `NDPSo/MasterData/TronOnlineDataPresenter.cs` |
-| Interface Model | `NDPSo/MasterData/IMasterDataModel.cs` |
-| Interface View | `NDPSo/MasterData/ITronOnlineView.cs` |
-| DTO chính | `NDPSo/Data/ObjDuLieuTron.cs` |
-| DTO hợp đồng | `NDPSo/Data/ObjHopDong.cs` |
-| DTO phiếu trộn | `NDPSo/Data/ObjPhieuTron.cs` |
-| DTO MAC/Silo | `NDPSo/Data/ObjMAC.cs`, `ObjMACSilo.cs` |
-| Enums | `NDPSo/Utils/Enums.cs` |
-| EF Context | `NDPSo/EntityModel/TramTromModel.Context.cs` |
-| PLC Controller | `NDPSo/PLCModule/PLCController.cs` |
-| PLC Receive | `NDPSo/MasterData/ReceivingFromPLC.cs` |
-| PLC Send | `NDPSo/MasterData/SendingToPLC.cs` |
-| PLC Commands | `NDPSo/MasterData/SendingCommand.cs` |
-| IoC Container | `NDPSo/Core/IoC.cs` |
-| Colors | `NDPSo/Utils/ScheduleColorHelper.cs` |
-| Global State | `NDPSo/Utils/GlobalValues.cs` |
-| Config | `NDPSo/Utils/ConfigManager.cs` |
-| DB Connection | `NDPSo/App.config` (line 33) |
-| SmartRetry | `NDPSo/Utils/SmartRetryEngine.cs` |
-| Chatbot | `NDPSo/Chatbot/ChatbotOrchestrator.cs` |
-| TonKho Service | `NDPSo/MasterData/TonKho/TonKhoService.cs` |
-| TonKho UI | `NDPSo/MasterData/TonKho/TonKhoView.cs` |
-| NVL Monitor Design | `NVL_Monitor_Dev.md` (tài liệu thiết kế) |
+| Thành phần           | File                                          |
+| -------------------- | --------------------------------------------- |
+| Main Form            | `NDPSo/MasterData/VanHanh.cs`                 |
+| Form Designer        | `NDPSo/MasterData/VanHanh.Designer.cs`        |
+| Grid/CRUD/Sort/Color | `NDPSo/MasterData/VanHanh.Grid.cs`            |
+| PLC Read/Write       | `NDPSo/MasterData/VanHanh.PLC.cs`             |
+| Button Handlers      | `NDPSo/MasterData/VanHanh.Commands.cs`        |
+| In ấn                | `NDPSo/MasterData/VanHanh.Printing.cs`        |
+| Presenter            | `NDPSo/MasterData/TronOnlineDataPresenter.cs` |
+| Interface Model      | `NDPSo/MasterData/IMasterDataModel.cs`        |
+| Interface View       | `NDPSo/MasterData/ITronOnlineView.cs`         |
+| DTO chính            | `NDPSo/Data/ObjDuLieuTron.cs`                 |
+| DTO hợp đồng         | `NDPSo/Data/ObjHopDong.cs`                    |
+| DTO phiếu trộn       | `NDPSo/Data/ObjPhieuTron.cs`                  |
+| DTO MAC/Silo         | `NDPSo/Data/ObjMAC.cs`, `ObjMACSilo.cs`       |
+| Enums                | `NDPSo/Utils/Enums.cs`                        |
+| EF Context           | `NDPSo/EntityModel/TramTromModel.Context.cs`  |
+| PLC Controller       | `NDPSo/PLCModule/PLCController.cs`            |
+| PLC Receive          | `NDPSo/MasterData/ReceivingFromPLC.cs`        |
+| PLC Send             | `NDPSo/MasterData/SendingToPLC.cs`            |
+| PLC Commands         | `NDPSo/MasterData/SendingCommand.cs`          |
+| IoC Container        | `NDPSo/Core/IoC.cs`                           |
+| Colors               | `NDPSo/Utils/ScheduleColorHelper.cs`          |
+| Global State         | `NDPSo/Utils/GlobalValues.cs`                 |
+| Config               | `NDPSo/Utils/ConfigManager.cs`                |
+| DB Connection        | `NDPSo/App.config` (line 33)                  |
+| SmartRetry           | `NDPSo/Utils/SmartRetryEngine.cs`             |
+| Chatbot              | `NDPSo/Chatbot/ChatbotOrchestrator.cs`        |
+| TonKho Service       | `NDPSo/MasterData/TonKho/TonKhoService.cs`    |
+| TonKho UI            | `NDPSo/MasterData/TonKho/TonKhoView.cs`       |
+| NVL Monitor Design   | `NVL_Monitor_Dev.md` (tài liệu thiết kế)      |
 
 ---
 
@@ -982,14 +1061,14 @@ Nhu cầu (kg) = ObjDuLieuTron.DLT_SLMeDuTinh × ObjMACSilo.SiloValue
 
 ### 17.4 TonKhoService methods
 
-| Method | Mô tả |
-|--------|-------|
-| `LoadTonKho()` | Tồn theo silo → `List<ObjTonKhoRow>` |
-| `KiemTraNhuCau()` | Tổng nhu cầu vs tồn → `List<ObjKiemTraTonKho>` |
-| `NhapKho(siloID, soLuong, ...)` | Nhập kho, gọi sp_NhapKho |
-| `XuatKhoTuDong(meTronID, ...)` | Xuất tự động khi mẻ xong |
-| `UpdateMucCanhBao(tonKhoID, muc)` | Cập nhật ngưỡng cảnh báo |
-| `DemCanhBao()` | Tuple (HetKho, CanhBao) — số silo theo trạng thái |
+| Method                            | Mô tả                                             |
+| --------------------------------- | ------------------------------------------------- |
+| `LoadTonKho()`                    | Tồn theo silo → `List<ObjTonKhoRow>`              |
+| `KiemTraNhuCau()`                 | Tổng nhu cầu vs tồn → `List<ObjKiemTraTonKho>`    |
+| `NhapKho(siloID, soLuong, ...)`   | Nhập kho, gọi sp_NhapKho                          |
+| `XuatKhoTuDong(meTronID, ...)`    | Xuất tự động khi mẻ xong                          |
+| `UpdateMucCanhBao(tonKhoID, muc)` | Cập nhật ngưỡng cảnh báo                          |
+| `DemCanhBao()`                    | Tuple (HetKho, CanhBao) — số silo theo trạng thái |
 
 ### 17.5 NVL Monitor Engine (ĐANG PHÁT TRIỂN)
 
@@ -998,6 +1077,7 @@ Nhu cầu (kg) = ObjDuLieuTron.DLT_SLMeDuTinh × ObjMACSilo.SiloValue
 **Mục tiêu:** Background engine chạy mỗi 60s, giả lập tuần tự 10 đơn hàng tiếp theo, cảnh báo nếu thiếu NVL.
 
 **Files sẽ tạo:**
+
 ```
 NDPSo/MasterData/TonKho/Monitor/
   ├── NVLMonitorResult.cs    ← DTOs: NVLShortage, NVLOrderFeasibility, NVLAlertLevel
@@ -1010,4 +1090,4 @@ NDPSo/MasterData/TonKho/Monitor/
 
 ---
 
-*Tài liệu này được tổng hợp từ phân tích toàn bộ mã nguồn. Cập nhật khi có thay đổi kiến trúc lớn.*
+_Tài liệu này được tổng hợp từ phân tích toàn bộ mã nguồn. Cập nhật khi có thay đổi kiến trúc lớn._

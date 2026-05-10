@@ -29,14 +29,6 @@ namespace NDPSo.Data
 			toObj.IsQueued = (bool)fromEnt.IsQueued;
 			toObj.CreatedBy = fromEnt.CreatedBy;
 			toObj.FullName = fromEnt.FullName;
-			toObj.TenKhachHang = fromEnt.KH;
-			toObj.TenCongTruong = fromEnt.CT;
-			toObj.BienSo = fromEnt.BS;
-			toObj.TenMAC = fromEnt.MAC;
-			toObj.TenTaiXe = fromEnt.TX;
-			toObj.TenHangMuc = fromEnt.HM;
-            toObj.TongKhoiLuong = fromEnt.TongKhoiLuong;
-            toObj.TongMeTron = fromEnt.TongMeTron;
         }
 
 		public static void CopyToEntvw_SumWeight(Objvw_SumWeight fromObj, vw_SumWeight toEnt)
@@ -64,14 +56,7 @@ namespace NDPSo.Data
 			toEnt.IsQueued = (bool)fromObj.IsQueued;
 			toEnt.CreatedBy = fromObj.CreatedBy;
 			toEnt.FullName = fromObj.FullName;
-			toEnt.KH = fromObj.TenKhachHang;	
-			toEnt.CT = fromObj.TenCongTruong;	
-			toEnt.BS = fromObj.BienSo;
-			toEnt.MAC = fromObj.TenMAC;
-			toEnt.TX = fromObj.TenTaiXe;
-			toEnt.HM = fromObj.TenHangMuc;
-			toEnt.TongKhoiLuong = fromObj.TongKhoiLuong;
-			toEnt.TongMeTron = fromObj.TongMeTron;
+			
 			
 		}
 		public static Objvw_SumWeight BuildNewObjvw_SumWeight(vw_SumWeight entvw_SumWeight)

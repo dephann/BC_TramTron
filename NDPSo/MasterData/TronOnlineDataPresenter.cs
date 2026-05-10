@@ -1,5 +1,6 @@
 ﻿using NDPSo.Data;
 using NDPSo.Utils;
+using NDPSo.MasterData.TonKho;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -1861,6 +1862,23 @@ namespace NDPSo.MasterData
         public bool DeleteDulieuTron(int id) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.DeleteDulieuTron(id);
         public ObjHopDong SaveHopDong(ObjHopDong objHD, ObjDuLieuTron objDLT) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.SaveHopDong(objHD, objDLT);
         public ObjHopDong SaveHopDong(ObjHopDong objHD) => MasterDataPresenter<ITronOnlineView>._iMasterDataModel.SaveHopDong(objHD);
-        
+        public void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy)
+        {
+            TramTronLogger.WriteInfo($"[XuatKho] Bắt đầu — PhieuTronID={phieuTronID} DuLieuTronID={duLieuTronID}");
+            try
+            {
+                MasterDataPresenter<ITronOnlineView>._iMasterDataModel.XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID, createdBy);
+            }
+            catch (Exception ex)
+            {
+                TramTronLogger.WriteInfo($"[XuatKho] LỖI: {ex.Message}");
+                TramTronLogger.WriteError(ex);
+            }
+            finally
+            {
+                TonKho.TonKhoService.RaiseTonKhoChanged();
+                TramTronLogger.WriteInfo($"[XuatKho] Kết thúc — PhieuTronID={phieuTronID}");
+            }
+        }
     }
 }

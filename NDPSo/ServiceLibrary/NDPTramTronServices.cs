@@ -65,6 +65,10 @@ namespace NDPSo.ServiceLibrary
             IoC.Current.Container.RegisterType<Ivw_TotalTranferRepository, vw_TotalTranferRepository>();
             IoC.Current.Container.RegisterType<Ivw_TotalDriverRepository, vw_TotalDriverRepository>();
             IoC.Current.Container.RegisterType<Ivw_DriverDetailDayRepository, vw_DriverDetailDayRepository>();
+            IoC.Current.Container.RegisterType<ITonKhoRepository, TonKhoRepository>();
+            IoC.Current.Container.RegisterType<INhapKhoRepository, NhapKhoRepository>();
+            IoC.Current.Container.RegisterType<IXuatKhoRepository, XuatKhoRepository>();
+
 
         }
 
@@ -953,5 +957,26 @@ namespace NDPSo.ServiceLibrary
         {
             return new NDPTramTronBO().ListDriverDetailDay__ByCondition(fromDate, toDate, taiXeID, isManual);
         }
+        // ── TonKho ────────────────────────────────────────────────
+
+        public ObjTonKho GetTonKhoByKey(int id) => new NDPTramTronBO().GetTonKhoByKey(id);
+        public IList<ObjTonKho> ListTonKho() => new NDPTramTronBO().ListTonKho();
+        public (int HetKho, int CanhBao) DemCanhBao() => new NDPTramTronBO().DemCanhBao();
+        public bool SaveTonKho(IList<ObjTonKho> lst) => new NDPTramTronBO().SaveTonKho(lst);
+
+        // ── NhapKho ───────────────────────────────────────────────
+
+        public ObjNhapKho GetNhapKhoByKey(int id) => new NDPTramTronBO().GetNhapKhoByKey(id);
+        public IList<ObjNhapKho> ListNhapKho() => new NDPTramTronBO().ListNhapKho();
+        public IList<ObjNhapKho> ListNhapKho_BySiloID(int siloID) => new NDPTramTronBO().ListNhapKho_BySiloID(siloID);
+        public bool SaveNhapKho(IList<ObjNhapKho> lst) => new NDPTramTronBO().SaveNhapKho(lst);
+
+        // ── XuatKho ───────────────────────────────────────────────
+
+        public ObjXuatKho GetXuatKhoByKey(int id) => new NDPTramTronBO().GetXuatKhoByKey(id);
+        public IList<ObjXuatKho> ListXuatKho_ByPhieuTron(int phieuTronID) => new NDPTramTronBO().ListXuatKho_ByPhieuTron(phieuTronID);
+        public bool SaveXuatKho(IList<ObjXuatKho> lst) => new NDPTramTronBO().SaveXuatKho(lst);
+        public void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy)
+            => new NDPTramTronBO().XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID);
     }
 }

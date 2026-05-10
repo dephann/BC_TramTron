@@ -499,8 +499,25 @@ namespace NDPSo.ClientSetting
         {
             return this._services.ListDriverDetailDay_ByCondition(fromDate, toDate, taiXeID, isManual);
         }
+        // ── TonKho ────────────────────────────────────────────────
+        public ObjTonKho GetTonKhoByKey(int id) => this._services.GetTonKhoByKey(id);
+        public IList<ObjTonKho> ListTonKho() => this._services.ListTonKho();
+        public (int HetKho, int CanhBao) DemCanhBao() => this._services.DemCanhBao();
+        public bool SaveTonKho(IList<ObjTonKho> lst) => this._services.SaveTonKho(lst);
 
+        // ── NhapKho ───────────────────────────────────────────────
+        public ObjNhapKho GetNhapKhoByKey(int id) => this._services.GetNhapKhoByKey(id);
+        public IList<ObjNhapKho> ListNhapKho() => this._services.ListNhapKho();
+        public IList<ObjNhapKho> ListNhapKho_BySiloID(int siloID) => this._services.ListNhapKho_BySiloID(siloID);
+        public bool SaveNhapKho(IList<ObjNhapKho> lst) => this._services.SaveNhapKho(lst);
+
+        // ── XuatKho ───────────────────────────────────────────────
+        public ObjXuatKho GetXuatKhoByKey(int id) => this._services.GetXuatKhoByKey(id);
+        public IList<ObjXuatKho> ListXuatKho_ByPhieuTron(int phieuTronID) => this._services.ListXuatKho_ByPhieuTron(phieuTronID);
+        public bool SaveXuatKho(IList<ObjXuatKho> lst) => this._services.SaveXuatKho(lst);
+        public void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy)
+           => this._services.XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID, createdBy);
 
         private NDPTramTronServices _services;
-	}
+    }
 }

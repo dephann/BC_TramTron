@@ -18,6 +18,9 @@ namespace NDPSo.EntityModel
         public Material()
         {
             this.Silos = new HashSet<Silo>();
+            this.NhapKhoes = new HashSet<NhapKho>();
+            this.TonKhoes = new HashSet<TonKho>();
+            this.XuatKhoes = new HashSet<XuatKho>();
         }
     
         public int MaterialID { get; set; }
@@ -36,5 +39,11 @@ namespace NDPSo.EntityModel
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Silo> Silos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NhapKho> NhapKhoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TonKho> TonKhoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XuatKho> XuatKhoes { get; set; }
     }
 }

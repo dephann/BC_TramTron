@@ -1,9 +1,11 @@
-﻿using NDPSo.Core;
+﻿using Microsoft.Practices.Unity;
+using NDPSo.Core;
 using NDPSo.DAL;
 using NDPSo.Data;
 using NDPSo.EntityModel;
+using NDPSo.KWS;
+using NDPSo.MasterData.TonKho;
 using NDPSo.Utils;
-using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +13,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Transactions;
-using NDPSo.KWS;
 
 namespace NDPSo.BusinessObject
 {
@@ -2022,6 +2023,323 @@ namespace NDPSo.BusinessObject
             bool? isManual)
         {
             return vw_DriverDetailDayWithIDHelper.BuildListObjvw_DriverDetailDayWithID(IoC.Current.Container.Resolve<Ivw_DriverDetailDayRepository>().ListDriverDetailDay_ByCondition_Update(fromDate, toDate, taiXeID, isManual));
+        }
+        // ── TonKho ────────────────────────────────────────────────
+
+        public ObjTonKho GetTonKhoByKey(int id) =>
+            TonKhoHelper.BuildNewObjTonKho(IoC.Current.Container.Resolve<ITonKhoRepository>().GetById(id));
+
+        public IList<ObjTonKho> ListTonKho() =>
+            TonKhoHelper.BuildListObjTonKho(IoC.Current.Container.Resolve<ITonKhoRepository>().ListTonKho_WithStatus());
+
+        public (int HetKho, int CanhBao) DemCanhBao()
+        {
+            var list = IoC.Current.Container.Resolve<ITonKhoRepository>().DoQuery().ToList();
+            return (
+                list.Count(t => t.SoLuongTon <= 0),
+                list.Count(t => t.SoLuongTon > 0 && t.SoLuongTon < t.MucCanhBao)
+            );
+        }
+
+        public bool SaveTonKho(IList<ObjTonKho> lst)
+        {
+            ITonKhoRepository repo = IoC.Current.Container.Resolve<ITonKhoRepository>();
+            try
+            {
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    foreach (ObjTonKho obj in lst)
+                    {
+                        if (obj.IsNewObject)
+                        {
+                            TonKho ent = TonKhoHelper.BuildNewEntTonKho(obj);
+                            ent.LatestUpdatedBy = new int?(GlobalValues.UserID);
+                            ent.LatestUpdateDate = new DateTime?(DateTime.Now);
+                            repo.Add(ent);
+                        }
+                        else
+                        {
+                            TonKho ent = repo.GetById(obj.TonKhoID);
+                            TonKhoHelper.CopyToEntTonKho(obj, ent);
+                            ent.LatestUpdatedBy = new int?(GlobalValues.UserID);
+                            ent.LatestUpdateDate = new DateTime?(DateTime.Now);
+                            repo.Update(ent);
+                        }
+                    }
+                    repo.Save();
+                    transactionScope.Complete();
+                    return true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                return false;
+            }
+        }
+
+        // ── NhapKho ───────────────────────────────────────────────
+
+        public ObjNhapKho GetNhapKhoByKey(int id) =>
+            NhapKhoHelper.BuildNewObjNhapKho(IoC.Current.Container.Resolve<INhapKhoRepository>().GetById(id));
+
+        public IList<ObjNhapKho> ListNhapKho() =>
+            NhapKhoHelper.BuildListObjNhapKho(IoC.Current.Container.Resolve<INhapKhoRepository>().SelectAll());
+
+        public IList<ObjNhapKho> ListNhapKho_BySiloID(int siloID) =>
+            NhapKhoHelper.BuildListObjNhapKho(IoC.Current.Container.Resolve<INhapKhoRepository>().ListNhapKho_BySiloID(siloID));
+
+        public bool SaveNhapKho(IList<ObjNhapKho> lst)
+        {
+            INhapKhoRepository repo = IoC.Current.Container.Resolve<INhapKhoRepository>();
+            ITonKhoRepository tonKhoRepo = IoC.Current.Container.Resolve<ITonKhoRepository>();
+            try
+            {
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    foreach (ObjNhapKho obj in lst)
+                    {
+                        if (obj.MarkAsDeleted) continue;
+
+                        if (obj.IsNewObject)
+                        {
+                            obj.MaPhieuNhap = repo.GenMaPhieuNhap();
+                            NhapKho ent = NhapKhoHelper.BuildNewEntNhapKho(obj);
+                            ent.CreatedBy = new int?(GlobalValues.UserID);
+                            ent.CreationDate = new DateTime?(DateTime.Now);
+                            ent.IsApplied = true;
+                            repo.Add(ent);
+
+                            // Cộng vào TonKho
+                            TonKho tonKho = tonKhoRepo.GetBySiloID(obj.SiloID);
+                            if (tonKho != null)
+                            {
+                                tonKho.SoLuongTon += obj.SoLuongNhap;
+                                tonKho.LatestUpdatedBy = new int?(GlobalValues.UserID);
+                                tonKho.LatestUpdateDate = new DateTime?(DateTime.Now);
+                                tonKhoRepo.Update(tonKho);
+                            }
+                        }
+                    }
+                    repo.Save();
+                    tonKhoRepo.Save();
+                    transactionScope.Complete();
+                    return true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                return false;
+            }
+        }
+
+        // ── XuatKho ───────────────────────────────────────────────
+
+        public ObjXuatKho GetXuatKhoByKey(int id) =>
+            XuatKhoHelper.BuildNewObjXuatKho(IoC.Current.Container.Resolve<IXuatKhoRepository>().GetById(id));
+
+        public IList<ObjXuatKho> ListXuatKho_ByPhieuTron(int phieuTronID) =>
+            XuatKhoHelper.BuildListObjXuatKho(IoC.Current.Container.Resolve<IXuatKhoRepository>().ListXuatKho_ByPhieuTron(phieuTronID));
+
+        public bool SaveXuatKho(IList<ObjXuatKho> lst)
+        {
+            IXuatKhoRepository repo = IoC.Current.Container.Resolve<IXuatKhoRepository>();
+            try
+            {
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    foreach (ObjXuatKho obj in lst)
+                    {
+                        if (obj.IsNewObject)
+                        {
+                            XuatKho ent = XuatKhoHelper.BuildNewEntXuatKho(obj);
+                            ent.CreatedBy = new int?(GlobalValues.UserID);
+                            ent.CreationDate = new DateTime?(DateTime.Now);
+                            repo.Add(ent);
+                        }
+                    }
+                    repo.Save();
+                    transactionScope.Complete();
+                    return true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TramTronLogger.WriteError(ex);
+                return false;
+            }
+        }
+
+        public ObjTonKho GetTonKhoBySiloID(int siloID)
+        {
+            var ent = IoC.Current.Container.Resolve<ITonKhoRepository>().GetBySiloID(siloID);
+            return ent != null ? TonKhoHelper.BuildNewObjTonKho(ent) : null;
+        }
+
+        // Thay thế sp_XuatKho_TuDong cho một MeTron
+        public void XuatKhoTheoMeTron(int meTronID, int phieuTronID, int duLieuTronID)
+        {
+            IXuatKhoRepository xuatRepo = IoC.Current.Container.Resolve<IXuatKhoRepository>();
+            ITonKhoRepository tonKhoRepo = IoC.Current.Container.Resolve<ITonKhoRepository>();
+            IMeTronChiTietRepository mtctRepo = IoC.Current.Container.Resolve<IMeTronChiTietRepository>();
+
+            IList<MeTronChiTiet> chiTiets = mtctRepo.ListByMeTronID(meTronID);
+            if (chiTiets.Count == 0)
+            {
+                TramTronLogger.WriteInfo($"[XuatKho] Không có MeTronChiTiet — MeTronID={meTronID}");
+                return;
+            }
+
+            bool daXuat = xuatRepo.DoQuery().Any(x => x.MeTronID == meTronID);
+            if (daXuat)
+            {
+                TramTronLogger.WriteInfo($"[XuatKho] Skip — đã xuất kho MeTronID={meTronID}");
+                return;
+            }
+
+            using (TransactionScope ts = new TransactionScope())
+            {
+                foreach (MeTronChiTiet ct in chiTiets)
+                {
+                    decimal soLuong = ct.ValueBat ?? 0;
+                    if (soLuong <= 0 || ct.MACSilo == null || ct.MaterialID == null) continue;
+
+                    int siloID = ct.MACSilo.SiloID;
+
+                    var ent = new XuatKho
+                    {
+                        SiloID = siloID,
+                        MaterialID = ct.MaterialID.Value,
+                        SoLuongXuat = soLuong,
+                        MeTronID = meTronID,
+                        MeTronChiTietID = ct.MeTronChiTietID,
+                        PhieuTronID = phieuTronID,
+                        DuLieuTronID = duLieuTronID,
+                        NgayXuat = DateTime.Now,
+                        CreatedBy = GlobalValues.UserID,
+                        CreationDate = DateTime.Now
+                    };
+                    xuatRepo.Add(ent);
+
+                    TonKho tonKho = tonKhoRepo.GetBySiloID(siloID);
+                    if (tonKho != null)
+                    {
+                        tonKho.SoLuongTon -= soLuong;
+                        tonKho.LatestUpdatedBy = GlobalValues.UserID;
+                        tonKho.LatestUpdateDate = DateTime.Now;
+                        tonKhoRepo.Update(tonKho);
+                    }
+                }
+                xuatRepo.Save();
+                tonKhoRepo.Save();
+                ts.Complete();
+            }
+        }
+
+
+        // Loop qua tất cả MeTron của một PhieuTron rồi gọi XuatKhoTheoMeTron
+        public void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID)
+        {
+            IMeTronRepository meTronRepo = IoC.Current.Container.Resolve<IMeTronRepository>();
+            List<int> meTronIDs = meTronRepo.DoQuery()
+                .Where(m => m.PhieuTronID == phieuTronID)
+                .Select(m => m.MeTronID)
+                .ToList();
+            TramTronLogger.WriteInfo($"[XuatKho] Tìm thấy {meTronIDs.Count} MeTron — PhieuTronID={phieuTronID}");
+
+            if (meTronIDs.Count == 0)
+            {
+                TramTronLogger.WriteInfo($"[XuatKho] CẢNH BÁO: Không có MeTron nào — PhieuTronID={phieuTronID}");
+                return;
+            }
+
+            foreach (int meTronID in meTronIDs)
+            {
+                try
+                {
+                    XuatKhoTheoMeTron(meTronID, phieuTronID, duLieuTronID);
+                    TramTronLogger.WriteInfo($"[XuatKho] OK — MeTronID={meTronID}");
+                }
+                catch (Exception ex)
+                {
+                    TramTronLogger.WriteInfo($"[XuatKho] LỖI MeTronID={meTronID}: {ex.Message}");
+                    TramTronLogger.WriteError(ex);
+                }
+            }
+        }
+        public System.Data.DataTable GetSiloListForNhapKho()
+        {
+            var dt = new System.Data.DataTable();
+            dt.Columns.Add("SiloID", typeof(int));
+            dt.Columns.Add("TenHienThi", typeof(string));
+            dt.Columns.Add("MaterialName", typeof(string));
+            dt.Columns.Add("MaSilo", typeof(string));
+
+            var silos = IoC.Current.Container.Resolve<ISiloRepository>().DoQuery()
+                .Where(s => s.MaterialID != null && (s.Activated == null || s.Activated.Value))
+                .OrderBy(s => s.MaSilo)
+                .ToList();
+
+            foreach (var s in silos)
+                dt.Rows.Add(s.SiloID, s.MaSilo + " — " + s.MaterialName, s.MaterialName, s.MaSilo);
+
+            return dt;
+        }
+        public List<ObjKiemTraTonKho> KiemTraNhuCau()
+        {
+            var list = new List<ObjKiemTraTonKho>();
+            var sc = ConfigManager.ServiceConfig;
+            string connStr = new System.Data.SqlClient.SqlConnectionStringBuilder
+            {
+                DataSource = sc.ServerName,
+                InitialCatalog = sc.DatabaseName,
+                UserID = sc.UserID,
+                Password = sc.Password,
+                IntegratedSecurity = false
+            }.ConnectionString;
+
+            const string sql = @"
+                WITH NhuCau AS (
+                    SELECT s.SiloID, s.MaSilo, m.MaterialName,
+                           SUM(ISNULL(d.DLT_SLMeDuTinh,1) * ISNULL(ms.SiloValue,0)) AS TongCanDung
+                    FROM DuLieuTron d
+                    JOIN MACSilo  ms ON ms.MACID     = d.MACID
+                    JOIN Silo     s  ON s.SiloID     = ms.SiloID
+                    JOIN Material m  ON m.MaterialID = s.MaterialID
+                    WHERE d.Status IN (0,2) AND s.MaterialID IS NOT NULL
+                    GROUP BY s.SiloID, s.MaSilo, m.MaterialName
+                )
+                SELECT n.MaterialName, n.MaSilo,
+                       ISNULL(tk.SoLuongTon,0)               AS TonHienTai,
+                       n.TongCanDung,
+                       ISNULL(tk.SoLuongTon,0)-n.TongCanDung AS ChenhLech,
+                       ISNULL(tk.MucCanhBao,500)             AS MucCanhBao,
+                       CASE WHEN ISNULL(tk.SoLuongTon,0) >= n.TongCanDung THEN 2
+                            WHEN ISNULL(tk.SoLuongTon,0) >  0             THEN 1
+                            ELSE 0 END AS TrangThaiID
+                FROM NhuCau n
+                LEFT JOIN TonKho tk ON tk.SiloID = n.SiloID
+                ORDER BY TrangThaiID ASC, ChenhLech ASC";
+
+            using (var conn = new System.Data.SqlClient.SqlConnection(connStr))
+            using (var cmd = new System.Data.SqlClient.SqlCommand(sql, conn))
+            {
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                    while (rd.Read())
+                        list.Add(new ObjKiemTraTonKho
+                        {
+                            MaterialName = rd["MaterialName"].ToString(),
+                            MaSilo = rd["MaSilo"].ToString(),
+                            TonHienTai = Convert.ToDecimal(rd["TonHienTai"]),
+                            TongCanDung = Convert.ToDecimal(rd["TongCanDung"]),
+                            ChenhLech = Convert.ToDecimal(rd["ChenhLech"]),
+                            MucCanhBao = Convert.ToDecimal(rd["MucCanhBao"]),
+                            TrangThaiID = Convert.ToInt32(rd["TrangThaiID"])
+                        });
+            }
+            return list;
         }
     }
 }

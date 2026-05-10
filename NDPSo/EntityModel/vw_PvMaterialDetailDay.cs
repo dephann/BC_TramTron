@@ -24,5 +24,6 @@ namespace NDPSo.EntityModel
         public Nullable<decimal> PerSaiSo { get; set; }
         public Nullable<System.DateTime> NgayMeTron { get; set; }
         public Nullable<bool> IsManual { get; set; }
+        public Nullable<decimal> KhoiLuong { get; set; }
     }
 }

@@ -266,6 +266,7 @@
     <Compile Include="DAL\IMeTronChiTietRepository.cs" />
     <Compile Include="DAL\IMeTronRepository.cs" />
     <Compile Include="DAL\INhanVienRepository.cs" />
+    <Compile Include="DAL\INhapKhoRepository.cs" />
     <Compile Include="DAL\INhomSiloRepository.cs" />
     <Compile Include="DAL\IPCInputRepository.cs" />
     <Compile Include="DAL\IPCOutputRepository.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="DAL\ITimerParaRepository.cs" />
     <Compile Include="DAL\ITinhDoHutNuocChiTietRepository.cs" />
     <Compile Include="DAL\ITinhDoHutNuocRepository.cs" />
+    <Compile Include="DAL\ITonKhoRepository.cs" />
     <Compile Include="DAL\IViewDataMixRepository.cs" />
     <Compile Include="DAL\IViewSumWeightRepository.cs" />
     <Compile Include="DAL\Ivw_DriverDetailDayRepository.cs" />
@@ -295,6 +297,7 @@
     <Compile Include="DAL\IWeiSiloSavingRepository.cs" />
     <Compile Include="DAL\IWeiSiloVisibleRepository.cs" />
     <Compile Include="DAL\IXeRepository.cs" />
+    <Compile Include="DAL\IXuatKhoRepository.cs" />
     <Compile Include="DAL\KhachHangRepository.cs" />
     <Compile Include="BusinessObject\NDPSystemBO.cs" />
     <Compile Include="BusinessObject\NDPTramTronBO.cs" />
@@ -350,6 +353,7 @@
     <Compile Include="DAL\MeTronChiTietRepository.cs" />
     <Compile Include="DAL\MeTronRepository.cs" />
     <Compile Include="DAL\NhanVienRepository.cs" />
+    <Compile Include="DAL\NhapKhoRepository.cs" />
     <Compile Include="DAL\NhomSiloRepository.cs" />
     <Compile Include="DAL\PCInputRepository.cs" />
     <Compile Include="DAL\PCOutputRepository.cs" />
@@ -368,6 +372,7 @@
     <Compile Include="DAL\TimerParaRepository.cs" />
     <Compile Include="DAL\TinhDoHutNuocChiTietRepository.cs" />
     <Compile Include="DAL\TinhDoHutNuocRepository.cs" />
+    <Compile Include="DAL\TonKhoRepository.cs" />
     <Compile Include="DAL\ViewDataMixRepository.cs" />
     <Compile Include="DAL\ViewSumWeightRepository.cs" />
     <Compile Include="DAL\vw_DriverDetailDayRepository.cs" />
@@ -380,6 +385,7 @@
     <Compile Include="DAL\WeiSiloSavingRepository.cs" />
     <Compile Include="DAL\WeiSiloVisibleRepository.cs" />
     <Compile Include="DAL\XeRepository.cs" />
+    <Compile Include="DAL\XuatKhoRepository.cs" />
     <Compile Include="Data\CongTruongHelper.cs" />
     <Compile Include="Data\DuLieuTronHelper.cs" />
     <Compile Include="Data\EventLogHelper.cs" />
@@ -393,11 +399,14 @@
     <Compile Include="Data\MeTronChiTietHelper.cs" />
     <Compile Include="Data\MeTronHelper.cs" />
     <Compile Include="Data\NhanVienHelper.cs" />
+    <Compile Include="Data\NhapKhoHelper.cs" />
     <Compile Include="Data\NhomSiloHelper.cs" />
     <Compile Include="Data\ObjAggregationResult.cs" />
     <Compile Include="Data\ObjCongTruong.cs" />
     <Compile Include="Data\ObjMeTronChiTietGiaoHang.cs" />
+    <Compile Include="Data\ObjNhapKho.cs" />
     <Compile Include="Data\ObjPhieuGiaoHang.cs" />
+    <Compile Include="Data\ObjTonKho.cs" />
     <Compile Include="Data\Objvw_DriverDetailDay.cs" />
     <Compile Include="Data\ObjDuLieuTron.cs" />
     <Compile Include="Data\ObjectBase.cs" />
@@ -449,6 +458,7 @@
     <Compile Include="Data\ObjWeiSiloSaving.cs" />
     <Compile Include="Data\ObjWeiSiloVisible.cs" />
     <Compile Include="Data\ObjXe.cs" />
+    <Compile Include="Data\ObjXuatKho.cs" />
     <Compile Include="Data\PCInputHelper.cs" />
     <Compile Include="Data\PCOutputHelper.cs" />
     <Compile Include="Data\PhieuGiaoHangHelper.cs" />
@@ -467,6 +477,7 @@
     <Compile Include="Data\TimerParaHelper.cs" />
     <Compile Include="Data\TinhDoHutNuocChiTietHelper.cs" />
     <Compile Include="Data\TinhDoHutNuocHelper.cs" />
+    <Compile Include="Data\TonKhoHelper.cs" />
     <Compile Include="Data\vw_DataMixHelper.cs" />
     <Compile Include="Data\vw_DriverDetailDayWithIDHelper.cs" />
     <Compile Include="Data\vw_MaterialDetailDayHelper.cs" />
@@ -481,6 +492,7 @@
     <Compile Include="Data\WeiSiloSavingHelper.cs" />
     <Compile Include="Data\WeiSiloVisibleHelper.cs" />
     <Compile Include="Data\XeHelper.cs" />
+    <Compile Include="Data\XuatKhoHelper.cs" />
     <Compile Include="DialogViewBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -532,6 +544,9 @@
     <Compile Include="EntityModel\NhanVien.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\NhapKho.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\NhomSilo.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
@@ -577,6 +592,87 @@
     <Compile Include="EntityModel\Silo.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\sp_CONGTRUONG_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_dasHopDong_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_dasPhieuTron_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_HOPDONG_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_KHACHHANG_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_KiemTra_TonKho_DuLieuTron_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_MACSILO_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_MAC_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_METRONCHITIET_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_METRON_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_NhapKho_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_NHOMSILO_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_PHIEUTRON_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_rptMAC_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_rptTheoPhieu_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_rptTongTungXe_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_Rpt_HopDong_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_ASSEMBLY_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_FUNCTION_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_ROLEFUNCTION_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_ROLE_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_TYPEINFO_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_USERROLE_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SEC_USER_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_SILO_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_TAIXE_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\sp_TIMERPARA_Result.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\SysCodeGen.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
@@ -591,6 +687,9 @@
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\TinhDoHutNuocChiTiet.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\TonKho.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\TraceRecord.cs">
@@ -621,6 +720,12 @@
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_Infos.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_NhuCauNVL_DuLieuTron.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_PvDriverDetailDay.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_PvDriverDetailDay_WithID.cs">
@@ -656,13 +761,13 @@
     <Compile Include="EntityModel\vw_PvTranferDetailDay_WithID.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModel\vw_SumWeighFolPT.cs">
-      <DependentUpon>TramTromModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="EntityModel\vw_SumWeight.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\vw_Temp_Removing.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\vw_TonKhoTongHop.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Weigh.cs">
@@ -675,6 +780,9 @@
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModel\Xe.cs">
+      <DependentUpon>TramTromModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModel\XuatKho.cs">
       <DependentUpon>TramTromModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FrmRemind.cs">

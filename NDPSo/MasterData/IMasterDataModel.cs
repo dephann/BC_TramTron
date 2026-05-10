@@ -314,5 +314,7 @@ namespace NDPSo.MasterData
 		BindingList<Objvw_MaterialDetailDayWithID> ListTotalMaterial_ByCondition(int? materialID, bool? isManual);
 		BindingList<Objvw_MaterialDetailDay> ListMaterialDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual);
 		BindingList<Objvw_TranferDetailDayWithID> ListTranferDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? materialID, bool? isManual);
-	}
+
+        void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy);
+    }
 }

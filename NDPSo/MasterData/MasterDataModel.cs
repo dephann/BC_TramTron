@@ -515,6 +515,7 @@ namespace NDPSo.MasterData
 			return Converter.ConvertToBindingList<Objvw_TranferDetailDayWithID>(ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ListTranferDetailDay_ByCondition(fromDate, toDate, xeID, isQueued) as List<Objvw_TranferDetailDayWithID>);
 		}
 
-       
+        public void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy)
+             => ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID, createdBy);
     }
 }

@@ -56,7 +56,7 @@ namespace NDPSo.EntityModel
         public byte[] VersionNo { get; set; }
         public Nullable<int> HangMucID { get; set; }
         public Nullable<System.DateTime> ThoiGianGiaoHang { get; set; }
-
+    
         public virtual HopDong HopDong { get; set; }
     }
 }

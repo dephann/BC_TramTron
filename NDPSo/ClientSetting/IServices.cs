@@ -347,5 +347,24 @@ namespace NDPSo.ClientSetting
 		IList<Objvw_DriverDetailDayWithID> ListTotalDriver_ByCondition(int? taixeID, bool? isManual);
 		IList<Objvw_DriverDetailDayWithID> ListDriverDetailDay_ByCondition(DateTime? fromDate, DateTime? toDate, int? taixeID, bool? isManual);
 
-	}
+        // ── TonKho ────────────────────────────────────────────────
+        ObjTonKho GetTonKhoByKey(int id);
+        IList<ObjTonKho> ListTonKho();
+        (int HetKho, int CanhBao) DemCanhBao();
+        bool SaveTonKho(IList<ObjTonKho> lst);
+
+        // ── NhapKho ───────────────────────────────────────────────
+        ObjNhapKho GetNhapKhoByKey(int id);
+        IList<ObjNhapKho> ListNhapKho();
+        IList<ObjNhapKho> ListNhapKho_BySiloID(int siloID);
+        bool SaveNhapKho(IList<ObjNhapKho> lst);
+
+        // ── XuatKho ───────────────────────────────────────────────
+        ObjXuatKho GetXuatKhoByKey(int id);
+        IList<ObjXuatKho> ListXuatKho_ByPhieuTron(int phieuTronID);
+        bool SaveXuatKho(IList<ObjXuatKho> lst);
+        void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy);
+
+    }
 }
+

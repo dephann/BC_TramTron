@@ -257,13 +257,14 @@ namespace NDPSo.MasterData
                 switch (result)
                 {
                     case DialogResult.Yes:
+                        this.InitRunning(true);
                         this._so.SendingCommand.F1_Run = true;
                         this.SendData_DB2_NewTread();
                         //StatusConnected.CheckOpenSof(true, true);
                         Thread.Sleep(100);
                         this._so.SendingCommand.F1_Run = false;
                         this.SendData_DB2_NewTread();
-                        this.InitRunning(true);
+                        
 
                         if (checkEdit3.Checked)
                         {
@@ -275,7 +276,6 @@ namespace NDPSo.MasterData
                     case DialogResult.No:
                         break;
                 }
-                this.InitRunning(true);
 
                 if (checkEdit3.Checked)
                 {

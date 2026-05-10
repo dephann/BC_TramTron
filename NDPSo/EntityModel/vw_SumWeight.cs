@@ -35,13 +35,5 @@ namespace NDPSo.EntityModel
         public Nullable<bool> IsQueued { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public string FullName { get; set; }
-        public string KH { get; set; }
-        public string CT { get; set; }
-        public string BS { get; set; }
-        public string MAC { get; set; }
-        public string TX { get; set; }
-        public string HM { get; set; }
-        public Nullable<decimal> TongKhoiLuong { get; set; }
-        public Nullable<int> TongMeTron { get; set; }
     }
 }

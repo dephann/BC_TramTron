@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="53b5ed04c15a486aadfad25d74dc74b4" Name="Diagram1" ZoomLevel="51">
+      <Diagram DiagramId="53b5ed04c15a486aadfad25d74dc74b4" Name="Diagram1" ZoomLevel="46">
         <EntityTypeShape EntityType="TramTronModel.bandwidth" Width="1.5" PointX="14.75" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.CongTruong" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.DuLieuTron" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
@@ -19,7 +19,7 @@
         <EntityTypeShape EntityType="TramTronModel.MeTronChiTiet" Width="1.5" PointX="12.75" PointY="12" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.NhomSilo" Width="1.5" PointX="1.5" PointY="21.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.PCInput" Width="1.5" PointX="8.75" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TramTronModel.PCOutput" Width="1.5" PointX="16.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TramTronModel.PCOutput" Width="1.5" PointX="16.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.PhieuTron" Width="1.5" PointX="8.25" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.RptTongTungXe" Width="1.5" PointX="16.75" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TramTronModel.RptViewDataMix" Width="1.5" PointX="18.75" PointY="17.875" IsExpanded="true" />
@@ -71,17 +71,17 @@
         <AssociationConnector Association="TramTronModel.FK_Silo_Silo1" ManuallyRouted="false" />
         <AssociationConnector Association="TramTronModel.FK_Silo_TinhDoHutNuoc" ManuallyRouted="false" />
         <AssociationConnector Association="TramTronModel.FK_TinhDoHutNuocChiTiet_TinhDoHutNuoc" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TramTronModel.NhanVien" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TramTronModel.NhanVien" Width="1.5" PointX="13.5" PointY="1" />
         <AssociationConnector Association="TramTronModel.FK_PhieuTron_NhanVien" />
-        <EntityTypeShape EntityType="TramTronModel.HangMuc" Width="1.5" PointX="14.375" PointY="0.875" />
+        <EntityTypeShape EntityType="TramTronModel.HangMuc" Width="1.5" PointX="17.75" PointY="0.5" />
         <AssociationConnector Association="TramTronModel.FK_HopDong_HangMuc" />
         <AssociationConnector Association="TramTronModel.FK_PhieuTron_HangMuc" />
         <EntityTypeShape EntityType="TramTronModel.vw_PvSUMTotal" Width="1.5" PointX="29.25" PointY="10.75" />
         <EntityTypeShape EntityType="TramTronModel.vw_PvTotalMaterial" Width="1.5" PointX="28.625" PointY="3.75" />
-        <EntityTypeShape EntityType="TramTronModel.vw_PvMaterialDetailDay" Width="1.5" PointX="6.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TramTronModel.vw_PvTranferDetailDay" Width="1.5" PointX="8.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TramTronModel.vw_PvTotalTranfer" Width="1.5" PointX="16.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TramTronModel.vw_PvTotalDriver" Width="1.5" PointX="18.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TramTronModel.vw_PvMaterialDetailDay" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="TramTronModel.vw_PvTranferDetailDay" Width="1.5" PointX="9.75" PointY="0.875" />
+        <EntityTypeShape EntityType="TramTronModel.vw_PvTotalTranfer" Width="1.5" PointX="19.875" PointY="0.875" />
+        <EntityTypeShape EntityType="TramTronModel.vw_PvTotalDriver" Width="1.5" PointX="22.25" PointY="0.625" />
         <EntityTypeShape EntityType="TramTronModel.vw_Infos" Width="1.5" PointX="13.375" PointY="27.75" />
         <EntityTypeShape EntityType="TramTronModel.vw_DataMix" Width="1.5" PointX="29.375" PointY="13.75" />
         <EntityTypeShape EntityType="TramTronModel.vw_PvtMTCT" Width="1.5" PointX="21.375" PointY="21.75" />
@@ -90,12 +90,23 @@
         <EntityTypeShape EntityType="TramTronModel.vw_PvDriverDetailDay_WithID" Width="1.5" PointX="21.375" PointY="17.75" />
         <EntityTypeShape EntityType="TramTronModel.vw_PvTranferDetailDay_WithID" Width="1.5" PointX="22.375" PointY="13.75" />
         <EntityTypeShape EntityType="TramTronModel.vw_InfoPT" Width="1.5" PointX="25.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TramTronModel.vw_SumWeight" Width="1.5" PointX="25.375" PointY="7.75" />
         <EntityTypeShape EntityType="TramTronModel.PhieuGiaoHang" Width="1.5" PointX="25.375" PointY="21.75" />
-        <EntityTypeShape EntityType="TramTronModel.vw_SumWeighFolPT" Width="1.5" PointX="7.375" PointY="25.75" />
-        <EntityTypeShape EntityType="TramTronModel.MeTronChiTietGiaoHang" Width="1.5" PointX="32.75" PointY="10.875" />
+        <EntityTypeShape EntityType="TramTronModel.MeTronChiTietGiaoHang" Width="1.5" PointX="34.25" PointY="11.125" />
         <AssociationConnector Association="TramTronModel.FK_MeTronChiTietGiaoHang_MACSilo" />
         <AssociationConnector Association="TramTronModel.FK_MeTronChiTietGiaoHang_MeTron" />
+        <EntityTypeShape EntityType="TramTronModel.NhapKho" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="TramTronModel.TonKho" Width="1.5" PointX="11.625" PointY="0.875" />
+        <EntityTypeShape EntityType="TramTronModel.XuatKho" Width="1.5" PointX="15.5" PointY="0.5" />
+        <EntityTypeShape EntityType="TramTronModel.vw_NhuCauNVL_DuLieuTron" Width="1.5" PointX="31.375" PointY="5.75" />
+        <EntityTypeShape EntityType="TramTronModel.vw_PvDriverDetailDay" Width="1.5" PointX="27.375" PointY="6.5" />
+        <EntityTypeShape EntityType="TramTronModel.vw_TonKhoTongHop" Width="1.5" PointX="31.375" PointY="10.75" />
+        <AssociationConnector Association="TramTronModel.FK_NhapKho_Material" />
+        <AssociationConnector Association="TramTronModel.FK_TonKho_Material" />
+        <AssociationConnector Association="TramTronModel.FK_XuatKho_Material" />
+        <AssociationConnector Association="TramTronModel.FK_NhapKho_Silo" />
+        <AssociationConnector Association="TramTronModel.FK_TonKho_Silo" />
+        <AssociationConnector Association="TramTronModel.FK_XuatKho_Silo" />
+        <EntityTypeShape EntityType="TramTronModel.vw_SumWeight" Width="1.5" PointX="25.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

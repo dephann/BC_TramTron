@@ -13,7 +13,7 @@ namespace NDPSo.EntityModel
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class DEPTramTronEntities : DbContext, IDBContext, IDisposable
     {
         public DEPTramTronEntities()
@@ -101,7 +101,9 @@ namespace NDPSo.EntityModel
         public virtual DbSet<vw_InfoPT> vw_InfoPT { get; set; }
         public virtual DbSet<vw_SumWeight> vw_SumWeight { get; set; }
         public virtual DbSet<PhieuGiaoHang> PhieuGiaoHangs { get; set; }
-        public virtual DbSet<vw_SumWeighFolPT> vw_SumWeighFolPT { get; set; }
         public virtual DbSet<MeTronChiTietGiaoHang> MeTronChiTietGiaoHangs { get; set; }
+        public virtual DbSet<TonKho> TonKhos { get; set; }
+        public virtual DbSet<NhapKho> NhapKhos { get; set; }
+        public virtual DbSet<XuatKho> XuatKhos { get; set; }
     }
 }

@@ -1,10 +1,34 @@
 {
   "permissions": {
     "allow": [
-      "Bash(dotnet build:*)"
+      "Bash(dotnet build:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(findstr /n \"btnChay\\\\|btnRun\\\\|btnStart\" NDPSo\\\\MasterData\\\\VanHanh.Designer.cs)",
+      "Bash(findstr /n \"grcHopDong\\\\|DataSource\" NDPSo\\\\MasterData\\\\VanHanh.cs)",
+      "Bash(findstr /n \"_blstDuLieuTron\" NDPSo\\\\MasterData\\\\VanHanh.cs)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.cs\"\\) | ForEach-Object { $count++; if \\($_ -match \"btnRun\"\\) { $lines += \"$count : $_\" } }; $lines)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.cs\"\\) | ForEach-Object { $count++; if \\($_ -match \"ChangeStatusSelectedDuLieuTron\"\\) { $lines += \"$count : $_\" } }; $lines)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.cs\"\\) | ForEach-Object { $count++; if \\($count -ge 4110 -and $count -le 4130\\) { $lines += \"$count : $_\" } }; $lines)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.cs\"\\) | ForEach-Object { $count++; if \\($count -ge 5025 -and $count -le 5040\\) { $lines += \"$count : $_\" } }; $lines)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.Designer.cs\"\\) | ForEach-Object { $count++; if \\($count -ge 2330 -and $count -le 2380\\) { $lines += \"$count : $_\" } }; $lines)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.Designer.cs\"\\) | ForEach-Object { $count++; if \\($count -ge 3800 -and $count -le 3900\\) { $lines += \"$count : $_\" } }; $lines | head -50)",
+      "PowerShell($lines = @\\(\\); $count = 0; \\(Get-Content \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\MasterData\\\\VanHanh.cs\"\\) | ForEach-Object { $count++; if \\($_ -match \"btnRun_ButtonClick\"\\) { $lines += \"$count : $_\" } }; $lines)",
+      "PowerShell(Get-ChildItem -Path \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\" -Recurse -Directory | Select-Object -First 20 | ForEach-Object { $_.FullName })",
+      "Bash(mkdir -p \"C:/Users/AD/.claude/projects/e--JSOP-MRDUC-Ver4-ProjectTram-BC/memory\")",
+      "Bash(ls \"C:\\\\Users\\\\AD\\\\.claude\\\\projects\\\\e--JSOP-MRDUC-Ver4-ProjectTram-BC\\\\\")",
+      "Read(//c/Users/AD/.claude/projects/**)",
+      "PowerShell($msbuild = \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\"; & $msbuild \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo.sln\" /t:Build /p:Configuration=Debug /m /nologo 2>&1 | Select-String -Pattern \"error CS|warning CS|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)|Warning\\\\\\(s\\\\\\)\" | ForEach-Object { $_.Line })",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\AD\\\\.claude\\\\projects\\\\e--JSOP-MRDUC-Ver4-ProjectTram-BC\\\\7b569502-36f6-4c9d-bbe4-7323ebbfda5d\\\\tool-results\\\\bzr5k4al7.txt\" | Select-String -Pattern \"error CS|Build succeeded|FAILED|Error\\\\\\(s\\\\\\)|Warning\\\\\\(s\\\\\\)\" | ForEach-Object { $_.Line } | Select-Object -Last 20)",
+      "PowerShell(Start-Process \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo\\\\bin\\\\Debug\\\\NDPSo.exe\")",
+      "Bash(\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo.sln\" /p:Configuration=Debug /nologo /v:minimal)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"e:\\\\JSOP\\\\MRDUC\\\\Ver4\\\\ProjectTram_BC\\\\NDPSo.sln\" /p:Configuration=Debug /nologo /v:minimal 2>&1)"
     ],
     "additionalDirectories": [
-      "e:\\JSOP\\MRDUC\\Ver1\\FILE\\ProjectTram_BC\\ProjectTram_BC\\NDPSo\\MasterData"
+      "e:\\JSOP\\MRDUC\\Ver1\\FILE\\ProjectTram_BC\\ProjectTram_BC\\NDPSo\\MasterData",
+      "C:\\Users\\AD\\.claude\\projects\\e--JSOP-MRDUC-Ver4-ProjectTram-BC\\memory"
     ]
   }
 }

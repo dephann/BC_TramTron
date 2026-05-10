@@ -18,6 +18,18 @@ namespace NDPSo.MasterData.TonKho
             InitializeComponent();
             this.Caption = "Tồn Kho Nguyên Vật Liệu";
             Load += (s, e) => Refresh_All();
+            TonKhoService.TonKhoChanged += OnTonKhoChanged;
+            Disposed += (s, e) => TonKhoService.TonKhoChanged -= OnTonKhoChanged;
+        }
+
+        // Called from background thread after XuatKho — marshal to UI thread
+        private void OnTonKhoChanged()
+        {
+            if (this.IsDisposed) return;
+            if (this.InvokeRequired)
+                this.BeginInvoke(new Action(Refresh_All));
+            else
+                Refresh_All();
         }
 
         private void Refresh_All()
@@ -185,10 +197,10 @@ namespace NDPSo.MasterData.TonKho
             decimal val;
             switch (e.Column.FieldName)
             {
-                case "TonHienTai":  val = row.TonHienTai;  break;
+                case "TonHienTai": val = row.TonHienTai; break;
                 case "TongCanDung": val = row.TongCanDung; break;
-                case "ChenhLech":   val = row.ChenhLech;   break;
-                case "MucCanhBao":  val = row.MucCanhBao;  break;
+                case "ChenhLech": val = row.ChenhLech; break;
+                case "MucCanhBao": val = row.MucCanhBao; break;
                 default: return;
             }
             e.DisplayText = FormatSoLuong(val, row.MaterialName);

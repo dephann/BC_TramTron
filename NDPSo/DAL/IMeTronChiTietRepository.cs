@@ -10,5 +10,6 @@ namespace NDPSo.DAL
 {
     public interface IMeTronChiTietRepository : IEFRepository<MeTronChiTiet>
     {
+        IList<MeTronChiTiet> ListByMeTronID(int meTronID);
     }
 }

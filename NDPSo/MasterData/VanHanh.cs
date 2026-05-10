@@ -618,7 +618,7 @@ namespace NDPSo.MasterData
                         case "HSN_ADD6":
                             this._sp.HSN_ADD6 = (double)current.TimerParaValue.Value;
                             break;
-                        
+
                         default:
                             // Không có xử lý đặc biệt cho các giá trị timerParaCode khác
                             break;
@@ -673,7 +673,7 @@ namespace NDPSo.MasterData
         {
             if (base.InvokeRequired)
             {
-                base.Invoke(new MethodInvoker(delegate() { this.BindSetPoint(sp); }));
+                base.Invoke(new MethodInvoker(delegate () { this.BindSetPoint(sp); }));
                 return;
             }
             else
@@ -870,7 +870,7 @@ namespace NDPSo.MasterData
 
         }
 
-        
+
 
         public void CloseForm()
         {
@@ -943,7 +943,7 @@ namespace NDPSo.MasterData
 
             }
         }
-       
+
 
         protected override void PopulateData()
         {
@@ -1176,6 +1176,7 @@ namespace NDPSo.MasterData
 
             ChangeStusLight(false);
             InitNVLMonitor();
+            InitHoanThanhToggle();
 
             // this.ucLogicSiloAgg1._blstSiloLogicAggSelected1 = this._blstSiloLogicAG;
         }
@@ -1184,16 +1185,16 @@ namespace NDPSo.MasterData
         {
             _lblNVLStatus = new System.Windows.Forms.Label
             {
-                AutoSize  = false,
-                Width     = 524,
-                Height    = 32,
-                Location  = new System.Drawing.Point(1310, 350),
-                Font      = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Bold),
+                AutoSize = false,
+                Width = 524,
+                Height = 32,
+                Location = new System.Drawing.Point(1310, 350),
+                Font = new System.Drawing.Font("Segoe UI", 10f, System.Drawing.FontStyle.Bold),
                 ForeColor = System.Drawing.Color.Gray,
                 BackColor = System.Drawing.Color.FromArgb(240, 240, 240),
-                Text      = "NVL: đang kiểm tra...",
+                Text = "NVL: đang kiểm tra...",
                 TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
-                Padding   = new System.Windows.Forms.Padding(6, 0, 0, 0)
+                Padding = new System.Windows.Forms.Padding(6, 0, 0, 0)
             };
             pnlOperation.Controls.Add(_lblNVLStatus);
             _lblNVLStatus.BringToFront();
@@ -1226,6 +1227,31 @@ namespace NDPSo.MasterData
                     _lblNVLStatus.ForeColor = System.Drawing.Color.Red;
                     break;
             }
+        }
+
+        private void InitHoanThanhToggle()
+        {
+            var chk = new DevExpress.XtraEditors.CheckEdit
+            {
+                Text = "Ẩn đơn đã hoàn thành",
+                Location = new System.Drawing.Point(4, 4),
+                AutoSize = true
+            };
+
+            // Nhả tabDuLieuTron ra khỏi Fill để nhường 24px trên cho checkbox
+            tabDuLieuTron.Dock = System.Windows.Forms.DockStyle.None;
+            tabDuLieuTron.Location = new System.Drawing.Point(0, 24);
+            tabDuLieuTron.Size = new System.Drawing.Size(panelControl3.Width, panelControl3.Height - 24);
+            tabDuLieuTron.Anchor = System.Windows.Forms.AnchorStyles.Top
+                                   | System.Windows.Forms.AnchorStyles.Left
+                                   | System.Windows.Forms.AnchorStyles.Right
+                                   | System.Windows.Forms.AnchorStyles.Bottom;
+
+            panelControl3.Controls.Add(chk);
+            chk.BringToFront();
+
+            chk.CheckedChanged += (s, e) =>
+                grvHopDong.ActiveFilterString = chk.Checked ? "[Status] <> 4" : "";
         }
 
         private void ChangeStusLight(bool isOn) //funcction
@@ -1299,7 +1325,7 @@ namespace NDPSo.MasterData
         {
             if (base.InvokeRequired)
             {
-                base.Invoke(new MethodInvoker(delegate()
+                base.Invoke(new MethodInvoker(delegate ()
                 {
                     if (_isRunBTX)
                     {
@@ -1333,7 +1359,7 @@ namespace NDPSo.MasterData
 
                         if (base.InvokeRequired)
                         {
-                            base.Invoke(new MethodInvoker(delegate()
+                            base.Invoke(new MethodInvoker(delegate ()
                             {
                                 this.labelControl1.Text = "CONNECT";
                                 ShowMessage("PLC ĐÃ KẾT NỐI", Enums.MsgType.Info);
@@ -1347,7 +1373,7 @@ namespace NDPSo.MasterData
                     {
                         if (base.InvokeRequired)
                         {
-                            base.Invoke(new MethodInvoker(delegate()
+                            base.Invoke(new MethodInvoker(delegate ()
                             {
                                 ShowMessage(GlobalValues.Messages.DISCONNECTED, Enums.MsgType.Warning);
                                 //_plcController.AttemptReconnect();
@@ -1383,7 +1409,7 @@ namespace NDPSo.MasterData
             this._ro.StatusIO_04 = a[4];
             this._ro.StatusIO_05 = a[5];
             this._ro.StatusIO_06 = a[6];
-            
+
         }
 
         private void ReceiveData_DB7(byte[] a) //READ DATA FROM PLC 7 to 25
@@ -1545,17 +1571,17 @@ namespace NDPSo.MasterData
 
                     if (_ro.STT_MAN_AUT)
                     {
-                       /* ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Auto;
-                        this._so.SendingCommand.SW_MAN_AUTO = true;
-                        this.lblCheDoHeThongAut.ForeColor = Color.Blue;
-                        this.lblCheDoHeThongMan.ForeColor = Color.DarkGray;*/
+                        /* ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Auto;
+                         this._so.SendingCommand.SW_MAN_AUTO = true;
+                         this.lblCheDoHeThongAut.ForeColor = Color.Blue;
+                         this.lblCheDoHeThongMan.ForeColor = Color.DarkGray;*/
                     }
                     else
                     {
-                       /* ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Manual;
-                        this._so.SendingCommand.SW_MAN_AUTO = false;
-                        this.lblCheDoHeThongAut.ForeColor = Color.DarkGray;
-                        this.lblCheDoHeThongMan.ForeColor = Color.Red;*/
+                        /* ucHeThongAuto1.CheDoChay = UcHeThongAuto.CheDo.Manual;
+                         this._so.SendingCommand.SW_MAN_AUTO = false;
+                         this.lblCheDoHeThongAut.ForeColor = Color.DarkGray;
+                         this.lblCheDoHeThongMan.ForeColor = Color.Red;*/
                     }
 
                     //if (_ro.STT_PAUSE)
@@ -1827,12 +1853,12 @@ namespace NDPSo.MasterData
                         _previousCanDuAdd1State = true;
                     }
 
-                    
+
 
                     //=========================================GAU TAI
 
 
-                    
+
                     if (_ro.Op_TinHieu_GauDuoi)
                     {
 
@@ -1871,7 +1897,7 @@ namespace NDPSo.MasterData
                         tempGau = 2;
                     }
 
-                    
+
                     //=========================================THDC
 
                     ucBaoDongThungCanAgg1.IsOn = _ro.Op_THDC_WAGG1;
@@ -1967,7 +1993,7 @@ namespace NDPSo.MasterData
                         //this.lblCheDoHeThongAut.ForeColor = Color.Blue;
                         //this.lblCheDoHeThongMan.ForeColor = Color.DarkGray;
 
-                       
+
 
                     }
                     else
@@ -1978,7 +2004,7 @@ namespace NDPSo.MasterData
                         //this.lblCheDoHeThongAut.ForeColor = Color.DarkGray;
                         //this.lblCheDoHeThongMan.ForeColor = Color.Red;
 
-                       
+
 
                     }
 
@@ -2105,7 +2131,7 @@ namespace NDPSo.MasterData
         private void ucBtnMoPhong1_ButtonClick(object sender, EventArgs e)
         {
             DoMoPhong();
-            SendData_DB4_NewTread(); 
+            //SendData_DB4_NewTread();
             TramTronLogger.WriteInfo(sender.ToString());
         }
 
@@ -2219,7 +2245,7 @@ namespace NDPSo.MasterData
             {
                 return;
             }
-            
+
             try
             {
                 if (btnPause.IsOn)
@@ -2285,6 +2311,7 @@ namespace NDPSo.MasterData
                 this._so.SendingCommand.F3_Cancel = false;
                 this.SendData_DB2_NewTread();
                 this.ChangeStatusSelectedDuLieuTron(3, null);
+                AutoAdvanceAfterCancel();
                 btnHuy.IsTrangThai = UcBtnHuyMe.TrangThai.Stop;
                 this.ShowMessage(GlobalValues.Messages.CancelPhieuTron, Enums.MsgType.Info);
             }
@@ -2312,7 +2339,7 @@ namespace NDPSo.MasterData
                 byte[] b = this._plcController.ReadBytes(DataType.DataBlock, 20, 0, 7); //6
                 this.ReceiveData_DB1(b);
 
-               
+
 
                 byte[] d = this._plcController.ReadBytes(DataType.DataBlock, 25, 0, 124);
                 this.ReceiveData_DB7(d);
@@ -2326,14 +2353,14 @@ namespace NDPSo.MasterData
 
                 BindReceivingOnline(_ro);
 
-                
+
             }
             else
             {
                 //_plcController.AttemptReconnect();
             }
         }
-        
+
 
         public override void DoKeyDown(object sender, KeyEventArgs e)
         {
@@ -2402,11 +2429,11 @@ namespace NDPSo.MasterData
                     DoXaCanCotLieu();
                     break;
                 case Keys.F10:
-                   
+
                     break;
                 case Keys.F11:
                     break;
-                
+
                 case Keys.F12:
                     LoadFormInPT();
                     return;
@@ -2472,7 +2499,7 @@ namespace NDPSo.MasterData
                 TramTromMessageBox.ShowMessageDialog(ex.ToString());
             }
         }
-        
+
         private void btnHuy_ButtonMoveDown(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Xác nhận huỷ tiến trình trộn?", "Thông báo", MessageBoxButtons.YesNo);
@@ -2542,7 +2569,7 @@ namespace NDPSo.MasterData
                 return;
             try
             {
-                if((int)this.slMeDaCanNoiTron.SoLuongMeCanTron <= 1)
+                if ((int)this.slMeDaCanNoiTron.SoLuongMeCanTron <= 1)
                 {
                     TramTromMessageBox.ShowWarningDialog("Không thể giảm số lượng mẻ cần trộn xuống!");
                 }
@@ -2552,7 +2579,7 @@ namespace NDPSo.MasterData
                     //this.SetSLMe(slMeCanTron);
                     //this._so.SoMeDis = slMe;
                     //this._sp.SoMeTron = slMeCanTron;
-                    
+
                     UpdateDLT_KLDuTinh_GiamMe();
                     SendData_DB4_NewTread();
                 }
@@ -2614,7 +2641,7 @@ namespace NDPSo.MasterData
                     btnXaCanCotLieu.Caption = "GÀU TẢI TAY";
                 }
             }
-            else if(ConfigManager.TramTronConfig.CapPhoiRes == 0)
+            else if (ConfigManager.TramTronConfig.CapPhoiRes == 0)
             {
                 if (btnXaCanCotLieu.IsRun)
                 {
@@ -2629,7 +2656,7 @@ namespace NDPSo.MasterData
                     btnXaCanCotLieu.Caption = "XẢ CÂN CỐT LIỆU";
                 }
             }
-            
+
         }
         private void DoNapLieuNoiTron()
         {
@@ -3569,7 +3596,7 @@ namespace NDPSo.MasterData
             }
             TramTronLogger.WriteInfo(sender.ToString());
         }
-       
+
         private void btnBangTaiXien_ButtonMouseDown(object sender, EventArgs e)
         {
             this._so.SendingCommand.NN_BAT_TAT_BTX = true;
@@ -3710,7 +3737,7 @@ namespace NDPSo.MasterData
                 {
                     return;
                 }
-                
+
                 this.lblNiemChi.Text = txtNiemChi.Text;
             }
             catch (System.Exception ex)
@@ -3787,9 +3814,9 @@ namespace NDPSo.MasterData
 
         private async void btnInNhanh_ButtonClick(object sender, EventArgs e)
         {
-             LoadFormInPT();
-             TramTronLogger.WriteInfo(sender.ToString());
-             //TramTromMessageBox.ShowMessageDialog(Support.GenerateFakeValueADD(1).ToString());
+            LoadFormInPT();
+            TramTronLogger.WriteInfo(sender.ToString());
+            //TramTromMessageBox.ShowMessageDialog(Support.GenerateFakeValueADD(1).ToString());
 
         }
 
@@ -3815,31 +3842,31 @@ namespace NDPSo.MasterData
         private void CreateGroupLogicAG(int sl)
         {
             HideGroupLogicSiloAGG();
-            
+
         }
         private void CreateGroupLogicCE(int sl)
         {
             HideGroupLogicSiloCE();
-            
+
         }
         private void CreateGroupLogicAD(int sl)
         {
             HideGroupLogicSiloAD();
-            
+
         }
         private void HideGroupLogicSiloAGG()
         {
-            
-            
+
+
         }
         private void HideGroupLogicSiloCE()
         {
-           
+
 
         }
         private void HideGroupLogicSiloAD()
         {
-            
+
 
         }
         private void CreateSilo_AGG(int sl)
@@ -3970,7 +3997,7 @@ namespace NDPSo.MasterData
             lst_Agg.Add(pnl_Wei_Agg4);
             lst_Agg.Add(pnl_Wei_Agg5);
             lst_Agg.Add(pnl_Wei_Agg6);
-            for(int i = 0;i< lst_Agg.Count; i++)
+            for (int i = 0; i < lst_Agg.Count; i++)
             {
                 if (!lst_Agg[i].Visible)
                 {
@@ -4035,7 +4062,7 @@ namespace NDPSo.MasterData
                             siloCe5.SiloOnline.KLCaiDat = 0;
                             siloCe5.SiloOnline.KLCanCan = 0;
                             break;
-                        
+
                     }
                 }
             }
@@ -4162,14 +4189,23 @@ namespace NDPSo.MasterData
                         }*/
                         if (some > this._sp.SoMeTron)
                         {
-
+                            int finishedPhieuTronID = _selectedPT_Run?.PhieuTronID ?? 0;
                             DoNextNiemChi();
                             UpdateStateFinishPhieuTron();
+                            if (_selectedPT_Run != null)
+                            {
+                                ObjDuLieuTron dlt = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
+                                int duLieuTronID = dlt != null ? dlt.DuLieuTronID : 0;
+                                int phieuTronID = _selectedPT_Run.PhieuTronID;
+                                TramTronLogger.WriteInfo($"[XuatKho] Phiếu trộn — PhieuTronID={phieuTronID} DuLieuTronID={duLieuTronID}");
+                                System.Threading.Tasks.Task.Run(() =>
+                                    _presenter.XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID, GlobalValues.UserID));
+                            }
                             UpdateInfoDataPhieuGiaoHang(this._selectedPGH_Run, DateTime.Now.ToString("HH:mm:ss"));
 
                             UpdateTongPhieuHopDong();
                             this.ChangeStatusSelectedDuLieuTron(4, null);
-                            
+
                             if (checkAutoPrint.Checked)
                             {
                                 ShowMessage("Đang in phiếu trộn", Enums.MsgType.Info);
@@ -4180,46 +4216,46 @@ namespace NDPSo.MasterData
                             }
                             this._selectedHD_Run = null;
                             //ghi xuống Saved = true
-                            
-                            this._so.SendingCommand.ENOUGH_BATCH = true;
-                            this.SendData_DB2_NewTread();
 
-                            ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(1) as ObjDuLieuTron;
-                            int hopDongID = objDuLieuTron.HopDongID.Value;
-                            if (objDuLieuTron == null || objDuLieuTron.HopDongID == null)
-                            {
-                                TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.EmptyDataCannotF1);
-                                return;
-                            }
-                            
-                            //UpdateRanking
-                            UpdateRankingDLT(objDuLieuTron);
-                            this._selectedHD_Run = this._presenter.GetHopDongByKey(objDuLieuTron.HopDongID.Value);
-                            if (this._selectedHD_Run == null)
-                            {
-                                return;
-                            }
-                            else
-                            {
-                                bool isManual = true;
-                                if (_isSimulation) //if (lblSim.Visible)
-                                    isManual = false;
-                                this._selectedPT_Run = this._presenter.CreateAndSaveNewPhieuTron(this._selectedHD_Run, isManual);
-                                this.some = 1;
+                            //this._so.SendingCommand.ENOUGH_BATCH = true;
+                            //this.SendData_DB2_NewTread();
 
-                                this.lblMaPhieuTron.Text = this._selectedPT_Run.MaPhieuTron;
-                                this.lblSoPhieuTron.Text = _selectedPT_Run.NoPhieu.ToString();
-                                GetNiemChi();
-                                this.ChangeStatusSelectedDuLieuTron(1, null);
-                                this.GetSiloNotActive();
+                            //ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(1) as ObjDuLieuTron;
+                            //int hopDongID = objDuLieuTron.HopDongID.Value;
+                            //if (objDuLieuTron == null || objDuLieuTron.HopDongID == null)
+                            //{
+                            //    TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.EmptyDataCannotF1);
+                            //    return;
+                            //}
 
-                                this.BuildSetPoint(this._selectedHD_Run, true);
-                                SendData_DB4_NewTread();
-                                
+                            ////UpdateRanking
+                            //UpdateRankingDLT(objDuLieuTron);
+                            //this._selectedHD_Run = this._presenter.GetHopDongByKey(objDuLieuTron.HopDongID.Value);
+                            //if (this._selectedHD_Run == null)
+                            //{
+                            //    return;
+                            //}
+                            //else
+                            //{
+                            //    bool isManual = true;
+                            //    if (_isSimulation) //if (lblSim.Visible)
+                            //        isManual = false;
+                            //    this._selectedPT_Run = this._presenter.CreateAndSaveNewPhieuTron(this._selectedHD_Run, isManual);
+                            //    this.some = 1;
 
-                                this._so.SendingCommand.UPDATED = true;
-                                this.SendData_DB2_NewTread();
-                            }
+                            //    this.lblMaPhieuTron.Text = this._selectedPT_Run.MaPhieuTron;
+                            //    this.lblSoPhieuTron.Text = _selectedPT_Run.NoPhieu.ToString();
+                            //    GetNiemChi();
+                            //    this.ChangeStatusSelectedDuLieuTron(1, null);
+                            //    this.GetSiloNotActive();
+
+                            //    this.BuildSetPoint(this._selectedHD_Run, true);
+                            //    SendData_DB4_NewTread();
+
+
+                            //    this._so.SendingCommand.UPDATED = true;
+                            //    this.SendData_DB2_NewTread();
+                            //}
                         }
 
                         /*if (!checkEdit3.Checked)
@@ -4269,7 +4305,7 @@ namespace NDPSo.MasterData
                     if (this._idSave == 0 && this._idSavePLC == 1)
                     {
                         this._idSave = -1;
-                        
+
                         int numm0 = 0;
                         if (_isSimulation)  //if (lblSim.Visible)
                             numm0 = 1;
@@ -4316,17 +4352,11 @@ namespace NDPSo.MasterData
         {
             try
             {
-                if (!ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ResolveUnfinishPhieuTron())
-                    return;
+                // ResolveUnfinishPhieuTron và XuatKho là 2 việc độc lập —
+                // không để Resolve fail chặn XuatKho
+                ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ResolveUnfinishPhieuTron();
 
-                // Xuất kho tự động khi phiếu trộn hoàn tất
-                if (_selectedPT_Run != null)
-                {
-                    var dlt = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
-                    int duLieuTronID = dlt != null ? dlt.DuLieuTronID : 0;
-                    System.Threading.Tasks.Task.Run(() =>
-                        _tonKhoSvc.XuatKhoTheoPhieuTron(_selectedPT_Run.PhieuTronID, duLieuTronID, GlobalValues.UserID));
-                }
+                
             }
             catch (System.Exception ex)
             {
@@ -4370,7 +4400,7 @@ namespace NDPSo.MasterData
                     this._selectedHD_Run.TongPhieu = this._selectedHD_Run.TongPhieu + 1;
                     this._selectedHD_Run = this._presenter.SaveHopDong(this._selectedHD_Run);
                 }
-               
+
                 this.grvHopDong.RefreshData();
             }
             catch (System.Exception ex)
@@ -4894,7 +4924,7 @@ namespace NDPSo.MasterData
 
         private void InitRunning(bool checkIsRunning = true)
         {
-            
+
             if (!this.CheckConnection())
             {
                 return;
@@ -4929,12 +4959,22 @@ namespace NDPSo.MasterData
                 return;
             }
             ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(this.grvHopDong.FocusedRowHandle) as ObjDuLieuTron;
-            int hopDongID = objDuLieuTron.HopDongID.Value;
             if (objDuLieuTron == null || objDuLieuTron.HopDongID == null)
             {
                 TramTromMessageBox.ShowWarningDialog(GlobalValues.Messages.EmptyDataCannotF1);
                 return;
             }
+            if (objDuLieuTron.Status == 4)
+            {
+                TramTromMessageBox.ShowWarningDialog("Đơn hàng đã hoàn thành, không thể chạy lại.");
+                return;
+            }
+            if (objDuLieuTron.Status == 3)
+            {
+                TramTromMessageBox.ShowWarningDialog("Đơn hàng đã bị hủy, không thể chạy lại.");
+                return;
+            }
+            int hopDongID = objDuLieuTron.HopDongID.Value;
             /*if (this.CheckDLTChanged(objDuLieuTron))
             {
                 return;
@@ -4974,10 +5014,10 @@ namespace NDPSo.MasterData
             SaveTaiXe();
             SaveXe();
             SaveNiemChi();
-            
+
 
             //Add 0207
-            this._selectedPGH_Run = this._presenter.CreateAndSaveNewPhieuGiaoHang(this._selectedHD_Run, isManual, this.lblTenKhachHang.Text, this.lblTenCongTruong.Text, this.lblMAC.Text,this.lblTenHangMuc.Text, this.lblDiaDiem.Text, this._selectedPT_Run.NPMACCuongDo, this._selectedPT_Run.NPMACDoSut, decimal.Parse(this.lblKhoiLuong.Text));
+            this._selectedPGH_Run = this._presenter.CreateAndSaveNewPhieuGiaoHang(this._selectedHD_Run, isManual, this.lblTenKhachHang.Text, this.lblTenCongTruong.Text, this.lblMAC.Text, this.lblTenHangMuc.Text, this.lblDiaDiem.Text, this._selectedPT_Run.NPMACCuongDo, this._selectedPT_Run.NPMACDoSut, decimal.Parse(this.lblKhoiLuong.Text));
             SaveXePhieuGiaoHang();
             SaveTaiXePhieuGiaoHang();
             SaveNiemChiPhieuGiaoHang();
@@ -5001,11 +5041,11 @@ namespace NDPSo.MasterData
             this.SendData_DB2_NewTread();
 
             Send_Data_DB_3_To_PLC();
-            //Send_Data_DB_4_To_PLC();
+            Send_Data_DB_4_To_PLC();
             Send_Data_DB_5_To_PLC();
             // Send_Data_DB_2_To_PLC();
 
-           
+
 
             if (checkAutoPrint.Checked) // check thông tin trước khi trộn
             {
@@ -5035,7 +5075,7 @@ namespace NDPSo.MasterData
         {
             int j = 1;
             this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(this._blstDuLieuTron.OrderBy(d => d.LnNo).ToList());
-            
+
             for (int i = 0; i < this._blstDuLieuTron.Count; i++)
             {
                 if (this._blstDuLieuTron[i].DuLieuTronID != dulieutron.DuLieuTronID)
@@ -5054,19 +5094,44 @@ namespace NDPSo.MasterData
         }
         private void RefreshRankingDLT()
         {
-            this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(this._blstDuLieuTron.OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB).ToList());
-            
-            for (int i = 0; i < this._blstDuLieuTron.Count; i++)
-            {
-                this._blstDuLieuTron[i].LnNo = i + 1;
-            }
+            // Active: chưa hủy, chưa xong → sort theo priority
+            // Cancelled (Status=3): giữ thứ tự cũ, nằm sau active
+            // Done (Status=4): luôn ở cuối cùng
+            var active = this._blstDuLieuTron
+                .Where(d => d.Status != 3 && d.Status != 4)
+                .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+                .ToList();
+            var cancelled = this._blstDuLieuTron
+                .Where(d => d.Status == 3)
+                .OrderBy(d => d.LnNo)
+                .ToList();
+            var done = this._blstDuLieuTron
+                .Where(d => d.Status == 4)
+                .OrderBy(d => d.LnNo)
+                .ToList();
+
+            var merged = active.Concat(cancelled).Concat(done).ToList();
+            for (int i = 0; i < merged.Count; i++)
+                merged[i].LnNo = i + 1;
+
+            this._blstDuLieuTron = new BindingList<ObjDuLieuTron>(merged);
             this._presenter.SaveDuLieuTron(this._blstDuLieuTron);
             this._presenter.ListDuLieuTron(); // Xây dựng 1 luồng xử lý riêng để tránh việc
-            //this.grvHopDong.Refresh();
             this.grvHopDong.RefreshData();
             this.grvHopDong.SortInfo.ClearAndAddRange(new[] { new GridColumnSortInfo(this.grvHopDong.Columns["LnNo"], ColumnSortOrder.Ascending) });
             this.grvHopDong.FocusedRowHandle = 0;
-
+        }
+        private void AutoAdvanceAfterCancel()
+        {
+            // Sau khi hủy phiếu, tự động chuyển sang phiếu kế tiếp còn active
+            var next = this._blstDuLieuTron
+                .Where(d => d.Status != 3 && d.Status != 4)
+                .OrderBy(d => d.DLT_KLDuTinhCuaTungMe_NoiB)
+                .FirstOrDefault();
+            if (next != null)
+                UpdateRankingDLT(next);
+            else
+                RefreshRankingDLT();
         }
         private void UpdateKLDaGiaoDLT()
         {
@@ -5076,7 +5141,7 @@ namespace NDPSo.MasterData
             }*/
 
             ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
-            
+
             if (objDuLieuTron.KLDaGiao != null)
             {
                 objDuLieuTron.KLDaGiao = objDuLieuTron.KLDaGiao + this._selectedPT_Run.KLDuTinh;
@@ -5085,6 +5150,7 @@ namespace NDPSo.MasterData
             UpdateKLDaGiaoHD(objDuLieuTron);
             ChangeStatusSelectedDuLieuTron(4, 4);
             this.grvHopDong.RefreshRow(this.grvHopDong.FocusedRowHandle);
+            RefreshRankingDLT();
 
         }
         private void UpdateKLDaGiaoDLT_FocusMeTron()
@@ -5100,20 +5166,20 @@ namespace NDPSo.MasterData
             objDuLieuTron = this._presenter.UpdateDuLieuTron(objDuLieuTron);
             UpdateKLDaGiaoHD_FocusMeTron(objDuLieuTron);
             this.grvHopDong.RefreshRow(this.grvHopDong.FocusedRowHandle);
-            
+
         }
         private void UpdateKLDaGiaoHD(ObjDuLieuTron objDuLieuTron)
         {
-           /* if (this.grvHopDong.FocusedRowHandle < 0)
-            {
-                return;
-            }*/
+            /* if (this.grvHopDong.FocusedRowHandle < 0)
+             {
+                 return;
+             }*/
             //ObjDuLieuTron objDuLieuTron = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
 
-           /* if (objDuLieuTron.KLDaGiao != null)
-            {
-                objDuLieuTron.KLDaGiao = objDuLieuTron.KLDaGiao + this._selectedPT_Run.KLDuTinh;
-            }*/
+            /* if (objDuLieuTron.KLDaGiao != null)
+             {
+                 objDuLieuTron.KLDaGiao = objDuLieuTron.KLDaGiao + this._selectedPT_Run.KLDuTinh;
+             }*/
             if (this._selectedHD_Run != null && this._selectedHD_Run.KLDaGiao != null)
             {
                 this._selectedHD_Run.KLDaGiao = this._selectedHD_Run.KLDaGiao + this._selectedPT_Run.KLDuTinh;
@@ -5174,8 +5240,8 @@ namespace NDPSo.MasterData
             return this.slMeDaCanAdd1.SoLuongMeDaTron > 0m ||
                 this.slMeDaCanAdd2.SoLuongMeDaTron > 0m ||
                 this.slMeDaCanWa1.SoLuongMeDaTron > 0m ||
-                this.slMeDaCanWa2.SoLuongMeDaTron > 0m || 
-                this.slMeDaCanCe1.SoLuongMeDaTron > 0m || 
+                this.slMeDaCanWa2.SoLuongMeDaTron > 0m ||
+                this.slMeDaCanCe1.SoLuongMeDaTron > 0m ||
                 this.slMeDaCanCe2.SoLuongMeDaTron > 0m ||
                 this.slMeDaCanAgg1.SoLuongMeDaTron > 0m ||
                 this.slMeDaCanAgg2.SoLuongMeDaTron > 0m ||
@@ -5269,7 +5335,7 @@ namespace NDPSo.MasterData
                 {
                    
                 }*/
-                
+
             }
             else
             {
@@ -5456,7 +5522,7 @@ namespace NDPSo.MasterData
             }
             else
             {
-                if(ConfigManager.TramTronConfig.CapPhoiRes == 0)
+                if (ConfigManager.TramTronConfig.CapPhoiRes == 0)
                 {
                     TramTromMessageBox.ShowWarningDialog("Vui lòng bật băng tải xiên chạy trước.");
                 }
@@ -5464,7 +5530,7 @@ namespace NDPSo.MasterData
                 {
                     TramTromMessageBox.ShowWarningDialog("Vui lòng đưa gàu tải xuống vị trí dưới trước.");
                 }
-                
+
             }
             TramTronLogger.WriteInfo(sender.ToString());
         }
@@ -5534,11 +5600,11 @@ namespace NDPSo.MasterData
         private void spnThemBotNc_EditValueChanged(object sender, EventArgs e)
         {
             ObjHopDong selectedHD = this.lblMAC.Tag as ObjHopDong;
-            if(this.spnThemBotNc.Value > 100)
+            if (this.spnThemBotNc.Value > 100)
             {
                 this.spnThemBotNc.Value = 100;
             }
-            else if(this.spnThemBotNc.Value < -100)
+            else if (this.spnThemBotNc.Value < -100)
             {
                 this.spnThemBotNc.Value = -100;
             }
@@ -5555,18 +5621,18 @@ namespace NDPSo.MasterData
                 this.BuildSetPoint(selectedHD, true);
             }
         }
-        
+
         private void SaveThemBotNuoc1(int macID, decimal themBotNuoc1)
         {
             this._presenter.SaveThemBotNuoc1(macID, themBotNuoc1);
         }
         private void ResetThemBotNuoc()
         {
-            foreach(ObjMAC mac in this._blstMAC)
+            foreach (ObjMAC mac in this._blstMAC)
             {
                 this.SaveThemBotNuoc1(mac.MACID, 0M);
             }
-            
+
         }
         private void ucButtonRungCanAgg1_ButtonMouseDown(object sender, EventArgs e)
         {
@@ -5680,7 +5746,7 @@ namespace NDPSo.MasterData
             SendData_DB2_NewTread();
         }
 
-        
+
         private void simpleButton9_Click(object sender, EventArgs e)
         {
             txtNiemChi.Text = Support.GetNextNiemChi(ConfigManager.TramTronConfig.SecuritySealNum);
@@ -5721,7 +5787,7 @@ namespace NDPSo.MasterData
             ucLogic.GetValueLogic();
             //TramTromMessageBox.ShowMessageDialog(ucLogic.ValueLogic.ToString());
         }
-        
+
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             string pathXML = EncryptionHelper.Encrypt(textEdit1.Text);
@@ -5764,7 +5830,7 @@ namespace NDPSo.MasterData
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
-            openFileDialog1.Filter = "XML Files|*.xml"; 
+            openFileDialog1.Filter = "XML Files|*.xml";
             openFileDialog1.Title = "Chọn File";
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -5789,7 +5855,7 @@ namespace NDPSo.MasterData
             {
                 this._so.SendingCommand.F5_RETURN = true;
                 this.SendData_DB2_NewTread();
-                
+
             }
             catch (System.Exception ex)
             {
