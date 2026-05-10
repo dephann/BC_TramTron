@@ -18,10 +18,12 @@ namespace NDPSo.Utils
         public static readonly Color ColorSoonLate   = Color.FromArgb(255, 230, 80);  // vàng: SẮP TRỄ
         public static readonly Color ColorOnTime     = Color.FromArgb(200, 240, 200); // xanh nhạt: ĐÚNG HẠN
         public static readonly Color ColorSwitch     = Color.FromArgb(255, 230, 180); // cam nhạt: vệ sinh máy
+        public static readonly Color ColorCancelled  = Color.FromArgb(255, 180, 180); // hồng nhạt: đã hủy
 
         // ── Màu chữ ───────────────────────────────────────────────────
         public static readonly Color ForeRunning     = Color.FromArgb(0, 110, 0);
         public static readonly Color ForeDone        = Color.FromArgb(120, 120, 120);
+        public static readonly Color ForeCancelled   = Color.FromArgb(140, 0, 0);
         public static readonly Color ForeLate        = Color.White;
         public static readonly Color ForeSoonLate    = Color.FromArgb(80, 60, 0);
         public static readonly Color ForeOnTime      = Color.FromArgb(0, 80, 0);

@@ -18,6 +18,21 @@ namespace NDPSo.MasterData.TonKho
         // Raised on background thread after XuatKho completes — subscribers must BeginInvoke
         public static event Action TonKhoChanged;
 
+        private readonly string _connStr;
+
+        public TonKhoService()
+        {
+            var sc = ConfigManager.ServiceConfig;
+            _connStr = new System.Data.SqlClient.SqlConnectionStringBuilder
+            {
+                DataSource         = sc.ServerName,
+                InitialCatalog     = sc.DatabaseName,
+                UserID             = sc.UserID,
+                Password           = sc.Password,
+                IntegratedSecurity = false
+            }.ConnectionString;
+        }
+
         public static void RaiseTonKhoChanged() => TonKhoChanged?.Invoke();
 
        
@@ -110,18 +125,60 @@ namespace NDPSo.MasterData.TonKho
         // ── Xuất kho theo PhieuTronID (gọi khi PhieuTron hoàn tất) ──
         public void XuatKhoTheoPhieuTron(int phieuTronID, int duLieuTronID, int createdBy = 1)
         {
+            const string sqlGetMeTron = "SELECT MeTronID FROM MeTron WHERE PhieuTronID = @PhieuTronID";
             TramTronLogger.WriteInfo($"[XuatKho] Bắt đầu — PhieuTronID={phieuTronID} DuLieuTronID={duLieuTronID}");
             try
             {
-                new NDPTramTronBO().XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID);
+                using (var conn = new SqlConnection(_connStr))
+                {
+                    conn.Open();
+                    var meTronIDs = new System.Collections.Generic.List<int>();
+                    using (var cmd = new SqlCommand(sqlGetMeTron, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@PhieuTronID", phieuTronID);
+                        using (var rd = cmd.ExecuteReader())
+                            while (rd.Read())
+                                meTronIDs.Add(rd.GetInt32(0));
+                    }
+
+                    TramTronLogger.WriteInfo($"[XuatKho] Tìm thấy {meTronIDs.Count} MeTron cho PhieuTronID={phieuTronID}");
+
+                    if (meTronIDs.Count == 0)
+                    {
+                        TramTronLogger.WriteInfo($"[XuatKho] CẢNH BÁO: Không có MeTron nào — bỏ qua trừ kho. PhieuTronID={phieuTronID}");
+                    }
+
+                    foreach (int meTronID in meTronIDs)
+                    {
+                        try
+                        {
+                            const string sql = "EXEC sp_XuatKho_TuDong @MeTronID,@PhieuTronID,@DuLieuTronID,@CreatedBy";
+                            using (var cmd = new SqlCommand(sql, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@MeTronID",     meTronID);
+                                cmd.Parameters.AddWithValue("@PhieuTronID",  phieuTronID);
+                                cmd.Parameters.AddWithValue("@DuLieuTronID", duLieuTronID);
+                                cmd.Parameters.AddWithValue("@CreatedBy",    createdBy);
+                                cmd.ExecuteNonQuery();
+                            }
+                            TramTronLogger.WriteInfo($"[XuatKho] OK — MeTronID={meTronID}");
+                        }
+                        catch (Exception exMe)
+                        {
+                            TramTronLogger.WriteInfo($"[XuatKho] LỖI MeTronID={meTronID}: {exMe.Message}");
+                            TramTronLogger.WriteError(exMe);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                TramTronLogger.WriteInfo($"[XuatKho] LỖI: {ex.Message}");
+                TramTronLogger.WriteInfo($"[XuatKho] LỖI kết nối/query: {ex.Message}");
                 TramTronLogger.WriteError(ex);
             }
             finally
             {
+                // Luôn raise event để TonKhoView refresh — kể cả khi có lỗi một phần
                 TonKhoChanged?.Invoke();
                 TramTronLogger.WriteInfo($"[XuatKho] Kết thúc — PhieuTronID={phieuTronID}");
             }

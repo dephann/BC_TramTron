@@ -1233,16 +1233,16 @@ namespace NDPSo.MasterData
         {
             var chk = new DevExpress.XtraEditors.CheckEdit
             {
-                Text = "Ẩn đơn đã hoàn thành",
+                Text     = "Ẩn đơn đã hoàn thành",
                 Location = new System.Drawing.Point(4, 4),
                 AutoSize = true
             };
 
             // Nhả tabDuLieuTron ra khỏi Fill để nhường 24px trên cho checkbox
-            tabDuLieuTron.Dock = System.Windows.Forms.DockStyle.None;
+            tabDuLieuTron.Dock     = System.Windows.Forms.DockStyle.None;
             tabDuLieuTron.Location = new System.Drawing.Point(0, 24);
-            tabDuLieuTron.Size = new System.Drawing.Size(panelControl3.Width, panelControl3.Height - 24);
-            tabDuLieuTron.Anchor = System.Windows.Forms.AnchorStyles.Top
+            tabDuLieuTron.Size     = new System.Drawing.Size(panelControl3.Width, panelControl3.Height - 24);
+            tabDuLieuTron.Anchor   = System.Windows.Forms.AnchorStyles.Top
                                    | System.Windows.Forms.AnchorStyles.Left
                                    | System.Windows.Forms.AnchorStyles.Right
                                    | System.Windows.Forms.AnchorStyles.Bottom;
@@ -4356,7 +4356,14 @@ namespace NDPSo.MasterData
                 // không để Resolve fail chặn XuatKho
                 ServiceFactories.GetFactory(ConfigManager.TramTronConfig.RunningMode).ResolveUnfinishPhieuTron();
 
-                
+                if (_selectedPT_Run != null)
+                {
+                    var dlt = this.grvHopDong.GetRow(0) as ObjDuLieuTron;
+                    int duLieuTronID = dlt != null ? dlt.DuLieuTronID : 0;
+                    int phieuTronID  = _selectedPT_Run.PhieuTronID;
+                    System.Threading.Tasks.Task.Run(() =>
+                        _tonKhoSvc.XuatKhoTheoPhieuTron(phieuTronID, duLieuTronID, GlobalValues.UserID));
+                }
             }
             catch (System.Exception ex)
             {

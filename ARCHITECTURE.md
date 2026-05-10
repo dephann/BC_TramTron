@@ -536,7 +536,6 @@ ThoiGianGiaoHang set    → BackColorByCR(cr): Đỏ/Vàng/Xanh                 
 - Toggle sắp xếp CR / mặc định → `DoTogglePrioritySort`
 
 #### Disable btnRun cho Cancelled & Finished (FocusedRowChanged)
-
 ```csharp
 private void grvHopDong_FocusedRowChanged_1(...)
 {
@@ -590,9 +589,7 @@ Silo: 6 Agg + 5 Ce + 2 Wa + 5 Add = **18 silo vật liệu**
 ### 8.6 Ranking & Auto-Advance Logic (VanHanh.cs)
 
 #### RefreshRankingDLT()
-
 Sắp xếp lại toàn bộ `_blstDuLieuTron`, lưu DB, refresh grid:
-
 ```
 1. active   = Status != 3 && Status != 4  → sort theo DLT_KLDuTinhCuaTungMe_NoiB (priority field)
 2. cancelled = Status == 3               → giữ nguyên thứ tự LnNo cũ
@@ -602,18 +599,14 @@ merged = active + cancelled + done → renumber LnNo = 1..n
 ```
 
 #### UpdateRankingDLT(dulieutron)
-
 Đặt `dulieutron` làm ưu tiên cao nhất (priority = 1):
-
 ```
 → Set dulieutron.DLT_KLDuTinhCuaTungMe_NoiB = 1, others increment
 → Gọi RefreshRankingDLT()
 ```
 
-#### AutoAdvanceAfterCancel() _(thêm 2026-05-08)_
-
+#### AutoAdvanceAfterCancel()  *(thêm 2026-05-08)*
 Sau khi hủy đơn, tự động chuyển sang đơn active tiếp theo:
-
 ```csharp
 var next = _blstDuLieuTron
     .Where(d => d.Status != 3 && d.Status != 4)
@@ -623,14 +616,12 @@ if (next != null) UpdateRankingDLT(next);
 else RefreshRankingDLT();
 ```
 
-#### DoHuy() → luồng hủy đơn _(cập nhật 2026-05-08)_
-
+#### DoHuy() → luồng hủy đơn  *(cập nhật 2026-05-08)*
 ```
 F3 pressed → ChangeStatusSelectedDuLieuTron(3, null) → AutoAdvanceAfterCancel()
 ```
 
-#### InitRunning() — các guard _(cập nhật 2026-05-08)_
-
+#### InitRunning() — các guard  *(cập nhật 2026-05-08)*
 ```
 Status == 4 → cảnh báo "đã hoàn thành", return
 Status == 3 → cảnh báo "đã bị hủy", return
